@@ -23,13 +23,13 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Header /> */}
-        {/* <Switch> */}
-          {/* {renderRoutes(clientRoutes)} */}
-          {/* {renderRoutes(adminRoutes)} */}
-          {/* <Route path="*" component={PageNotFound} /> */}
-        {/* </Switch> */}
-        <UserAcount/>
+        <Header />
+        <Switch>
+          {renderRoutes(clientRoutes)}
+          {renderRoutes(adminRoutes)}
+          <Route path="*" component={PageNotFound} />
+        </Switch>
+        {/* <UserAcount/> */}
       </Router>
     </div>
   );
