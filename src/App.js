@@ -29,7 +29,6 @@ function App() {
           {renderRoutes(adminRoutes)}
           <Route path="*" component={PageNotFound} />
         </Switch>
-        {/* <UserAcount/> */}
       </Router>
     </div>
   );
