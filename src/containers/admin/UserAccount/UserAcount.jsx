@@ -1,8 +1,13 @@
 import React, { Component } from "react";
-import Pagination from 'components/Pagination/Pagination';
+import Pagination from "components/Pagination/Pagination";
+import { Switch, Route} from "react-router-dom";
+import UserItem from "./UserItem";
+import { connect } from "react-redux";
+import { actFetchUserAccount } from "./Modules/action";
 class UserAcount extends Component {
-    pageSize = 10;
   render() {
+    const url = '/admin/userAcount';
+    const { totalCount, siblingCount, currentPage, pageSize } = this.props;
     return (
       <>
         <div className="row justify-content-between mx-0 my-2 container-fluid">
@@ -26,6 +31,7 @@ class UserAcount extends Component {
             <button className="btn btn-primary">Tìm</button>
           </div>
         </div>
+
         <table className="table table-bordered">
           <thead className="thead-light">
             <tr>
@@ -39,27 +45,37 @@ class UserAcount extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className='align-items-center'>1</td>
-              <td className='align-items-center'>Mark</td>
-              <td className='align-items-center'>Otto</td>
-              <td className='align-items-center'>@mdo</td>
-              <td className='align-items-center'>@mdo</td>
-              <td className='align-items-center'>Lorem ipsum</td>
-              <td className="row justify-content-center m-0">
-                <button className="btn btn-primary m-1">Sửa</button>
-                <button className="btn btn-danger m-1">Xóa</button>
-              </td>
-            </tr>
+            
+              <Switch>
+              <Route
+                  path="/admin/UserAcount" exact='true'
+                  component={UserItem}
+                />
+                <Route
+                  path="/admin/UserAcount/Page:pageNumber"
+                  component={UserItem}
+                />
+              </Switch>
           </tbody>
         </table>
-        <Pagination totalCount ={100}
-            siblingCount = {1}
-            currentPage = {5}
-            pageSize = {this.pageSize}/>
+
+        <Pagination url = {url} totalCount = {totalCount} siblingCount={siblingCount} currentPage={currentPage} pageSize={pageSize} changePage={this.changePage}/>
       </>
     );
   }
+  componentDidMount() {
+    this.props.fetchUserAccount();
+  }
 }
-
-export default UserAcount;
+const mapStateToProps = (state) => ({
+  totalCount: state.UserAccountReducer.totalCount,
+  siblingCount: state.UserAccountReducer.siblingCount,
+  currentPage: state.UserAccountReducer.currentPage,
+  pageSize: state.UserAccountReducer.pageSize,
+});
+const mapDispatchToProps = dispatch => ({
+  fetchUserAccount: ()=>{
+    dispatch(actFetchUserAccount());
+  }
+})
+export default connect(mapStateToProps,mapDispatchToProps)(UserAcount);

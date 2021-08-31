@@ -12,6 +12,9 @@ const movieApi = {
   fetchFindUserInfo(userAccount) {
     return callApi(`QuanLyNguoiDung/LayDanhSachNguoiDung?maNhom=${GROUP_ID}&tuKhoa=${userAccount}`);
   },
+  fetchAllUserAcount(){
+    return callApi(`QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GROUP_ID}`);
+  }
 };
 
 export default movieApi;

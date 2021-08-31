@@ -5,7 +5,8 @@ import MovieDetail from 'containers/client/MovieDetail/MovieDetail';
 import Review from 'containers/client/Review/Review';
 import SeatPlan from 'containers/client/SeatPlan/SeatPlan';
 import Theater from 'containers/client/Theater/Theater';
-
+import AdminInfo from 'containers/admin/Home/AdminInfo';
+import UserAcount from 'containers/admin/UserAccount/UserAcount';
 export const clientRoutes = [
   {
     path: '/',
@@ -44,4 +45,10 @@ export const clientRoutes = [
   },
 ];
 
-export const adminRoutes = [];
+export const adminRoutes = [
+  {
+    path: '/admin',
+    component: AdminInfo,
+    exact: false,
+  },
+];
