@@ -3,7 +3,7 @@ import {
   FETCH_MOVIE_DETAIL_FAIL,
   FETCH_MOVIE_DETAIL_REQUEST,
   FETCH_MOVIE_DETAIL_SUCCESS,
-} from './types';
+} from './movieDetailType';
 
 const actFetchMovieDetailRequest = () => ({
   type: FETCH_MOVIE_DETAIL_REQUEST,

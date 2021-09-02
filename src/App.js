@@ -1,10 +1,9 @@
-import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from 'components/Header/Header';
 import PageNotFound from 'containers/shared/PageNotFound/PageNotFound';
 import { adminRoutes, clientRoutes } from 'routes';
-import AdminInfo from 'containers/admin/Home/AdminInfo';
-import UserAcount from 'containers/admin/UserAccount/UserAcount';
+// import AdminInfo from 'containers/admin/Home/AdminInfo';
+// import UserAcount from 'containers/admin/UserAccount/UserAcount';
 
 function App() {
   const renderRoutes = routes => {
@@ -23,14 +22,14 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Header />
+        <Header />
         <Switch>
           {renderRoutes(clientRoutes)}
-          {renderRoutes(adminRoutes)}
+          {/* {renderRoutes(adminRoutes)} */}
           <Route path="*" component={PageNotFound} />
-        </Switch> */}
+        </Switch>
         {/* <AdminInfo/> */}
-        <UserAcount/>
+        {/* <UserAcount/>cle */}
       </Router>
     </div>
   );

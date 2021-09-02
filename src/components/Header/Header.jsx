@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 export default class Header extends Component {
   render() {
     return (
@@ -26,23 +26,19 @@ export default class Header extends Component {
               </Link>
             </li>
             <li className="nav-item">
+              <Link className="nav-link" to="/movie">
+                Movie
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link className="nav-link" to="/theater">
                 Theater
               </Link>
             </li>
+
             <li className="nav-item">
-              <Link className="nav-link" to="/review">
-                Review
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/about">
-                About
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/hook">
-                Hook
+              <Link className="nav-link" to="/contact">
+                Contact
               </Link>
             </li>
           </ul>
