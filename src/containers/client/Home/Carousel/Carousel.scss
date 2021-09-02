@@ -1,0 +1,70 @@
+.Carousel-container {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  .arrow-prev {
+    position: absolute;
+    left: 3%;
+    top: 50%;
+    z-index: 10;
+  }
+  .arrow-next {
+    position: absolute;
+    right: 3%;
+    top: 50%;
+    z-index: 10;
+  }
+  .arrow-next,
+  .arrow-prev {
+    text-align: center;
+    color: #fff;
+    font-size: 70px;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .Carousel-content {
+    position: relative;
+    height: 600px;
+    .carousel {
+      position: absolute;
+      top: 0;
+      left: 0;
+      div {
+        opacity: 0;
+        transition: opacity 1s;
+      }
+    }
+    .active {
+      z-index: 5;
+      div {
+        opacity: 1;
+      }
+      .carousel-text {
+        h1 {
+          animation: displayText 1.3s linear 1.2s 1;
+          animation: name duration timing-function delay iteration-count
+            direction fill-mode;
+        }
+        .carousel-descript {
+          animation: displayText 1.3s linear 1.2s 1;
+        }
+      }
+    }
+    .carousel-text {
+      position: absolute;
+      bottom: 5%;
+      left: 30%;
+      width: 50%;
+      text-align: left;
+      color: #fff;
+      a{
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+}

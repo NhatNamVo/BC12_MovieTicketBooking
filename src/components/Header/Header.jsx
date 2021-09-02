@@ -41,8 +41,8 @@ export default class Header extends Component {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/hook">
-                Hook
+              <Link className="nav-link" to="/admin/UserAcount">
+                User
               </Link>
             </li>
           </ul>

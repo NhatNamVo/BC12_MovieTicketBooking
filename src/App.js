@@ -23,14 +23,14 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Header />
+        <Header />
         <Switch>
           {renderRoutes(clientRoutes)}
-          {renderRoutes(adminRoutes)}
+          {/* {renderRoutes(adminRoutes)} */}
           <Route path="*" component={PageNotFound} />
-        </Switch> */}
+        </Switch>
         {/* <AdminInfo/> */}
-        <UserAcount/>
+        {/* <UserAcount/> */}
       </Router>
     </div>
   );
