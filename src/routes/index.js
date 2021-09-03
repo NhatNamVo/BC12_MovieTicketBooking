@@ -7,11 +7,18 @@ import AdminInfo from 'containers/admin/Home/AdminInfo';
 // import UserAcount from 'containers/admin/UserAccount/UserAcount';
 import Movie from 'containers/client/Movie/Movie';
 import Contact from 'components/Contact/Contact';
+import UserAcount from 'containers/admin/UserAccount/UserAcount';
+import ModalTrailer from 'components/ModalTrailer/ModalTrailer';
 export const clientRoutes = [
   {
     path: '/',
     component: Home,
     exact: true,
+  },
+  {
+    path: '/trailer/:movieId',
+    component: Home,
+    exact: false,
   },
   {
     path: '/theater',
@@ -31,7 +38,7 @@ export const clientRoutes = [
   {
     path: '/movie-detail/:movieId',
     component: MovieDetail,
-    exact: false,
+    exact: true,
   },
   {
     path: '/seat-plan/:showtimeId',
@@ -41,6 +48,11 @@ export const clientRoutes = [
   {
     path: '/hook',
     component: DemoHook,
+    exact: false,
+  },
+  {
+    path: '/admin/UserAcount',
+    component: UserAcount,
     exact: false,
   },
 ];

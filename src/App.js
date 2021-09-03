@@ -30,6 +30,7 @@ function App() {
         </Switch>
         {/* <AdminInfo/> */}
         {/* <UserAcount/>cle */}
+        {/* <UserAcount/> */}
       </Router>
     </div>
   );
