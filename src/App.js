@@ -4,8 +4,6 @@ import PageNotFound from 'containers/shared/PageNotFound/PageNotFound';
 import { adminRoutes, clientRoutes } from 'routes';
 // import AdminInfo from 'containers/admin/Home/AdminInfo';
 // import UserAcount from 'containers/admin/UserAccount/UserAcount';
->>>>>>> 02e9caeae5ed14be429b10d99e7fbcde2ea19d2b
-
 function App() {
   const renderRoutes = (routes) => {
     return routes.map((route) => {
@@ -22,9 +20,7 @@ function App() {
           {/* {renderRoutes(adminRoutes)} */}
           <Route path="*" component={PageNotFound} />
         </Switch>
-<<<<<<< HEAD
-        
-=======
+
         {/* <AdminInfo/> */}
         {/* <UserAcount/>cle */}
         {/* <UserAcount/> */}
