@@ -28,14 +28,11 @@ class ModalTrailer extends Component {
   closePopup =(event) => {
     const iframeComponent = event.target.closest('iframe');
     const closeBtn = event.target.closest('.fa-times');
-    if(closeBtn){
+    if(closeBtn||!iframeComponent){
         this.setState({ popup: false });
         this.closePopup = setTimeout(() =>{
-            this.props.history.goback();
+            this.props.history.goBack();
         },500)
-    }
-    if(!iframeComponent){
-        closeBtn.click();
     }
   }
   render() {

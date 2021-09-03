@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import CarouselItem from "./CarouselItem";
-import { Route, Link, Switch } from "react-router-dom";
-import ModalTrailer from "components/ModalTrailer/ModalTrailer";
+
 import "./Carousel.scss";
 export default class Carousel extends Component {
   state = {
@@ -87,12 +86,22 @@ export default class Carousel extends Component {
         this.changeCarousel("next");
       }, 10000);
     }
+    else{
+      clearInterval(this.carousel);
+    }
     const container = document.querySelector(".Carousel-content");
     const containerHeight = container.clientHeight;
     this.setState({
       containerHeight: containerHeight,
     });
     window.addEventListener("resize", this.changeWindowWidth);
+    const playTrailer = document.querySelector('.btn-trailer');
+    playTrailer.addEventListener('click',this.changeAutoPlay);
+  }
+  changeAutoPlay =(event) =>{
+    clearInterval(this.carousel);
+    this.setState({autoPlay: false});
+    console.log(event, this.state.autoPlay);
   }
   changeWindowWidth = () => {
     const container = document.querySelector(".Carousel-content");
@@ -102,9 +111,6 @@ export default class Carousel extends Component {
       containerHeight: containerHeight,
     });
   };
-  componentWillUnmount() {
-    clearInterval(this.carousel);
-  }
   changeCarousel = (type) => {
     const { carousel } = this.state;
     const itemId = carousel.findIndex((item, idx) => {
@@ -157,16 +163,6 @@ export default class Carousel extends Component {
         </div>
         <div className="apiBtn arrow-next" onClick={this.apiChangeCarousel}>
           <i className="fa fa-angle-right"></i>
-        </div>
-        <div className="modal-trailer">
-          <Switch>
-            <Route
-              path="/trailer/:movieId"
-              exact="true"
-              component={()=> <ModalTrailer carousel={carousel} match = {match}
-              history = {history} containerHeight={containerHeight}/>}
-            />
-          </Switch>
         </div>
       </div>
     );

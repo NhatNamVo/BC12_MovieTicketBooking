@@ -15,11 +15,6 @@ export const clientRoutes = [
     exact: true,
   },
   {
-    path: '/trailer/:movieId',
-    component: Home,
-    exact: false,
-  },
-  {
     path: '/theater',
     component: Theater,
     exact: false,
