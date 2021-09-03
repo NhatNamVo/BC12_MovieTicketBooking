@@ -6,7 +6,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <Carousel match = {this.props.match} history={this.props.history}/>
+        <Carousel match = {this.props.match} history={this.props.history} location={this.props.location}/>
         {/* <Filter /> */}
       </div>
     );

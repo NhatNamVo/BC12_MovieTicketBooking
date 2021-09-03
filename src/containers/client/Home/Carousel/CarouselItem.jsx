@@ -105,7 +105,7 @@ class CarouselItem extends Component {
           <div className="carousel-descript">
             <p>{filmInfo.moTa}</p>
             <Link
-              to={match.url + "trailer/" + filmInfo.maPhim}
+              to={{pathname:match.url + "trailer/" + filmInfo.maPhim, state: {"background":history.location}}}
               className="btn btn-dark btn-trailer"
             >
               <i class="fa fa-play"></i>
