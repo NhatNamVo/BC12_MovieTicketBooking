@@ -1,111 +1,123 @@
-import React, { useEffect } from 'react';
-import Loader from 'components/Loader/Loader';
-import { actFetchMovieDetail } from './module/actions';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import Loader from "components/Loader/Loader";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { actFetchMovieDetail } from "./module/movieDetailAction";
+import { FaRegCalendarAlt, FaRegClock, FaFacebookF, FaTwitter,FaPinterestP,FaLinkedinIn,FaGooglePlusG} from "react-icons/fa";
 
-export default function MovieDetail(props) {
-  // useParams() ~ props.match.params 
-  const { movieId } = useParams();
-
-  // useDispatch ~ mapDispatchToProps
-  const dispatch = useDispatch();
-
-  // useSelector ~ mapStateToProps
-  const { loading, movieDetail } = useSelector(state => state.movieDetailReducer);
-  
-  useEffect(() => {
-    dispatch(actFetchMovieDetail(movieId));
-  }, []);
-
-  if (loading) return <Loader />
-
-  return movieDetail && (
-    <div className="container mt-5">
-      <div className="row">
-        <div className="col-3">
-          <img className="img-fluid" src={movieDetail.hinhAnh} alt="" />
-        </div>
-        <div className="col-9">
-          <h2>{movieDetail.tenPhim}</h2>
-          <p>{movieDetail.moTa}</p>
-        </div>
-      </div>
-      <h1 className="mt-5">ShowTime</h1>
-      <div className="row">
-        <div className="col-3">
-          <div
-            className="nav flex-column nav-pills text-left"
-            id="v-pills-tab"
-            role="tablist"
-            aria-orientation="vertical"
-          >
-            {movieDetail.heThongRapChieu.map((heThongRap, idx) => {
-              return (
-                <a
-                  key={heThongRap.maHeThongRap}
-                  className={`nav-link ${idx === 0 && 'active'}`}
-                  id="v-pills-home-tab"
-                  data-toggle="pill"
-                  href={`#${heThongRap.maHeThongRap}`}
-                  role="tab"
-                  aria-controls="v-pills-home"
-                  aria-selected="true"
-                >
+class MovieDetail extends Component {
+  render() {
+    const { movieDetail, loading } = this.props;
+    if (loading) return <Loader />;
+    return (
+      movieDetail && (
+        <div className="container">
+          <div className="details__banner">
+            <div className="card container mb-3">
+              <div className="row no-gutters">
+                <div className="col-md-4 details__banner__thumb">
                   <img
-                    src={heThongRap.logo}
-                    style={{ width: '50px', marginRight: '6px' }}
+                    className="img-fluid"
+                    src={movieDetail.hinhAnh}
+                    alt="hình ảnh"
                   />
-                  <span style={{ textTransform: 'uppercase' }}>
-                    {heThongRap.tenHeThongRap}
-                  </span>
-                </a>
-              );
-            })}
-          </div>
-        </div>
-        <div className="col-9">
-          <div className="tab-content" id="v-pills-tabContent">
-            {movieDetail.heThongRapChieu.map((heThongRap, idx) => {
-              return (
-                <div
-                  className={`tab-pane fade show ${idx === 0 && 'active'}`}
-                  id={heThongRap.maHeThongRap}
-                  role="tabpanel"
-                  aria-labelledby="v-pills-home-tab"
-                >
-                  {heThongRap.cumRapChieu.map(cumRap => {
-                    return (
-                      <div className="text-left">
-                        <img
-                          src={cumRap.hinhAnh}
-                          style={{ width: '50px', marginRight: '6px' }}
-                          alt=""
-                        />
-                        {cumRap.tenCumRap}
-                        <div className="my-4">
-                          {cumRap.lichChieuPhim.map(lichChieu => {
-                            return (
-                              <Link
-                                to={`/seat-plan/${lichChieu.maLichChieu}`}
-                                className="btn btn-secondary mr-3 mb-3"
-                              >
-                                {new Date(
-                                  lichChieu.ngayChieuGioChieu
-                                ).toLocaleTimeString()}
-                              </Link>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    );
-                  })}
                 </div>
-              );
-            })}
+                <div className="col-md-8  details__banner__content">
+                  <div className="card-body">
+                    <h5 className="card-title">{movieDetail.tenPhim}</h5>
+                    <div className="tag">
+                      <a href ="#">English</a>
+                      <a href ="#">France</a>
+                      <a href ="#">Italy</a>
+                      <a href ="#">Germany</a>
+                    </div>
+                    <div className="time-social">
+                      <div className="time">                                               
+                        <FaRegCalendarAlt />
+                        <span className="p-1 pr-5 ">
+                          {new Date(
+                            movieDetail.ngayKhoiChieu
+                          ).toLocaleDateString()}
+                        </span>
+                        <FaRegClock />
+                        <span className="p-1">
+                          {new Date(
+                            movieDetail.ngayKhoiChieu
+                          ).toLocaleTimeString()}
+                        </span>
+                      </div>
+                      <ul className="social">
+                      <li>
+                        <FaFacebookF/>
+                        <a href="#"></a>
+                      </li>
+                      <li>
+                        <FaTwitter/>
+                        <a href="#"></a>
+                      </li>
+                      <li>
+                        <FaPinterestP/>
+                        <a href="#"></a>
+                      </li>
+                      <li>
+                        <FaLinkedinIn/>
+                        <a href="#"></a>
+                      </li>
+                      <li>
+                        <FaGooglePlusG/>
+                        <a href="#"></a>
+                      </li>
+                    </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
+          {/* DESCRIPTION */}
+          <div className="card text-center">
+            <div className="card-header">
+              <ul className="nav nav-pills card-header-pills">
+                <li className="nav-item">
+                  <a className="nav-link active" href="#">
+                    Active
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    Link
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="card-body">
+              <h5 className="card-title">Special title treatment</h5>
+              <p className="card-text">
+                With supporting text below as a natural lead-in to additional
+                content.
+              </p>
+              <a href="#" className="btn btn-primary">
+                Go somewhere
+              </a>
+            </div>
+          </div>
+          {/* Theater */}
         </div>
-      </div>
-    </div>
-  );
+      )
+    );
+  }
+  componentDidMount() {
+    const { movieId } = this.props.match.params;
+    this.props.fetchMovieDetail(movieId);
+  }
 }
+const mapStateToProps = (state) => ({
+  movieDetail: state.movieDetailReducer.movieDetail,
+  loading: state.movieDetailReducer.loading,
+});
+const mapDispatchToProps = (dispatch) => ({
+  fetchMovieDetail: (movieId) => {
+    dispatch(actFetchMovieDetail(movieId));
+  },
+});
+export default connect(mapStateToProps, mapDispatchToProps)(MovieDetail);

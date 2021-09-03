@@ -1,11 +1,12 @@
-import About from 'containers/client/About/About';
 import DemoHook from 'containers/client/DemoHook/DemoHook';
 import Home from 'containers/client/Home/Home';
 import MovieDetail from 'containers/client/MovieDetail/MovieDetail';
-import Review from 'containers/client/Review/Review';
 import SeatPlan from 'containers/client/SeatPlan/SeatPlan';
 import Theater from 'containers/client/Theater/Theater';
 import AdminInfo from 'containers/admin/Home/AdminInfo';
+// import UserAcount from 'containers/admin/UserAccount/UserAcount';
+import Movie from 'containers/client/Movie/Movie';
+import Contact from 'components/Contact/Contact';
 import UserAcount from 'containers/admin/UserAccount/UserAcount';
 import ModalTrailer from 'components/ModalTrailer/ModalTrailer';
 export const clientRoutes = [
@@ -25,13 +26,13 @@ export const clientRoutes = [
     exact: false,
   },
   {
-    path: '/review',
-    component: Review,
+    path: '/movie',
+    component: Movie,
     exact: false,
   },
   {
-    path: '/about',
-    component: About,
+    path: '/contact',
+    component:Contact ,
     exact: false,
   },
   {
