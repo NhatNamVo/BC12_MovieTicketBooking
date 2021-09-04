@@ -1,9 +1,10 @@
+import withMovieLayout from 'hocs/withMovieLayout';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-export default class MovieItem extends Component {
+class MovieItem extends Component {
   render() {
-    const { tenPhim, hinhAnh, maPhim } = this.props.movie;
+    const { tenPhim, hinhAnh, maPhim } = this.props.data;
 
     return (
       <div className="col-3" style={{ marginBottom: '30px' }}>
@@ -20,3 +21,4 @@ export default class MovieItem extends Component {
     );
   }
 }
+export default withMovieLayout(MovieItem);
