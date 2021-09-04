@@ -3,11 +3,10 @@ import MovieDetail from 'containers/client/MovieDetail/MovieDetail';
 import SeatPlan from 'containers/client/SeatPlan/SeatPlan';
 import Theater from 'containers/client/Theater/Theater';
 import AdminInfo from 'containers/admin/Home/AdminInfo';
-// import UserAcount from 'containers/admin/UserAccount/UserAcount';
 import Movie from 'containers/client/Movie/Movie';
 import Contact from 'components/Contact/Contact';
 import UserAcount from 'containers/admin/UserAccount/UserAcount';
-import ModalTrailer from 'components/ModalTrailer/ModalTrailer';
+
 export const clientRoutes = [
   {
     path: '/',

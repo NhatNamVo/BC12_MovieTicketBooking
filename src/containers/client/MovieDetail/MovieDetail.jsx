@@ -17,6 +17,7 @@ import {
 class MovieDetail extends Component {
   render() {
     const { movieDetail, loading } = this.props;
+    console.log(this.props);
     if (loading) return <Loader />;
     return (
       movieDetail && (
@@ -48,7 +49,9 @@ class MovieDetail extends Component {
                     <a href="#">Italy</a>
                     <a href="#">Germany</a>
                   </div>
-                  <a href="#" className="button">{movieDetail.tinhTrang}</a>
+                  <a href="#" className="button">
+                    {movieDetail.tinhTrang}
+                  </a>
                   <div className="time-social">
                     <div className="time">
                       <FaRegCalendarAlt />
@@ -64,6 +67,7 @@ class MovieDetail extends Component {
                         ).toLocaleTimeString()}
                       </span>
                     </div>
+
                     <ul className="social">
                       <li>
                         <FaFacebookF />
@@ -124,6 +128,7 @@ class MovieDetail extends Component {
       )
     );
   }
+
   componentDidMount() {
     const { movieId } = this.props.match.params;
     this.props.fetchMovieDetail(movieId);

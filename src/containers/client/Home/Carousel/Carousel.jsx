@@ -66,7 +66,7 @@ export default class Carousel extends Component {
         },
       },
     ],
-    autoPlay: false,
+    autoPlay: true,
     windowWidth: window.innerWidth,
     containerHeight: 0,
   };
@@ -95,8 +95,6 @@ export default class Carousel extends Component {
       containerHeight: containerHeight,
     });
     window.addEventListener("resize", this.changeWindowWidth);
-    const playTrailer = document.querySelector('.btn-trailer');
-    playTrailer.addEventListener('click',this.changeAutoPlay);
   }
   changeAutoPlay =(event) =>{
     clearInterval(this.carousel);
