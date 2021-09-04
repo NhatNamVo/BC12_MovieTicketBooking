@@ -4,16 +4,24 @@ import movieReducer from 'containers/client/Home/module/reducer';
 import movieDetailReducer from 'containers/client/MovieDetail/module/movieDetailReducer';
 import UserAccountReducer from 'containers/admin/UserAccount/Modules/reducer';
 import thunk from 'redux-thunk';
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage';
 
 const rootReducer = combineReducers({
   movieReducer,
   movieDetailReducer,
   UserAccountReducer,
 });
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(
-  rootReducer,
+  persistedReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
+const persistor = persistStore(store);
 
-export default store;
+export {store,persistor};
