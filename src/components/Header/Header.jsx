@@ -27,12 +27,12 @@ export default class Header extends Component {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/movie">
-                Movie
+                Movies
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/theater">
-                Theater
+                Theaters
               </Link>
             </li>
 

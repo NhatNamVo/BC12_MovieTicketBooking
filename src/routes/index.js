@@ -1,4 +1,3 @@
-import DemoHook from 'containers/client/DemoHook/DemoHook';
 import Home from 'containers/client/Home/Home';
 import MovieDetail from 'containers/client/MovieDetail/MovieDetail';
 import SeatPlan from 'containers/client/SeatPlan/SeatPlan';
@@ -38,11 +37,6 @@ export const clientRoutes = [
   {
     path: '/seat-plan/:showtimeId',
     component: SeatPlan,
-    exact: false,
-  },
-  {
-    path: '/hook',
-    component: DemoHook,
     exact: false,
   },
   {
