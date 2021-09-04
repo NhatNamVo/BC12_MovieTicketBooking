@@ -7,6 +7,7 @@ import { FaRegCalendarAlt, FaRegClock, FaFacebookF, FaTwitter,FaPinterestP,FaLin
 class MovieDetail extends Component {
   render() {
     const { movieDetail, loading } = this.props;
+    console.log(this.props)
     if (loading) return <Loader />;
     return (
       movieDetail && (
@@ -33,7 +34,7 @@ class MovieDetail extends Component {
                     <div className="time-social">
                       <div className="time">                                               
                         <FaRegCalendarAlt />
-                        <span className="p-1 pr-5 ">
+                        <span className="p-1 pr-5">
                           {new Date(
                             movieDetail.ngayKhoiChieu
                           ).toLocaleDateString()}
