@@ -1,4 +1,3 @@
-import DemoHook from 'containers/client/DemoHook/DemoHook';
 import Home from 'containers/client/Home/Home';
 import MovieDetail from 'containers/client/MovieDetail/MovieDetail';
 import SeatPlan from 'containers/client/SeatPlan/SeatPlan';
@@ -6,6 +5,7 @@ import Theater from 'containers/client/Theater/Theater';
 import AdminInfo from 'containers/admin/Home/AdminInfo';
 import Movie from 'containers/client/Movie/Movie';
 import Contact from 'components/Contact/Contact';
+import UserAcount from 'containers/admin/UserAccount/UserAcount';
 
 export const clientRoutes = [
   {
@@ -36,6 +36,11 @@ export const clientRoutes = [
   {
     path: '/seat-plan/:showtimeId',
     component: SeatPlan,
+    exact: false,
+  },
+  {
+    path: '/admin/UserAcount',
+    component: UserAcount,
     exact: false,
   },
 ];
