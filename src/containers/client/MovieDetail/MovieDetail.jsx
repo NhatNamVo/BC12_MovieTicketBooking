@@ -1,74 +1,95 @@
 import Loader from "components/Loader/Loader";
 import React, { Component } from "react";
+import "containers/client/MovieDetail/MovieDetail.scss";
 import { connect } from "react-redux";
 import { actFetchMovieDetail } from "./module/movieDetailAction";
-import { FaRegCalendarAlt, FaRegClock, FaFacebookF, FaTwitter,FaPinterestP,FaLinkedinIn,FaGooglePlusG} from "react-icons/fa";
+import {
+  FaRegCalendarAlt,
+  FaRegClock,
+  FaFacebookF,
+  FaTwitter,
+  FaPinterestP,
+  FaLinkedinIn,
+  FaGooglePlusG,
+  FaRegPlayCircle,
+} from "react-icons/fa";
 
 class MovieDetail extends Component {
   render() {
     const { movieDetail, loading } = this.props;
-    console.log(this.props)
+    console.log(this.props);
     if (loading) return <Loader />;
     return (
       movieDetail && (
-        <div className="container">
-          <div className="details__banner">
-            <div className="card container mb-3">
-              <div className="row no-gutters">
-                <div className="col-md-4 details__banner__thumb">
+        <div>
+          <div
+            className="details__banner img-fluid"
+            style={{ backgroundImage: `url(${movieDetail.hinhAnh})` }}
+          >
+            <div className="card container">
+              <div className="row no-gutters details__banner__wrapper ">
+                <div className="col-md-4 details__banner__img">
                   <img
                     className="img-fluid"
                     src={movieDetail.hinhAnh}
                     alt="hình ảnh"
                   />
+                  <a
+                    href={movieDetail.trailer}
+                    className="video__button video__popup"
+                  >
+                    <FaRegPlayCircle />
+                  </a>
                 </div>
-                <div className="col-md-8  details__banner__content">
-                  <div className="card-body">
-                    <h5 className="card-title">{movieDetail.tenPhim}</h5>
-                    <div className="tag">
-                      <a href ="#">English</a>
-                      <a href ="#">France</a>
-                      <a href ="#">Italy</a>
-                      <a href ="#">Germany</a>
+                <div className="col-md-8  details__banner__content offset-lg-4 ">
+                  <h3 className="card-title">{movieDetail.tenPhim}</h3>
+                  <div className="tags">
+                    <a href="#">English</a>
+                    <a href="#">France</a>
+                    <a href="#">Italy</a>
+                    <a href="#">Germany</a>
+                  </div>
+                  <a href="#" className="button">
+                    {movieDetail.tinhTrang}
+                  </a>
+                  <div className="time-social">
+                    <div className="time">
+                      <FaRegCalendarAlt />
+                      <span className="p-1 pr-5 ">
+                        {new Date(
+                          movieDetail.ngayKhoiChieu
+                        ).toLocaleDateString()}
+                      </span>
+                      <FaRegClock />
+                      <span className="p-1">
+                        {new Date(
+                          movieDetail.ngayKhoiChieu
+                        ).toLocaleTimeString()}
+                      </span>
                     </div>
-                    <div className="time-social">
-                      <div className="time">                                               
-                        <FaRegCalendarAlt />
-                        <span className="p-1 pr-5">
-                          {new Date(
-                            movieDetail.ngayKhoiChieu
-                          ).toLocaleDateString()}
-                        </span>
-                        <FaRegClock />
-                        <span className="p-1">
-                          {new Date(
-                            movieDetail.ngayKhoiChieu
-                          ).toLocaleTimeString()}
-                        </span>
-                      </div>
-                      <ul className="social">
+
+                    <ul className="social">
                       <li>
-                        <FaFacebookF/>
+                        <FaFacebookF />
                         <a href="#"></a>
                       </li>
                       <li>
-                        <FaTwitter/>
+                        <FaTwitter />
                         <a href="#"></a>
                       </li>
                       <li>
-                        <FaPinterestP/>
+                        <FaPinterestP />
                         <a href="#"></a>
                       </li>
                       <li>
-                        <FaLinkedinIn/>
+                        <FaLinkedinIn />
                         <a href="#"></a>
                       </li>
                       <li>
-                        <FaGooglePlusG/>
+                        <FaGooglePlusG />
                         <a href="#"></a>
                       </li>
                     </ul>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -107,6 +128,7 @@ class MovieDetail extends Component {
       )
     );
   }
+
   componentDidMount() {
     const { movieId } = this.props.match.params;
     this.props.fetchMovieDetail(movieId);
