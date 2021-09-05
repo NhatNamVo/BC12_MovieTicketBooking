@@ -21,8 +21,6 @@ class CarouselItem extends Component {
     const divY = 1;
     const middleX = Math.floor(divX / 2);
     const middleY = Math.floor(divY / 2);
-    // const containerWidth = this.props.windowWidth;
-    // const containerHeight = container.clientHeight;
     const imgHref = this.props.imgHref;
     const delay = 0.1;
     for (let i = 0; i < divX; i++) {
@@ -74,7 +72,6 @@ class CarouselItem extends Component {
               left,
               bgPosX,
               bgPosY,
-              imgHref,
               containerWidth,
               containerHeight,
               timeDelay,
@@ -90,29 +87,12 @@ class CarouselItem extends Component {
                 timeDelay={timeDelay}
                 containerWidth={containerWidth}
                 containerHeight={containerHeight}
-                imgHref={imgHref}
                 filmInfo={this.props.filmInfo}
                 match={match}
                 history={history}
               />
             );
           })}
-          <div className="carousel-text">
-          <Link to={match.url + "movie-detail/" + filmInfo.maPhim}>
-            <h1>{filmInfo.tenPhim}</h1>
-          </Link>
-
-          <div className="carousel-descript">
-            <p>{filmInfo.moTa}</p>
-            <Link
-              to={{pathname:match.url + "trailer/" + filmInfo.maPhim, state: {"background":history.location}}}
-              className="btn btn-dark btn-trailer"
-            >
-              <i class="fa fa-play"></i>
-              <span>Trailer</span>
-            </Link>
-          </div>
-        </div>
         </div>
         
       </>

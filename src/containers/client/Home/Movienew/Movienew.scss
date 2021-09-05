@@ -1,0 +1,130 @@
+.film-background {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .currentFilm {
+    justify-content: space-between;
+    .currentFilm-info {
+      .currentFilm-rate {
+        margin-right: 30px;
+      }
+      .currentFilm-rate,
+      .currentFilm-date {
+        display: inline-block;
+      }
+    }
+    .currentFilm-profileImg {
+      text-align: right;
+      .currentFilm-img {
+        position: relative;
+        margin: auto;
+        width: 350px;
+        height: 400px;
+        box-shadow: 0px 0px 20px 3px #3a3a3a;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+        .video__button {
+          border-radius: 10px;
+          width: 60px !important;
+          height: 60px !important;
+          z-index: 1;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: #31d7a9;
+          color: #ffffff;
+          border: none;
+          text-align: center;
+          svg {
+            position: relative;
+            margin: 15px;
+            font-size: 30px;
+            line-height: 60px;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+  .newMovieList {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #000;
+    width: 100%;
+    height: 390px;
+    padding: 45px 0;
+    .movieList-content {
+      padding: 0 30px;
+      .movieList-container {
+        position: relative;
+        cursor: pointer;
+        &:after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          // z-index: 2;
+          background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.71),
+            rgba(0, 0, 0, 0.6)
+          );
+          transition: background-image 1s ease-in-out;
+        }
+        &:hover {
+          &:after {
+            background: linear-gradient(
+              to bottom,
+              rgba(0, 0, 0, 0.3),
+              rgba(0, 0, 0, 0.1)
+            );
+          }
+        }
+      }
+      .active {
+        &:after {
+          background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.3),
+            rgba(0, 0, 0, 0.1)
+          );
+        }
+      }
+      .movieList-text {
+        color: #fff;
+        text-align: center;
+        margin-top: 10px;
+        h6 {
+          margin-bottom: 0;
+        }
+        p {
+          opacity: 0.5;
+          margin-bottom: 0;
+        }
+      }
+      .movieList-img {
+        width: 100%;
+        height: 280px;
+        border-radius: 20px;
+        overflow: hidden;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    .slick-dots {
+      display: none !important;
+    }
+  }
+}

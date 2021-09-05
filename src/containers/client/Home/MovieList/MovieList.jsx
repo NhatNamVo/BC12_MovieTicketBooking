@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Loader from 'components/Loader/Loader';
-import MovieItem from '../MovieItem/MovieItem';
+import MovieItem from '../../../shared/MovieItem/MovieItem';
 import { actFetchAllMovie } from '../module/actions';
 import { connect } from 'react-redux';
 class MovieList extends Component {
