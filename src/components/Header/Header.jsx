@@ -37,7 +37,7 @@ export default class Header extends Component {
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/contact">
+              <Link className="nav-link" to="/admin">
                 Contact
               </Link>
               {/* <Link className="nav-link" to="/admin/UserAcount">

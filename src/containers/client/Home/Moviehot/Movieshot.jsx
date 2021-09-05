@@ -2,20 +2,20 @@ import React, { Component } from "react";
 import MovieItem from "../../../shared/MovieItem/MovieItem";
 import renderMovie from '../../../shared/MovieItem/RenderMovieList';
 import {connect} from 'react-redux';
-class Movieshow extends Component {
+class Moviehot extends Component {
   render() {
-    const showingMovie = this.props.showingMovie.slice(0,4);
+    const hotMovie = this.props.hotMovie.slice(0,4);
     return (
       <div className="container">
-        <h3>Phim đang chiếu</h3>
+        <h3>Phim đang hot</h3>
         <div className="row">
-          {renderMovie(MovieItem, showingMovie)}
+          {renderMovie(MovieItem, hotMovie)}
         </div>
       </div>
     );
   }
 }
-const mapStateToProps = (state) => ({
-  showingMovie: state.movieReducer.showingMovie,
+const mapStateToProps= state => ({
+  hotMovie: state.movieReducer.hotMovie,
 })
-export default connect(mapStateToProps)(Movieshow);
+export default connect(mapStateToProps)(Moviehot);

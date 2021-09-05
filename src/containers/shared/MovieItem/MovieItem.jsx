@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 class MovieItem extends Component {
   render() {
-    const { tenPhim, hinhAnh, maPhim } = this.props.data;
+    const { tenPhim, hinhAnh, maPhim, biDanh } = this.props.data;
 
     return (
       <div className="col-3" style={{ marginBottom: '30px' }}>
         <div className="card">
-          <img className="card-img-top" src={hinhAnh} alt='' />
+          <img className="card-img-top" src={hinhAnh} alt={biDanh} onError={(e)=>{e.target.onerror = null; e.target.src="./images/assets/images/cinemaDefault.jpg"}}/>
           <div className="card-body">
             <h4 className="card-title">{tenPhim}</h4>
             <Link to={`/movie-detail/${maPhim}`} className="btn btn-success">

@@ -15,6 +15,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['movieReducer','movieDetailReducer'],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
