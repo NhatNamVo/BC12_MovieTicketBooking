@@ -6,6 +6,7 @@ import {
   FETCH_MOVIE_ALL_BANNER_SUCCESS,
   FETCH_MOVIE_ALL_BANNER_FAIL,
   CHANGE_CURRENT_MOVIE_NEW,
+  GET_TRAILER_MOVIE,
 } from "./types";
 
 const actFetchAllMovieRequest = () => ({
@@ -60,5 +61,13 @@ const actChangeCurrentMovie = (idx) => ({
 export const actChangeCurrentMovieNew = (idx) => {
   return (dispatch) => {
     dispatch(actChangeCurrentMovie(idx));
+  };
+};
+export const actGetTrailerMovie = MovieId => {
+  return dispatch => {
+    dispatch({
+      type: GET_TRAILER_MOVIE,
+      payload: MovieId,
+    });
   };
 };

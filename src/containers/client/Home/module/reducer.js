@@ -5,6 +5,7 @@ import {
   FETCH_MOVIE_ALL_BANNER_FAIL,
   FETCH_MOVIE_ALL_BANNER_SUCCESS,
   CHANGE_CURRENT_MOVIE_NEW,
+  GET_TRAILER_MOVIE,
 } from "./types";
 
 const initialState = {
@@ -25,6 +26,7 @@ const initialState = {
   loading: false,
   currentMovienew: [],
   currentMovieIdx: 0,
+  currentTrailerMovie: null,
   error: "",
 };
 
@@ -70,12 +72,17 @@ const movieReducer = (state = initialState, { type, payload }) => {
       return { ...state, error: payload, loading: false };
     case CHANGE_CURRENT_MOVIE_NEW:
       const Idx = payload;
-      const currentMovie = state.newMovie[parseInt(payload)];
+      const currentMovie = state.newMovie[Idx];
       return {
         ...state,
         currentMovieIdx: Idx,
         currentMovienew: currentMovie,
       };
+    case GET_TRAILER_MOVIE:
+      const currentTrailerMovie = state.listMovie.find((movie,idx)=>{
+        return movie.maPhim == payload;
+      }).trailer;
+      return {...state,currentTrailerMovie:currentTrailerMovie};
     default:
       return { ...state };
   }

@@ -3,6 +3,8 @@ import Slider from "react-slick";
 import MovieTimePlan from "containers/shared/TimePlan/MovieTimePlan";
 import { connect } from "react-redux";
 import { actChangeCurrentMovieNew } from "../module/actions";
+import findSlickDotActive from "./findSlickActive";
+import changeCurrentMovie from "./changeCurrentMovie";
 class MovienewList extends Component {
   render() {
     const settings = {
@@ -62,6 +64,7 @@ class MovienewList extends Component {
     const movieItemActive = event.target.closest(".movieList-container.active");
     if (!!movieItem && !movieItemActive) {
       const idx = movieItem.dataset.index;
+      console.log(idx);
       this.props.CurrentMovieChange(idx);
     }
   };

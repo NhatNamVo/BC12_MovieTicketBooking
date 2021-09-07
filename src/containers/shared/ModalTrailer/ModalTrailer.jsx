@@ -1,60 +1,56 @@
+import { actGetTrailerMovie } from "containers/client/Home/module/actions";
 import React, { Component } from "react";
 import "./ModalTrailer.scss";
+import { connect } from "react-redux";
 class ModalTrailer extends Component {
-  // state = {
-  //   popup: false,
-  // };
-  // filmLink = null;
-  // componentDidMount() {
-  //   const { carousel, match } = this.props;
-  //   const trailerIdx = carousel.findIndex((item, idx) => {
-  //     return item.filmInfo.maPhim == match.params.movieId;
-  //   });
-  //   this.filmLink = carousel[trailerIdx].filmInfo.trailer;
-  //   console.log(this.filmLink);
-  //   this.setPopup = setTimeout(() => {
-  //     this.setState({
-  //       popup: true,
-  //     });
-  //   }, 1000);
-  //   const trailertModal = document.querySelector('.trailer-Modal');
-  //   trailertModal.addEventListener('click', this.closePopup);
-  // }
-  // componentWillUnmount() {
-  //   this.setState({ popup: false });
-  //   clearTimeout(this.setPopup);
-  //   clearTimeout(this.closePopup);
-  // }
-  // closePopup =(event) => {
-  //   const iframeComponent = event.target.closest('iframe');
-  //   const closeBtn = event.target.closest('.fa-times');
-  //   if(closeBtn||!iframeComponent){
-  //       this.setState({ popup: false });
-  //       this.closePopup = setTimeout(() =>{
-  //           this.props.history.goBack();
-  //       },500)
-  //   }
-  // }
+  state = {
+    popup: false,
+  };
+  componentDidMount() {
+    this.displayPopup = setTimeout(() => this.setState({ popup: true }), 500);
+    const movieId = this.props.match.params.movieId;
+    this.props.GetTrailer(movieId);
+    const trailerForm = document.querySelector(".trailer-Modal");
+    trailerForm.addEventListener("click", this.closePopup);
+  }
+  componentWillUnmount() {
+    clearTimeout(this.displayPopup);
+  }
+  closePopup=(e)=>{
+    const iframe = e.target.closest(".trailer-content ifrane");
+    const closeBtn = e.target.closest(".fa-times");
+    if (!!closeBtn || !iframe) {
+      this.setState({ popup: false });
+      this.displayPopup = setTimeout(() => this.props.history.goBack(), 500);
+    }
+  }
   render() {
+    const { trailer } = this.props;
     return (
       <div className="trailer-Modal">
-          <i class="fa fa-times"></i>
-        {/* <div
+        <i class="fa fa-times"></i>
+        <div
           className={"trailer-content " + (this.state.popup ? "active" : "")}
-        > */}
-          {/* <iframe
-            width="100%"
-            height={containerHeight}
-            src={this.filmLink + "?autoplay=1"}
+        >
+          <iframe
+            width={window.innerWidth * 0.6}
+            height={window.innerHeight * 0.6}
             frameborder="0"
-            allow='autoplay'
+            src={trailer + "?autoplay=1"}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
-          ></iframe> */}
-          
-        {/* </div> */}
+          ></iframe>
+        </div>
       </div>
     );
   }
 }
-
-export default ModalTrailer;
+const mapStateToProps = (state) => ({
+  trailer: state.movieReducer.currentTrailerMovie,
+});
+const mapDispatchToProps = (dispatch) => ({
+  GetTrailer: (movieId) => {
+    dispatch(actGetTrailerMovie(movieId));
+  },
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ModalTrailer);

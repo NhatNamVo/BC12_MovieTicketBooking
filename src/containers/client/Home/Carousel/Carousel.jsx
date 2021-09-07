@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import CarouselItem from "./CarouselItem";
 import {connect} from "react-redux";
-import "./Carousel.scss";
+import {Link} from 'react-router-dom'
+;import "./Carousel.scss";
 class Carousel extends Component {
   state = {
     autoPlay: true,
@@ -76,6 +77,7 @@ class Carousel extends Component {
         <div className="Carousel-content">
           {carousel.map((item, idx) => {
             return (
+              <Link to={'/movie-detail/'+item.filmInfo.maPhim}>
               <CarouselItem
                 key={idx}
                 active={item.status}
@@ -85,6 +87,7 @@ class Carousel extends Component {
                 match = {match}
                 history = {history}
               />
+              </Link>
             );
           })}
         </div>
