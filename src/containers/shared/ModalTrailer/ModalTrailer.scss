@@ -18,8 +18,8 @@
     position: absolute;
     width: 90%;
     left: 50%;
-    top: 50%;
-    margin: auto;
+    top: 35%;
+    text-align: center;
     transform: scale(0.0001) translate(-50%, -50%);
     transition: transform 0.5s !important;
   }
@@ -27,7 +27,9 @@
     transform: scale(1) translate(-50%, -50%);
     iframe {
       border-radius: 20px;
+      border-color: none;
       box-shadow: 0px 6px 12px 0px #000000bf;
+      margin: auto;
     }
   }
 }

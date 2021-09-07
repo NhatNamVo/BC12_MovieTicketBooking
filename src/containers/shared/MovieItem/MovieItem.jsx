@@ -1,20 +1,34 @@
-import withMovieLayout from 'hocs/withMovieLayout';
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-
+import withMovieLayout from "hocs/withMovieLayout";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import MovieTimePlan from "../TimePlan/MovieTimePlan";
+import './MovieItem.scss';
 class MovieItem extends Component {
   render() {
-    const { tenPhim, hinhAnh, maPhim, biDanh } = this.props.data;
+    const { tenPhim, hinhAnh, maPhim, biDanh, danhGia, ngayKhoiChieu } = this.props.data;
 
     return (
-      <div className="col-3" style={{ marginBottom: '30px' }}>
-        <div className="card">
-          <img className="card-img-top" src={hinhAnh} alt={biDanh} onError={(e)=>{e.target.onerror = null; e.target.src="./images/assets/images/cinemaDefault.jpg"}}/>
-          <div className="card-body">
-            <h4 className="card-title">{tenPhim}</h4>
-            <Link to={`/movie-detail/${maPhim}`} className="btn btn-success">
-              View Detail
+      <div className="movieItem col-12 col-md-6 col-lg-3">
+        <div className="movieItem-content">
+          <div className="movie-poster">
+            <Link to={`/movie-detail/${maPhim}`}>
+              <img
+                className="card-img-top"
+                src={hinhAnh}
+                alt={biDanh}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "./images/assets/images/cinemaDefault.jpg";
+                }}
+              />
+              <div className="movieItem-title">
+                <h4 className="movieItem-title">{tenPhim}</h4>
+              </div>
             </Link>
+          </div>
+          <div className="movieItem-info">
+            <div className="date">{MovieTimePlan(ngayKhoiChieu)}</div>
+            <div className="rate"><i class="fa fa-star"></i>{danhGia}</div>
           </div>
         </div>
       </div>

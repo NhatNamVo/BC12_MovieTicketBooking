@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Movienew.scss";
 import CurrentMovienew from "./CurrentMovienew";
 import MovienewList from "./MovienewList";
+import 'containers/shared/MovieItem/Movieshow.scss';
 class Movienew extends Component {
   state = {
     background: [
@@ -16,9 +17,9 @@ class Movienew extends Component {
           height: "900px",
           backgroundImage: `url(${this.state.background[0].imgUrl})`,
         }}
-        className="film-background"
+        className="film-background movie-container"
       >
-        <div className="container">
+        <div className="container movie-container movieNew-container">
           <h3>Phim sắp chiếu</h3>
           <CurrentMovienew
             match={match}
