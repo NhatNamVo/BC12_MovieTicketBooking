@@ -22,16 +22,27 @@ $desktop-width: 992px;
     }
 }
 a {
-    display: inline-block;
+    color: #fff;
     -webkit-transition: all ease 0.3s;
     transition: all ease 0.3s;
     text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+ul {
+    list-style: none;
+    display: flex;
 }
 @include tablet {
     h3 {
         font-size: 36px;
         margin-top: -10px;
     }
+}
+body {
+    background-color: #001232;
 }
 .details__banner {
     padding-top: 235px;
@@ -136,17 +147,25 @@ a {
             background-color: rgba(0, 18, 50, 0.4);
         }
         .details__banner__content {
+            .card-title {
+                font-weight: 700;
+                margin: 0;
+                line-height: 1.3;
+                color: #ffffff;
+            }
             .tags {
                 margin-bottom: 21px;
                 a {
                     font-size: 12px;
                     color: #9aace5;
                     text-transform: uppercase;
+                    font-weight: 400;
                     border: 1px solid #9aace5;
                     border-radius: 10px;
                     padding: 5px 10px;
                     margin-right: 10px;
-                }a:hover {
+                }
+                a:hover {
                     color: #31d7a9;
                     border-color: #31d7a9;
                     text-decoration: none;
@@ -155,26 +174,149 @@ a {
             .button {
                 margin-bottom: 13px;
                 border: 1px solid rgba(163, 177, 198, 0.2);
-                font-size: 13px;
+                font-size: 15px;
                 color: #9aace5;
                 text-transform: uppercase;
                 padding: 3px 17px;
                 border-radius: 18px;
                 -webkit-transition: all ease 0.3s;
                 transition: all ease 0.3s;
-                
-            }.button:hover{
+            }
+            .button:hover {
                 text-decoration: none;
                 box-shadow: 0px 10px 15px 0px rgba(59, 55, 188, 50%);
             }
+            .time-social {
+                display: flex;
+                justify-content: space-between;
+                .social {
+                    margin: -5px -5px 0;
+                    li {
+                        padding: 0;
+                        margin: 5px;
+                        a {
+                            color: #fff;
+                            padding: 5px;
+                            font-size: 14px;
+                            border: 1px solid #032055;
+                            background: #032055;
+                            width: 40px;
+                            height: 40px;
+                            text-align: center;
+                            border-radius: 50px;
+                        }
+                        a:hover {
+                            color: #31d7a9;
+                        }
+                    }
+                }
+                .time {
+                    font-size: 16px;
+                    color: #dce4ff;
+                    margin: 5px 10px;
+                }
+            }
         }
     }
-}.details__banner::before {
+}
+.details__banner::before {
     position: absolute;
     content: "";
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-    background: -webkit-linear-gradient(180deg, rgba(0, 18, 50, 0.134891) 0%, #001232 90%);
+    background: -webkit-linear-gradient(270deg, rgba(0, 18, 50, 0.134891) 0%, #001232 90%);
+}
+.book-tickets {
+    .book-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: -30px;
+        background: #032055;
+        box-shadow: 0px 0px 20px 0px rgba(59, 55, 188, 50%);
+        padding: 10px;
+        border-top: 3px solid #31d7a9;
+        .left-side {
+            display: flex;
+            padding: 17px;
+
+            .item {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                margin: 10px 15px;
+                text-align: center;
+                font-size: 23px;
+                .star {
+                    color: #31d7a9;
+                }
+            }
+        }
+    }
+}
+.detail__descrip {
+    padding-top: 120px;
+    padding-bottom: 120px;
+    color: #fff;
+    .description {
+        .tab-menu {
+            padding: 10px 0;
+            border-bottom: 1px solid #11326f;
+            margin-bottom: 40px;
+            .active {
+                color: #31d7a9;
+                background-color: #001232;
+            }
+            a {
+                color: #fff;
+            }
+        }
+    }
+    .movie__detail__theater {
+        .header{
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #11326f;
+            margin-bottom: 30px;
+        }
+    }
+    .title {
+        margin-bottom: 22px;
+    }
+    .widget-1 {
+        margin-bottom: 40px;
+        .offer-body {
+            .offer-item {
+                border: 1px solid #032055;
+                background: #032055;
+                border-radius: 10px;
+                padding: 20px 20px 28px;
+                margin-bottom: 30px;
+                .top {
+                    margin-bottom: 33px;
+                }
+                .bottom {
+                    h6 {
+                        font-size: 16px;
+                        font-weight: 400;
+                        // font-family: open sans, sans-serif;
+                        margin-bottom: 17px;
+                    }
+                    a:hover {
+                        color: #31d7a9;
+                    }
+                    p {
+                        color: #9aace5;
+                        font-size: 13px;
+                        line-height: 18px;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
 }
