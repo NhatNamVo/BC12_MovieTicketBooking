@@ -2,10 +2,16 @@ import withMovieLayout from "hocs/withMovieLayout";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import MovieTimePlan from "../TimePlan/MovieTimePlan";
-import './MovieItem.scss';
+import "./MovieItem.scss";
 class MovieItem extends Component {
+  state = {
+    src: "./images/assets/images/cinemaDefault.jpg",
+    errored: false,
+  };
+  errorImgFlag = true;
   render() {
-    const { tenPhim, hinhAnh, maPhim, biDanh, danhGia, ngayKhoiChieu } = this.props.data;
+    const { tenPhim, hinhAnh, maPhim, biDanh, danhGia, ngayKhoiChieu } =
+      this.props.data;
 
     return (
       <div className="movieItem col-12 col-md-6 col-lg-3">
@@ -17,8 +23,10 @@ class MovieItem extends Component {
                 src={hinhAnh}
                 alt={biDanh}
                 onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = "./images/assets/images/cinemaDefault.jpg";
+                  if (this.errorImgFlag) {
+                    this.errorImgFlag = false;
+                    e.target.src = "./images/assets/images/cinemaDefault.jpg";
+                  }
                 }}
               />
               <div className="movieItem-title">
@@ -28,7 +36,10 @@ class MovieItem extends Component {
           </div>
           <div className="movieItem-info">
             <div className="date">{MovieTimePlan(ngayKhoiChieu)}</div>
-            <div className="rate"><i class="fa fa-star"></i>{danhGia}</div>
+            <div className="rate">
+              <i class="fa fa-star"></i>
+              {danhGia}
+            </div>
           </div>
         </div>
       </div>

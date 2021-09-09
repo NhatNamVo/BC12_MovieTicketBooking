@@ -1,0 +1,120 @@
+.Movie-filter {
+  background-color: #031f50;
+  color: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  position: absolute;
+  width: calc(100% - 30px);
+  margin: auto;
+  top: -230px;
+  h4 {
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+  .filter-tool {
+    background-color: #021a45;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: inset 0px -2px 8px 0px #ffffff2e;
+    .filter-item {
+      position: relative;
+      &:nth-of-type(1) {
+        .item-dropbox {
+          width: 150px;
+        }
+      }
+      &:nth-of-type(2) {
+        .item-dropbox {
+          width: 70px;
+          left: 52%;
+        }
+      }
+      p {
+        display: inline-block;
+        margin: 0;
+        padding-right: 30px;
+      }
+      span {
+        padding-right: 20px;
+        color: #31d7a9;
+        cursor: pointer;
+      }
+      i.fa-angle-down {
+        cursor: pointer;
+        transition: transform 0.5s;
+      }
+      input {
+        padding: 5px 40px 5px 10px;
+        width: 350px;
+        border: 2px solid #9EB1EB;
+        border-radius: 10px;
+        background-color: transparent;
+        color: #9EB1EB;
+        &:focus-visible {
+          outline: none;
+        }
+        &:focus {
+          border: 2px solid #31d7a9;
+          color: #31d7a9;
+        }
+      }
+      i.fa-search {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        &:hover {
+          color: #31d7a9;
+          cursor: pointer;
+        }
+      }
+      .item-dropbox {
+        max-height: 300px;
+        text-align: left;
+        position: absolute;
+        z-index: 2;
+        left: 48%;
+        background-color: #021a45;
+        border-radius: 10px;
+        transform-origin: top center;
+        transform: scaleY(0.00001);
+        transition: transform 0.4s;
+        ul {
+          list-style-type: none;
+          padding: 10px;
+          margin: 0;
+          cursor: pointer;
+          .dropbox-item {
+            margin-bottom: 3px;
+            &:hover {
+              background-color: #31d7a9;
+              margin: 0 -10px;
+              padding: 0 10px;
+              color: #021a45;
+            }
+          }
+          .active {
+            background-color: #31d7a9;
+            margin: 0 -10px;
+            padding: 0 10px;
+            color: #021a45;
+          }
+        }
+      }
+    }
+
+    .filter-item.active {
+      .item-dropbox {
+        transform: scaleY(1);
+      }
+      i.fa-angle-down{
+          transform: rotate(540deg)
+      }
+    }
+  }
+}
