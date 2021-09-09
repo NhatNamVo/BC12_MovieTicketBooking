@@ -1,16 +1,17 @@
 .movieItem {
   .movieItem-content {
     padding: 10px 10px;
-    background-color: rgb(106, 107, 173);
+    background-color: #032055;
     border-radius: 20px;
     height: 420px;
     overflow: hidden;
     position: relative;
+    margin-bottom: 30px;
     .movie-poster {
       position: relative;
       a {
         display: block;
-        color: #000;
+        color: #fff;
         text-align: center;
         &:hover {
           text-decoration: none;
@@ -37,6 +38,7 @@
       .date,
       .rate {
         display: inline-block;
+        color: #fff;
       }
     }
   }

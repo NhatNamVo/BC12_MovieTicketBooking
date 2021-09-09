@@ -1,0 +1,73 @@
+.movieList-banner {
+  width: 100%;
+  height: 90vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.movieList {
+  background: linear-gradient(
+    to bottom,
+    rgba(25, 0, 248, 0.274),
+    rgb(10, 0, 97),
+    rgb(10, 0, 97)
+  );
+  .movie-banner {
+    height: 90vh;
+    .banner-info {
+      color: #fff;
+      width: 60%;
+      text-align: center;
+      margin: auto;
+      padding-top: 20%;
+    }
+  }
+  .movie-content {
+    margin-top: 70px;
+    min-height: 1350px;
+    position: relative;
+  }
+  .pagination-container {
+    .pagination-item {
+      color: #fff;
+      &.dots:hover {
+        background-color: transparent;
+        cursor: default;
+      }
+      &:hover {
+        background-color: rgba(252, 252, 252, 0.349);
+        cursor: pointer;
+      }
+
+      &.selected {
+        color: rgb(10, 0, 97);
+        background-color: rgb(245, 241, 241);
+      }
+
+      .arrow {
+        &::before {
+          border-right: 0.12em solid rgba(255, 255, 255, 0.87);
+          border-top: 0.12em solid rgba(255, 255, 255, 0.87);
+        }
+      }
+
+      &.disabled {
+        pointer-events: none;
+
+        .arrow::before {
+          border-right: 0.12em solid rgba(255, 255, 255, 0.87);
+          border-top: 0.12em solid rgba(255, 255, 255, 0.87);
+        }
+
+        &:hover {
+          background-color: transparent;
+          cursor: default;
+        }
+      }
+    }
+  }
+}

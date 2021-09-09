@@ -1,2 +1,2 @@
 export const BASE_URL = 'http://movieapi.cyberlearn.vn/api';
-export const GROUP_ID = 'GP12';
+export const GROUP_ID = 'GP03';
