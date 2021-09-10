@@ -20,11 +20,14 @@ class Home extends Component {
     );
   }
   componentDidMount(){
-    this.props.fetchAllMovie();
+    if(this.props.listMovie.length === 0) {
+      this.props.fetchAllMovie();
+    } 
   }
 }
 const mapStateToProps = state => ({
   loading: state.movieReducer.loading,
+  listMovie: state.movieReducer.listMovie,
 });
 const mapDispatchToProps = dispatch => ({
   fetchAllMovie: () => {

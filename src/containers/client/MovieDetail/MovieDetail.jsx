@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "containers/client/MovieDetail/MovieDetail.scss";
 import { connect } from "react-redux";
 import { actFetchMovieDetail } from "./module/movieDetailAction";
+import {Link} from 'react-router-dom';
 import {
   FaRegCalendarAlt,
   FaRegClock,
@@ -21,7 +22,7 @@ import { Link } from "react-router-dom";
 
 class MovieDetail extends Component {
   render() {
-    const { movieDetail, loading } = this.props;
+    const { movieDetail, loading, match, history } = this.props;
     console.log(this.props);
     if (loading) return <Loader />;
     return (
@@ -39,12 +40,15 @@ class MovieDetail extends Component {
                     src={movieDetail.hinhAnh}
                     alt="hình ảnh"
                   />
-                  <a
+                  <Link to={{
+                    pathname: "/trailer/" + movieDetail.maPhim,
+                    state: { background: history.location },
+                  }}
                     href={movieDetail.trailer}
                     className="video__button video__popup"
                   >
                     <FaRegPlayCircle />
-                  </a>
+                  </Link>
                 </div>
                 <div className="col-md-8  details__banner__content offset-lg-4 ">
                   <h3 className="card-title">{movieDetail.tenPhim}</h3>
