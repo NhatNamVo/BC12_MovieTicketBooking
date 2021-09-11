@@ -1,18 +1,25 @@
 import React, { Component } from "react";
-
+import {Link} from 'react-router-dom';
+import {actFilterMovieType,actFilterMovieMountShow} from '../module/action';
+import {connect} from 'react-redux';
 class MovieFilter extends Component {
     state = {
         sort: false,
         show: false,
-        filter: {
-            sort: 0,
-            sortVal: 'Tất cả',
-            show: 12,
-        }
+        findMovie: '',
     }
     componentDidMount() {
         const filterBox = document.querySelector('.filter-tool');
+        const findMovieBox = document.querySelector('input.findMovie');
+        findMovieBox.addEventListener('input',this.findInputMovie)
         filterBox.addEventListener('click',this.handleClick);
+    }
+    findInputMovie = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      this.setState({
+        [name] : value,
+      })
     }
     handleClick = (event) => {
         event.preventDefault();
@@ -21,6 +28,7 @@ class MovieFilter extends Component {
         const arrowBtnSort = event.target.closest('.filter-sort .fa-angle-down');
         const arrowBtnShow = event.target.closest('.filter-show .fa-angle-down')
         const itemBox = event.target.closest('.dropbox-item');
+        const findMovieBtn = event.target.closest('i.fa-search');
         if(!!sortBox||!!arrowBtnSort){
             this.setState({sort:!this.state.sort,show:false});
         }
@@ -28,44 +36,24 @@ class MovieFilter extends Component {
             this.setState({sort:false,show:!this.state.show});
         }
         if(itemBox){
-            let filterValue = {...this.state.filter};
             const name = event.target.attributes[0].value;
             const value = parseInt(event.target.attributes[1].value);
-            let sortValue = '';
             if(name == 'sort'){
-                switch(value){
-                    case 0:
-                        sortValue = 'Tất cả';
-                        break;
-                    case 1:
-                        sortValue = 'Phim đang chiếu';
-                        break;
-                    case 2:
-                        sortValue = 'Phim hot';
-                        break;
-                    case 3:
-                        sortValue = 'Phim sắp chiếu';
-                        break;
-                    default:
-                        sortValue = 'Tất cả';
-                        break;
-                }
+              this.props.filterSort(value);
+              this.setState({sort: false});
             }
-            if(sortValue === ''){
-                filterValue = {...filterValue, [name]:value};
+            if(name === 'show'){
+              this.props.filterShow(value);
+              this.setState({show: false});
             }
-            else{
-                filterValue = {...filterValue, [name]:value, sortVal: sortValue};
-            }
-            
-            this.setState({
-                sort:false,
-                show: false,
-                filter: filterValue,
-            })
+            this.props.history.push({pathname:'/movie'})
+        }
+        if(findMovieBtn){
+          this.props.history.push({pathname:'/movie/search',search: "?" + new URLSearchParams({movie:this.state.findMovie.toLocaleLowerCase()}).toString()})
         }
     }
   render() {
+    const {sort, show, sortVal} = this.props;
     return (
       <>
         <div className="Movie-filter">
@@ -73,34 +61,36 @@ class MovieFilter extends Component {
           <div className="filter-tool">
             <div className={"filter-item filter-sort " + (this.state.sort?"active":"")}>
               <p>Sort By:</p>
-              <span className="item-sort">{this.state.filter.sortVal}</span> 
+              <span className="item-sort">{sortVal}</span> 
               <i class="fa fa-angle-down"></i>
               <div className="item-dropbox">
                 <ul className="dropbox-list">
-                  <li name='sort' value={0} className={"dropbox-item " + ((this.state.filter.sort===0)?"active":"")}>Tất cả</li>
-                  <li name='sort' value={1} className={"dropbox-item " + ((this.state.filter.sort===1)?"active":"")}>Phim đang chiếu</li>
-                  <li name='sort' value={2} className={"dropbox-item " + ((this.state.filter.sort===2)?"active":"")}>Phim hot</li>
-                  <li name='sort' value={3} className={"dropbox-item " + ((this.state.filter.sort===3)?"active":"")}>Phim sắp chiếu</li>
+                  <li name='sort' value={0} className={"dropbox-item " + ((sort===0)?"active":"")}>Tất cả</li>
+                  <li name='sort' value={1} className={"dropbox-item " + ((sort===1)?"active":"")}>Phim đang chiếu</li>
+                  <li name='sort' value={2} className={"dropbox-item " + ((sort===2)?"active":"")}>Phim hot</li>
+                  <li name='sort' value={3} className={"dropbox-item " + ((sort===3)?"active":"")}>Phim sắp chiếu</li>
                 </ul>
               </div>
             </div>
             <div className={"filter-item filter-show " + (this.state.show?"active":"")}>
               <p>Show:</p>
-              <span className="item-show">{this.state.filter.show}</span>
+              <span className="item-show">{show}</span>
               <i class="fa fa-angle-down"></i>
               <div className="item-dropbox">
                 <ul className="dropbox-list">
-                  <li name='show' value={12} className={"dropbox-item " + ((this.state.filter.show===12)?"active":"")}>12</li>
-                  <li name='show' value={16} className={"dropbox-item " + ((this.state.filter.show===16)?"active":"")}>16</li>
-                  <li name='show' value={20} className={"dropbox-item " + ((this.state.filter.show===20)?"active":"")}>20</li>
-                  <li name='show' value={24} className={"dropbox-item " + ((this.state.filter.show===24)?"active":"")}>24</li>
+                  <li name='show' value={12} className={"dropbox-item " + ((show===12)?"active":"")}>12</li>
+                  <li name='show' value={16} className={"dropbox-item " + ((show===16)?"active":"")}>16</li>
+                  <li name='show' value={20} className={"dropbox-item " + ((show===20)?"active":"")}>20</li>
+                  <li name='show' value={24} className={"dropbox-item " + ((show===24)?"active":"")}>24</li>
                 </ul>
               </div>
             </div>
             <div className="filter-item">
               <div className="find-item">
-                <input type="text" name="find" placeholder="Nhập tên phim"/>
-                <i class="fa fa-search"></i>
+                <form action="" method="Post">
+                  <input type="text" name="findMovie" className="findMovie" placeholder=""value={this.state.findMovie} placeholder="Nhập tên phim"/>
+                  <i class="fa fa-search"></i>
+                </form>
               </div>
             </div>
           </div>
@@ -109,5 +99,17 @@ class MovieFilter extends Component {
     );
   }
 }
-
-export default MovieFilter;
+const mapStateToProps = state => ({
+  sort: state.movieListOptionReducer.sort,
+  sortVal: state.movieListOptionReducer.sortVal,
+  show: state.movieListOptionReducer.show,
+})
+const mapDispatchToProps = dispatch =>({
+  filterSort: (movieType) => {
+    dispatch(actFilterMovieType(movieType));
+  },
+  filterShow: (movieShow) => {
+    dispatch(actFilterMovieMountShow(movieShow));
+  }
+})
+export default connect(mapStateToProps,mapDispatchToProps)(MovieFilter);
