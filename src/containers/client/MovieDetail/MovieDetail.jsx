@@ -1,9 +1,9 @@
-import Loader from "components/Loader/Loader";
 import React, { Component } from "react";
+import Loader from "components/Loader/Loader";
 import "containers/client/MovieDetail/MovieDetail.scss";
 import { connect } from "react-redux";
 import { actFetchMovieDetail } from "./module/movieDetailAction";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 import {
   FaRegCalendarAlt,
   FaRegClock,
@@ -18,7 +18,7 @@ import {
   FaRegStar,
   FaStar,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
+
 
 class MovieDetail extends Component {
   render() {
@@ -40,10 +40,11 @@ class MovieDetail extends Component {
                     src={movieDetail.hinhAnh}
                     alt="hình ảnh"
                   />
-                  <Link to={{
-                    pathname: "/trailer/" + movieDetail.maPhim,
-                    state: { background: history.location },
-                  }}
+                  <Link
+                    to={{
+                      pathname: "/trailer/" + movieDetail.maPhim,
+                      state: { background: history.location },
+                    }}
                     href={movieDetail.trailer}
                     className="video__button video__popup"
                   >
@@ -156,8 +157,8 @@ class MovieDetail extends Component {
                       </li>
                     </ul>
                     <div className="card-body">
-                      <h5 className="mb-3">The {movieDetail.tenPhim}</h5>
-                      <p className="card-text">{movieDetail.moTa}</p>
+                      <h5 className="mb-5">The {movieDetail.tenPhim}</h5>
+                      <p className="card-text ">{movieDetail.moTa}</p>
                       <p>
                         There are many variations of passages of Lorem Ipsum
                         available, but the majority have suffered alteration in
@@ -174,45 +175,91 @@ class MovieDetail extends Component {
                     <div className="header">
                       <h4>MOVIE THEATER</h4>
                     </div>
-                    <div className="tab-content" id="v-pills-tabContent">
-                      {movieDetail.heThongRapChieu.map((heThongRap, idx) => {
-                        return (
-                          <div
-                            className={`tab-pane fade show ${
-                              idx === 0 && "active"
-                            }`}
-                            id={heThongRap.maHeThongRap}
-                            role="tabpanel"
-                            aria-labelledby="v-pills-home-tab"
-                          >
-                            {heThongRap.cumRapChieu.map((cumRap) => {
+                    <div className="row">
+                      <div className="col-2">
+                        <div
+                          className="nav flex-column nav-pills text-left icon-theater"
+                          id="v-pills-tab"
+                          role="tablist"
+                          aria-orientation="vertical"
+                        >
+                          {movieDetail.heThongRapChieu.map(
+                            (heThongRap, idx) => {
                               return (
-                                <div className="text-left">
+                                <a
+                                  key={heThongRap.maHeThongRap}
+                                  className={`nav-link ${
+                                    idx === 0 && "active"
+                                  }`}
+                                  id="v-pills-home-tab"
+                                  data-toggle="pill"
+                                  href={`#${heThongRap.maHeThongRap}`}
+                                  role="tab"
+                                  aria-controls="v-pills-home"
+                                  aria-selected="true"
+                                >
                                   <img
-                                    src={cumRap.hinhAnh}
-                                    style={{ width: "50px" }}
+                                    src={heThongRap.logo}
+                                    style={{
+                                      width: "30px",
+                                      marginRight: "6px",
+                                    }}
                                   />
-                                  <span>{cumRap.tenCumRap}</span>
-                                  <div className="my-5">
-                                    {cumRap.lichChieuPhim.map((lichChieu) => {
-                                      return (
-                                        <Link
-                                          to={`/seat-plan/${lichChieu.maLichChieu}`}
-                                          className="btn btn-secondary mr-3 mb-2"
-                                        >
-                                          {new Date(
-                                            lichChieu.ngayChieuGioChieu
-                                          ).toLocaleTimeString()}
-                                        </Link>
-                                      );
-                                    })}
-                                  </div>
+                                </a>
+                              );
+                            }
+                          )}
+                        </div>
+                      </div>
+                      <div className="col-10">
+                        <div className="tab-content movie__ticket" id="v-pills-tabContent">
+                          {movieDetail.heThongRapChieu.map(
+                            (heThongRap, idx) => {
+                              return (
+                                <div
+                                  className={`tab-pane fade show ${
+                                    idx === 0 && "active"
+                                  }`}
+                                  id={heThongRap.maHeThongRap}
+                                  role="tabpanel"
+                                  aria-labelledby="v-pills-home-tab"
+                                >
+                                  {heThongRap.cumRapChieu.map((cumRap) => {
+                                    return (
+                                      <div className="text-left">
+                                        <img
+                                          src={cumRap.hinhAnh}
+                                          style={{ width: "40px"}} alt=""
+                                        />
+                                        <span className="pl-3">
+                                          {cumRap.tenCumRap}
+                                        </span>
+                                        <div className="my-3 ticket">
+                                          {cumRap.lichChieuPhim.map(
+                                            (lichChieu) => {
+                                              return (
+                                                <Link
+                                                  to={`/seat-plan/${lichChieu.maLichChieu}`}
+                                                  style={{ backgroundImage: "url(/images/movie-ticket.png)" }}
+                                                  className="btn mr-3 mb-2 ticket__item "
+                                                >
+                                                  {new Date(
+                                                    lichChieu.ngayChieuGioChieu
+                                                  ).toLocaleTimeString()}
+                                                </Link>
+                                              );
+                                            }
+                                          )}
+                                        </div>
+                                      </div>
+                                    );
+                                  })}
                                 </div>
                               );
-                            })}
-                          </div>
-                        );
-                      })}
+                            }
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
