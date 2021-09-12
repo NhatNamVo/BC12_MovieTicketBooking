@@ -22,7 +22,6 @@ class MoviePage extends Component {
   componentDidUpdate (prevProps,prevState){
     if(prevProps.location.search !== this.props.location.search){
       if(this.props.location.search !== ''){
-        // const searchMovieName = this.props.location.search.slice(13,this.props.location.search.length);
         const searchMovieName = (new URLSearchParams(window.location.search).get('movie'));
         this.props.findMovie(searchMovieName);
       }

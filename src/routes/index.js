@@ -6,6 +6,7 @@ import AdminInfo from 'containers/admin/Home/AdminInfo';
 import Movie from 'containers/client/Movie/Movie';
 import Contact from 'components/Contact/Contact';
 import UserAcount from 'containers/admin/UserAccount/UserAcount';
+import Login from 'containers/shared/Auth/Login/Login';
 
 export const clientRoutes = [
   {
