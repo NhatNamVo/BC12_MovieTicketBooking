@@ -40,9 +40,11 @@ export default class Header extends Component {
               <Link className="nav-link" to="/admin">
                 Contact
               </Link>
-              {/* <Link className="nav-link" to="/admin/UserAcount">
-                User
-              </Link> */}
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
             </li>
           </ul>
         </div>
