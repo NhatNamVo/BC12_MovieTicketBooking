@@ -5,6 +5,7 @@ import movieDetailReducer from 'containers/client/MovieDetail/module/movieDetail
 import UserAccountReducer from 'containers/admin/UserAccount/Modules/reducer';
 import pagePanigationReducer from 'containers/client/Movie/Modules/reducer';
 import movieListOptionReducer from 'containers/client/Movie/module/reducer';
+import authUserReducer from 'containers/shared/Auth/module/reducers';
 import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage';
@@ -12,14 +13,15 @@ import storage from 'redux-persist/lib/storage';
 const rootReducer = combineReducers({
   movieReducer,
   movieDetailReducer,
-  UserAccountReducer,
   pagePanigationReducer,
   movieListOptionReducer,
+  authUserReducer,
 });
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['movieReducer','movieDetailReducer','pagePanigationReducer','movieListOptionReducer'],
+  blacklist: ['movieReducer','movieDetailReducer','pagePanigationReducer','movieListOptionReducer','authUserReducer'],
+  // whitelist: ['authUserReducer'],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

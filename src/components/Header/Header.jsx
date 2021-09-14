@@ -1,6 +1,28 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-export default class Header extends Component {
+import { connect } from "react-redux";
+import UserLogin from "./UserLogin/UserLogin";
+class Header extends Component {
+  checkLogin = () => {
+    if (!!this.props.currentUser) {
+      return <UserLogin />;
+    } else {
+      return (
+        <>
+          <li className="nav-item">
+            <Link className="nav-link" to="/login">
+              Đăng nhập
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/register">
+              Đăng ký
+            </Link>
+          </li>
+        </>
+      );
+    }
+  };
   render() {
     return (
       <nav className="navbar navbar-expand-sm navbar-light bg-light">
@@ -41,14 +63,15 @@ export default class Header extends Component {
                 Contact
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">
-                Login
-              </Link>
-            </li>
+            {this.checkLogin()}
           </ul>
         </div>
       </nav>
     );
   }
 }
+const mapStateToProps = (state) => ({
+  currentUser: state.authUserReducer.currentUser,
+});
+
+export default connect(mapStateToProps)(Header);
