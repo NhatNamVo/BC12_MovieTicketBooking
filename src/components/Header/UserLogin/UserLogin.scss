@@ -1,0 +1,27 @@
+.userLogin{
+    position: relative;
+    cursor: pointer;
+    .dropbox{
+        position: absolute;
+        background-color: #fff;
+        top: 30px;
+        right: 0;
+        width: fit-content;
+        padding: 10px;
+        transform-origin: top center;
+        transform: scaleY(0.00001);
+        transition: transform .5s;
+        z-index: 10;
+        ul{
+            list-style-type: none;
+            padding: 0;
+            a{
+                text-decoration: none;
+                color: rgba(0,0,0,.5);
+            }
+        }
+    }
+    .active{
+        transform: scaleY(1);
+    }
+}

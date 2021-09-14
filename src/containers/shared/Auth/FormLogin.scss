@@ -72,6 +72,7 @@
     }
     .login-submit{
         display: block;
+        position: relative;
         border: none;
         border-radius: 5px;
         width: 100%;
@@ -83,6 +84,11 @@
         color: #fff;
         &:hover{
             box-shadow: 0 0 10px #31d7a9;
+        }
+        span.spinner-border{
+          position: absolute;
+          top: 40%;
+          right: 10%;
         }
     }
   }
