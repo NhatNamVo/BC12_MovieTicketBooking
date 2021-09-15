@@ -31,10 +31,7 @@ a:hover {
     text-decoration: none;
     color: inherit;
 }
-ul {
-    list-style: none;
-    display: flex;
-}
+
 @include tablet {
     h3 {
         font-size: 36px;
@@ -212,6 +209,10 @@ body {
                             color: #31d7a9;
                         }
                     }
+                }
+                ul {
+                    list-style: none;
+                    display: flex;
                 }
                 .time {
                     font-size: 16px;

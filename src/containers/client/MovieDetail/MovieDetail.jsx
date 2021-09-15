@@ -22,7 +22,7 @@ import {
 
 class MovieDetail extends Component {
   render() {
-    const { movieDetail, loading, match, history } = this.props;
+    const { movieDetail, loading, history } = this.props;
     console.log(this.props);
     if (loading) return <Loader />;
     return (
