@@ -17,6 +17,12 @@ const movieApi = {
   },
   fetchAllUserAcount(){
     return callApi(`QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GROUP_ID}`);
+  },
+  fetchTheaterApi(){
+    return callApi(`QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=${GROUP_ID}`);
+  },
+  fetchMovieTheaterApi(maHeThongRap){
+    return callApi(`QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=${GROUP_ID}`)
   }
 };
 
