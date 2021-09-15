@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import background from "assets/image/background_Login.jpg";
 import "../FormLogin.scss";
-import { actLogin,actSaveUserCheck } from "../module/actions";
+import { actLogin, actSaveUserCheck } from "../module/actions";
 class Login extends Component {
   state = {
     isPass: true,
@@ -19,12 +19,10 @@ class Login extends Component {
     if (name === "matKhau" && value !== "") {
       this.setState({ isPass: true });
     }
-    console.log(name, value);
   };
   changeCheckBox = (e) => {
-    console.log(e.target.checked);
     this.props.checked(e.target.checked);
-  }
+  };
   loginSubmit = (e) => {
     e.preventDefault();
     let user = {};
@@ -49,10 +47,86 @@ class Login extends Component {
       });
       return;
     }
-    this.props.login(user, this.props.history,this.props.isLogined);
+    this.props.login(user, this.props.history, this.props.isLogined,this.props.isRegister);
+  };
+  checkRegister = () => {
+    const { isRegister, userRegister } = this.props;
+    if (!!isRegister) {
+      return (
+        <>
+          <div className="form-group">
+            <div className="form-input">
+              <input
+                name="taiKhoan"
+                type="text"
+                className="form-input"
+                placeholder="Tài khoản"
+                value={userRegister.taiKhoan}
+                readOnly
+              />
+              <i class="fa fa-user"></i>
+            </div>
+            <small id="helpId" className="form-note">
+              {!this.state.isUser ? "Chưa nhập tài khoản" : ""}
+            </small>
+          </div>
+          <div className="form-group">
+            <div className="form-input">
+              <input
+                name="matKhau"
+                type="password"
+                className="form-input"
+                placeholder="Mật khẩu"
+                onInput={this.handleChange}
+              />
+              <i class="fa fa-lock"></i>
+            </div>
+            <small id="helpId" className="form-note">
+              {!this.state.isPass ? "Chưa nhập mật khẩu" : ""}
+            </small>
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <div className="form-group">
+            <div className="form-input">
+              <input
+                name="taiKhoan"
+                type="text"
+                className="form-input"
+                placeholder="Tài khoản"
+                onInput={this.handleChange}
+              />
+              <i class="fa fa-user"></i>
+            </div>
+            <small id="helpId" className="form-note">
+              {!this.state.isUser ? "Chưa nhập tài khoản" : ""}
+            </small>
+          </div>
+          <div className="form-group">
+            <div className="form-input">
+              <input
+                name="matKhau"
+                type="password"
+                className="form-input"
+                placeholder="Mật khẩu"
+                onInput={this.handleChange}
+              />
+              <i class="fa fa-lock"></i>
+            </div>
+            <small id="helpId" className="form-note">
+              {!this.state.isPass ? "Chưa nhập mật khẩu" : ""}
+            </small>
+          </div>
+        </>
+      );
+    }
   };
   render() {
-    const {loadding, error} = this.props;
+    const { loadding, error } = this.props;
+    console.log(this.props.isRegister,this.props.userRegister);
     return (
       <div
         className="login-component"
@@ -62,43 +136,15 @@ class Login extends Component {
           <h3 className="login-title">Đăng nhập</h3>
           <div className="login-form">
             <form action="" method="post" onSubmit={this.loginSubmit}>
-              <div className="form-group">
-                <div className="form-input">
-                  <input
-                    name="taiKhoan"
-                    type="text"
-                    className="form-input"
-                    placeholder="Tài khoản"
-                    onInput={this.handleChange}
-                  />
-                  <i class="fa fa-user"></i>
-                </div>
-
-                <small id="helpId" className="form-note">
-                  {!this.state.isUser ? "Chưa nhập tài khoản" : ""}
-                </small>
-              </div>
-              <div className="form-group">
-                <div className="form-input">
-                  <input
-                    name="matKhau"
-                    type="password"
-                    className="form-input"
-                    placeholder="Mật khẩu"
-                    onInput={this.handleChange}
-                  />
-                  <i class="fa fa-lock"></i>
-                </div>
-
-                <small id="helpId" className="form-note">
-                  {!this.state.isPass ? "Chưa nhập mật khẩu" : ""}
-                </small>
-              </div>
-              <span className="note-login">{error?error:""}</span>
+              {this.checkRegister()}
+              <span className="note-login">{error ? error : ""}</span>
               <button type="submit" name id className="login-submit">
                 Đăng nhập
                 <span
-                  className={"spinner-border spinner-border-sm " + (!loadding?"d-none":"")}
+                  className={
+                    "spinner-border spinner-border-sm " +
+                    (!loadding ? "d-none" : "")
+                  }
                   role="status"
                   aria-hidden="true"
                 />
@@ -111,7 +157,7 @@ class Login extends Component {
                     name
                     id
                     defaultValue="checkedValue"
-                    onChange = {this.changeCheckBox}
+                    onChange={this.changeCheckBox}
                     defaultChecked
                   />
                   Lưu tài khoản
@@ -128,17 +174,19 @@ class Login extends Component {
     );
   }
 }
-const mapStateToProps = (state) =>({
+const mapStateToProps = (state) => ({
   loadding: state.authUserReducer.loadding,
   error: state.authUserReducer.error,
   isLogined: state.authUserReducer.isLogined,
-})
+  userRegister: state.authUserReducer.userRegister,
+  isRegister: state.authUserReducer.isRegister,
+});
 const mapDispatchToProps = (dispatch) => ({
-  login: (user, history, islogin) => {
-    dispatch(actLogin(user, history,islogin));
+  login: (user, history, islogin, isRegister) => {
+    dispatch(actLogin(user, history, islogin, isRegister));
   },
   checked: (ischecked) => {
     dispatch(actSaveUserCheck(ischecked));
-  }
+  },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
