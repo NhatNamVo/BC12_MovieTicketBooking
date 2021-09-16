@@ -16,7 +16,6 @@ class Register extends Component {
     e.preventDefault();
     const name = e.target.name;
     const value = e.target.value;
-    console.log(name, value);
     switch (name) {
       case "taiKhoan":
         if (!!value) {

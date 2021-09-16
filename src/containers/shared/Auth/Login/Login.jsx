@@ -126,7 +126,6 @@ class Login extends Component {
   };
   render() {
     const { loadding, error } = this.props;
-    console.log(this.props.isRegister,this.props.userRegister);
     return (
       <div
         className="login-component"

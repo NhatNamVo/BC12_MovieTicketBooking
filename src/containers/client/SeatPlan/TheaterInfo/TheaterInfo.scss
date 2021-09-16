@@ -1,0 +1,29 @@
+.theaterinfo-content{
+    color: #fff;
+    .theater-title{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .theater-name{
+            margin-bottom: 0;
+            margin-left: 10px;
+        }
+    }
+    .theater-infoItem{
+        margin-left: 60px;
+        padding: 5px 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .theater-item{
+            margin-right: 50px;
+            .theater-itemContent{
+                padding: 5px 0;
+            }
+        }
+    }
+    
+    i, svg{
+        margin-right: 5px;
+    }
+}
