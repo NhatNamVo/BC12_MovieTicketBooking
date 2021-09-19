@@ -13,15 +13,22 @@ import reportWebVitals from "./reportWebVitals";
 import { store, persistor } from "store";
 import {PersistGate} from "redux-persist/integration/react";
 import { Provider } from "react-redux";
+import * as signalR from '@aspnet/signalr';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <App />
-      </PersistGate>
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+export const connection = new signalR.HubConnectionBuilder().withUrl('http://movieapi.cyberlearn.vn/DatVeHub').configureLogging(signalR.LogLevel.Information).build();
+connection.start().then(()=>{
+  ReactDOM.render(
+    <React.StrictMode>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
+    </React.StrictMode>,
+    document.getElementById("root")
+  );
+}).catch(error=>{
+  console.log(error);
+})
+
 reportWebVitals();

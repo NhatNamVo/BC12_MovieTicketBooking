@@ -1,0 +1,20 @@
+.seatLayout-container{
+    margin-top: 100px;
+    .seat-item{
+        cursor: pointer;
+        position: relative;
+        img{
+            margin: auto;
+        }
+        .seatName{
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #9EB1EB;
+        }
+        .seat-choosed{
+            color: #d73131;
+        }
+    }
+}

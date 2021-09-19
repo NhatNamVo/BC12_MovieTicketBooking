@@ -73,20 +73,13 @@ class TheaterInfo extends Component {
               <i class="fa fa-film"></i>
               {movieDetail.tenRap}
             </div>
-            <div className="theater-date theater-itemContent">
-              <i class="fa fa-calendar"></i>
-              {movieDetail.ngayChieu}
-            </div>
           </div>
           <div className="theater-item">
             <div className="theater-address theater-itemContent">
               <i class="fa fa-building"></i>
               {movieDetail.diaChi}
             </div>
-            <div className="theater-time theater-itemContent">
-              <FaRegClock />
-              {movieDetail.gioChieu}
-            </div>
+
           </div>
         </div>
       </div>

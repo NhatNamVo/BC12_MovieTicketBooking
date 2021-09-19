@@ -1,0 +1,35 @@
+.choseBox-content{
+    background-color: #021a45;
+    width: 100%;
+    margin: auto;
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 35px 40px;
+    border-radius:30px;
+    .seat-chosed{
+        width: 250px;
+    }
+    .seatChose-item{
+        text-align: center;
+        .title{
+            font-size: 20px;
+        }
+        .result{
+            color: #31d7a9;
+        }
+        .seatChose-btn{
+            padding: 8px 40px;
+            border-radius: 30px;
+            background-color: #9EB1EB;
+            border: none;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            &:hover{
+                box-shadow: 0px 7px 17px 0 #9eb1eb96;
+            }
+        }
+    }
+}

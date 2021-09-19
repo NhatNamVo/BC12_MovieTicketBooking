@@ -1,0 +1,47 @@
+.seatPlan-container{
+    color: #fff;
+    margin-bottom: 20px;
+    .seatPlan-movieInfo{
+        color: #9EB1EB;
+        padding: 30px 20px;
+        font-size: 18px;
+        box-shadow: 0px 10px 20px 0px #3b37bc;
+        border-radius: 0 0 10px 10px;
+        position: relative;
+        margin-top: 30px;
+        .borderSeatPlan{
+            position: absolute;
+            top: -3px;
+            left: 0;
+            height: 3px;
+            background-color: #3b37bc;
+        }
+        .theater-date, .theater-time{
+            display: inline-block;
+            margin-right: 80px;
+        }
+        .theater-date{
+            font-size: 20px;
+        }
+        .theater-time{
+            background-color: #001232;
+            padding: 8px 30px;
+            border-radius: 25px;
+            box-shadow: 0px 10px 20px 0px #3b37bc;
+        }
+        .timeLeft{
+            margin-right: 60px;
+        }
+    }
+    .seat-container{
+        margin-top: 150px;
+        .screen{
+            width: 95%;
+            margin: auto;
+            text-align: center;
+            height: 60px;
+            background-color: #9EB1EB;
+            border-radius: 20px 20px 0 0;
+        }
+    }
+}
