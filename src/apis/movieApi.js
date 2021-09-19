@@ -12,18 +12,18 @@ const movieApi = {
   fetMovieBannerApi(){
     return callApi(`QuanLyPhim/LayDanhSachBanner`);
   },
-  fetchFindUserInfo(userAccount) {
-    return callApi(`QuanLyNguoiDung/LayDanhSachNguoiDung?maNhom=${GROUP_ID}&tuKhoa=${userAccount}`);
-  },
-  fetchAllUserAcount(){
-    return callApi(`QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GROUP_ID}`);
-  },
+  // fetchFindUserInfo(userAccount) {
+  //   return callApi(`QuanLyNguoiDung/LayDanhSachNguoiDung?maNhom=${GROUP_ID}&tuKhoa=${userAccount}`);
+  // },
+  // fetchAllUserAcount(){
+  //   return callApi(`QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GROUP_ID}`);
+  // },
   fetchTheaterApi(){
     return callApi(`QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=${GROUP_ID}`);
   },
   fetchMovieTheaterApi(maHeThongRap){
     return callApi(`QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=${GROUP_ID}`)
-  }
+  },
 };
 
 export default movieApi;
