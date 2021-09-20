@@ -77,7 +77,6 @@ class Carousel extends Component {
         <div className="Carousel-content">
           {carousel.map((item, idx) => {
             return (
-              <Link to={'/movie-detail/'+item.filmInfo.maPhim}>
               <CarouselItem
                 key={idx}
                 active={item.status}
@@ -87,7 +86,6 @@ class Carousel extends Component {
                 match = {match}
                 history = {history}
               />
-              </Link>
             );
           })}
         </div>

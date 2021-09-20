@@ -46,7 +46,7 @@ export const actFetchAllMovie = () => {
     movieApi
       .fechAllMovieApi()
       .then((res) => {
-        dispatch(actFetchAllMovieSuccess(res.data.content));
+        dispatch(actFetchAllMovieSuccess(res.data));
       })
       .catch((err) => {
         dispatch(actFetchAllMovieFail(err));
