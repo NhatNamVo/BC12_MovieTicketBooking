@@ -10,6 +10,7 @@ import ticketApi from "apis/ticketApi";
 import SeatLayout from "./Seat/SeatLayout";
 import ChoseBox from "./choseBox/ChoseBox";
 import { connection } from "index";
+import FailNotePopup from "./NotePopup/FailNotePopup";
 
 class SeatPlan extends Component {
   state = {
@@ -17,6 +18,7 @@ class SeatPlan extends Component {
     theaterRoom: null,
     loadding: true,
     error: "",
+    loaddingPost: false,
     seatChose: {
         choseSeat: [],
         totalPrice: 0,
@@ -26,14 +28,12 @@ class SeatPlan extends Component {
       danhSachVe: [],
       taiKhoanNguoiDung: this.props.taiKhoan,
     },
+    isBooking: false,
   };
-  // timeLeft = (width) => {
-  //   this.setState({ lineWidth:width});
-  // }
   async componentDidMount() {
     const theaterRoomCode = this.props.match.params.showtimeId;
     const { orderTicket } = this.state;
-    orderTicket.maLichChieu = theaterRoomCode;
+    orderTicket.maLichChieu = parseInt(theaterRoomCode);
     try {
       const { data } = await ticketApi.fetchTheaterRoom(theaterRoomCode);
       this.setState({
@@ -52,8 +52,8 @@ class SeatPlan extends Component {
   choseSeat = (seatId, price, seatName) => {
     const { orderTicket, seatChose } = this.state;
     const ticket = {
-      maGhe: seatId,
-      giaVe: price,
+      maGhe: parseInt(seatId),
+      giaVe: parseInt(price),
     };
     orderTicket.danhSachVe.push(ticket);
     seatChose.choseSeat.push(seatName);
@@ -77,19 +77,31 @@ class SeatPlan extends Component {
     const paymentBtn = e.target.closest(".seatChose-btn");
     if (!!paymentBtn) {
       if (this.state.orderTicket.danhSachVe.length != 0) {
-        console.log("danhsachghedangdat", this.state.orderTicket.danhSachVe);
-        console.log("taiKhoan", this.props.taiKhoan);
-        console.log("maLichChieu", this.state.orderTicket.maLichChieu);
-        console.log(this.props.accessToken);
+        console.log(this.state.orderTicket);
+        this.setState({loaddingPost: true})
+        this.postTitketOrder();
       }
     }
   };
+  postTitketOrder = () => {
+    ticketApi.postTicketOrder(this.state.orderTicket,this.props.accessToken)
+    .then(res=>{
+      this.setState({loaddingPost: false})
+      this.props.history.push('/userInfo');
+    })
+    .catch(error=>{
+      this.setState({loaddingPost: false,isBooking:true});
+    })
+  }
+  bookingAgain =() => {
+    this.setState({loaddingPost: false});
+    window.location.reload();
+  }
   render() {
     if (this.state.loadding) return <Loader />;
     const { thongTinPhim, danhSachGhe } = this.state.theaterRoom;
     const movieInfo = thongTinPhim;
     const seat = danhSachGhe;
-
     return (
       <div className="seatPlan-container">
         <div
@@ -146,8 +158,9 @@ class SeatPlan extends Component {
           className="choseSeat-container container"
           onClick={this.postSeatChose}
         >
-          <ChoseBox seatChose={this.state.seatChose} />
+          <ChoseBox seatChose={this.state.seatChose} loaddingPost={this.state.loaddingPost}/>
         </div>
+        <FailNotePopup history = {this.props.history} isBooking={this.state.isBooking} bookingAgain={this.bookingAgain}/>
       </div>
     );
   }
