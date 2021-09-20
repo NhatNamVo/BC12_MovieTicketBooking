@@ -31,9 +31,9 @@ export const actLogin = (user, history, isLogined, isRegister) => {
     userApi
       .loginApi(user)
       .then((res) => {
-        dispatch(actLoginSuccess(res.data.content));
+        dispatch(actLoginSuccess(res.data));
         if (isLogined) {
-          localStorage.setItem("userLogin", JSON.stringify(res.data.content));
+          localStorage.setItem("userLogin", JSON.stringify(res.data));
         }
         if(isRegister){
           history.push('/');
@@ -94,7 +94,7 @@ export const actRegister = (newUser,history) => {
       .registerApi(newUser)
       .then((res) => {
         console.log(res.data.content);
-        dispatch(actRegisterSuccess(res.data.content));
+        dispatch(actRegisterSuccess(res.data));
         history.push('/login');
       })
       .catch((err) => {

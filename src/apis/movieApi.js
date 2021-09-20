@@ -1,5 +1,6 @@
 import { GROUP_ID } from 'settings/apiConfig';
 import callApi from 'utils/callApi';
+import axios from 'axios';
 
 const movieApi = {
   fechAllMovieApi() {
@@ -10,14 +11,11 @@ const movieApi = {
     return callApi(`QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${movieId}`);
   },
   fetMovieBannerApi(){
-    return callApi(`QuanLyPhim/LayDanhSachBanner`);
+    return axios({
+      url: `http://movieapi.cyberlearn.vn/api/QuanLyPhim/LayDanhSachBanner`,
+      method: 'GET',
+    });
   },
-  // fetchFindUserInfo(userAccount) {
-  //   return callApi(`QuanLyNguoiDung/LayDanhSachNguoiDung?maNhom=${GROUP_ID}&tuKhoa=${userAccount}`);
-  // },
-  // fetchAllUserAcount(){
-  //   return callApi(`QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GROUP_ID}`);
-  // },
   fetchTheaterApi(){
     return callApi(`QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=${GROUP_ID}`);
   },

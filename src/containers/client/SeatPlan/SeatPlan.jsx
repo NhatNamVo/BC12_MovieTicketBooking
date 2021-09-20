@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 import Loader from "components/Loader/Loader";
 import theaterBanner from "assets/image/theater_banner/theaterBanner.jpg";
 import "containers/client/MovieDetail/MovieDetail.scss";
@@ -18,12 +18,13 @@ class SeatPlan extends Component {
     loadding: true,
     error: "",
     seatChose: {
-      choseSeat: [],
-      totalPrice: 0,
+        choseSeat: [],
+        totalPrice: 0,
     },
     orderTicket: {
       maLichChieu: 0,
       danhSachVe: [],
+      taiKhoanNguoiDung: this.props.taiKhoan,
     },
   };
   // timeLeft = (width) => {
@@ -31,50 +32,58 @@ class SeatPlan extends Component {
   // }
   async componentDidMount() {
     const theaterRoomCode = this.props.match.params.showtimeId;
-    const {orderTicket} = this.state;
+    const { orderTicket } = this.state;
     orderTicket.maLichChieu = theaterRoomCode;
     try {
       const { data } = await ticketApi.fetchTheaterRoom(theaterRoomCode);
-      this.setState({ theaterRoom: data.content, loadding: false, orderTicket:orderTicket});
+      this.setState({
+        theaterRoom: data,
+        loadding: false,
+        orderTicket: orderTicket,
+      });
     } catch (error) {
-      this.setState({ error: error, loadding: false,orderTicket:orderTicket });
+      this.setState({
+        error: error,
+        loadding: false,
+        orderTicket: orderTicket,
+      });
     }
-    connection.on("loadDanhSachGheDaDat", (dsGheKhachDat)=>{
-      console.log('dsgheKhachDat',dsGheKhachDat);
-    })
   }
-  choseSeat = (seatId,price,seatName) => {
-    const {orderTicket,seatChose} = this.state;
+  choseSeat = (seatId, price, seatName) => {
+    const { orderTicket, seatChose } = this.state;
     const ticket = {
-      maGhe:seatId,
+      maGhe: seatId,
       giaVe: price,
     };
     orderTicket.danhSachVe.push(ticket);
     seatChose.choseSeat.push(seatName);
     seatChose.totalPrice += parseInt(price);
-    this.setState({seatChose:seatChose,orderTicket:orderTicket});
-  }
-  cancelSeat = (seatId,price,seatName) => {
-    const {orderTicket,seatChose} = this.state;
-    const seatIdx = orderTicket.danhSachVe.findIndex((seat)=>{
+    this.setState({ seatChose: seatChose, orderTicket: orderTicket });
+  };
+  cancelSeat = (seatId, price, seatName) => {
+    const { orderTicket, seatChose } = this.state;
+    const seatIdx = orderTicket.danhSachVe.findIndex((seat) => {
       return seat.maGhe === seatId;
     });
-    orderTicket.danhSachVe.splice(seatIdx,1);
-    const seatNameIdx = seatChose.choseSeat.findIndex((seat)=>{
+    orderTicket.danhSachVe.splice(seatIdx, 1);
+    const seatNameIdx = seatChose.choseSeat.findIndex((seat) => {
       return seat === seatName;
     });
-    seatChose.choseSeat.splice(seatNameIdx,1);
+    seatChose.choseSeat.splice(seatNameIdx, 1);
     seatChose.totalPrice -= price;
-    this.setState({orderTicket:orderTicket,seatChose:seatChose});
-  }
+    this.setState({ orderTicket: orderTicket, seatChose: seatChose });
+  };
   postSeatChose = (e) => {
-    const paymentBtn = e.target.closest('.seatChose-btn');
-    if(!!paymentBtn){
-      if(this.state.orderTicket.danhSachVe.length !=0){
-        console.log(paymentBtn);
+    const paymentBtn = e.target.closest(".seatChose-btn");
+    if (!!paymentBtn) {
+      if (this.state.orderTicket.danhSachVe.length != 0) {
+        console.log("danhsachghedangdat", this.state.orderTicket.danhSachVe);
+        console.log("taiKhoan", this.props.taiKhoan);
+        console.log("maLichChieu", this.state.orderTicket.maLichChieu);
+        console.log(this.props.accessToken);
       }
     }
-  }
+  };
   render() {
     if (this.state.loadding) return <Loader />;
     const { thongTinPhim, danhSachGhe } = this.state.theaterRoom;
@@ -127,18 +136,26 @@ class SeatPlan extends Component {
         </div>
         <div className="seat-container container">
           <div className="screen">Man hinh</div>
-          <SeatLayout seats={seat} choseSeat={this.choseSeat} cancelSeat={this.cancelSeat}/>
+          <SeatLayout
+            seats={seat}
+            choseSeat={this.choseSeat}
+            cancelSeat={this.cancelSeat}
+          />
         </div>
-        <div className="choseSeat-container container" onClick={this.postSeatChose}>
-          <ChoseBox seatChose={this.state.seatChose}/>
+        <div
+          className="choseSeat-container container"
+          onClick={this.postSeatChose}
+        >
+          <ChoseBox seatChose={this.state.seatChose} />
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   accessToken: state.authUserReducer.currentUser.accessToken,
+  taiKhoan: state.authUserReducer.currentUser.taiKhoan,
 });
 
 export default connect(mapStateToProps)(SeatPlan);

@@ -12,6 +12,7 @@ class UserLogin extends Component {
   };
   logOut = e => {
     this.props.logOut();
+    window.history.go('/');
   }
   render() {
     const { taiKhoan, maLoaiNguoiDung } = this.props.currentUser;

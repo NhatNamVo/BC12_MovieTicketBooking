@@ -46,7 +46,7 @@ class Register extends Component {
   };
   RegisterSubmit = (e) => {
     e.preventDefault();
-    let newUser = { maNhom: GROUP_ID };
+    let newUser = { maNhom: GROUP_ID, maLoaiNguoiDung: 'KhachHang',};
     let isPass = true;
     let isUser = true;
     let isEmail = true;
@@ -95,8 +95,7 @@ class Register extends Component {
       });
       return;
     }
-    console.log(newUser);
-    // this.props.register(newUser, this.props.history);
+    this.props.register(newUser,this.props.history);
   };
   render() {
     const {loadding, error} = this.props;
