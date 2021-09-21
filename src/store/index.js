@@ -6,6 +6,8 @@ import UserAccountReducer from 'containers/admin/UserAccount/Modules/reducer';
 import pagePanigationReducer from 'containers/client/Movie/Modules/reducer';
 import movieListOptionReducer from 'containers/client/Movie/module/reducer';
 import authUserReducer from 'containers/shared/Auth/module/reducers';
+import theaterReducer from 'containers/client/Theater/module/theaterReducer';
+import theaterFilterReducer from 'containers/client/Theater/TheaterFilter/module/theaterFilterReducer';
 import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage';
@@ -16,6 +18,8 @@ const rootReducer = combineReducers({
   pagePanigationReducer,
   movieListOptionReducer,
   authUserReducer,
+  theaterReducer,
+  theaterFilterReducer,
 });
 const persistConfig = {
   key: 'root',
