@@ -7,7 +7,7 @@ import Movie from 'containers/client/Movie/Movie';
 import Contact from 'components/Contact/Contact';
 import UserAcount from 'containers/admin/UserAccount/UserAcount';
 import Login from 'containers/shared/Auth/Login/Login';
-import UserInfo from 'containers/shared/UserInfo/UserInfo';
+import UserInfo from 'containers/client/UserInfo/UserInfo';
 
 export const clientRoutes = [
   {
