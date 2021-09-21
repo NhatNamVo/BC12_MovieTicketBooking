@@ -10,7 +10,7 @@ class TimeLeftNote extends Component {
   componentDidMount() {
     this.wait = setTimeout(() => {
       this.setState({ display: true });
-    }, 20);
+    }, 1000);
   }
   changeMessageStatus = () => {
     console.log("wtf");
