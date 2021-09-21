@@ -11,6 +11,7 @@ import SeatLayout from "./Seat/SeatLayout";
 import ChoseBox from "./choseBox/ChoseBox";
 import { connection } from "index";
 import FailNotePopup from "./NotePopup/FailNotePopup";
+import TimeLeftNote from "./NotePopup/TimeLeftNote";
 
 class SeatPlan extends Component {
   state = {
@@ -29,6 +30,7 @@ class SeatPlan extends Component {
       taiKhoanNguoiDung: this.props.taiKhoan,
     },
     isBooking: false,
+    isTimeLeft: false,
   };
   async componentDidMount() {
     const theaterRoomCode = this.props.match.params.showtimeId;
@@ -92,16 +94,24 @@ class SeatPlan extends Component {
     .catch(error=>{
       this.setState({loaddingPost: false,isBooking:true});
     })
-  }
+  };
   bookingAgain =() => {
     this.setState({loaddingPost: false});
     window.location.reload();
+  };
+  booking = () => {
+    this.setState({loaddingPost: true})
+    this.postTitketOrder();
+  };
+  checkTimeLeft = () => {
+    this.setState({isTimeLeft: true});
   }
   render() {
     if (this.state.loadding) return <Loader />;
     const { thongTinPhim, danhSachGhe } = this.state.theaterRoom;
     const movieInfo = thongTinPhim;
     const seat = danhSachGhe;
+    console.log(this.state.seatChose);
     return (
       <div className="seatPlan-container">
         <div
@@ -123,7 +133,7 @@ class SeatPlan extends Component {
               </div>
               <div className="col-md-8  details__banner__content offset-lg-4 ">
                 <h3 className="card-title">{movieInfo.tenPhim}</h3>
-                <TheaterInfo movieDetail={movieInfo} />
+                <TheaterInfo movieDetail={movieInfo}/>
               </div>
             </div>
           </div>
@@ -141,7 +151,7 @@ class SeatPlan extends Component {
               </div>
 
               <div className="timeLeft">
-                Time Left: <TimeLeft timeLeftWidth={this.timeLeft} />
+                Thời gian: <TimeLeft timeLeftWidth={this.timeLeft} checkTimeLeft={this.checkTimeLeft}/>
               </div>
             </div>
           </div>
@@ -161,6 +171,7 @@ class SeatPlan extends Component {
           <ChoseBox seatChose={this.state.seatChose} loaddingPost={this.state.loaddingPost}/>
         </div>
         <FailNotePopup history = {this.props.history} isBooking={this.state.isBooking} bookingAgain={this.bookingAgain}/>
+        <TimeLeftNote history = {this.props.history} isTimeLeft={this.state.isTimeLeft} booking={this.booking} seatChose={this.state.seatChose} bookingAgain={this.bookingAgain} loaddingPost={this.state.loaddingPost}/>
       </div>
     );
   }
