@@ -8,7 +8,7 @@ class TimeLeft extends Component {
     componentDidMount() {
         this.timeLeft = setInterval(() => {
             this.changeTime();
-        }, 200);
+        }, 1000);
     }
     changeTime = () => {
         let {second,minute} = this.state;

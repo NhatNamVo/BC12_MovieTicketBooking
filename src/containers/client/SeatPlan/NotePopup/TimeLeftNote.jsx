@@ -10,11 +10,8 @@ class TimeLeftNote extends Component {
   componentDidMount() {
     this.wait = setTimeout(() => {
       this.setState({ display: true });
-    }, 1000);
+    }, 20);
   }
-  changeMessageStatus = () => {
-    console.log("wtf");
-  };
   bookingAgain = () => {
     this.setState({ fall: true, display: false });
     this.wait = setTimeout(() => {
