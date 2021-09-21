@@ -58,14 +58,14 @@ const movieReducer = (state = initialState, { type, payload }) => {
       const newMovie = payload.filter((movie) => {
         return movie.sapChieu === true;
       });
-      const currentMovienew = newMovie[state.currentMovieIdx];
+      const currentMovienew = payload[state.currentMovieIdx];
       return {
         ...state,
         listMovie: payload,
         loading: false,
-        newMovie: newMovie,
-        hotMovie: hotMovie,
-        showingMovie: showingMovie,
+        newMovie: payload,
+        hotMovie: payload,
+        showingMovie: payload,
         currentMovienew: currentMovienew,
       };
     case FETCH_ALL_MOVIE_FAIL:

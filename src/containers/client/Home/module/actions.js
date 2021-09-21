@@ -39,17 +39,17 @@ export const actFetchAllMovie = () => {
       .fetMovieBannerApi()
       .then((res) => {
         dispatch(actFetchAllMovieBannersuccess(res.data.content));
+        movieApi
+          .fechAllMovieApi()
+          .then((res) => {
+            dispatch(actFetchAllMovieSuccess(res.data));
+          })
+          .catch((err) => {
+            dispatch(actFetchAllMovieFail(err));
+          });
       })
       .catch((error) => {
         dispatch(actFetchAllMovieBannerfail(error));
-      });
-    movieApi
-      .fechAllMovieApi()
-      .then((res) => {
-        dispatch(actFetchAllMovieSuccess(res.data.content));
-      })
-      .catch((err) => {
-        dispatch(actFetchAllMovieFail(err));
       });
   };
 };
@@ -63,8 +63,8 @@ export const actChangeCurrentMovieNew = (idx) => {
     dispatch(actChangeCurrentMovie(idx));
   };
 };
-export const actGetTrailerMovie = MovieId => {
-  return dispatch => {
+export const actGetTrailerMovie = (MovieId) => {
+  return (dispatch) => {
     dispatch({
       type: GET_TRAILER_MOVIE,
       payload: MovieId,

@@ -20,8 +20,8 @@ export const actFetchTheater = () => {
   return async dispatch => {
     dispatch(actFetchTheaterRequest());
     try {
-      const { data } = await movieApi.fetchTheaterApi();
-      dispatch(actFetchTheaterSuccess(data.content));
+      const { data } = await movieApi.fetchMovieTheaterApi();
+      dispatch(actFetchTheaterSuccess(data));
     } catch (error) {
       dispatch(actFetchTheaterFail(error));
     }

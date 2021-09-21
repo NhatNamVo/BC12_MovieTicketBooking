@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './ChoseBox.scss';
 class ChoseBox extends Component {
     render() {
-        const {seatChose} = this.props;
+        const {seatChose, loaddingPost} = this.props;
 
         return (
             <div className="choseBox-content">
@@ -27,6 +27,14 @@ class ChoseBox extends Component {
                 </div>
                 <div className="seatChose-item">
                     <button className="seatChose-btn">Thanh toán</button>
+                    <span
+                  className={
+                    "spinner-border spinner-border-sm " +
+                    (!loaddingPost ? "d-none" : "")
+                  }
+                  role="status"
+                  aria-hidden="true"
+                />
                 </div>                 
             </div>
         );

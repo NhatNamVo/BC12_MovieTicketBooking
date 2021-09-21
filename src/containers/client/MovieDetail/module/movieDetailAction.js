@@ -24,7 +24,7 @@ export const actFetchMovieDetail = movieId => {
     dispatch(actFetchMovieDetailRequest());
     try {
       const { data } = await movieApi.fetchMovieDetailApi(movieId);
-      dispatch(actFetchMovieDetailSuccess(data.content));
+      dispatch(actFetchMovieDetailSuccess(data));
     } catch (error) {
       dispatch(actFetchMovieDetailFail(error));
     }

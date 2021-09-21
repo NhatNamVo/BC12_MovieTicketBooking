@@ -17,6 +17,7 @@ class TimeLeft extends Component {
                 clearInterval(this.timeLeft);
                 this.setState({second: second, minute: minute});
                 // this.props.timeLeftWidth(100);
+                this.props.checkTimeLeft();
                 return;
             }
             second = 59;
