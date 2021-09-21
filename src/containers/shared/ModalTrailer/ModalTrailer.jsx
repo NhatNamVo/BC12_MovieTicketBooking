@@ -1,4 +1,4 @@
-import { actGetTrailerMovie } from "containers/client/Home/module/actions";
+import { actGetTrailerMovie,actFetchAllMovie } from "containers/client/Home/module/actions";
 import React, { Component } from "react";
 import "./ModalTrailer.scss";
 import { connect } from "react-redux";
@@ -9,7 +9,9 @@ class ModalTrailer extends Component {
   componentDidMount() {
     this.displayPopup = setTimeout(() => this.setState({ popup: true }), 500);
     const movieId = this.props.match.params.movieId;
-    this.props.GetTrailer(movieId);
+    if(this.props.listMovie.length>0){
+      this.props.GetTrailer(movieId);
+    }   
     const trailerForm = document.querySelector(".trailer-Modal");
     trailerForm.addEventListener("click", this.closePopup);
   }
@@ -36,7 +38,7 @@ class ModalTrailer extends Component {
             width={window.innerWidth * 0.6}
             height={window.innerHeight * 0.6}
             frameborder="0"
-            src={trailer + "?autoplay=1"}
+            src={((this.props.listMovie.length>0)?trailer:this.props.movieDetail.trailer) + "?autoplay=1"}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>
@@ -47,6 +49,8 @@ class ModalTrailer extends Component {
 }
 const mapStateToProps = (state) => ({
   trailer: state.movieReducer.currentTrailerMovie,
+  listMovie: state.movieReducer.listMovie,
+  movieDetail: state.movieDetailReducer.movieDetail,
 });
 const mapDispatchToProps = (dispatch) => ({
   GetTrailer: (movieId) => {
