@@ -17,7 +17,7 @@ class UserLogin extends Component {
   render() {
     const { taiKhoan, maLoaiNguoiDung } = this.props.currentUser;
     return (
-      <li className="nav-item userLogin">
+      <div className="userLogin">
         <div className="nav-link" onClick={this.handleClick}>
           <div className="userIcon">
             <i class="fa fa-user"></i>
@@ -36,7 +36,7 @@ class UserLogin extends Component {
             <li onClick ={this.logOut}><Link to={'/'}>Logout</Link></li>
           </ul>
         </div>
-      </li>
+      </div>
     );
   }
 }

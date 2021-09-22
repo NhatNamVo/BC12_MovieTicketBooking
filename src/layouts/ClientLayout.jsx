@@ -5,7 +5,6 @@ import React, { Component } from "react";
 
 class ClientLayout extends Component {
   render() {
-    console.log(this.props);
     return (
       <>
         <Header />

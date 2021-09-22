@@ -1,29 +1,64 @@
 import React, { Component } from "react";
-
+import "./adminInfo.scss";
+import { connect } from "react-redux";
 class UserInfoUpdate extends Component {
-    componentDidMount() {
-        
-        const matKhauInput = document.querySelector('input[name="matKhau"]');
-        const hoTenInput = document.querySelector('input[name="hoTen"]');
-        const emailInput = document.querySelector('input[name="email"]');
-        const soDtInput = document.querySelector('input[name="soDt"]');
-        const maLoaiNguoiDungInput = document.querySelector('select[name="maLoaiNguoiDung"]');
-        matKhauInput.addEventListener('input',this.infoAdminChange);
-        hoTenInput.addEventListener('input',this.infoAdminChange);
-        emailInput.addEventListener('input',this.infoAdminChange);
-        soDtInput.addEventListener('input',this.infoAdminChange);
-        maLoaiNguoiDungInput.addEventListener('change',this.infoAdminChange);
+  state = {
+    oldHidden: true,
+    newHidden: true,
+    error: "",
+  };
+  handleClick = (event) => {
+    event.stopPropagation();
+    const oldPass = document.querySelector(".user-OldPass");
+    const newPass = document.querySelector(".user-NewPass");
+    const oldPassDisplay = event.target.closest("#oldPass i");
+    const newPassDisplay = event.target.closest("#newPass i");
+    const changePassBtn = event.target.closest("#changePassBtn");
+    const exitBtn = event.target.closest("#exitBtn");
+    const closeBtn = event.target.closest("button.close");
+
+    if (!!oldPassDisplay) {
+      this.setState({ oldHidden: !this.state.oldHidden });
+      if (!!this.state.oldHidden) {
+        oldPass.type = "text";
+      } else {
+        oldPass.type = "password";
+      }
     }
-    infoAdminChange = (event) => {
-        let {infoAdminChange, infoChange} = this.props;
-        const value = event.target.value;
-        const name = event.target.name;
-        infoAdminChange = {...infoAdminChange, [name]: value};
-        infoChange(infoAdminChange);
+    if (!!newPassDisplay) {
+      this.setState({ newHidden: !this.state.newHidden });
+      if (!!this.state.newHidden) {
+        newPass.type = "text";
+      } else {
+        newPass.type = "password";
+      }
     }
+    if (!!changePassBtn) {
+      const { infoAdminChange, infoChange } = this.props;
+      if (oldPass.value != infoAdminChange.pass) {
+        this.setState({ error: "Mật khẩu cũ không đúng!" });
+        return;
+      }
+      if (newPass.value === "") {
+        this.setState({ error: "Mật khẩu mới không được để trống" });
+        return;
+      }
+      this.props.infoChange(newPass.value);
+    }
+    if (!!closeBtn || !!exitBtn) {
+      this.removeItemValue();
+    }
+  };
+  removeItemValue = () => {
+    const oldPass = document.querySelector(".user-OldPass");
+    const newPass = document.querySelector(".user-NewPass");
+    oldPass.value = "";
+    newPass.value = "";
+    this.setState({ oldHidden: true, newHidden: true, error: "" });
+  };
   render() {
-      const {infoAdminChange} = this.props;
-      const { email, hoTen, matKhau, soDt, taiKhoan, maLoaiNguoiDung } = infoAdminChange;
+    const { infoAdminChange,loadding} = this.props;
+    const { oldHidden, newHidden } = this.state;
     return (
       <>
         <div
@@ -32,65 +67,109 @@ class UserInfoUpdate extends Component {
           tabIndex={-1}
           aria-labelledby="editUserInfo"
           aria-hidden="true"
+          onClick={this.removeItemValue}
         >
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="editUserInfo">
-                  Cập nhật thông tin
-                </h5>
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
+          <div className="modalContent" onClick={this.handleClick}>
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="editUserInfo">
+                    Thay đổi mật khẩu
+                  </h5>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div
+                  className="userInfo-item modal-body m-auto"
+                  style={{ width: "75%" }}
                 >
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <div className="modal-body m-auto" style={{width: '75%'}}>
                   <div className="row justify-content-between align-items-center my-1">
-                      <p className="font-weight-bold m-0">Tài khoản:</p>
-                      <input type="text" className = 'form-control' style={{width: '180px'}} value={taiKhoan} name="taiKhoan" id="" readOnly/>
+                    <p className="font-weight-bold m-0">Tài khoản:</p>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={infoAdminChange.taiKhoan}
+                      name="taiKhoan"
+                      id=""
+                      readOnly
+                    />
                   </div>
-                  <div className="row justify-content-between align-items-center my-1">
-                      <p className="font-weight-bold m-0">Mật khẩu:</p>
-                      <input type="text" className = 'form-control' style={{width: '180px'}} value={matKhau} name="matKhau" id="" />
+                  <div
+                    id="oldPass"
+                    className="userInfo-item row justify-content-between align-items-center my-1"
+                  >
+                    <p className="font-weight-bold m-0">Mật khẩu cũ:</p>
+                    <input
+                      type="password"
+                      className={
+                        "form-control user-OldPass " +
+                        (this.state.error ? "error" : "")
+                      }
+                      name="matKhau"
+                      id=""
+                    />
+                    {oldHidden ? (
+                      <i class="fa fa-eye-slash"></i>
+                    ) : (
+                      <i class="fa fa-eye"></i>
+                    )}
                   </div>
-                  <div className="row justify-content-between align-items-center my-1">
-                      <p className="font-weight-bold m-0">Họ và tên:</p>
-                      <input type="text" className = 'form-control' style={{width: '180px'}} value={hoTen} name="hoTen" id="" />
+                  <div
+                    id="newPass"
+                    className="userInfo-item row justify-content-between align-items-center my-1"
+                  >
+                    <p className="font-weight-bold m-0">Mật khẩu mới:</p>
+                    <input
+                      type="password"
+                      className={
+                        "form-control user-NewPass " +
+                        (this.state.error === "Mật khẩu mới không được để trống"
+                          ? "error"
+                          : "")
+                      }
+                      name="newPass"
+                      id=""
+                    />
+                    {newHidden ? (
+                      <i class="fa fa-eye-slash"></i>
+                    ) : (
+                      <i class="fa fa-eye"></i>
+                    )}
                   </div>
-                  <div className="row justify-content-between align-items-center my-1">
-                      <p className="font-weight-bold m-0">Email:</p>
-                      <input type="text" className = 'form-control' style={{width: '180px'}} value={email} name="email" id="" />
-                  </div>
-                  <div className="row justify-content-between align-items-center my-1">
-                      <p className="font-weight-bold m-0">Số điện thoại:</p>
-                      <input type="text" className = 'form-control' style={{width: '180px'}} value={soDt} name="soDt" id="" />
-                  </div>
-                  <div className="row justify-content-between align-items-center my-1">
-                      <p className="font-weight-bold m-0">Loại người dùng:</p>
-                      {/* <input type="text" className = 'form-control' style={{width: '180px'}} value={maLoaiNguoiDung} name="maLoaiNguoiDung" id="" /> */}
-                      <select id="inputState" className="form-control" name="maLoaiNguoiDung" value={maLoaiNguoiDung} style={{width: '180px'}}>
-                        <option value=''>Loại người dùng</option>
-                        <option value='QuanTri'>Quản trị</option>
-                        <option value='KhachHang'>Khách hàng</option>
-                    </select>
+                  <div className="note">{this.state.error}</div>
+                </div>
 
-                  </div>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="button" className="btn btn-primary">
-                  Save changes
-                </button>
+                <div className="modal-footer">
+                  <button
+                    id="changePassBtn"
+                    type="button"
+                    className="btn btn-primary"
+                  >
+                    Đổi mật khẩu
+                    <span
+                      className={
+                        "spinner-border spinner-border-sm " +
+                        (!loadding ? "d-none" : "")
+                      }
+                      role="status"
+                      aria-hidden="true"
+                    />
+                  </button>
+                  <button
+                    id="exitBtn"
+                    type="button"
+                    className="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Thoát
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -99,5 +178,7 @@ class UserInfoUpdate extends Component {
     );
   }
 }
-
-export default UserInfoUpdate;
+const mapStateToProps = (state) => ({
+  loadding: state.authUserReducer.loadding,
+});
+export default connect(mapStateToProps)(UserInfoUpdate);

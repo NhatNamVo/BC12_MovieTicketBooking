@@ -6,8 +6,8 @@ import AdminInfo from 'containers/admin/Home/AdminInfo';
 import Movie from 'containers/client/Movie/Movie';
 import Contact from 'components/Contact/Contact';
 import UserAcount from 'containers/admin/UserAccount/UserAcount';
-import Login from 'containers/shared/Auth/Login/Login';
 import UserInfo from 'containers/client/UserInfo/UserInfo';
+import MovieManage from 'containers/admin/MovieManage/MovieManage';
 
 export const clientRoutes = [
   {
@@ -57,6 +57,16 @@ export const adminRoutes = [
   {
     path: '/admin',
     component: AdminInfo,
+    exact: true,
+  },
+  {
+    path: '/admin/user-manage',
+    component: UserAcount,
+    exact: false,
+  },
+  {
+    path: '/admin/movie-manage',
+    component: MovieManage,
     exact: false,
   },
 ];

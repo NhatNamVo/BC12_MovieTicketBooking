@@ -4,9 +4,9 @@ import { clientRoutes } from "routes";
 import { Route, Switch } from "react-router-dom";
 import ModalTrailer from "containers/shared/ModalTrailer/ModalTrailer";
 import PageNotFound from "containers/shared/PageNotFound/PageNotFound";
-import ClientLayout from 'layouts/ClientLayout';
+import ClientLayout from "layouts/ClientLayout";
 class Client extends Component {
-    renderLayout = (routes, Layout) => {
+  renderLayout = (routes, Layout) => {
     return routes.map((route) => {
       const { path, component, exact } = route;
       return <Layout path={path} component={component} exact={exact} />;

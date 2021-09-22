@@ -5,7 +5,9 @@ import UserLogin from "./UserLogin/UserLogin";
 class Header extends Component {
   checkLogin = () => {
     if (!!this.props.currentUser) {
-      return <UserLogin />;
+      return (
+        <li className="nav-item"><UserLogin /></li>
+      );
     } else {
       return (
         <>
