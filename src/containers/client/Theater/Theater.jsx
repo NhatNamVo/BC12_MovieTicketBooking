@@ -1,16 +1,32 @@
-import React, { Component } from 'react'
-import "containers/client/Theater/Theater.scss"
+import React, { Component } from "react";
+import "containers/client/Theater/Theater.scss";
+import Loader from "components/Loader/Loader";
+import { actFetchTheater } from "./module/theaterAction";
+import { connect } from "react-redux";
+import TheaterFilter from "./TheaterFilter/TheaterFilter";
 
-export default class Theater extends Component {
-    render() {
-        return (
-            <div className="theater__banner hero-area" style={{ backgroundImage: "url('/images/banner-1.jpg')" }}>
-                <div className="container">
-                    <div className="theater__banner__content">
-                        <h3 className="title">Theater</h3>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+class Theater extends Component {
+  render() {
+    const { theater, loading } = this.props;
+    if (loading) return <Loader />;
+    return( 
+    <div>
+      <TheaterFilter/>
+    </div>
+    )
+  }
+  componentDidMount() {
+    this.props.fetchTheater();
+  }
 }
+const mapStateToProps = (state) => ({
+  theater: state.theaterReducer.theater,
+  loading: state.theaterReducer.loading,
+});
+const mapDispatchToProps = (dispatch) => ({
+  fetchTheater: () => {
+    dispatch(actFetchTheater());
+  },
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Theater);
+//làm lại dropdown

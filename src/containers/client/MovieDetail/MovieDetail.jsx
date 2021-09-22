@@ -54,10 +54,10 @@ class MovieDetail extends Component {
                 <div className="col-md-8  details__banner__content offset-lg-4 ">
                   <h3 className="card-title">{movieDetail.tenPhim}</h3>
                   <div className="tags">
-                    <a href="#">English</a>
-                    <a href="#">France</a>
-                    <a href="#">Italy</a>
-                    <a href="#">Germany</a>
+                    <a href="#">Anh</a>
+                    <a href="#">Pháp</a>
+                    <a href="#">Ý</a>
+                    <a href="#">Đức</a>
                   </div>
                   <a href="#" className="button">
                     {movieDetail.tinhTrang}
