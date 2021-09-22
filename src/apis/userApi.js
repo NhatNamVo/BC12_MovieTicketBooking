@@ -8,6 +8,12 @@ const userApi = {
   registerApi: (newUser) => {
     return callApi("QuanLyNguoiDung/DangKy", "POST", newUser);
   },
+  fetchFindUserInfo: (user) => {
+    return callApi(`QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=${GROUP_ID}&tuKhoa=${user}`);
+  },
+  postUpdateUser: (updateUser, token) => {
+    return callApi(`QuanLyNguoiDung/CapNhatThongTinNguoiDung`, "PUT", updateUser,token);
+  }
 };
 
 export default userApi;

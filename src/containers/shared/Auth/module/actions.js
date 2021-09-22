@@ -25,6 +25,25 @@ const actLoginFail = (error) => ({
   payload: error,
 });
 
+export const actupdatePass = (updatedUser) =>{
+  return dispatch => {
+    dispatch(actLoginRequest());
+    userApi
+      .loginApi(updatedUser)
+      .then(res => {
+        dispatch(actLoginSuccess(res.data));
+        localStorage.removeItem("userLogin");
+        localStorage.setItem("userLogin", JSON.stringify(res.data));
+        window.location.reload();
+      })
+      .catch(error => {
+        dispatch(
+          actLoginFail("Không thể đăng nhập với mật khẩu mới")
+        );
+      })
+  }
+} 
+
 export const actLogin = (user, history, isLogined, isRegister) => {
   return (dispatch) => {
     dispatch(actLoginRequest());

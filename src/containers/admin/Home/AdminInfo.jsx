@@ -1,25 +1,30 @@
-import movieApi from "apis/movieApi";
+import userApi from "apis/userApi";
+import { GROUP_ID } from "settings/apiConfig";
+import Loader from "components/Loader/Loader";
 import React, { Component } from "react";
 import UserInfoUpdate from "./UserInfoUpdate";
+import {connect} from 'react-redux';
+import { actupdatePass,actLogOutUser } from "containers/shared/Auth/module/actions";
 class AdminInfo extends Component {
-  user = {
-    taiKhoan: "angellam",
-    matKhau: "123456",
-  };
   state = {
     adminInfo: null,
     loadding: true,
-    infoAdminChange: null,
+    infoAdminChange: {
+      taiKhoan: this.props.currentUser.taiKhoan,
+      matKhau: '',
+    },
+    error: '',
   };
   componentDidMount() {
-    console.log(this.user);
-    movieApi
-      .fetchFindUserInfo(this.user.taiKhoan)
+    const {infoAdminChange} = this.state;
+    userApi
+      .fetchFindUserInfo(this.props.currentUser.taiKhoan)
       .then((res) => {
+        infoAdminChange.pass = res.data[0].matKhau;
         this.setState({
-          adminInfo: res.data.content[0],
+          adminInfo: res.data[0],
           loadding: false,
-          infoAdminChange: res.data.content[0],
+          infoAdminChange: infoAdminChange,
         });
       })
       .catch((error) => {
@@ -27,16 +32,25 @@ class AdminInfo extends Component {
       });
   }
   infoChange = (data) => {
-    this.setState({
-        infoAdminChange: data,
+    let {infoAdminChange,adminInfo} = this.state;
+    adminInfo.matKhau = data;
+    adminInfo = {...adminInfo, maNhom: GROUP_ID};
+    console.log(adminInfo,infoAdminChange);
+    userApi.postUpdateUser(adminInfo,this.props.currentUser.accessToken)
+    .then(res=>{
+      infoAdminChange.matKhau = res.data.matKhau;
+      infoAdminChange.taiKhoan = res.data.taiKhoan;
+      this.props.updatePassword(infoAdminChange);
     })
+    .catch(error => {
+      this.setState({error: error});
+    });
   };
   render() {
     const { adminInfo, loadding, infoAdminChange } = this.state;
     if (loadding) {
-      return "....";
+      return <Loader/>;
     }
-    console.log(adminInfo);
     const { email, hoTen, matKhau, soDt, taiKhoan } = adminInfo;
     return (
       <>
@@ -84,7 +98,7 @@ class AdminInfo extends Component {
             </ul>
           </div>
           <div className="row justify-content-between mx-0">
-            <button className="btn btn-primary" data-toggle="modal" data-target="#editUserInfo">Sửa thông tin</button>
+            <button className="btn btn-primary" data-toggle="modal" data-target="#editUserInfo">Sửa mật khẩu</button>
             <button className="btn btn-primary">Đăng xuất</button>
           </div>
         </div>
@@ -93,5 +107,15 @@ class AdminInfo extends Component {
     );
   }
 }
-
-export default AdminInfo;
+const mapStateToProps = (state) => ({
+  currentUser: state.authUserReducer.currentUser,
+});
+const mapDispatchToProps = (dispatch) =>({
+  updatePassword: updatedUser => {
+    dispatch(actupdatePass(updatedUser));
+  },
+  logOut: () => {
+    dispatch(actLogOutUser());
+  }
+})
+export default connect(mapStateToProps,mapDispatchToProps)(AdminInfo);
