@@ -16,11 +16,12 @@ const actFetchTheaterFail = error => ({
   payload: error,
 });
 
-export const actFetchTheater = () => {
+export const actFetchTheater = (maHeThongRap) => {
   return async dispatch => {
     dispatch(actFetchTheaterRequest());
     try {
-      const { data } = await movieApi.fetchMovieTheaterApi();
+      const { data } = await movieApi.fetchMovieTheaterApi(maHeThongRap);
+      console.log(data);
       dispatch(actFetchTheaterSuccess(data));
     } catch (error) {
       dispatch(actFetchTheaterFail(error));

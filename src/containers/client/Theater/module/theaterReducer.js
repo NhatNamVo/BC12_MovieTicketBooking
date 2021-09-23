@@ -2,7 +2,7 @@ import { FETCH_THEATER_FAIL, FETCH_THEATER_REQUEST, FETCH_THEATER_SUCCESS } from
 
 
 const initialState = {
-    theater: null,
+    theater: [],
     loading: false,
     error: '',
 };
