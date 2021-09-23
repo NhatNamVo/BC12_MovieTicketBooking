@@ -52,12 +52,12 @@ body {
         z-index: 1;
         .details__banner__img {
             @include desktop {
-                width: calc(32% - 28px);
+                width: calc(32% - 48px);
                 display: block;
             }
             img {
                 width: 292px;
-                height: 292px;
+                height: 313px;
             }
             position: absolute;
             top: 10px;
@@ -269,13 +269,17 @@ body {
         .tab-menu {
             padding: 10px 0;
             border-bottom: 1px solid #11326f;
-            .active {
-                color: #31d7a9;
-                background-color: #001232;
+            .nav-item{
+                border-right: 1px solid #11326f;
+                .active {
+                    color: #31d7a9;
+                    background-color: #001232;
+                }
+                a {
+                    color: #fff;
+                }
             }
-            a {
-                color: #fff;
-            }
+            
         }
     }
     .movie__detail__theater {

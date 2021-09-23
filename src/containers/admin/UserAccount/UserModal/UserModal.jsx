@@ -107,9 +107,9 @@ class UserModal extends Component {
                     <div class="form-inputContainer">
                       <label for=""></label>
                       <select class="form-select" name="" id="">
-                        <option>Loại tài khoản</option>
-                        <option></option>
-                        <option></option>
+                        <option value='0'>Loại tài khoản</option>
+                        <option value='1'>Khách hàng</option>
+                        <option value='2'>Quản trị</option>
                       </select>
                       <i class="fa fa-magic"></i>
                     </div>

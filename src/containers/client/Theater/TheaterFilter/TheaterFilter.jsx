@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import {
   FaChevronDown
 } from "react-icons/fa";
+import "../TheaterFilter/TheaterFilter.scss"
 import { actFetchTheaterFilter } from "../TheaterFilter/module/theaterFilterAction";
+import { actFetchTheater } from "../module/theaterAction";
  class TheaterFilter extends Component {
   state = {
     sort: false,
@@ -21,10 +23,11 @@ import { actFetchTheaterFilter } from "../TheaterFilter/module/theaterFilterActi
       const value = parseInt(event.target.attributes[1].value);
       if (name === "sort") {
         this.props.filterSort(value);
+        this.props.fetchTheater(this.props.sortVal);
         this.setState({ sort: false });
       }
 
-      this.props.history.push({ pathname: "/movie" });
+      // this.props.history.push({ pathname: "/theater" });
     }
   };
   render() {
@@ -39,7 +42,7 @@ import { actFetchTheaterFilter } from "../TheaterFilter/module/theaterFilterActi
       >
         <div className="container">
           <div className="theater__banner__content">
-            <h3 className="title">Theaters</h3>
+            <h3 className="title">Cụm Rạp Chiếu</h3>
           </div>
         </div>
         <div className="book-section">
@@ -50,9 +53,9 @@ import { actFetchTheaterFilter } from "../TheaterFilter/module/theaterFilterActi
                   "filter-item filter-sort " + (this.state.sort ? "active" : "")
                 }
               >
-                <p>CITY</p>
+                <p>RẠP:</p>
                 <span className="item-sort">{sortVal}</span>
-                <FaChevronDown/>
+                <FaChevronDown className="fa-angle-down"/>
                 <div className="item-dropbox">
                   <ul className="dropbox-list">
                     <li
@@ -60,7 +63,7 @@ import { actFetchTheaterFilter } from "../TheaterFilter/module/theaterFilterActi
                       value={0}
                       className={"dropbox-item " + (sort === 0 ? "active" : "")}
                     >
-                      BHD
+                      BHDStar
                     </li>
                     <li
                       name="sort"
@@ -85,7 +88,7 @@ import { actFetchTheaterFilter } from "../TheaterFilter/module/theaterFilterActi
                     </li>
                     <li
                       name="sort"
-                      value={3}
+                      value={4}
                       className={"dropbox-item " + (sort === 4 ? "active" : "")}
                     >
                       Lotte
@@ -102,6 +105,7 @@ import { actFetchTheaterFilter } from "../TheaterFilter/module/theaterFilterActi
   componentDidMount() {
     const filterBox = document.querySelector(".filter-tool");
     filterBox.addEventListener("click", this.handleClick);
+    
   }
 }
 const mapStateToProps = state => ({
@@ -111,6 +115,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>({
   filterSort: (theaterType) => {
     dispatch(actFetchTheaterFilter(theaterType));
+  },
+  fetchTheater: (maHeThongRap) => {
+    dispatch(actFetchTheater(maHeThongRap));
   },
 })
 export default connect(mapStateToProps, mapDispatchToProps)(TheaterFilter);

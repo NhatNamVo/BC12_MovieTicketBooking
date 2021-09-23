@@ -15,6 +15,7 @@
                 top: 50%;
                 left: 8px;
                 transform: translateY(-50%);
+                color:#031F50;
             }
             input{
                 padding: 5px 20px 5px 30px;
@@ -24,18 +25,20 @@
                 border-right: none;
                 border-left: none;
                 border-bottom: 2px solid;
-                border-image: linear-gradient(to right, black, transparent) 100% 1;
+                color:#031F50;
+                border-image: linear-gradient(to right, #031F50, transparent) 100% 1;
                 &:focus-visible{
                     outline: none;
                     
                 }
             }
             select{
-                width: 100%;
+                width: 200px;
                 padding: 5px 20px 5px 30px;
                 border-top: none;
                 border-right: none;
                 border-left: none;
+                color:#031F50;
                 border-bottom: 2px solid;
                 border-image: linear-gradient(to right, black, transparent) 100% 1;
                 &:focus-visible{
