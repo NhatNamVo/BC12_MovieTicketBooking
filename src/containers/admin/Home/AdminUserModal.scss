@@ -1,0 +1,29 @@
+#editUserInfo{
+    .userInfo-item {
+        position: relative;
+    }
+    .note{
+        color: rgb(245, 9, 9);
+        text-align: right;
+    }
+    input{
+        padding-right: 40px;
+        width: 180px;
+    }
+    input.error{
+        border-color: rgb(250, 0, 0);
+    }
+    i{
+        position: absolute;
+        top: 50%;
+        right: 2px;
+        z-index: 10;
+        transform: translate(-50%,-50%);
+        cursor: pointer;
+    }
+
+    .modalContent{
+        width: 50%;
+        margin: auto;
+    }
+}

@@ -1,0 +1,47 @@
+#userModal{
+    .modalContent{
+        width: 50%;
+        margin: auto;
+        height: fit-content;
+    }
+    #userInfo{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .form-inputContainer{
+            position: relative;
+            i{
+                position: absolute;
+                top: 50%;
+                left: 8px;
+                transform: translateY(-50%);
+            }
+            input{
+                padding: 5px 20px 5px 30px;
+                width: 200px;
+                margin-right: 15px;
+                border-top: none;
+                border-right: none;
+                border-left: none;
+                border-bottom: 2px solid;
+                border-image: linear-gradient(to right, black, transparent) 100% 1;
+                &:focus-visible{
+                    outline: none;
+                    
+                }
+            }
+            select{
+                width: 100%;
+                padding: 5px 20px 5px 30px;
+                border-top: none;
+                border-right: none;
+                border-left: none;
+                border-bottom: 2px solid;
+                border-image: linear-gradient(to right, black, transparent) 100% 1;
+                &:focus-visible{
+                    outline: none;
+                }
+            }
+        }
+    }
+}

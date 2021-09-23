@@ -1,4 +1,4 @@
-import movieApi from "apis/movieApi";
+import userApi from "apis/userApi";
 import { CHANGE_PAGE, FETCH_ALL_USER_FAIL, FETCH_ALL_USER_REQUEST, FETCH_ALL_USER_SUCCESS } from "./types";
 
 export const actChangePage = (changePageID) => ({
@@ -23,11 +23,24 @@ export const actFectUserFail = (error) => ({
 export const actFetchUserAccount = () => {
   return (dispatch, getState) => {
     dispatch(actFetchUserRequest());
-    movieApi.fetchAllUserAcount()
+    userApi.fetchAllUserAcount()
     .then((res)=>{
-      dispatch(actFetchUserSuccess(res.data.content));
+      dispatch(actFetchUserSuccess(res.data));
     })
     .catch((error)=>{
+      dispatch(actFectUserFail(error))
+    });
+  };
+};
+
+export const actFindUserAccount = (user) => {
+  return dispatch =>{
+    dispatch(actFetchUserRequest());
+    userApi.findUserAcount(user)
+    .then(res=>{
+      dispatch(actFetchUserSuccess(res.data));
+    })
+    .catch(error=>{
       dispatch(actFectUserFail(error))
     });
   };

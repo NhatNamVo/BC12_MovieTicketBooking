@@ -28,7 +28,7 @@ class UserItem extends Component {
                   {firstPageIndex + idx + 1}
                 </td>
                 <td className="align-items-center">{data.taiKhoan}</td>
-                <td className="align-items-center">{data.matKhau}</td>
+                <td className="align-items-center">{(data.maLoaiNguoiDung==='KhachHang')?"Khách hàng":"Quản trị"}</td>
                 <td className="align-items-center">{data.hoTen}</td>
                 <td className="align-items-center">{data.email}</td>
                 <td className="align-items-center">{data.soDt}</td>

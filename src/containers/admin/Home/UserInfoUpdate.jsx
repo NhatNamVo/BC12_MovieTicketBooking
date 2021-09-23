@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./adminInfo.scss";
+import "./AdminUserModal.scss";
 import { connect } from "react-redux";
 class UserInfoUpdate extends Component {
   state = {

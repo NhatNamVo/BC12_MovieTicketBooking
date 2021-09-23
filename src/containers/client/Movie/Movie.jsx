@@ -88,10 +88,9 @@ class Movie extends Component {
   };
 
   render() {
-    const { totalCount, siblingCount, currentPage, pageSize, match, movies } =
+    const { totalCount, siblingCount, currentPage, pageSize, match,location, movies } =
       this.props;
     const url = match.url;
-    console.log(this.props);
     if (this.props.listMovie.length === 0) {
       return <Loader />;
     }

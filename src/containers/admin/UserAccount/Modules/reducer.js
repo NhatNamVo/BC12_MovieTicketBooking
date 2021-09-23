@@ -3,10 +3,11 @@ const initialState = {
   userAccountData: [],
   siblingCount: 1,
   currentPage: 1,
-  pageSize: 2,
+  pageSize: 9,
   totalCount: 0,
   firstPageIndex: 0,
   lastPageIndex: 9,
+  loadding: false,
 };
 
 const UserAccountReducer = (state = initialState, { type, payload }) => {
@@ -23,16 +24,15 @@ const UserAccountReducer = (state = initialState, { type, payload }) => {
       };
     }
     case FETCH_ALL_USER_REQUEST: {
-      return {...state};
+      return {...state,loadding: true};
     }
     case FETCH_ALL_USER_SUCCESS: {
       const userList =  payload;
-      console.log(userList);
       const listCount =  userList.length;
-      return {...state, totalCount: listCount, userAccountData:userList};
+      return {...state, totalCount: listCount, userAccountData:userList, loadding: false};
     }
     case FETCH_ALL_USER_FAIL: {
-      return {...state};
+      return {...state, loadding: false};
     }
     default:
       return state;

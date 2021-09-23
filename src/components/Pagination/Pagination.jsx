@@ -39,7 +39,8 @@ export default class Pagination extends Component {
     }
   };
   render() {
-    const { currentPage } = this.props;
+    const { currentPage, search } = this.props;
+    console.log(search);
     const { paginationRange } = this.state;
     const url = this.props.url;
     if (currentPage === 0 && paginationRange.length < 2) {
@@ -60,7 +61,7 @@ export default class Pagination extends Component {
             }
             return (
               <Link
-                to={url + "/Page" + pageNumber}
+                to={url + "/Page" + pageNumber + search }
                 data-pageNumber={pageNumber}
                 data-pageNumber={pageNumber}
               >
