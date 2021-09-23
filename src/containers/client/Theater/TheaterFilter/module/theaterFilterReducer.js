@@ -1,9 +1,11 @@
+import { FETCH_THEATER_SUCCESS } from "../../module/theaterType";
+
 const { FILTER_SORT_THEATER_TYPE } = require("./theaterFilterType");
 
 const initialState = {
     theater: [],
     sort: 0,
-    sortVal: "BHD",
+    sortVal: "BHDStar",
 };
 
 const theaterFilterReducer = (state = initialState, { type, payload }) => {
@@ -12,7 +14,7 @@ const theaterFilterReducer = (state = initialState, { type, payload }) => {
             let sortValue;
             switch (payload) {
                 case 0:
-                    sortValue = "BHD";
+                    sortValue = "BHDStar";
                     break;
                 case 1:
                     sortValue = "CGV";
@@ -23,11 +25,15 @@ const theaterFilterReducer = (state = initialState, { type, payload }) => {
                 case 3:
                     sortValue = "Galaxy";
                     break;
-                default:
-                    sortValue = "Lotte";
+                case 4:
+                    sortValue = "LotteCinima";
                     break;
+                default:
+                    return state;
             }
             return { ...state, sort: payload, sortVal: sortValue };
+        case FETCH_THEATER_SUCCESS:
+            return { ...state, theater: payload, loading: false };
         default:
             return state;
     }

@@ -123,7 +123,7 @@ class MovieDetail extends Component {
                     <span className="p-1">80k+</span>
                   </div>
                   <div className="item">
-                    <span className="p-1 ">5.0</span>
+                    <span className="p-1 ">{movieDetail.danhGia}</span>
                     <FaStar className="star" />
                   </div>
                   <div className="item">
@@ -132,7 +132,7 @@ class MovieDetail extends Component {
                     <FaRegStar />
                     <FaRegStar />
                     <FaRegStar />
-                    <span className="p-1">0.0</span>
+                    <span className="p-1">{movieDetail.danhGia}</span>
                   </div>
                 </div>
               </div>
@@ -147,12 +147,12 @@ class MovieDetail extends Component {
                     <ul className="tab-menu nav nav-pills card-header-pills">
                       <li className="nav-item">
                         <a className="nav-link active" href="#">
-                          DESCRIPTION
+                          <h5>MÔ TẢ</h5>
                         </a>
                       </li>
                       <li className="nav-item">
                         <a className="nav-link" href="#">
-                          REVIEW
+                          <h5>BÌNH LUẬN</h5>
                         </a>
                       </li>
                     </ul>
@@ -173,7 +173,7 @@ class MovieDetail extends Component {
                   {/* Theater */}
                   <div className="movie__detail__theater">
                     <div className="header">
-                      <h4>MOVIE THEATER</h4>
+                      <h4>LỊCH CHIẾU</h4>
                     </div>
                     <div className="row">
                       <div className="col-2">
@@ -227,10 +227,6 @@ class MovieDetail extends Component {
                                   {heThongRap.cumRapChieu.map((cumRap) => {
                                     return (
                                       <div className="text-left">
-                                        <img
-                                          src={cumRap.hinhAnh}
-                                          style={{ width: "40px"}} alt=""
-                                        />
                                         <span className="pl-3">
                                           {cumRap.tenCumRap}
                                         </span>
@@ -265,7 +261,7 @@ class MovieDetail extends Component {
                 </div>
                 <div className="col-lg-3 col-sm-10 col-md-6 mb-50">
                   <div className="widget-1 widget-offer">
-                    <h3 className="title">TODAY OFFER</h3>
+                    <h3 className="title">GỢI Ý</h3>
                     <div className="offer-body">
                       <div className="offer-item">
                         <div className="top">
