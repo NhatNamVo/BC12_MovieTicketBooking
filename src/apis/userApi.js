@@ -19,6 +19,12 @@ const userApi = {
   },
   findUserAcount: (user) => {
     return callApi(`QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=${GROUP_ID}&tuKhoa=${user}`);
+  },
+  postNewUserAcount: (newUser,token) => {
+    return callApi(`QuanLyNguoiDung/ThemNguoiDung`,"POST",newUser,token);
+  },
+  deleteUserAccount: (userAccount, token) => {
+    return callApi(`QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${userAccount}`,"DELETE",null, token);
   }
 };
 
