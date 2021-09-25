@@ -6,18 +6,28 @@ class UserItem extends Component {
     if (!this.props.match.params.pageNumber) {
       this.props.ChangeCurrentPage(1);
     }
+    else{
+      this.props.ChangeCurrentPage(this.props.match.params.pageNumber);
+    }
   }
-  componentDidUpdate() {
-    if (!this.props.match.params.pageNumber) {
-      this.props.ChangeCurrentPage(1);
-    } else {
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.match.params.pageNumber != this.props.match.params.pageNumber
+    ) {
+      if (!this.props.match.params.pageNumber) {
+        this.props.ChangeCurrentPage(1);
+      } else {
+        this.props.ChangeCurrentPage(this.props.match.params.pageNumber);
+      }
+    }
+    if (prevProps.totalCount != this.props.totalCount) {
       this.props.ChangeCurrentPage(this.props.match.params.pageNumber);
     }
   }
   render() {
     const { userAccountData, firstPageIndex, lastPageIndex } = this.props;
     const datas = userAccountData.slice(firstPageIndex, lastPageIndex);
-    console.log(userAccountData, datas, firstPageIndex, lastPageIndex);
+    console.log(datas);
     return (
       userAccountData && (
         <>
@@ -28,13 +38,33 @@ class UserItem extends Component {
                   {firstPageIndex + idx + 1}
                 </td>
                 <td className="align-items-center">{data.taiKhoan}</td>
-                <td className="align-items-center">{data.matKhau}</td>
+                <td className="align-items-center">
+                  {data.maLoaiNguoiDung === "KhachHang"
+                    ? "Khách hàng"
+                    : "Quản trị"}
+                </td>
                 <td className="align-items-center">{data.hoTen}</td>
                 <td className="align-items-center">{data.email}</td>
                 <td className="align-items-center">{data.soDt}</td>
                 <td className="row justify-content-center m-0">
-                  <button className="btn btn-primary m-1">Sửa</button>
-                  <button className="btn btn-danger m-1">Xóa</button>
+                  <button
+                    id="userUpdate"
+                    className="btn btn-primary m-1"
+                    data-index={firstPageIndex + idx}
+                    data-toggle="modal"
+                    data-target="#userModal"
+                  >
+                    Sửa
+                  </button>
+                  <button
+                    type="button"
+                    id="userDelete"
+                    className="btn btn-danger m-1"
+                    data-index={firstPageIndex + idx}
+                    data-toggle="modal" data-target="#deleteNoteModal"
+                  >
+                    Xóa
+                  </button>
                 </td>
               </tr>
             );
@@ -48,6 +78,7 @@ const mapStateToProps = (state) => ({
   userAccountData: state.UserAccountReducer.userAccountData,
   firstPageIndex: state.UserAccountReducer.firstPageIndex,
   lastPageIndex: state.UserAccountReducer.lastPageIndex,
+  totalCount: state.UserAccountReducer.totalCount,
 });
 const mapDispatchToProps = (dispatch) => ({
   ChangeCurrentPage: (changePageID) => {

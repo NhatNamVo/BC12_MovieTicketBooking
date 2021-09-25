@@ -20,11 +20,12 @@ const rootReducer = combineReducers({
   authUserReducer,
   theaterReducer,
   theaterFilterReducer,
+  UserAccountReducer,
 });
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['movieReducer','movieDetailReducer','pagePanigationReducer','movieListOptionReducer','authUserReducer','theaterReducer','theaterFilterReducer'],
+  blacklist: ['movieReducer','movieDetailReducer','pagePanigationReducer','movieListOptionReducer','authUserReducer','theaterReducer','theaterFilterReducer','UserAccountReducer'],
   // whitelist: ['authUserReducer'],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);

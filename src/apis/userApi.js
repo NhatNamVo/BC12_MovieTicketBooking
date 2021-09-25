@@ -13,6 +13,18 @@ const userApi = {
   },
   postUpdateUser: (updateUser, token) => {
     return callApi(`QuanLyNguoiDung/CapNhatThongTinNguoiDung`, "PUT", updateUser,token);
+  },
+  fetchAllUserAcount: () => {
+    return callApi(`QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GROUP_ID}`);
+  },
+  findUserAcount: (user) => {
+    return callApi(`QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=${GROUP_ID}&tuKhoa=${user}`);
+  },
+  postNewUserAcount: (newUser,token) => {
+    return callApi(`QuanLyNguoiDung/ThemNguoiDung`,"POST",newUser,token);
+  },
+  deleteUserAccount: (userAccount, token) => {
+    return callApi(`QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${userAccount}`,"DELETE",null, token);
   }
 };
 
