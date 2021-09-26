@@ -48,6 +48,13 @@ export const formValid = (name, value, userList, messageError) => {
         status.isvalid = true;
         status.messageError.email = "true";
       }
+      const checkUser = userList.findIndex((user) => {
+        return user.email === value;
+      });
+      if(checkUser !== -1){
+        status.isvalid = false;
+        status.messageError.email = "Email đã tồn tại";
+      }
       if(value ===''){
         status.isvalid = false;
         status.messageError.email = "";

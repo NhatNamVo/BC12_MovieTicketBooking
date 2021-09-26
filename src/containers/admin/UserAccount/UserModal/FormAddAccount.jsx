@@ -41,7 +41,7 @@ class FormAddAccount extends Component {
   render() {
     return (
       <>
-        <div className="modal-body">
+        
           <form action="" method="post" id="userInfo">
             <div className="form-group">
               <div className="form-inputContainer">
@@ -143,7 +143,6 @@ class FormAddAccount extends Component {
               <i class="fa fa-magic"></i>
             </div>
           </form>
-        </div>
       </>
     );
   }

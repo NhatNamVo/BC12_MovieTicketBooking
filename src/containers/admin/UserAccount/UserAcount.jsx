@@ -18,8 +18,8 @@ class UserAcount extends Component {
         "search"
       );
       if (findUser === "" || this.props.location.search === "") {
-        this.props.fetchUserAccount();
         this.props.history.push("/admin/user-manage");
+        this.props.fetchUserAccount();
       } else {
         this.props.findUserAccount(findUser);
       }
@@ -27,7 +27,7 @@ class UserAcount extends Component {
   }
   findUser = (e) => {
     const findInputBox = document.querySelector("#searchUser");
-    this.props.history.push({
+    this.props.history.push({pathname: '/admin/user-manage',
       search:
         "?" + new URLSearchParams({ search: findInputBox.value.toString() }),
     });
@@ -147,12 +147,13 @@ class UserAcount extends Component {
           userAccount={this.props.userAccount}
           isAddUser={this.state.isAddUser}
           idx={this.state.indexUser}
-          loadding = {this.props.loadding}
           addNewUser = {this.addNewUser}
           updateUser = {this.updateUser}
           loadingModal={this.props.loadingModal}
+          note = {this.props.note}
+          loadingModal = {this.props.loadingModal}
         />
-        <DeleteUserNote note={this.props.note} deleteUser={this.deleteUser} idx={this.state.indexUser} userAccount={this.props.userAccountData} loadingModal={this.props.loadingModal}/>
+        <DeleteUserNote note={this.props.note} deleteUser={this.deleteUser} idx={this.state.indexUser} userAccount={this.props.userAccountData} loadingModal={this.props.loadingModal} changeIdx={this.changeIdx}/>
       </div>
     );
   }

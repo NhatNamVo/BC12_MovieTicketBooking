@@ -23,6 +23,9 @@ class UserItem extends Component {
     if (prevProps.totalCount != this.props.totalCount) {
       this.props.ChangeCurrentPage(this.props.match.params.pageNumber);
     }
+    if(prevProps.location.search != this.props.location.search){
+      this.props.ChangeCurrentPage(1);
+    }
   }
   render() {
     const { userAccountData, firstPageIndex, lastPageIndex } = this.props;
