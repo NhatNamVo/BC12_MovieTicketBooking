@@ -10,7 +10,7 @@ class DeleteUserNote extends Component {
     this.wait = setTimeout(() => {
       document.querySelector("#cancle").click();
       this.setState({isDelete:false});
-    }, 2000);
+    }, 1500);
   };
   renderStatus = () =>{
       if(this.state.isDelete){
@@ -27,7 +27,7 @@ class DeleteUserNote extends Component {
       }
       else{
         return (<>Bạn có chắc xóa tài khoản {
-            this.props.userAccount[this.props.idx].taiKhoan
+            this.props.idx?(this.props.userAccount[this.props.idx].taiKhoan):''
           }</>)
       }
       

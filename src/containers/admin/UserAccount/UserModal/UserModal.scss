@@ -13,6 +13,22 @@
           }
       }
   }
+  .modalNote{
+    background-color: #031f5080;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    line-height: 50%;
+    h5{
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #24d7a9;
+    }
+  }
   #userInfo {
     display: flex;
     flex-wrap: wrap;

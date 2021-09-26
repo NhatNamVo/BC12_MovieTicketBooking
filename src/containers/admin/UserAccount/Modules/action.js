@@ -54,9 +54,9 @@ const actPostNewUserRequest = () =>({
   type: POST_NEW_USER_REQUEST,
 });
 
-const actPostNewUSerSucces = (data) => ({
+const actPostNewUserSuccess = (user) => ({
   type: POST_NEW_USER_SUCCESS,
-  payload: data,
+  payload: user,
 });
 
 const actPostNewUserFail = (error) => ({
@@ -68,29 +68,29 @@ export const actAddNewUserAccount = (newUser,token) => {
   return dispatch =>{
     dispatch(actPostNewUserRequest());
     userApi.postNewUserAcount(newUser,token)
-    .then(res=>{
-      dispatch(actPostNewUSerSucces(res.data));
-    })
-    .catch(err=>{
-      dispatch(actPostNewUserFail(err));
-    });
+      .then(res => {
+        dispatch(actPostNewUserSuccess(res.data));
+      })
+      .catch(error=>{
+        dispatch(actPostNewUserFail('Thêm thất bại!'))
+      })
   };
 };
 
 // update user info
 
 const actUpdateUserInfoRequest = () =>({
-  type: PUT_USER_UPDATE_REQUEST,
+  type: PUT_USER_UPDATE_REQUEST
 });
 
 const actUpdateUserInfoRequestSuccess = (data) => ({
   type: PUT_USER_UPDATE_SUCCESS,
-  payload: data,
+  payload: data
 });
 
 const actUpdateUserInfoFail = (error) => ({
   type: PUT_USER_UPDATE_FAIL,
-  payload: error,
+  payload: error
 });
 
 export const actUpdateUser = (user,token) => {
@@ -98,7 +98,6 @@ export const actUpdateUser = (user,token) => {
     dispatch(actUpdateUserInfoRequest());
     userApi.postUpdateUser(user,token)
     .then(res=>{
-      console.log(res.data);
       dispatch(actUpdateUserInfoRequestSuccess(res.data));
     })
     .catch(error=>{
@@ -130,11 +129,11 @@ export const actDeleteUser = (user, token) =>{
       const data={
         note: res.data,
         user: user,
-      }
+      };
       dispatch(actDeleteUserSuccess(data));
     })
     .catch(error=>{
-      dispatch(actDeleteUserFail(error));
+      dispatch(actDeleteUserFail('Tài khoản này đã đặt vé. Không thể xóa'));
     });
   };
 };

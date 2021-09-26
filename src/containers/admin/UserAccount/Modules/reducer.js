@@ -56,22 +56,18 @@ const UserAccountReducer = (state = initialState, { type, payload }) => {
       return { ...state, loadding: false };
     }
     case POST_NEW_USER_REQUEST: {
-      return { ...state, loadingModal: true };
+      return { ...state, loadingModal: true, note: "" };
     }
     case POST_NEW_USER_SUCCESS: {
-      const { userAccountData } = state;
-      userAccountData = userAccountData.push(payload);
-      return {
-        ...state,
-        loadingModal: false,
-        userAccountData: userAccountData,
-      };
+      let userList = state.userAccountData;
+      userList.push(payload);
+      return { ...state, loadingModal: false, userAccountData: userList, note: "Thêm thành công" };
     }
     case POST_NEW_USER_FAIL: {
-      return { ...state, loadingModal: false };
+      return { ...state, loadingModal: false, note: payload };
     }
     case PUT_USER_UPDATE_REQUEST: {
-      return { ...state, loadingModal: true };
+      return { ...state, loadingModal: true, note: "" };
     }
     case PUT_USER_UPDATE_SUCCESS: {
       const { userAccountData } = state;
@@ -83,13 +79,14 @@ const UserAccountReducer = (state = initialState, { type, payload }) => {
         ...state,
         loadingModal: false,
         userAccountData: userAccountData,
+        note: "Cập nhật thành công",
       };
     }
     case PUT_USER_UPDATE_FAIL: {
-      return { ...state, loadingModal: false };
+      return { ...state, loadingModal: false, note: "Cập nhật thất bại" };
     }
     case DELETE_USER_REQUEST: {
-      return { ...state, loadingModal: true, note:''};
+      return { ...state, loadingModal: true, note: "" };
     }
     case DELETE_USER_SUCCESS: {
       let { note } = state;
@@ -110,7 +107,7 @@ const UserAccountReducer = (state = initialState, { type, payload }) => {
       };
     }
     case DELETE_USER_FAIL: {
-      return { ...state, loadingModal: false, note: 'Xóa thất bại' };
+      return { ...state, loadingModal: false, note: payload };
     }
     default:
       return state;

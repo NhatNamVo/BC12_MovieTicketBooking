@@ -24,18 +24,22 @@ class UserModal extends Component {
       maNhom: GROUP_ID,
       maLoaiNguoiDung: "",
     },
-    loading: false,
+    isNote: false,
   };
-  componentDidUpdate(prevProps,prevState) {
-      if(prevProps.idx != this.props.idx){
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.idx != this.props.idx) {
+      if (!this.props.isAddUser) {
         this.changeStateData();
-      };
+      }
+    }
   }
   changeStateData = () => {
-    let data = {...this.props.userAccountData[this.props.idx],maNhom: GROUP_ID};
-    this.setState({data:data});
-
-  }
+    let data = {
+      ...this.props.userAccountData[this.props.idx],
+      maNhom: GROUP_ID,
+    };
+    this.setState({ data: data });
+  };
   handleClick = (e) => {
     e.stopPropagation();
     const exitBtn = e.target.closest("#exitModal");
@@ -53,8 +57,8 @@ class UserModal extends Component {
     });
   };
   closeModal = () => {
-     this.deleteDataForm();
-     this.props.changeIdx();
+    this.deleteDataForm();
+    this.props.changeIdx();
   };
   deleteDataForm = () => {
     let { data, messageError, isValidation } = this.state;
@@ -115,11 +119,24 @@ class UserModal extends Component {
         this.setState({ messageError: messageError });
         return;
       } else {
-        if(this.props.isAddUser){
+        if (this.props.isAddUser) {
           this.props.addNewUser(this.state.data);
-        }
-        else{
+          if(!this.props.loadingModal){
+            this.setState({isNote:true});
+          }
+          this.wait = setTimeout(() => {
+            document.querySelector('#exitModal').click();
+            this.setState({isNote:false});
+          },1500);
+        } else {
           this.props.updateUser(this.state.data);
+          if(!this.props.loadingModal){
+            this.setState({isNote:true});
+          }
+          this.wait = setTimeout(() => {
+            document.querySelector('#exitModal').click();
+            this.setState({isNote:false});
+          },1500);
         }
       }
     }
@@ -151,23 +168,31 @@ class UserModal extends Component {
                     <span aria-hidden="true">×</span>
                   </button>
                 </div>
-                {(!!isAddUser)? (
-                  <FormAddAccount
-                    dataInput={this.dataInput}
-                    userAccountData={this.props.userAccountData}
-                    data={this.state.data}
-                    messageError={this.state.messageError}
-                  />
-                ) : (
-                  <FormUpdateAccount
-                    dataInput={this.dataInput}
-                    userAccountData={this.props.userAccountData}
-                    data={this.state.data}
-                    messageError={this.state.messageError}
-                    currentAccountLogin = {this.props.userAccount}
-                  />
-                )}
-
+                <div className="modal-body">
+                  {!!isAddUser ? (
+                    <FormAddAccount
+                      dataInput={this.dataInput}
+                      userAccountData={this.props.userAccountData}
+                      data={this.state.data}
+                      messageError={this.state.messageError}
+                    />
+                  ) : (
+                    <FormUpdateAccount
+                      dataInput={this.dataInput}
+                      userAccountData={this.props.userAccountData}
+                      data={this.state.data}
+                      messageError={this.state.messageError}
+                      currentAccountLogin={this.props.userAccount}
+                    />
+                  )}
+                  {this.state.isNote ? (
+                    <div className="modalNote">
+                      <h5>{this.props.note}</h5>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
                 <div className="modal-footer">
                   <button
                     type="button"
@@ -183,7 +208,7 @@ class UserModal extends Component {
                     onClick={this.submitForm}
                   >
                     {isAddUser ? "Thêm" : "Cập nhật"}
-                    {this.state.loading ? (
+                    {this.props.loadingModal ? (
                       <div className="spinner-border" role="status">
                         <span className="visually-hidden"></span>
                       </div>

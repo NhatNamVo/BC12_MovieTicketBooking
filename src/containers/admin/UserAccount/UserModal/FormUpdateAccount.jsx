@@ -44,7 +44,6 @@ class FormUpdateAccount extends Component {
     console.log(isUserLogin);
     return (
       <>
-        <div className="modal-body">
           <form action="" method="post" id="userInfo">
             <div className="form-group">
               <div className="form-inputContainer">
@@ -181,7 +180,6 @@ class FormUpdateAccount extends Component {
               <i class="fa fa-magic"></i>
             </div>
           </form>
-        </div>
       </>
     );
   }
