@@ -13,19 +13,27 @@ class Theater extends Component {
     sortVal: "BHDStar",
   };
   render() {
-    const { theater, loading } = this.props;
-    console.log(theater);
+    const { match, history, location, theater, loading } = this.props;
     if (loading) return <Loader />;
     return (
       <div className="theater-content">
-        <TheaterFilter />
+        <TheaterFilter
+          theater={theater}
+          match={match}
+          history={history}
+          location={location}
+        />
         <div className="container">
           <div className="movie__detail__theater">
             <div className="header">
               {theater.map((heThongRap) => {
                 return (
                   <div className="d-flex">
-                    <img src={heThongRap.logo} style={{width:"50px"}} alt="" />
+                    <img
+                      src={heThongRap.logo}
+                      style={{ width: "50px" }}
+                      alt=""
+                    />
                     <h1>{`Rạp ${heThongRap.tenHeThongRap}`}</h1>
                   </div>
                 );
@@ -86,34 +94,60 @@ class Theater extends Component {
                             >
                               {cumRap.danhSachPhim.map((movie, idx) => {
                                 return (
-                                  <div className="text-left">
-                                    <img
-                                      src={movie.hinhAnh}
-                                      style={{ width: "60px" }}
-                                      alt=""
-                                    />
-                                    <span className="pl-3">
-                                      {movie.tenPhim}
-                                    </span>
-                                    <div className="my-3 ticket">
-                                      {movie.lstLichChieuTheoPhim.map(
-                                        (lichChieu) => {
+                                  <div className=" mb-5 text-left">
+                                    <div className="ml-3 img d-flex">
+                                      {/* hình ảnh bị lỗi */}
+                                      <img
+                                        src={movie.hinhAnh}
+                                        style={{ width: "80px" }}
+                                        alt={movie.tenPhim}
+                                        onError={(e) => {
+                                          e.target.onerror = null;
+                                          e.target.src =
+                                            "https://picsum.photos/75/75";
+                                        }}
+                                      />
+                                      <div className="content pl-3">
+                                        <h4 >
+                                          {movie.tenPhim}
+                                        </h4>
+
+                                        <p>{`${cumRap.diaChi}`}</p>
+                                        <Link
+                                          to={`/movie-detail/${movie.maPhim}`}
+                                          className="btn btn-detail "
+                                        >
+                                          Chi tiết
+                                        </Link>
+                                      </div>
+                                    </div>
+
+                                    <div className=" my-3 ticket">
+                                      {movie.lstLichChieuTheoPhim
+                                        .slice(0, 10)
+                                        .map((lichChieu) => {
                                           return (
                                             <Link
                                               to={`/seat-plan/${lichChieu.maLichChieu}`}
-                                              style={{
-                                                backgroundImage:
-                                                  "url(/images/movie-ticket.png)",
-                                              }}
-                                              className="btn mr-3 mb-2 ticket__item "
+                                              className="btn mr-3 mb-3 "
                                             >
-                                              {new Date(
-                                                lichChieu.ngayChieuGioChieu
-                                              ).toLocaleTimeString()}
+                                              <div
+                                                className="ticket__item d-flex"
+                                                style={{
+                                                  backgroundImage:
+                                                    "url(/images/movie-ticket.png)",
+                                                }}
+                                              >
+                                                {new Date(
+                                                  lichChieu.ngayChieuGioChieu
+                                                ).toLocaleTimeString("it-IT", {
+                                                  hour: "numeric",
+                                                  minute: "numeric",
+                                                })}
+                                              </div>
                                             </Link>
                                           );
-                                        }
-                                      )}
+                                        })}
                                     </div>
                                   </div>
                                 );

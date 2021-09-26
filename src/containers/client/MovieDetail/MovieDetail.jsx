@@ -19,7 +19,6 @@ import {
   FaStar,
 } from "react-icons/fa";
 
-
 class MovieDetail extends Component {
   render() {
     const { movieDetail, loading, history } = this.props;
@@ -74,7 +73,10 @@ class MovieDetail extends Component {
                       <span className="p-1">
                         {new Date(
                           movieDetail.ngayKhoiChieu
-                        ).toLocaleTimeString()}
+                        ).toLocaleTimeString("it-IT", {
+                          hour: "numeric",
+                          minute: "numeric",
+                        })}
                       </span>
                     </div>
 
@@ -212,7 +214,10 @@ class MovieDetail extends Component {
                         </div>
                       </div>
                       <div className="col-10">
-                        <div className="tab-content movie__ticket" id="v-pills-tabContent">
+                        <div
+                          className="tab-content movie__ticket"
+                          id="v-pills-tabContent"
+                        >
                           {movieDetail.heThongRapChieu.map(
                             (heThongRap, idx) => {
                               return (
@@ -227,21 +232,36 @@ class MovieDetail extends Component {
                                   {heThongRap.cumRapChieu.map((cumRap) => {
                                     return (
                                       <div className="text-left">
-                                        <span className="pl-3">
+                                        <Link
+                                          to={`/theater`} className="theater-name">
+                                        <h6 className="pl-3 ">
                                           {cumRap.tenCumRap}
-                                        </span>
+                                        </h6>
+                                        </Link>
                                         <div className="my-3 ticket">
-                                          {cumRap.lichChieuPhim.map(
+                                          {cumRap.lichChieuPhim.slice(0,10).map(
                                             (lichChieu) => {
                                               return (
                                                 <Link
                                                   to={`/seat-plan/${lichChieu.maLichChieu}`}
-                                                  style={{ backgroundImage: "url(/images/movie-ticket.png)" }}
-                                                  className="btn mr-3 mb-2 ticket__item "
+                                                  
+                                                  className="btn mr-3 mb-3 "
                                                 >
-                                                  {new Date(
-                                                    lichChieu.ngayChieuGioChieu
-                                                  ).toLocaleTimeString()}
+                                                  <div className="ticket__item d-flex"style={{
+                                                    backgroundImage:
+                                                      "url(/images/movie-ticket.png)",
+                                                  }}>
+                                                    {new Date(
+                                                      lichChieu.ngayChieuGioChieu
+                                                    ).toLocaleTimeString(
+                                                      "it-IT",
+                                                      {
+                                                        hour: "numeric",
+                                                        minute: "numeric",
+                                                        
+                                                      }
+                                                    )}
+                                                  </div>
                                                 </Link>
                                               );
                                             }
