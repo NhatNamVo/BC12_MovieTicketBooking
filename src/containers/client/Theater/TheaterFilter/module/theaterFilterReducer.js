@@ -1,11 +1,12 @@
 import { FETCH_THEATER_SUCCESS } from "../../module/theaterType";
 
-const { FILTER_SORT_THEATER_TYPE } = require("./theaterFilterType");
+const { FILTER_SORT_THEATER_TYPE, FILTER_SORT_DATE } = require("./theaterFilterType");
 
 const initialState = {
     theater: [],
     sort: 0,
     sortVal: "BHDStar",
+    listDateOption:null,
 };
 
 const theaterFilterReducer = (state = initialState, { type, payload }) => {
@@ -33,9 +34,21 @@ const theaterFilterReducer = (state = initialState, { type, payload }) => {
             }
             return { ...state, sort: payload, sortVal: sortValue };
         case FETCH_THEATER_SUCCESS:
+            
             return { ...state, theater: payload, loading: false };
-        default:
+
+        case FILTER_SORT_DATE:
+            const updateState={...state}
+            const newArrayDate=[];
+            const arrDate=newArrayDate.push(payload);
+            const newDate=arrDate.filter((date,idx) => {
+                return  newArrayDate.indexOf(date) === idx
+            })
+            return{updateState,listDateOption:newDate }
+
+            default:
             return state;
     }
+    
 }
 export default theaterFilterReducer;
