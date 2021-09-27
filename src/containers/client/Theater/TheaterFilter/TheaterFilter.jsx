@@ -1,22 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  FaChevronDown
-} from "react-icons/fa";
-import "../TheaterFilter/TheaterFilter.scss"
+import { FaChevronDown } from "react-icons/fa";
+import "../TheaterFilter/TheaterFilter.scss";
 import { actFetchTheaterFilter } from "../TheaterFilter/module/theaterFilterAction";
 import { actFetchTheater } from "../module/theaterAction";
- class TheaterFilter extends Component {
+import TheaterDate from "./TheaterDate/TheaterDate";
+class TheaterFilter extends Component {
   state = {
     sort: false,
+    sortDate:false,
   };
   handleClick = (event) => {
     event.preventDefault();
     const sortBox = event.target.closest(".item-sort");
     const arrowBtnSort = event.target.closest(".filter-sort .fa-angle-down");
+    const sortBoxDate = event.target.closest(".item-sort-date");
+    const arrowBtnSortDate = event.target.closest(".filter-sort-date .fa-angle-down1");
     const itemBox = event.target.closest(".dropbox-item");
     if (!!sortBox || !!arrowBtnSort) {
-      this.setState({ sort: !this.state.sort, show: false });
+      this.setState({ sort: !this.state.sort});
+    }
+    if (!!sortBoxDate || !!arrowBtnSortDate) {
+      this.setState({ sort: !this.state.sortDate });
     }
     if (itemBox) {
       const name = event.target.attributes[0].value;
@@ -26,15 +31,18 @@ import { actFetchTheater } from "../module/theaterAction";
         this.props.fetchTheater(this.props.sortVal);
         this.setState({ sort: false });
       }
+      if(name==="sortDate"){
+    //     console.log(this.props.allNgayChieu);
+    // this.props.fetchTheaterDate(this.props.allNgayChieu);
+      }
 
       // this.props.history.push({ pathname: "/theater" });
     }
   };
   render() {
-    
-    const { sort, sortVal } = this.props;
-    console.log(this.props);
-    
+    const { theater, sort, sortVal ,date} = this.props;
+    console.log(date);
+
     return (
       <div
         className="theater__banner hero-area"
@@ -53,9 +61,13 @@ import { actFetchTheater } from "../module/theaterAction";
                   "filter-item filter-sort " + (this.state.sort ? "active" : "")
                 }
               >
+                <div className="thumb">
+                <img src="./images/city.png" alt=""/>
+                </div>
+                
                 <p>RẠP:</p>
                 <span className="item-sort">{sortVal}</span>
-                <FaChevronDown className="fa-angle-down"/>
+                <FaChevronDown className="fa-angle-down" />
                 <div className="item-dropbox">
                   <ul className="dropbox-list">
                     <li
@@ -96,6 +108,7 @@ import { actFetchTheater } from "../module/theaterAction";
                   </ul>
                 </div>
               </div>
+              
             </div>
           </div>
         </div>
@@ -104,20 +117,20 @@ import { actFetchTheater } from "../module/theaterAction";
   }
   componentDidMount() {
     const filterBox = document.querySelector(".filter-tool");
-    filterBox.addEventListener("click", this.handleClick);
-    
+    filterBox.addEventListener("click", this.handleClick);   
   }
 }
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   sort: state.theaterFilterReducer.sort,
   sortVal: state.theaterFilterReducer.sortVal,
-})
-const mapDispatchToProps = dispatch =>({
+  date: state.theaterFilterReducer.date,
+});
+const mapDispatchToProps = (dispatch) => ({
   filterSort: (theaterType) => {
     dispatch(actFetchTheaterFilter(theaterType));
   },
   fetchTheater: (maHeThongRap) => {
     dispatch(actFetchTheater(maHeThongRap));
   },
-})
+});
 export default connect(mapStateToProps, mapDispatchToProps)(TheaterFilter);
