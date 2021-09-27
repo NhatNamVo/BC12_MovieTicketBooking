@@ -108,9 +108,9 @@ class Theater extends Component {
                                         }}
                                       />
                                       <div className="content pl-3">
-                                        <h4 >
+                                        <h5 >
                                           {movie.tenPhim}
-                                        </h4>
+                                        </h5>
 
                                         <p>{`${cumRap.diaChi}`}</p>
                                         <Link
