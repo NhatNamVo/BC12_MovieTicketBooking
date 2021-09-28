@@ -21,7 +21,6 @@ export const actFetchTheater = (maHeThongRap) => {
     dispatch(actFetchTheaterRequest());
     try {
       const { data } = await movieApi.fetchMovieTheaterApi(maHeThongRap);
-      console.log(data);
       dispatch(actFetchTheaterSuccess(data));
     } catch (error) {
       dispatch(actFetchTheaterFail(error));

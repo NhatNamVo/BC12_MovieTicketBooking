@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './ChoseBox.scss';
 class ChoseBox extends Component {
     render() {
-        const {seatChose, loaddingPost} = this.props;
-
+        const {seatChose,movieInfo,match, history, location, loaddingPost} = this.props;
+        const newTo = { 
+            pathname: "/checkout", 
+            seatChose: this.props.seatChose,
+            movieInfo: this.props.movieInfo,
+            match:this.props.match,
+            history: this.props.history,
+            location: this.props.location,
+          };
         return (
             <div className="choseBox-content">
                 <div className="seatChose-item seat-chosed">
@@ -26,7 +34,11 @@ class ChoseBox extends Component {
                     </h3>
                 </div>
                 <div className="seatChose-item">
-                    <button className="seatChose-btn">Thanh toán</button>
+                    
+                        <Link to={newTo} className="seatChose-btn">
+                        Thanh toán
+                        </Link>
+                    
                     <span
                   className={
                     "spinner-border spinner-border-sm " +
