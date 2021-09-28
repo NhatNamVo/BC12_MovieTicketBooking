@@ -9,7 +9,6 @@ import TimeLeft from "./TimeLeft/TimeLeft";
 import ticketApi from "apis/ticketApi";
 import SeatLayout from "./Seat/SeatLayout";
 import ChoseBox from "./choseBox/ChoseBox";
-import { connection } from "index";
 import FailNotePopup from "./NotePopup/FailNotePopup";
 import TimeLeftNote from "./NotePopup/TimeLeftNote";
 
@@ -89,7 +88,7 @@ class SeatPlan extends Component {
     ticketApi.postTicketOrder(this.state.orderTicket,this.props.accessToken)
     .then(res=>{
       this.setState({loaddingPost: false})
-      this.props.history.push('/userInfo');
+      // this.props.history.push('/checkout');
     })
     .catch(error=>{
       this.setState({loaddingPost: false,isBooking:true});
@@ -168,7 +167,7 @@ class SeatPlan extends Component {
           className="choseSeat-container container"
           onClick={this.postSeatChose}
         >
-          <ChoseBox seatChose={this.state.seatChose} loaddingPost={this.state.loaddingPost}/>
+          <ChoseBox seatChose={this.state.seatChose} movieInfo={movieInfo} loaddingPost={this.state.loaddingPost}/>
         </div>
         <FailNotePopup history = {this.props.history} isBooking={this.state.isBooking} bookingAgain={this.bookingAgain}/>
         <TimeLeftNote history = {this.props.history} isTimeLeft={this.state.isTimeLeft} booking={this.booking} seatChose={this.state.seatChose} bookingAgain={this.bookingAgain} loaddingPost={this.state.loaddingPost}/>
