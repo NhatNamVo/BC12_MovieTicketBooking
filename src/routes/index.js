@@ -8,6 +8,7 @@ import Contact from 'components/Contact/Contact';
 import UserAcount from 'containers/admin/UserAccount/UserAcount';
 import UserInfo from 'containers/client/UserInfo/UserInfo';
 import MovieManage from 'containers/admin/MovieManage/MovieManage';
+import Checkout from 'containers/client/MovieCheckout/Checkout';
 
 export const clientRoutes = [
   {
@@ -43,6 +44,11 @@ export const clientRoutes = [
   {
     path: '/userInfo',
     component: UserInfo,
+    exact: false,
+  },
+  {
+    path: '/checkout',
+    component: Checkout,
     exact: false,
   },
   {
