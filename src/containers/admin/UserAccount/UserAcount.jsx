@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { actAddNewUserAccount, actDeleteUser, actFetchUserAccount, actFindUserAccount, actUpdateUser } from "./Modules/action";
 import Loader from "components/Loader/Loader";
 import UserModal from "./UserModal/UserModal";
-import DeleteUserNote from "./UserModal/DeleteUserNote";
+import DeleteUserNote from "../../shared/DeleteUserNote";
 class UserAcount extends Component {
   state = {
     isAddUser: false,
@@ -153,7 +153,9 @@ class UserAcount extends Component {
           note = {this.props.note}
           loadingModal = {this.props.loadingModal}
         />
-        <DeleteUserNote note={this.props.note} deleteUser={this.deleteUser} idx={this.state.indexUser} userAccount={this.props.userAccountData} loadingModal={this.props.loadingModal} changeIdx={this.changeIdx}/>
+        {this.state.indexUser?
+        <DeleteUserNote note={this.props.note} delete={this.deleteUser} idx={this.state.indexUser} userAccount={this.props.userAccountData} loadingModal={this.props.loadingModal} changeIdx={this.changeIdx}/>
+        :""}
       </div>
     );
   }

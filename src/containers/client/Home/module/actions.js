@@ -7,6 +7,12 @@ import {
   FETCH_MOVIE_ALL_BANNER_FAIL,
   CHANGE_CURRENT_MOVIE_NEW,
   GET_TRAILER_MOVIE,
+  ADD_NEW_MOVIE_REQUEST,
+  ADD_NEW_MOVIE_SUCCESS,
+  ADD_NEW_MOVIE_FAIL,
+  DELETE_MOVIE_REQUEST,
+  DELETE_MOVIE_SUCCESS,
+  DELETE_MOVIE_FAIL,
 } from "./types";
 
 const actFetchAllMovieRequest = () => ({
@@ -68,6 +74,84 @@ export const actGetTrailerMovie = (MovieId) => {
     dispatch({
       type: GET_TRAILER_MOVIE,
       payload: MovieId,
+    });
+  };
+};
+
+// add movie
+const actAddNewMovieRequest = () => ({
+  type: ADD_NEW_MOVIE_REQUEST,
+});
+
+const actAddNewMovieSuccess = (newMovie) => ({
+  type: ADD_NEW_MOVIE_SUCCESS,
+  payload: newMovie,
+});
+
+const actAddNewMovieFail = (error) => ({
+  type: ADD_NEW_MOVIE_FAIL,
+  payload: error,
+});
+
+export const actAddNewMovie = (newMovie) => {
+  return dispatch => {
+    dispatch(actAddNewMovieRequest());
+    movieApi.postMovieApi(newMovie)
+    .then(res=>{
+      console.log(res);
+      dispatch(actAddNewMovieSuccess(res.data));
+    })
+    .catch(error=> {
+      dispatch(actAddNewMovieFail('Thêm phim thất bại'));
+    });
+  };
+};
+
+// delete movie
+
+const actDeleteMovieRequest = () =>({
+  type: DELETE_MOVIE_REQUEST,
+});
+const actDeleteMovieSuccess = (movieCode) => ({
+  type: DELETE_MOVIE_SUCCESS,
+  payload: movieCode,
+});
+const actDeleteMovieFail = (error) => ({
+  type: DELETE_MOVIE_FAIL,
+  payload: error,
+});
+
+export const actDeleteMovie = (movieCode,token) => {
+  return dispatch => {
+    debugger;
+    dispatch(actDeleteMovieRequest());
+    movieApi.deleteMovieApi(movieCode,token)
+    .then(res=>{
+      debugger;
+      const data = {
+        note: res.data,
+        movieCode: movieCode,
+      }
+      dispatch(actDeleteMovieSuccess(data));
+    })
+    .catch(error=>{
+      dispatch(actDeleteMovieFail('Không xóa được'));
+      movieApi
+      .fetMovieBannerApi()
+      .then((res) => {
+        dispatch(actFetchAllMovieBannersuccess(res.data.content));
+        movieApi
+          .fechAllMovieApi()
+          .then((res) => {
+            dispatch(actFetchAllMovieSuccess(res.data));
+          })
+          .catch((err) => {
+            dispatch(actFetchAllMovieFail(err));
+          });
+      })
+      .catch((error) => {
+        dispatch(actFetchAllMovieBannerfail(error));
+      });
     });
   };
 };

@@ -6,6 +6,12 @@ import {
   FETCH_MOVIE_ALL_BANNER_SUCCESS,
   CHANGE_CURRENT_MOVIE_NEW,
   GET_TRAILER_MOVIE,
+  ADD_NEW_MOVIE_REQUEST,
+  ADD_NEW_MOVIE_SUCCESS,
+  ADD_NEW_MOVIE_FAIL,
+  DELETE_MOVIE_REQUEST,
+  DELETE_MOVIE_SUCCESS,
+  DELETE_MOVIE_FAIL,
 } from "./types";
 
 const initialState = {
@@ -24,9 +30,11 @@ const initialState = {
   hotMovie: [],
   newMovie: [],
   loading: false,
+  loadingModal: false,
   currentMovienew: [],
   currentMovieIdx: 0,
   currentTrailerMovie: null,
+  note: '',
   error: "",
 };
 
@@ -79,10 +87,35 @@ const movieReducer = (state = initialState, { type, payload }) => {
         currentMovienew: currentMovie,
       };
     case GET_TRAILER_MOVIE:
-      const currentTrailerMovie = state.listMovie.find((movie,idx)=>{
+      const currentTrailerMovie = state.listMovie.find((movie, idx) => {
         return movie.maPhim == payload;
       }).trailer;
-      return {...state,currentTrailerMovie:currentTrailerMovie};
+      return { ...state, currentTrailerMovie: currentTrailerMovie };
+    case ADD_NEW_MOVIE_REQUEST:
+      return { ...state, loadingModal: true, note: ''};
+    case ADD_NEW_MOVIE_SUCCESS:
+      let moviedatas = state.listMovie;
+      moviedatas.push(payload);
+      const imageLink = moviedatas[moviedatas.length-1].hinhAnh;
+      moviedatas[moviedatas.length-1].hinhAnh = 'http://movie0706.cybersoft.edu.vn/hinhanh/' + imageLink;
+      console.log(moviedatas);
+      return { ...state, listMovie: moviedatas, loadingModal: false };
+    case ADD_NEW_MOVIE_FAIL:
+      return { ...state, note: payload, loadingModal: false };
+    case DELETE_MOVIE_REQUEST:
+      debugger;
+      return {...state, loadingModal: true, note: ''};
+    case DELETE_MOVIE_SUCCESS:
+      debugger;
+      const {listMovie} = state;
+      const findMovieIdx = listMovie.findIndex(movie=>{
+        return movie.maPhim == payload.movieCode;
+      });
+      let movieList = state.listMovie;
+      movieList.splice(findMovieIdx, 1);
+      return {...state, loadingModal: false, listMovie: movieList, note: payload.note};
+    case DELETE_MOVIE_FAIL:
+      return {...state, loadingModal: false, note: payload};
     default:
       return { ...state };
   }

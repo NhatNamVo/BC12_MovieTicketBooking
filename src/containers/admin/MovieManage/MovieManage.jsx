@@ -4,68 +4,110 @@ import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import Loader from "components/Loader/Loader";
 import MovieAdminItem from "./MovieItem/MovieAdminItem";
-import './MovieManager.scss';
+import {
+  actFetchAllMovie,
+  actAddNewMovie,
+  actDeleteMovie,
+} from "containers/client/Home/module/actions";
+import { actSearchMovie, actSettingTotalCount } from "./Modules/action";
+
+import "./MovieManager.scss";
+import MovieManageModal from "./MovieManagerModal/MovieManageModal";
+import DeleteUserNote from "../../shared/DeleteUserNote";
 class MovieManage extends Component {
   state = {
-    // isAddUser: false,
-    // indexUser: null,
+    isAddMovie: false,
+    movieCode: null,
   };
-  componentDidUpdate(prevProps, prevState) {
-    // if (prevProps.location.search != this.props.location.search) {
-    //   const findUser = new URLSearchParams(window.location.search).get(
-    //     "search"
-    //   );
-    //   if (findUser === "" || this.props.location.search === "") {
-    //     this.props.history.push("/admin/user-manage");
-    //     this.props.fetchUserAccount();
-    //   } else {
-    //     this.props.findUserAccount(findUser);
-    //   }
-    // }
+  componentDidMount() {
+    if (this.props.movieList.length === 0) {
+      this.props.fetchAllMovie();
+    }
+    else{
+      this.props.changeTotalCount(this.props.location.search);
+    }
   }
-  // findUser = (e) => {
-  //   const findInputBox = document.querySelector("#searchUser");
-  //   this.props.history.push({pathname: '/admin/user-manage',
-  //     search:
-  //       "?" + new URLSearchParams({ search: findInputBox.value.toString() }),
-  //   });
-  // };
-  // addClick = () => {
-  //   this.setState({
-  //     isAddUser: true,
-  //   });
-  // };
-  // userListUpdate = (event) => {
-  //   const updateBtn = event.target.closest("#userUpdate");
-  //   const deleteBtn = event.target.closest("#userDelete");
-  //   if (!!updateBtn) {
-  //     const idx = updateBtn.dataset.index;
-  //     this.setState({
-  //       isAddUser: false,
-  //       indexUser: idx,
-  //     });
-  //   }
-  //   if(!!deleteBtn){
-  //     const idx = deleteBtn.dataset.index;
-  //     this.setState({indexUser: idx,isAddUser: true});
-  //   }
-  // };
-  // changeIdx = () => {
-  //   this.setState({
-  //     indexUser: null,
-  //   });
-  // };
-  // addNewUser = (data) => {
-  //   this.props.postNewUserAccount(data,this.props.accessToken);
-  // };
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.movieList.length != this.props.movieList.length) {
+      this.props.changeTotalCount(this.props.location.search);
+    }
+    if (prevProps.location.search != this.props.location.search) {
+      const findUser = new URLSearchParams(window.location.search).get(
+        "search"
+      );
+      if (findUser === "" || this.props.location.search === "") {
+        this.props.history.push("/admin/movie-manage");
+        this.props.changeTotalCount(this.props.location.search);
+      } else {
+        const foundMovie = this.props.movieList.filter((movie) => {
+          return movie.tenPhim.toLocaleLowerCase().indexOf(findUser) !== -1;
+        });
+        this.props.searchMovie(foundMovie);
+      }
+    }
+  }
+  searchMovie = (e) => {
+    const movieTextFind = e.target.value;
+    if (movieTextFind === "") {
+      this.wait = setTimeout(() => {
+        this.props.history.push("/admin/movie-manage");
+      }, 300);
+    }
+  };
+
+  findUser = (e) => {
+    const findInputBox = document.querySelector("#searchUser");
+    this.props.history.push({
+      pathname: "/admin/movie-manage",
+      search:
+        "?" + new URLSearchParams({ search: findInputBox.value.toString() }),
+    });
+  };
+  addClick = () => {
+    this.setState({
+      isAddMovie: true,
+    });
+  };
+  movieListUpdate = (event) => {
+    const updateBtn = event.target.closest("#movieUpdate");
+    const deleteBtn = event.target.closest("#movieDelete");
+    if (!!updateBtn) {
+      const movieCode = updateBtn.dataset.moviecode;
+      this.setState({
+        isAddUser: false,
+        movieCode: movieCode,
+      });
+    }
+    if (!!deleteBtn) {
+      const movieCode = deleteBtn.dataset.moviecode;
+      this.setState({ movieCode: movieCode, isAddMovie: true });
+    }
+  };
+  changeMovieCode = () => {
+    this.setState({
+      movieCode: null,
+    });
+  };
+  addNewMovie = (data) => {
+    // this.props.postNewUserAccount(data,this.props.accessToken);
+    let formData = new FormData();
+    for (let key in data) {
+      if (key !== "hinhAnh") {
+        formData.append(key, data[key]);
+      } else {
+        formData.append("File", data.hinhAnh, data.hinhAnh.name);
+      }
+    }
+    this.props.addNewMovie(formData);
+  };
   // updateUser = (data) => {
   //   this.props.putUserUpdate(data,this.props.accessToken);
   // }
-  // deleteUser = (user) => {
-  //   this.props.deleteUser(user, this.props.accessToken);
-  // }
+  deleteMovie = (movieCode) => {
+    this.props.deleteMovie(parseInt(movieCode), this.props.accessToken);
+  }
   render() {
-    if (this.props.loadding) return <Loader />;
+    // if (this.props.loadding) return <Loader />;
     const url = this.props.match.url;
     const { totalCount, siblingCount, currentPage, pageSize } = this.props;
     return (
@@ -75,7 +117,7 @@ class MovieManage extends Component {
             className="btn btn-primary"
             onClick={this.addClick}
             data-toggle="modal"
-            data-target="#userModal"
+            data-target="#movieAdminModal"
           >
             <div className="row justify-content-between align-items-center px-3">
               <p className="font-weight-bold mb-0 mr-2">Thêm Phim</p>
@@ -92,6 +134,7 @@ class MovieManage extends Component {
               id="searchUser"
               className="form-control mr-2"
               placeholder="Nhập tên phim..."
+              onChange={this.searchMovie}
             />
             <button className="btn btn-primary" onClick={this.findUser}>
               Tìm
@@ -102,15 +145,27 @@ class MovieManage extends Component {
         <table className="table table-bordered">
           <thead className="thead-light useraccount-list">
             <tr>
-              <th scope="col" style={{width:"5%",textAlign:"center"}}>STT</th>
-              <th scope="col" style={{width:"10%",textAlign:"center"}}>Mã phim</th>
-              <th scope="col" style={{width:"15%",textAlign:"center"}}>Hình ảnh</th>
-              <th scope="col" style={{width:"20%",textAlign:"center"}}>Tên phim</th>
-              <th scope="col" style={{width:"25%",textAlign:"center"}}>Mô tả</th>
-              <th scope="col" style={{width:"25%",textAlign:"center"}}>Chức năng</th>
+              <th scope="col" style={{ width: "5%", textAlign: "center" }}>
+                STT
+              </th>
+              <th scope="col" style={{ width: "10%", textAlign: "center" }}>
+                Mã phim
+              </th>
+              <th scope="col" style={{ width: "15%", textAlign: "center" }}>
+                Hình ảnh
+              </th>
+              <th scope="col" style={{ width: "20%", textAlign: "center" }}>
+                Tên phim
+              </th>
+              <th scope="col" style={{ width: "25%", textAlign: "center" }}>
+                Mô tả
+              </th>
+              <th scope="col" style={{ width: "25%", textAlign: "center" }}>
+                Chức năng
+              </th>
             </tr>
           </thead>
-          <tbody onClick={this.userListUpdate}>
+          <tbody onClick={this.movieListUpdate}>
             <Switch>
               <Route
                 path="/admin/movie-manage"
@@ -124,7 +179,7 @@ class MovieManage extends Component {
             </Switch>
           </tbody>
         </table>
-        {/* {this.props.totalCount === 0 ? (
+        {this.props.totalCount === 0 ? (
           ""
         ) : (
           <Pagination
@@ -136,55 +191,81 @@ class MovieManage extends Component {
             pageSize={pageSize}
             changePage={this.changePage}
           />
-        )} */}
-        {/* <UserModal
-          history={this.props.history}
-          changeIdx={this.changeIdx}
-          userAccountData={this.props.userAccountData}
-          userAccount={this.props.userAccount}
-          isAddUser={this.state.isAddUser}
-          idx={this.state.indexUser}
-          addNewUser = {this.addNewUser}
-          updateUser = {this.updateUser}
+        )}
+        <MovieManageModal
+          // history={this.props.history}
+          // changeIdx={this.changeIdx}
+          // userAccountData={this.props.userAccountData}
+          // userAccount={this.props.userAccount}
+          isAddMovie={this.state.isAddMovie}
+          addNewMovie={this.addNewMovie}
+          // idx={this.state.indexUser}
+          // addNewUser = {this.addNewUser}
+          // updateUser = {this.updateUser}
+          // loadingModal={this.props.loadingModal}
+          // note = {this.props.note}
+          // loadingModal = {this.props.loadingModal}
+        />
+        {this.state.movieCode?
+        <DeleteUserNote
+          note={this.props.note}
+          delete={this.deleteMovie}
+          movieCode={this.state.movieCode}
+          // idx ={1}
+          movieList={this.props.movieList}
           loadingModal={this.props.loadingModal}
-          note = {this.props.note}
-          loadingModal = {this.props.loadingModal}
-        /> */}
-        {/* <DeleteUserNote note={this.props.note} deleteUser={this.deleteUser} idx={this.state.indexUser} userAccount={this.props.userAccountData} loadingModal={this.props.loadingModal} changeIdx={this.changeIdx}/> */}
+          changeIdx={this.changeMovieCode}
+        />:""}
       </div>
     );
   }
-  componentDidMount() {
-    // this.props.fetchUserAccount();
-  }
 }
 const mapStateToProps = (state) => ({
-  // userAccountData: state.UserAccountReducer.userAccountData,
-  // userAccount: state.authUserReducer.currentUser.taiKhoan,
-  // accessToken: state.authUserReducer.currentUser.accessToken,
-  // totalCount: state.UserAccountReducer.totalCount,
-  // siblingCount: state.UserAccountReducer.siblingCount,
-  // currentPage: state.UserAccountReducer.currentPage,
-  // pageSize: state.UserAccountReducer.pageSize,
+  movieList: state.movieReducer.listMovie,
+  accessToken: state.authUserReducer.currentUser.accessToken,
+  totalCount: state.MovieAdminManager.totalCount,
+  siblingCount: state.MovieAdminManager.siblingCount,
+  currentPage: state.MovieAdminManager.currentPage,
+  pageSize: state.MovieAdminManager.pageSize,
   // loadding: state.UserAccountReducer.loadding,
-  // loadingModal: state.UserAccountReducer.loadingModal,
+  loadingModal: state.movieReducer.loadingModal,
   // note: state.UserAccountReducer.note,
 });
+// const mapDispatchToProps = (dispatch) => ({
+// fetchUserAccount: () => {
+//   dispatch(actFetchUserAccount());
+// },
+// findUserAccount: (user) => {
+//   dispatch(actFindUserAccount(user));
+// },
+// postNewUserAccount: (newUser, token) => {
+//   dispatch(actAddNewUserAccount(newUser, token));
+// },
+// putUserUpdate: (user,token) =>{
+//   dispatch(actUpdateUser(user,token));
+// },
+// deleteUser: (user,token) => {
+//   dispatch(actDeleteUser(user,token));
+// }
+// });
 const mapDispatchToProps = (dispatch) => ({
-  // fetchUserAccount: () => {
-  //   dispatch(actFetchUserAccount());
+  // ChangeCurrentPage: (changePageID) => {
+  //   dispatch(actChangePage(changePageID));
   // },
-  // findUserAccount: (user) => {
-  //   dispatch(actFindUserAccount(user));
-  // },
-  // postNewUserAccount: (newUser, token) => {
-  //   dispatch(actAddNewUserAccount(newUser, token));
-  // },
-  // putUserUpdate: (user,token) =>{
-  //   dispatch(actUpdateUser(user,token));
-  // },
-  // deleteUser: (user,token) => {
-  //   dispatch(actDeleteUser(user,token));
-  // }
+  fetchAllMovie: () => {
+    dispatch(actFetchAllMovie());
+  },
+  changeTotalCount: (search) => {
+    dispatch(actSettingTotalCount(search));
+  },
+  searchMovie: (movie) => {
+    dispatch(actSearchMovie(movie));
+  },
+  addNewMovie: (newMovie) => {
+    dispatch(actAddNewMovie(newMovie));
+  },
+  deleteMovie: (movieCode, token) => {
+    dispatch(actDeleteMovie(movieCode, token));
+  }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(MovieManage);

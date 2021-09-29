@@ -1,24 +1,56 @@
-import { actFetchAllMovie } from "containers/client/Home/module/actions";
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Loader from 'components/Loader/Loader';
+import { actChangePage } from "../Modules/action";
+
 
 class MovieAdminItem extends Component {
   componentDidMount() {
-    if (this.props.movieList.length === 0) {
-      this.props.fetchAllMovie();
+    if (!this.props.match.params.pageNumber) {
+      this.props.ChangeCurrentPage(1);
+    }
+    else{
+      this.props.ChangeCurrentPage(this.props.match.params.pageNumber);
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.match.params.pageNumber != this.props.match.params.pageNumber
+    ) {
+      if (!this.props.match.params.pageNumber) {
+        this.props.ChangeCurrentPage(1);
+      } else {
+        this.props.ChangeCurrentPage(this.props.match.params.pageNumber);
+      }
+    }
+    // if (prevProps.totalCount != this.props.totalCount) {
+    //   if (!this.props.match.params.pageNumber) {
+    //     this.props.ChangeCurrentPage(1);
+    //   } else {
+    //     this.props.ChangeCurrentPage(this.props.match.params.pageNumber);
+    //   }
+    // }
+    if(prevProps.location.search != this.props.location.search){
+      this.props.ChangeCurrentPage(1);
     }
   }
   render() {
     if(!!this.props.loading) return <Loader />;
-    const { movieList, firstPageIndex, lastPageIndex } = this.props;
-    const datas = movieList.slice(0, 10);
+    const { movieDatas, firstPageIndex, lastPageIndex, foundMovie } = this.props;
+    let datas;
+    if(this.props.location.search == ''){
+      datas = movieDatas.slice(firstPageIndex, lastPageIndex);
+    }
+    else{
+      datas = foundMovie.slice(firstPageIndex, lastPageIndex);
+    }
     return (
       <>
         {datas.map((data, idx) => {
           return (
             <tr key={idx}>
-              <td>{idx + 1}</td>
+              <td>{firstPageIndex + idx + 1}</td>
               <td>{data.maPhim}</td>
               <td>
                 <img src={data.hinhAnh} alt="" width="80%"/>
@@ -27,21 +59,21 @@ class MovieAdminItem extends Component {
               <td>{data.moTa.length>50?data.moTa.substr(0,50)+'...':data.moTa}</td>
               <td className="movieManage-feature">
                 <button
-                  id="userUpdate"
+                  id="movieUpdate"
                   className="btn btn-primary m-1"
-                  data-index={firstPageIndex + idx}
+                  data-movieCode={data.maPhim}
                   data-toggle="modal"
-                  data-target="#"
+                  data-target="#movieAdminModal"
                 >
                   Sửa
                 </button>
                 <button
                   type="button"
-                  id="userDelete"
+                  id="movieDelete"
                   className="btn btn-danger m-1"
-                  data-index={firstPageIndex + idx}
+                  data-movieCode={data.maPhim}
                   data-toggle="modal"
-                  data-target="#"
+                  data-target="#deleteNoteModal"
                 >
                   Xóa
                 </button>
@@ -54,20 +86,17 @@ class MovieAdminItem extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  // userAccountData: state.UserAccountReducer.userAccountData,
-  // firstPageIndex: state.UserAccountReducer.firstPageIndex,
-  // lastPageIndex: state.UserAccountReducer.lastPageIndex,
-  // totalCount: state.UserAccountReducer.totalCount,
-  movieList: state.movieReducer.listMovie,
+  firstPageIndex: state.MovieAdminManager.firstPageIndex,
+  lastPageIndex: state.MovieAdminManager.lastPageIndex,
+  totalCount: state.MovieAdminManager.totalCount,
+  movieDatas: state.movieReducer.listMovie,
+  foundMovie: state.MovieAdminManager.foundMovie,
   loading: state.movieReducer.loading,
 });
 const mapDispatchToProps = (dispatch) => ({
-  // ChangeCurrentPage: (changePageID) => {
-  //   dispatch(actChangePage(changePageID));
-  // },
-  fetchAllMovie: () => {
-    dispatch(actFetchAllMovie());
-  },
+  ChangeCurrentPage: (currentPage) => {
+    dispatch(actChangePage(currentPage))
+  }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(MovieAdminItem);
 

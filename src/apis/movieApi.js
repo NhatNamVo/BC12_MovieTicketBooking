@@ -22,6 +22,12 @@ const movieApi = {
   fetchMovieTheaterApi(maHeThongRap){
     return callApi(`QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=${GROUP_ID}`)
   },
+  postMovieApi(formData){
+    return callApi(`QuanLyPhim/ThemPhimUploadHinh`,"POST",formData);
+  },
+  deleteMovieApi(movieCode,token){
+    return callApi(`QuanLyPhim/XoaPhim?MaPhim=${movieCode}`,"DELETE",null,token)    
+  }
 };
 
 export default movieApi;
