@@ -10,8 +10,11 @@ class DeleteUserNote extends Component {
       this.props.delete(this.props.userAccount[this.props.idx].taiKhoan);
     } else {
       this.props.delete(this.props.movieCode);
-    }
+    };
     this.wait = setTimeout(() => {
+      if(!!this.props.idx){
+        this.props.changeIdx();
+      }
       document.querySelector("#cancle").click();
       this.setState({ isDelete: false });
     }, 1500);
@@ -39,6 +42,7 @@ class DeleteUserNote extends Component {
     }
   };
   showMovieName = () => {
+    if(!this.props.movieCode) return;
     const movie = this.props.movieList.find((movie) => {
       return movie.maPhim == this.props.movieCode;
     });
