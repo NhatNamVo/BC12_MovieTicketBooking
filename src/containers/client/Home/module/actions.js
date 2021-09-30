@@ -13,6 +13,9 @@ import {
   DELETE_MOVIE_REQUEST,
   DELETE_MOVIE_SUCCESS,
   DELETE_MOVIE_FAIL,
+  UPDATE_MOVIE_REQUEST,
+  UPDATE_MOVIE_SUCCESS,
+  UPDATE_MOVIE_FAIL,
 } from "./types";
 
 const actFetchAllMovieRequest = () => ({
@@ -98,7 +101,6 @@ export const actAddNewMovie = (newMovie) => {
     dispatch(actAddNewMovieRequest());
     movieApi.postMovieApi(newMovie)
     .then(res=>{
-      console.log(res);
       dispatch(actAddNewMovieSuccess(res.data));
     })
     .catch(error=> {
@@ -106,6 +108,35 @@ export const actAddNewMovie = (newMovie) => {
     });
   };
 };
+// update movie
+
+const actUpdateRequest = () => ({
+  type: UPDATE_MOVIE_REQUEST
+});
+
+const actUpdateSuccess = (data) => ({
+  type: UPDATE_MOVIE_SUCCESS,
+  payload: data,
+});
+
+const actUpdateFail = (error) => ({
+  type: UPDATE_MOVIE_FAIL,
+  payload: error
+});
+
+export const actUpdateMovie = (movieUpdate,token) => {
+  return dispatch => {
+    dispatch(actUpdateRequest());
+    movieApi.postMovieUpdate(movieUpdate, token)
+    .then(res=>{
+      dispatch(actUpdateSuccess(res.data));
+      console.log(res);
+    })
+    .catch(error=>{
+      dispatch(actUpdateFail('Cập nhật thất bại'))
+    })
+  }
+}
 
 // delete movie
 
@@ -123,11 +154,9 @@ const actDeleteMovieFail = (error) => ({
 
 export const actDeleteMovie = (movieCode,token) => {
   return dispatch => {
-    debugger;
     dispatch(actDeleteMovieRequest());
     movieApi.deleteMovieApi(movieCode,token)
     .then(res=>{
-      debugger;
       const data = {
         note: res.data,
         movieCode: movieCode,

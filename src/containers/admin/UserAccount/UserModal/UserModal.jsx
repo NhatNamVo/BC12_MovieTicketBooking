@@ -123,20 +123,21 @@ class UserModal extends Component {
           this.props.addNewUser(this.state.data);
           if(!this.props.loadingModal){
             this.setState({isNote:true});
+            this.wait = setTimeout(() => {
+              document.querySelector('#exitModal').click();
+              this.setState({isNote:false});
+            },1500);
           }
-          this.wait = setTimeout(() => {
-            document.querySelector('#exitModal').click();
-            this.setState({isNote:false});
-          },1500);
+          
         } else {
           this.props.updateUser(this.state.data);
           if(!this.props.loadingModal){
             this.setState({isNote:true});
+            this.wait = setTimeout(() => {
+              document.querySelector('#exitModal').click();
+              this.setState({isNote:false});
+            },1500);
           }
-          this.wait = setTimeout(() => {
-            document.querySelector('#exitModal').click();
-            this.setState({isNote:false});
-          },1500);
         }
       }
     }

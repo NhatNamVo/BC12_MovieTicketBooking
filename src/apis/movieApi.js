@@ -20,13 +20,16 @@ const movieApi = {
     return callApi(`QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=${GROUP_ID}`);
   },
   fetchMovieTheaterApi(maHeThongRap){
-    return callApi(`QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=${GROUP_ID}`)
+    return callApi(`QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=${GROUP_ID}`);
   },
   postMovieApi(formData){
     return callApi(`QuanLyPhim/ThemPhimUploadHinh`,"POST",formData);
   },
   deleteMovieApi(movieCode,token){
-    return callApi(`QuanLyPhim/XoaPhim?MaPhim=${movieCode}`,"DELETE",null,token)    
+    return callApi(`QuanLyPhim/XoaPhim?MaPhim=${movieCode}`,"DELETE",null,token);  
+  },
+  postMovieUpdate(movieData, token){
+    return callApi(`QuanLyPhim/CapNhatPhimUpload`,'POST',movieData,token);
   }
 };
 

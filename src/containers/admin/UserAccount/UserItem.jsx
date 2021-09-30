@@ -30,7 +30,6 @@ class UserItem extends Component {
   render() {
     const { userAccountData, firstPageIndex, lastPageIndex } = this.props;
     const datas = userAccountData.slice(firstPageIndex, lastPageIndex);
-    console.log(datas);
     return (
       userAccountData && (
         <>

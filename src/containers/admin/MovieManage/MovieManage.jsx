@@ -8,9 +8,10 @@ import {
   actFetchAllMovie,
   actAddNewMovie,
   actDeleteMovie,
+  actUpdateMovie,
 } from "containers/client/Home/module/actions";
 import { actSearchMovie, actSettingTotalCount } from "./Modules/action";
-
+import moment from "moment";
 import "./MovieManager.scss";
 import MovieManageModal from "./MovieManagerModal/MovieManageModal";
 import DeleteUserNote from "../../shared/DeleteUserNote";
@@ -74,7 +75,7 @@ class MovieManage extends Component {
     if (!!updateBtn) {
       const movieCode = updateBtn.dataset.moviecode;
       this.setState({
-        isAddUser: false,
+        isAddMovie: false,
         movieCode: movieCode,
       });
     }
@@ -89,20 +90,49 @@ class MovieManage extends Component {
     });
   };
   addNewMovie = (data) => {
-    // this.props.postNewUserAccount(data,this.props.accessToken);
     let formData = new FormData();
     for (let key in data) {
+      if( key === 'ngayKhoiChieu'){
+        const date = moment(new Date(data[key]).toDateString()).format('DD/MM/YYYY');
+        formData.append(key,date);
+        continue;
+      }
+      else if(key === 'danhGia'){
+        formData.append(key,parseInt(data[key]));
+        continue;
+      }
       if (key !== "hinhAnh") {
         formData.append(key, data[key]);
       } else {
         formData.append("File", data.hinhAnh, data.hinhAnh.name);
       }
+      console.log(formData.get('danhGia'));
     }
     this.props.addNewMovie(formData);
   };
-  // updateUser = (data) => {
-  //   this.props.putUserUpdate(data,this.props.accessToken);
-  // }
+  updateMovie = (data) => {
+    let formData = new FormData();
+    for (let key in data) {
+      if( key === 'ngayKhoiChieu'){
+        const date = moment(new Date(data[key]).toDateString()).format('DD/MM/YYYY');
+        formData.append(key,date);
+        continue;
+      }
+      else if(key === 'danhGia'){
+        formData.append(key,parseInt(data[key]));
+        continue;
+      }
+      if (key !== "hinhAnh") {
+        formData.append(key, data[key]);
+      } else {
+        if(data.hinhAnh !== null){
+          formData.append("File", data.hinhAnh, data.hinhAnh.name);
+        }
+      }
+      console.log(formData.get('danhGia'));
+    }
+    this.props.updateMovie(formData,this.props.accessToken);
+  }
   deleteMovie = (movieCode) => {
     this.props.deleteMovie(parseInt(movieCode), this.props.accessToken);
   }
@@ -193,18 +223,15 @@ class MovieManage extends Component {
           />
         )}
         <MovieManageModal
-          // history={this.props.history}
-          // changeIdx={this.changeIdx}
-          // userAccountData={this.props.userAccountData}
-          // userAccount={this.props.userAccount}
           isAddMovie={this.state.isAddMovie}
           addNewMovie={this.addNewMovie}
-          // idx={this.state.indexUser}
-          // addNewUser = {this.addNewUser}
-          // updateUser = {this.updateUser}
-          // loadingModal={this.props.loadingModal}
-          // note = {this.props.note}
-          // loadingModal = {this.props.loadingModal}
+          updateMovie = {this.updateMovie}
+          movieCode = {this.state.movieCode}
+          changeMovieCode = {this.changeMovieCode}
+          movieList = {this.props.movieList}
+          loadingModal={this.props.loadingModal}
+          note = {this.props.note}
+          loadingModal = {this.props.loadingModal}
         />
         {this.state.movieCode?
         <DeleteUserNote
@@ -229,7 +256,7 @@ const mapStateToProps = (state) => ({
   pageSize: state.MovieAdminManager.pageSize,
   // loadding: state.UserAccountReducer.loadding,
   loadingModal: state.movieReducer.loadingModal,
-  // note: state.UserAccountReducer.note,
+  note: state.movieReducer.note,
 });
 // const mapDispatchToProps = (dispatch) => ({
 // fetchUserAccount: () => {
@@ -266,6 +293,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   deleteMovie: (movieCode, token) => {
     dispatch(actDeleteMovie(movieCode, token));
+  },
+  updateMovie: (movieData, token) => {
+    dispatch(actUpdateMovie(movieData, token));
   }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(MovieManage);

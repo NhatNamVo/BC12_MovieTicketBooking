@@ -1,3 +1,4 @@
+import moment from "moment";
 import {
   FETCH_ALL_MOVIE_FAIL,
   FETCH_ALL_MOVIE_REQUEST,
@@ -12,6 +13,9 @@ import {
   DELETE_MOVIE_REQUEST,
   DELETE_MOVIE_SUCCESS,
   DELETE_MOVIE_FAIL,
+  UPDATE_MOVIE_SUCCESS,
+  UPDATE_MOVIE_REQUEST,
+  UPDATE_MOVIE_FAIL,
 } from "./types";
 
 const initialState = {
@@ -98,15 +102,12 @@ const movieReducer = (state = initialState, { type, payload }) => {
       moviedatas.push(payload);
       const imageLink = moviedatas[moviedatas.length-1].hinhAnh;
       moviedatas[moviedatas.length-1].hinhAnh = 'http://movie0706.cybersoft.edu.vn/hinhanh/' + imageLink;
-      console.log(moviedatas);
-      return { ...state, listMovie: moviedatas, loadingModal: false };
+      return { ...state, listMovie: moviedatas, loadingModal: false, note: 'Thêm thành công'};
     case ADD_NEW_MOVIE_FAIL:
       return { ...state, note: payload, loadingModal: false };
     case DELETE_MOVIE_REQUEST:
-      debugger;
       return {...state, loadingModal: true, note: ''};
     case DELETE_MOVIE_SUCCESS:
-      debugger;
       const {listMovie} = state;
       const findMovieIdx = listMovie.findIndex(movie=>{
         return movie.maPhim == payload.movieCode;
@@ -115,6 +116,42 @@ const movieReducer = (state = initialState, { type, payload }) => {
       movieList.splice(findMovieIdx, 1);
       return {...state, loadingModal: false, listMovie: movieList, note: payload.note};
     case DELETE_MOVIE_FAIL:
+      return {...state, loadingModal: false, note: payload};
+    case UPDATE_MOVIE_REQUEST:
+      return {...state, loadingModal: true, note: ''};
+    case UPDATE_MOVIE_SUCCESS:
+      const findIdx = state.listMovie.findIndex(movie=>{
+        return movie.maPhim == payload.maPhim;
+      });
+      let movieDatas = state.listMovie;
+      for(let mainKey in movieDatas[findIdx]){
+        for(let key in payload){
+          if(key == mainKey){
+            if(key === 'hinhAnh'){
+              if(payload[key] !== null){
+                const findStIdx = payload.hinhAnh.contentType.indexOf('/');
+                let imgType = payload.hinhAnh.contentType.slice(findStIdx+1);
+                if(imgType == 'jpeg'){
+                  imgType = 'jpg';
+                }
+                movieDatas[findIdx][mainKey] = 'http://movie0706.cybersoft.edu.vn/hinhanh/' + payload.biDanh + '_' + payload.maNhom.toLocaleLowerCase() + '.' + imgType;
+              };
+              break;
+            }
+            else if( key === 'ngayKhoiChieu'){
+              const date = payload.ngayKhoiChieu.split("/").reverse().join("-");
+              movieDatas[findIdx][mainKey] = date;
+              break;
+            }
+            else{
+              movieDatas[findIdx][mainKey] = payload[key];
+              break;
+            }
+          }
+        }
+      }
+      return {...state, loadingModal: false, listMovie: movieDatas, note: 'Cập nhật thành công'};
+    case UPDATE_MOVIE_FAIL:
       return {...state, loadingModal: false, note: payload};
     default:
       return { ...state };
