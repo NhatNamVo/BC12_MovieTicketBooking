@@ -1,19 +1,20 @@
-#userModal {
+#userModal,
+#movieAdminModal {
   .modalContent {
     width: fit-content;
     margin: auto;
     height: fit-content;
   }
-  .modal-footer{
-      button{
-          .spinner-border{
-              margin-left: 5px!important;
-              width: 18px!important;
-              height: 18px!important;
-          }
+  .modal-footer {
+    button {
+      .spinner-border {
+        margin-left: 5px !important;
+        width: 18px !important;
+        height: 18px !important;
       }
+    }
   }
-  .modalNote{
+  .modalNote {
     background-color: #031f5080;
     position: absolute;
     top: 0;
@@ -22,14 +23,15 @@
     width: 100%;
     text-align: center;
     line-height: 50%;
-    h5{
+    h5 {
       position: relative;
       top: 50%;
       transform: translateY(-50%);
       color: #24d7a9;
     }
   }
-  #userInfo {
+  #userInfo,
+  #movieInfo {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -64,25 +66,30 @@
           color: #d7b624;
         }
       }
-      .inputStatus.error{
-        i{cursor: pointer;}
-        .errorMessage{
-            width: 120px;
-            padding: 2px 5px;
-            opacity: 0;
-            position: absolute;
-            top: 20px;
-            right: -15px;
-            background-color: #fff;
-            color: #d7b624;
+      .inputStatus.error {
+        i {
+          cursor: pointer;
         }
-        &:hover{
-          .errorMessage{
-              opacity: 1;
+        .errorMessage {
+          width: 120px;
+          padding: 2px 5px;
+          display: none;
+          z-index: -10;
+          position: absolute;
+          top: 20px;
+          right: -15px;
+          background-color: #fff;
+          color: #d7b624;
+        }
+        &:hover {
+          .errorMessage {
+            display: block;
+            z-index: 10;
           }
         }
-    }
-      input {
+      }
+      input,
+      textarea {
         padding: 5px 20px 5px 30px;
         width: 200px;
         margin-right: 15px;
@@ -96,10 +103,26 @@
         &:focus-visible {
           outline: none;
         }
-        &:disabled{
-          background-color:transparent;
+        &:disabled {
+          background-color: transparent;
           border-image: linear-gradient(to right, #ff0000, transparent) 100% 1;
         }
+      }
+      textarea {
+        height: fit-content;
+        width: 100%;
+      }
+      .selectFileUpload {
+        padding: 5px 20px 5px 30px;
+        width: 200px;
+        margin-right: 15px;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        border-bottom: 2px solid;
+        color: #031f50;
+        border-radius: 5px 5px 0 0;
+        border-image: linear-gradient(to right, #031f50, transparent) 100% 1;
       }
       select {
         width: 200px;
@@ -114,10 +137,65 @@
           outline: none;
         }
       }
-      select.error{
+      select.error {
         border-image: linear-gradient(to right, #ff0000, transparent) 100% 1;
       }
-      
+    }
+    #formTextArea{
+      width: 100%;
+      margin-bottom: 10px;
+      .inputStatus{
+        right: 30px;
+        top: 0;
+      }
+      i {
+        top: 18px;
+      }
+      textarea {
+        max-height: 200px;
+        resize: none;
+        overflow: hidden;
+      }
+      textarea.active{
+        overflow-y: scroll;
+        scroll-snap-type: x mandatory;
+      }
+    }
+    #movieNameForm, #movieTrailerForm {
+      width: 100%;
+      margin-bottom: 10px;
+      input{
+        width: 100%;
+      }
+    }
+    #movieAdmin-uploadImg{
+      text-align: center;
+      vertical-align: middle;
+      .inputStatus{
+        right: -10px;
+      }
+      i{
+        position: relative;
+        margin-top: 100%;
+        top: 0;
+        left: 0;
+      }
+      button{
+        padding: 0px 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #24d7a9;
+      }
+      span.noteFile{
+        margin-left: 10px;
+      }
+      img{
+        width: 120px;
+        height: 180px;
+        transform-origin: center;
+        transform: translateX(20%);
+        border-radius: 10px;
+      }
     }
   }
 }
