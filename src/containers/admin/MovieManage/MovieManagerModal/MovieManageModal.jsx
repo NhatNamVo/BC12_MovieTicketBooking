@@ -74,7 +74,7 @@ class MovieManageModal extends Component {
     };
     const {messageError} = this.state;
     for(let key in messageError){
-      messageError[key] = ''
+      messageError[key] = '';
     };
     this.setState({ data: info, messageError:messageError, customTextArea: 36, isImage: false, images: ''});
   }
@@ -106,7 +106,6 @@ class MovieManageModal extends Component {
     const status = formValid(name,value, null, messageError);
     const data = { ...this.state.data,  [name]: value };
     this.setState({ data: data, isValidation: status.isvalid, messageError:status.messageError });
-    console.log(value);
   };
   handleClick = (e) => {
     e.stopPropagation();
@@ -120,6 +119,13 @@ class MovieManageModal extends Component {
   submitForm = () => {
     const {tenPhim, trailer, hinhAnh, moTa, ngayKhoiChieu, danhGia} = this.state.data;
     let {messageError} = this.state;
+    let isValid = true;
+    for (let key in messageError) {
+      if (messageError[key] !== "" && messageError[key] !== "true") {
+          isValid = false;
+          break;
+        }
+    };
     if(!tenPhim || !trailer || !this.state.images || !ngayKhoiChieu || !danhGia || !moTa) {
       if(!tenPhim){
         messageError.tenPhim = 'Tên phim đang trống';
@@ -142,6 +148,9 @@ class MovieManageModal extends Component {
       this.setState({ messageError: messageError});
       return;
     }
+    if(!this.state.isValidation || !isValid){
+      return;
+    };
     if (this.props.isAddMovie) {
       this.props.addNewMovie(this.state.data);
     } else {

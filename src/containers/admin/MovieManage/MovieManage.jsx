@@ -106,7 +106,6 @@ class MovieManage extends Component {
       } else {
         formData.append("File", data.hinhAnh, data.hinhAnh.name);
       }
-      console.log(formData.get('danhGia'));
     }
     this.props.addNewMovie(formData);
   };
@@ -129,7 +128,6 @@ class MovieManage extends Component {
           formData.append("File", data.hinhAnh, data.hinhAnh.name);
         }
       }
-      console.log(formData.get('danhGia'));
     }
     this.props.updateMovie(formData,this.props.accessToken);
   }
