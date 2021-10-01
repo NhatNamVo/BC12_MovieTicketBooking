@@ -31,7 +31,9 @@ class UserLogin extends Component {
                 <Link to="/admin">Quản lý</Link>
               </li>
             ) : (
-              ""
+              <li>
+                <Link to="/userInfo">Thông tin</Link>
+              </li>
             )}
             <li onClick ={this.logOut}><Link to={'/'}>Logout</Link></li>
           </ul>

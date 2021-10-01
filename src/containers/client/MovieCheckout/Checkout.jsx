@@ -1,6 +1,19 @@
 import ticketApi from "apis/ticketApi";
 import {Redirect} from 'react-router-dom';
 import React, { Component } from "react";
+<<<<<<< HEAD
+import { Link } from "react-router-dom";
+import "../MovieCheckout/Checkout.scss";
+export default class Checkout extends Component {
+
+
+  componentDidMount() {
+    const { choseSeat } = this.props.location;
+    console.log(choseSeat);
+  }
+
+  render() {
+=======
 import FailBooking from "./Popup/FailBooking";
 import "../MovieCheckout/Checkout.scss";
 export default class Checkout extends Component {
@@ -26,6 +39,7 @@ export default class Checkout extends Component {
   render() {
     console.log(this.props);
     if(!this.props.location.seatChose) return (<Redirect to = "/"/>)
+>>>>>>> a985ec34b4b021dd8e3ea400729dd73cd20d7ac1
     const { choseSeat, totalPrice, history } = this.props.location.seatChose;
     const { movieInfo } = this.props.location;
     console.log(this.props);
@@ -34,7 +48,29 @@ export default class Checkout extends Component {
         <div
           className="checkout__banner "
           style={{ backgroundImage: `url(${movieInfo.hinhAnh})` }}
-        ></div>
+        >
+          <div className="container">
+            <div className="theater__banner__content">
+              <h3 className="title">{movieInfo.tenPhim}</h3>
+              <div className="tags">
+                <a href="#">Phim</a>
+                <a href="#">2D</a>
+                <a href="#">3D</a>
+                <a href="#">Mỹ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="page-title">
+          <div className="container">
+            <div className="page-title-content">
+              <div className="item-title ">
+                <div className="theater-date">{movieInfo.ngayChieu}</div>
+                <div className="theater-time">{movieInfo.gioChieu}</div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="checkout-content">
           <div className="container">
             <div className="row">
@@ -104,6 +140,15 @@ export default class Checkout extends Component {
                     </li>
                   </ul>
                   <div className="button">
+<<<<<<< HEAD
+                    <Link
+                      to="/"  
+                      className="btn seatChose-btn"
+                    >
+                      THANH TOÁN
+                    </Link>
+                    </div>
+=======
                     <div className="btn btn-detail" onClick={this.onBooking}>
                       THANH TOÁN
                       <span style={{marginLeft: '5px'}}
@@ -116,6 +161,7 @@ export default class Checkout extends Component {
                       />
                     </div>
                   </div>
+>>>>>>> a985ec34b4b021dd8e3ea400729dd73cd20d7ac1
                 </div>
               </div>
             </div>

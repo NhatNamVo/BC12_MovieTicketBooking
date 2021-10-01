@@ -77,8 +77,15 @@ class SeatPlan extends Component {
   postSeatChose = (e) => {
     const paymentBtn = e.target.closest(".seatChose-btn");
     if (!!paymentBtn) {
+<<<<<<< HEAD
+      if (this.state.orderTicket.danhSachVe.length !== 0) {
+        console.log(this.state.orderTicket);
+        this.setState({loaddingPost: true})
+        this.postTitketOrder();
+=======
       if (this.state.orderTicket.danhSachVe.length == 0) {
         this.setState({isBooking:true})
+>>>>>>> a985ec34b4b021dd8e3ea400729dd73cd20d7ac1
       }
     }
   };
@@ -144,7 +151,13 @@ class SeatPlan extends Component {
           </div>
         </div>
         <div className="seat-container container">
+<<<<<<< HEAD
+          <div className="screen" >
+            <img src="/images/theater.png" alt="" />
+          </div>
+=======
           <div className="screen">Màn hình</div>
+>>>>>>> a985ec34b4b021dd8e3ea400729dd73cd20d7ac1
           <SeatLayout
             seats={seat}
             choseSeat={this.choseSeat}
