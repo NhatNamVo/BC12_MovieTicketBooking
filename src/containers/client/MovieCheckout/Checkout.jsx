@@ -1,17 +1,16 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "../MovieCheckout/Checkout.scss";
 export default class Checkout extends Component {
+
+
   componentDidMount() {
     const { choseSeat } = this.props.location;
     console.log(choseSeat);
   }
-  // viTri =(choseSeat)=>{
-  //   for(let i=0;i<choseSeat.length;i++){
-  //      choseSeat[i].toString();
-  //   }
-  // }
+
   render() {
-    const { choseSeat, totalPrice,history } = this.props.location.seatChose;
+    const { choseSeat, totalPrice, history } = this.props.location.seatChose;
     const { movieInfo } = this.props.location;
     console.log(this.props);
     return (
@@ -19,7 +18,29 @@ export default class Checkout extends Component {
         <div
           className="checkout__banner "
           style={{ backgroundImage: `url(${movieInfo.hinhAnh})` }}
-        ></div>
+        >
+          <div className="container">
+            <div className="theater__banner__content">
+              <h3 className="title">{movieInfo.tenPhim}</h3>
+              <div className="tags">
+                <a href="#">Phim</a>
+                <a href="#">2D</a>
+                <a href="#">3D</a>
+                <a href="#">Mỹ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="page-title">
+          <div className="container">
+            <div className="page-title-content">
+              <div className="item-title ">
+                <div className="theater-date">{movieInfo.ngayChieu}</div>
+                <div className="theater-time">{movieInfo.gioChieu}</div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="checkout-content">
           <div className="container">
             <div className="row">
@@ -89,9 +110,13 @@ export default class Checkout extends Component {
                     </li>
                   </ul>
                   <div className="button">
-                  <div className="btn btn-detail">THANH TOÁN</div>
-                  </div>
-                  
+                    <Link
+                      to="/"  
+                      className="btn seatChose-btn"
+                    >
+                      THANH TOÁN
+                    </Link>
+                    </div>
                 </div>
               </div>
             </div>

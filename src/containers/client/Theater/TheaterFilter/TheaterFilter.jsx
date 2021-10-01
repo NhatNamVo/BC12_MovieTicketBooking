@@ -4,7 +4,7 @@ import { FaChevronDown } from "react-icons/fa";
 import "../TheaterFilter/TheaterFilter.scss";
 import { actFetchTheaterFilter } from "../TheaterFilter/module/theaterFilterAction";
 import { actFetchTheater } from "../module/theaterAction";
-import TheaterDate from "./TheaterDate/TheaterDate";
+
 class TheaterFilter extends Component {
   state = {
     sort: false,
@@ -31,17 +31,11 @@ class TheaterFilter extends Component {
         this.props.fetchTheater(this.props.sortVal);
         this.setState({ sort: false });
       }
-      if(name==="sortDate"){
-    //     console.log(this.props.allNgayChieu);
-    // this.props.fetchTheaterDate(this.props.allNgayChieu);
-      }
-
-      // this.props.history.push({ pathname: "/theater" });
+     
     }
   };
   render() {
-    const { theater, sort, sortVal ,date} = this.props;
-    console.log(date);
+    const {  sort, sortVal} = this.props;
 
     return (
       <div

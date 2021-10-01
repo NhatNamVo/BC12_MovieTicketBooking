@@ -77,7 +77,7 @@ class SeatPlan extends Component {
   postSeatChose = (e) => {
     const paymentBtn = e.target.closest(".seatChose-btn");
     if (!!paymentBtn) {
-      if (this.state.orderTicket.danhSachVe.length != 0) {
+      if (this.state.orderTicket.danhSachVe.length !== 0) {
         console.log(this.state.orderTicket);
         this.setState({loaddingPost: true})
         this.postTitketOrder();
@@ -156,7 +156,9 @@ class SeatPlan extends Component {
           </div>
         </div>
         <div className="seat-container container">
-          <div className="screen">Man hinh</div>
+          <div className="screen" >
+            <img src="/images/theater.png" alt="" />
+          </div>
           <SeatLayout
             seats={seat}
             choseSeat={this.choseSeat}
