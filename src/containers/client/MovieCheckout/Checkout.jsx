@@ -1,17 +1,32 @@
+import ticketApi from "apis/ticketApi";
+import {Redirect} from 'react-router-dom';
 import React, { Component } from "react";
+import FailBooking from "./Popup/FailBooking";
 import "../MovieCheckout/Checkout.scss";
 export default class Checkout extends Component {
-  componentDidMount() {
-    const { choseSeat } = this.props.location;
-    console.log(choseSeat);
-  }
-  // viTri =(choseSeat)=>{
-  //   for(let i=0;i<choseSeat.length;i++){
-  //      choseSeat[i].toString();
-  //   }
-  // }
+  state = {
+    loaddingPost: false,
+    isBooking: false,
+    isContinueBooking: false,
+  };
+  onBooking = (e) => {
+    this.setState({ loaddingPost: true, isContinueBooking: false });
+    this.postTitketOrder();
+  };
+  postTitketOrder = () => {
+    ticketApi
+      .postTicketOrder(this.props.location.orderTicket, this.props.location.accessToken)
+      .then((res) => {
+        this.setState({ loaddingPost: false, isBooking: true,isContinueBooking: true });
+      })
+      .catch((error) => {
+        this.setState({ loaddingPost: false, isBooking: true,isContinueBooking: false });
+      });
+  };
   render() {
-    const { choseSeat, totalPrice,history } = this.props.location.seatChose;
+    console.log(this.props);
+    if(!this.props.location.seatChose) return (<Redirect to = "/"/>)
+    const { choseSeat, totalPrice, history } = this.props.location.seatChose;
     const { movieInfo } = this.props.location;
     console.log(this.props);
     return (
@@ -89,14 +104,29 @@ export default class Checkout extends Component {
                     </li>
                   </ul>
                   <div className="button">
-                  <div className="btn btn-detail">THANH TOÁN</div>
+                    <div className="btn btn-detail" onClick={this.onBooking}>
+                      THANH TOÁN
+                      <span style={{marginLeft: '5px'}}
+                        className={
+                          "spinner-border spinner-border-sm " +
+                          (!this.state.loaddingPost ? "d-none" : "")
+                        }
+                        role="status"
+                        aria-hidden="true"
+                      />
+                    </div>
                   </div>
-                  
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <FailBooking
+          history={this.props.history}
+          isBooking={this.state.isBooking}
+          bookingAgain={this.bookingAgain}
+          isContinueBooking={this.state.isContinueBooking}
+        />
       </>
     );
   }

@@ -1,7 +1,8 @@
 import PageNotFound from "containers/shared/PageNotFound/PageNotFound";
 import AdminLayout from "layouts/AdminLayout";
 import React, { Component } from "react";
-import { Route, Switch } from "react-router";
+import { connect } from "react-redux";
+import { Redirect, Route, Switch } from "react-router";
 import { adminRoutes } from "routes";
 import "./admin.scss";
 class Admin extends Component {
@@ -12,6 +13,7 @@ class Admin extends Component {
     });
   };
   render() {
+    if(!this.props.currentUser || this.props.currentUser.maLoaiNguoiDung !== 'QuanTri' ) return (<Redirect to="/"/>);
     return (
       <section className="admin-container">
         <Switch>
@@ -22,5 +24,7 @@ class Admin extends Component {
     );
   }
 }
-
-export default Admin;
+const mapStateToProps = (state) => ({
+  currentUser: state.authUserReducer.currentUser,
+})
+export default connect(mapStateToProps)(Admin);

@@ -77,23 +77,12 @@ class SeatPlan extends Component {
   postSeatChose = (e) => {
     const paymentBtn = e.target.closest(".seatChose-btn");
     if (!!paymentBtn) {
-      if (this.state.orderTicket.danhSachVe.length != 0) {
-        console.log(this.state.orderTicket);
-        this.setState({loaddingPost: true})
-        this.postTitketOrder();
+      if (this.state.orderTicket.danhSachVe.length == 0) {
+        this.setState({isBooking:true})
       }
     }
   };
-  postTitketOrder = () => {
-    ticketApi.postTicketOrder(this.state.orderTicket,this.props.accessToken)
-    .then(res=>{
-      this.setState({loaddingPost: false})
-      // this.props.history.push('/checkout');
-    })
-    .catch(error=>{
-      this.setState({loaddingPost: false,isBooking:true});
-    })
-  };
+
   bookingAgain =() => {
     this.setState({loaddingPost: false});
     window.location.reload();
@@ -110,7 +99,6 @@ class SeatPlan extends Component {
     const { thongTinPhim, danhSachGhe } = this.state.theaterRoom;
     const movieInfo = thongTinPhim;
     const seat = danhSachGhe;
-    console.log(this.state.seatChose);
     return (
       <div className="seatPlan-container">
         <div
@@ -156,7 +144,7 @@ class SeatPlan extends Component {
           </div>
         </div>
         <div className="seat-container container">
-          <div className="screen">Man hinh</div>
+          <div className="screen">Màn hình</div>
           <SeatLayout
             seats={seat}
             choseSeat={this.choseSeat}
@@ -167,7 +155,7 @@ class SeatPlan extends Component {
           className="choseSeat-container container"
           onClick={this.postSeatChose}
         >
-          <ChoseBox seatChose={this.state.seatChose} movieInfo={movieInfo} loaddingPost={this.state.loaddingPost}/>
+          <ChoseBox seatChose={this.state.seatChose} movieInfo={movieInfo} orderTicket={this.state.orderTicket} accessToken={this.props.accessToken} loaddingPost={this.state.loaddingPost}/>
         </div>
         <FailNotePopup history = {this.props.history} isBooking={this.state.isBooking} bookingAgain={this.bookingAgain}/>
         <TimeLeftNote history = {this.props.history} isTimeLeft={this.state.isTimeLeft} booking={this.booking} seatChose={this.state.seatChose} bookingAgain={this.bookingAgain} loaddingPost={this.state.loaddingPost}/>

@@ -130,15 +130,17 @@ export const formValid = (name, value, list, messageError) => {
     }
     case 'danhGia':{
       const regex = /^-?\d+$/;
+      
       if(!regex.test(value)){
         status.isvalid = false;
-        status.messageError.soDt = "Không đúng định dạng điểm (0-10)";
+        status.messageError.danhGia = "Không đúng định dạng điểm (0-10)";
       }
-      if(value > 0 && value < 10){
+      const convertNum = parseInt(value);
+      if(convertNum > 0 && convertNum < 10){
         status.isvalid = true;
         status.messageError.danhGia = "true";
       }
-      else if(value < 0 || value > 10){
+      else if(convertNum < 0 || convertNum > 10){
         status.isvalid = false;
         status.messageError.danhGia = "Số điểm vượt mức (0-10)";
       }

@@ -89,10 +89,18 @@ class UserModal extends Component {
     let { messageError, data } = this.state;
     let isValid = true;
     for (let key in messageError) {
-      if (messageError[key] !== "" && messageError[key] !== "true") {
-        isValid = false;
-        break;
+      if(key === "maLoaiNguoiDung"){
+        if(!messageError[key]){
+          isValid = false;
+          break;
+        }
       }
+      else{
+        if (messageError[key] !== "" && messageError[key] !== "true") {
+          isValid = false;
+          break;
+        }
+      } 
     }
     if (
       !taiKhoan ||

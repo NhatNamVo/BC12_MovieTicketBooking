@@ -122,6 +122,7 @@ class MovieManageModal extends Component {
     let isValid = true;
     for (let key in messageError) {
       if (messageError[key] !== "" && messageError[key] !== "true") {
+        debugger;
           isValid = false;
           break;
         }

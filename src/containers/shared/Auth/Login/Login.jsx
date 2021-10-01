@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import background from "assets/image/background_Login.jpg";
 import "../FormLogin.scss";
@@ -125,6 +125,7 @@ class Login extends Component {
     }
   };
   render() {
+    if(!!this.props.currentUser) return (<Redirect to = "/" />);
     const { loadding, error } = this.props;
     return (
       <div
@@ -174,6 +175,7 @@ class Login extends Component {
   }
 }
 const mapStateToProps = (state) => ({
+  currentUser: state.authUserReducer.currentUser,
   loadding: state.authUserReducer.loadding,
   error: state.authUserReducer.error,
   isLogined: state.authUserReducer.isLogined,
