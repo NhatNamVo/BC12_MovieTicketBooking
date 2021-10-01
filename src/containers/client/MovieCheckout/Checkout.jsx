@@ -1,4 +1,7 @@
+import ticketApi from "apis/ticketApi";
+import {Redirect} from 'react-router-dom';
 import React, { Component } from "react";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 import "../MovieCheckout/Checkout.scss";
 export default class Checkout extends Component {
@@ -10,6 +13,33 @@ export default class Checkout extends Component {
   }
 
   render() {
+=======
+import FailBooking from "./Popup/FailBooking";
+import "../MovieCheckout/Checkout.scss";
+export default class Checkout extends Component {
+  state = {
+    loaddingPost: false,
+    isBooking: false,
+    isContinueBooking: false,
+  };
+  onBooking = (e) => {
+    this.setState({ loaddingPost: true, isContinueBooking: false });
+    this.postTitketOrder();
+  };
+  postTitketOrder = () => {
+    ticketApi
+      .postTicketOrder(this.props.location.orderTicket, this.props.location.accessToken)
+      .then((res) => {
+        this.setState({ loaddingPost: false, isBooking: true,isContinueBooking: true });
+      })
+      .catch((error) => {
+        this.setState({ loaddingPost: false, isBooking: true,isContinueBooking: false });
+      });
+  };
+  render() {
+    console.log(this.props);
+    if(!this.props.location.seatChose) return (<Redirect to = "/"/>)
+>>>>>>> a985ec34b4b021dd8e3ea400729dd73cd20d7ac1
     const { choseSeat, totalPrice, history } = this.props.location.seatChose;
     const { movieInfo } = this.props.location;
     console.log(this.props);
@@ -110,6 +140,7 @@ export default class Checkout extends Component {
                     </li>
                   </ul>
                   <div className="button">
+<<<<<<< HEAD
                     <Link
                       to="/"  
                       className="btn seatChose-btn"
@@ -117,11 +148,31 @@ export default class Checkout extends Component {
                       THANH TOÁN
                     </Link>
                     </div>
+=======
+                    <div className="btn btn-detail" onClick={this.onBooking}>
+                      THANH TOÁN
+                      <span style={{marginLeft: '5px'}}
+                        className={
+                          "spinner-border spinner-border-sm " +
+                          (!this.state.loaddingPost ? "d-none" : "")
+                        }
+                        role="status"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </div>
+>>>>>>> a985ec34b4b021dd8e3ea400729dd73cd20d7ac1
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <FailBooking
+          history={this.props.history}
+          isBooking={this.state.isBooking}
+          bookingAgain={this.bookingAgain}
+          isContinueBooking={this.state.isContinueBooking}
+        />
       </>
     );
   }

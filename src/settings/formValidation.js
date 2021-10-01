@@ -1,4 +1,4 @@
-export const formValid = (name, value, userList, messageError) => {
+export const formValid = (name, value, list, messageError) => {
   let status = {
     isvalid: true,
     messageError: null,
@@ -6,7 +6,7 @@ export const formValid = (name, value, userList, messageError) => {
   status.messageError = {...messageError};
   switch (name) {
     case "taiKhoan": {
-      const checkUser = userList.findIndex((user) => {
+      const checkUser = list.findIndex((user) => {
         return user.taiKhoan === value;
       });
       if (checkUser !== -1) {
@@ -48,7 +48,7 @@ export const formValid = (name, value, userList, messageError) => {
         status.isvalid = true;
         status.messageError.email = "true";
       }
-      const checkUser = userList.findIndex((user) => {
+      const checkUser = list.findIndex((user) => {
         return user.email === value;
       });
       if(checkUser !== -1){
@@ -103,6 +103,79 @@ export const formValid = (name, value, userList, messageError) => {
       if(value !== ''){
         status.isvalid = true;
         status.messageError.maLoaiNguoiDung = true;
+      }
+      return status;
+    }
+    case 'tenPhim':{
+      if(value.length > 0){
+        status.isvalid = true;
+        status.messageError.tenPhim = "true";
+      }
+      if(value === ''){
+        status.isvalid = true;
+        status.messageError.tenPhim = '';
+      }
+      return status;
+    }
+    case 'trailer':{
+      if(value.length > 0){
+        status.isvalid = true;
+        status.messageError.trailer = "true";
+      }
+      if(value === ''){
+        status.isvalid = true;
+        status.messageError.trailer = '';
+      }
+      return status;
+    }
+    case 'danhGia':{
+      const regex = /^-?\d+$/;
+      
+      if(!regex.test(value)){
+        status.isvalid = false;
+        status.messageError.danhGia = "Không đúng định dạng điểm (0-10)";
+      }
+      const convertNum = parseInt(value);
+      if(convertNum > 0 && convertNum < 10){
+        status.isvalid = true;
+        status.messageError.danhGia = "true";
+      }
+      else if(convertNum < 0 || convertNum > 10){
+        status.isvalid = false;
+        status.messageError.danhGia = "Số điểm vượt mức (0-10)";
+      }
+      if(value === ''){
+        status.isvalid = true;
+        status.messageError.danhGia = '';
+      }
+      return status;
+    }
+    case 'ngayKhoiChieu':{
+      if(value.length > 0){
+        status.isvalid = true;
+        status.messageError.ngayKhoiChieu = "true";
+      }
+      if(value === ''){
+        status.isvalid = true;
+        status.messageError.ngayKhoiChieu = '';
+      }
+      return status;
+    }
+    case 'moTa':{
+      if(value.length > 0){
+        status.isvalid = true;
+        status.messageError.moTa = "true";
+      }
+      if(value === ''){
+        status.isvalid = true;
+        status.messageError.moTa = '';
+      }
+      return status;
+    }
+    case 'hinhAnh':{
+      if(value.name.length > 0){
+        status.isvalid = true;
+        status.messageError.hinhAnh = "true";
       }
       return status;
     }

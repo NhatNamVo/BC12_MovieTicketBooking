@@ -87,56 +87,70 @@ class UserModal extends Component {
     const { taiKhoan, matKhau, email, soDt, hoTen, maLoaiNguoiDung } =
       this.state.data;
     let { messageError, data } = this.state;
-    if (!this.state.isValidation) {
+    let isValid = true;
+    for (let key in messageError) {
+      if(key === "maLoaiNguoiDung"){
+        if(!messageError[key]){
+          isValid = false;
+          break;
+        }
+      }
+      else{
+        if (messageError[key] !== "" && messageError[key] !== "true") {
+          isValid = false;
+          break;
+        }
+      } 
+    }
+    if (
+      !taiKhoan ||
+      !matKhau ||
+      !email ||
+      !soDt ||
+      !hoTen ||
+      !maLoaiNguoiDung
+    ) {
+      if (!taiKhoan) {
+        messageError.taiKhoan = "Tài khoản trống";
+      }
+      if (!matKhau) {
+        messageError.matKhau = "Mật khẩu trống";
+      }
+      if (!email) {
+        messageError.email = "Email trống";
+      }
+      if (!soDt) {
+        messageError.soDt = "Số điện thoại trống";
+      }
+      if (!hoTen) {
+        messageError.hoTen = "Họ tên trống";
+      }
+      if (!maLoaiNguoiDung) {
+        messageError.maLoaiNguoiDung = false;
+      }
+      this.setState({ messageError: messageError });
       return;
     } else {
-      if (
-        !taiKhoan ||
-        !matKhau ||
-        !email ||
-        !soDt ||
-        !hoTen ||
-        !maLoaiNguoiDung
-      ) {
-        if (!taiKhoan) {
-          messageError.taiKhoan = "Tài khoản trống";
-        }
-        if (!matKhau) {
-          messageError.matKhau = "Mật khẩu trống";
-        }
-        if (!email) {
-          messageError.email = "Email trống";
-        }
-        if (!soDt) {
-          messageError.soDt = "Số điện thoại trống";
-        }
-        if (!hoTen) {
-          messageError.hoTen = "Họ tên trống";
-        }
-        if (!maLoaiNguoiDung) {
-          messageError.maLoaiNguoiDung = false;
-        }
-        this.setState({ messageError: messageError });
+      if (!this.state.isValidation || !isValid) {
         return;
+      }
+      if (this.props.isAddUser) {
+        this.props.addNewUser(this.state.data);
+        if (!this.props.loadingModal) {
+          this.setState({ isNote: true });
+          this.wait = setTimeout(() => {
+            document.querySelector("#exitModal").click();
+            this.setState({ isNote: false });
+          }, 1500);
+        }
       } else {
-        if (this.props.isAddUser) {
-          this.props.addNewUser(this.state.data);
-          if(!this.props.loadingModal){
-            this.setState({isNote:true});
-          }
+        this.props.updateUser(this.state.data);
+        if (!this.props.loadingModal) {
+          this.setState({ isNote: true });
           this.wait = setTimeout(() => {
-            document.querySelector('#exitModal').click();
-            this.setState({isNote:false});
-          },1500);
-        } else {
-          this.props.updateUser(this.state.data);
-          if(!this.props.loadingModal){
-            this.setState({isNote:true});
-          }
-          this.wait = setTimeout(() => {
-            document.querySelector('#exitModal').click();
-            this.setState({isNote:false});
-          },1500);
+            document.querySelector("#exitModal").click();
+            this.setState({ isNote: false });
+          }, 1500);
         }
       }
     }

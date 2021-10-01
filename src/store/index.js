@@ -8,6 +8,7 @@ import movieListOptionReducer from 'containers/client/Movie/module/reducer';
 import authUserReducer from 'containers/shared/Auth/module/reducers';
 import theaterReducer from 'containers/client/Theater/module/theaterReducer';
 import theaterFilterReducer from 'containers/client/Theater/TheaterFilter/module/theaterFilterReducer';
+import MovieAdminManager from 'containers/admin/MovieManage/Modules/reducer';
 import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage';
@@ -21,11 +22,12 @@ const rootReducer = combineReducers({
   theaterReducer,
   theaterFilterReducer,
   UserAccountReducer,
+  MovieAdminManager,
 });
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['movieReducer','movieDetailReducer','pagePanigationReducer','movieListOptionReducer','authUserReducer','theaterReducer','theaterFilterReducer','UserAccountReducer'],
+  blacklist: ['movieReducer','movieDetailReducer','pagePanigationReducer','movieListOptionReducer','authUserReducer','theaterReducer','theaterFilterReducer','UserAccountReducer','MovieAdminManager'],
   // whitelist: ['authUserReducer'],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
