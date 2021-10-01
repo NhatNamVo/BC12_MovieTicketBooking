@@ -4,6 +4,7 @@ import "../FormLogin.scss";
 import { GROUP_ID } from "settings/apiConfig";
 import { actRegister } from "../module/actions";
 import { connect } from "react-redux";
+import { Redirect } from "react-router";
 class Register extends Component {
   state = {
     isPass: true,
@@ -98,6 +99,7 @@ class Register extends Component {
     this.props.register(newUser,this.props.history);
   };
   render() {
+    if(!!this.props.currentUser) return (<Redirect to = "/" />);
     const {loadding, error} = this.props;
     return (
       <div
@@ -205,6 +207,7 @@ class Register extends Component {
   }
 }
 const mapStateToProps = state => ({
+  currentUser: state.authUserReducer.currentUser,
   loadding: state.authUserReducer.loadding,
   error: state.authUserReducer.error,
 })
