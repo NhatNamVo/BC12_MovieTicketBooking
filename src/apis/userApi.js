@@ -25,6 +25,9 @@ const userApi = {
   },
   deleteUserAccount: (userAccount, token) => {
     return callApi(`QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${userAccount}`,"DELETE",null, token);
+  },
+  fetchBookingHistory:(userName)=>{
+    return callApi("QuanLyNguoiDung/ThongTinTaiKhoan","POST",userName)
   }
 };
 

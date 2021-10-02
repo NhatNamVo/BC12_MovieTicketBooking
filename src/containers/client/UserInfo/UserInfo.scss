@@ -1,69 +1,71 @@
-.user__banner{
+.user__banner {
     color: #fff;
     position: relative;
     background-size: cover;
     background-repeat: no-repeat;
     padding-top: 212px;
-    padding-bottom: 112px;}
-.user__content{
-    display:flex;
-    color: #fff;   
-    .user-card{
+    padding-bottom: 112px;
+    .user__content {
+        position: relative;
+        display: flex;
         justify-content: center;
+        color: #fff;
         .checkout-card {
             padding: 30px;
             margin-bottom: 30px;
             background: #032055;
             border-radius: 20px;
-            h5 {
-                border-bottom: 1px solid #11326f;
-                padding-bottom: 23px;
-                margin-bottom: 20px;
-            }
-            .payment-card {
-                justify-content: space-between;
-                
-                .user__item{
-                    display: flex;
-                    // text-align: center; 
-                    p {
-                        font-weight: 500;
+            justify-content: center;
+            .tab-content{
+                width:630px;
+                height:300px;
+                .title {
+                    border-bottom: 1px solid #11326f;
+                    margin-bottom: 20px;
+                }
+                .payment-card {
+                    justify-content: space-between;
+                    .user__item {
+                        display: flex;
+                        margin-bottom: 10px;
+                        text-align: center;
+                        p {
+                            font-weight: 500;
+                            color: #fff;
+                            width: 123px;
+                            // height: 5px;
+                            border-radius: 10px;
+                            border: 1px solid #11326f;
+                            background: 0 0;
+                            border: 1px solid #2d4186;
+                            padding: 0 10px;
+                        }
+                        span {
+                            margin-left: 10px;
+                        }
+                    }
+                }
+                .user-btn {
+                    text-align: right;
+                    .seatChose-btn {
+                        padding: 8px 40px;
+                        border-radius: 30px;
+                        background-color: #9eb1eb;
+                        border: none;
+                        font-size: 14px;
+                        font-weight: 700;
                         color: #fff;
-                        width: 123px;
-                        // height: 5px;
-                        border-radius: 10px;
-                        border: 1px solid #11326f;
-                        background: 0 0;
-                        border: 1px solid #2d4186;
-                        padding:0 10px;
                     }
-                    span{
-                        margin-left: 10px;
+                    .seatChose-btn:hover {
+                        box-shadow: 0px 7px 17px 0 #9eb1eb96;
                     }
-                }
-                
-            }
-            .user-btn{
-                text-align: right;
-                .seatChose-btn {
-                    padding: 8px 40px;
-                    border-radius: 30px;
-                    background-color: #9eb1eb;
-                    border: none;
-                    font-size: 14px;
-                    font-weight: 700;
-                    color: #fff;
-                    
-                }
-                .seatChose-btn:hover {
-                    box-shadow: 0px 7px 17px 0 #9eb1eb96;
                 }
             }
             
         }
     }
-    
 }
+
 .user__banner::before {
     position: absolute;
     content: "";

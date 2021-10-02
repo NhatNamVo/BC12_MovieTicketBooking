@@ -1,5 +1,6 @@
 import {
   CHECK_USER_SAVE,
+  FETCH_BOOKING_HISTORY,
   LOGIN_FAIL,
   LOGIN_REQUEST,
   LOGIN_SUCESS,
@@ -16,6 +17,27 @@ const initialState = {
   isLogined: true,
   error: "",
   loadding: false,
+  thongTinDatVe: [
+    {
+      "danhSachGhe": [
+        {
+          "maHeThongRap": "BHDStar",
+          "tenHeThongRap": "BHD Star Cineplex - Phạm Hùng",
+          "maCumRap": "Rạp 5",
+          "tenCumRap": "Rạp 5",
+          "maRap": 475,
+          "tenRap": "Rạp 5",
+          "maGhe": 51284,
+          "tenGhe": "44"
+        }
+      ],
+      "maVe": 67175,
+      "ngayDat": "2021-08-29T11:40:47.733",
+      "tenPhim": "John Wick II",
+      "giaVe": 90000,
+      "thoiLuongPhim": 120
+    },
+  ],
 };
 
 const authUserReducer = (state = initialState, { type, payload }) => {
@@ -55,7 +77,9 @@ const authUserReducer = (state = initialState, { type, payload }) => {
       };
     case REGISTER_FAIL:
       return { ...state, loadding: false, isRegister: false, error: payload };
-    default:
+    case FETCH_BOOKING_HISTORY:
+      return { ...state,thongTinDatVe:payload.thongTinDatVe}
+      default:
       return state;
   }
 };

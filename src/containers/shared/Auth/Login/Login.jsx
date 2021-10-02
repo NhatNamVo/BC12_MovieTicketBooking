@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import background from "assets/image/background_Login.jpg";
 import "../FormLogin.scss";
-import { actLogin, actSaveUserCheck } from "../module/actions";
+import { actFetchBookingHistory, actLogin, actSaveUserCheck } from "../module/actions";
 class Login extends Component {
   state = {
     isPass: true,
@@ -49,6 +49,7 @@ class Login extends Component {
     }
     this.props.login(user, this.props.history, this.props.isLogined,this.props.isRegister);
   };
+  
   checkRegister = () => {
     const { isRegister, userRegister } = this.props;
     if (!!isRegister) {
@@ -189,5 +190,6 @@ const mapDispatchToProps = (dispatch) => ({
   checked: (ischecked) => {
     dispatch(actSaveUserCheck(ischecked));
   },
+  
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
