@@ -65,18 +65,27 @@ const movieReducer = (state = initialState, { type, payload }) => {
         return movie.dangChieu === true;
       });
       const hotMovie = payload.filter((movie) => {
-        return movie.hot === true;
+        return movie.danhGia === 10;
       });
-      const newMovie = payload.filter((movie) => {
-        return movie.sapChieu === true;
+      const currentDate = new Date();
+      const currentMonth = currentDate.getMonth();
+      const currentYear = currentDate.getFullYear();
+      const currentYearMovie = payload.filter(movie=>{
+        const movieYear = new Date(movie.ngayKhoiChieu).getFullYear();
+        return movieYear === currentYear;
+      });
+      
+      const newMovie = currentYearMovie.filter((movie) => {
+        const movieMonth = new Date(movie.ngayKhoiChieu).getMonth();
+        return (currentMonth-1 <= movieMonth && movieMonth == currentMonth);
       });
       const currentMovienew = payload[state.currentMovieIdx];
       return {
         ...state,
         listMovie: payload,
         loading: false,
-        newMovie: payload,
-        hotMovie: payload,
+        newMovie: newMovie,
+        hotMovie: hotMovie,
         showingMovie: payload,
         currentMovienew: currentMovienew,
       };

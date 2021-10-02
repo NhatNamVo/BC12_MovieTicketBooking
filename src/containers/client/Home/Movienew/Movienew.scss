@@ -1,19 +1,56 @@
 .film-background {
   position: relative;
   width: 100%;
-  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 900px !important;
+  .movieNew-container {
+    padding-top: 30px;
+    color: #000;
+    .movieHome__title {
+      // color: #032055;
+      color: #31d7a9;
+      font-weight: 700;
+      .movieHome__titleBorder {
+        height: 3px;
+        &:nth-of-type(1) {
+          background-color: #032055;
+        }
+      }
+    }
+  }
   .currentFilm {
     justify-content: space-between;
     .currentFilm-info {
+      font-size: 18px;
+      color: #032055;
+      .currentFilm-title {
+        font-size: 28px;
+        font-weight: 700;
+      }
       .currentFilm-rate {
         margin-right: 30px;
       }
       .currentFilm-rate,
       .currentFilm-date {
         display: inline-block;
+        i {
+          margin-right: 5px;
+        }
+      }
+      .currentFilmInfo-btn {
+        a {
+          padding: 8px 20px;
+          border-radius: 20px;
+          background-color: #032055;
+          font-weight: 500;
+          transition: box-shadow 0.3s;
+          &:hover {
+            color: #31d7a9;
+            box-shadow: 0 5px 14px 0 #032055;
+          }
+        }
       }
     }
     .currentFilm-profileImg {
@@ -24,6 +61,8 @@
         width: 300px;
         height: 400px;
         box-shadow: 0px 0px 20px 3px #3a3a3a;
+        border-radius: 20px;
+        overflow: hidden;
         img {
           width: 100%;
           height: 100%;
@@ -52,7 +91,6 @@
         .video__button:hover {
           box-shadow: 0px 0px 20px 0px #fff;
         }
-        
       }
     }
   }
@@ -65,6 +103,27 @@
     width: 100%;
     height: 390px;
     padding: 35px 0;
+    .movieNewList{
+      position: relative;
+      .btn-changeSlide{
+        position: absolute;
+        top: 30%;
+        font-size: 50px;
+        font-weight: 700;
+        cursor: pointer;
+        opacity: 0.3;
+        transition: opacity 0.5s;
+        &:hover{
+          opacity: 1;
+        }
+      }
+      .movieNewList-prev{
+        left: 0;
+      }
+      .movieNewList-next{
+        right: 0;
+      }
+    }
     .movieList-content {
       padding: 0 30px;
       .movieList-container {
@@ -77,18 +136,27 @@
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(to bottom, rgba(0, 0, 0, 0.71), rgba(0, 0, 0, 0.6));
-          transition: background-image 1s ease-in-out;
+          background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.71),
+            rgba(0, 0, 0, 0.6)
+          );
+          opacity: 1;
+          transition: background-image 1s, opacity 0.5s;
         }
         &:hover {
-          &:after {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
-          }
+            &:after {
+              opacity: 0;
+            }
         }
       }
       .active {
         &:after {
-          background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+          background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.3),
+            rgba(0, 0, 0, 0.1)
+          );
         }
       }
       .movieList-text {
@@ -114,7 +182,7 @@
         }
       }
     }
-    .slick-dots {
+    .slick-dots, .slick-next, .slick-prev {
       display: none !important;
     }
   }

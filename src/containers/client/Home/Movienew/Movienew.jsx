@@ -14,13 +14,17 @@ class Movienew extends Component {
     return (
       <div
         style={{
-          height: "900px",
           backgroundImage: `url(${this.state.background[0].imgUrl})`,
         }}
         className="film-background movie-container"
       >
         <div className="container movie-container movieNew-container">
-          <h3>Phim sắp chiếu</h3>
+        <div className="movieTitle">
+          <h4 className="movieHome__title">Phim mới nhất
+            <div className="movieHome__titleBorder"></div>
+            <div className="movieHome__titleBorder"></div>
+          </h4>
+          </div>
           <CurrentMovienew
             match={match}
             history={history}

@@ -13,7 +13,6 @@ class Home extends Component {
     return (
       <div>
         <Carousel match = {match} history={history} location={location}/>
-        <Movieshow match = {match} history={history} location={location}/>
         <Moviehot match = {match} history={history} location={location}/>
         <Movienew match = {match} history={history} location={location}/>
       </div>
