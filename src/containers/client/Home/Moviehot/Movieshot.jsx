@@ -5,10 +5,9 @@ import { connect } from "react-redux";
 import "containers/shared/MovieItem/Movieshow.scss";
 import { Link } from "react-router-dom";
 class Moviehot extends Component {
-  // changeToMoviePage = () => {
-  //   this.props.history.push("/movie");
-  //   window.location.reload();
-  // };
+  changeToMoviePage = () => {
+    this.props.history.push("/movie");
+  };
   render() {
     const hotMovie = this.props.hotMovie.slice(0, 8);
     return (
@@ -19,10 +18,8 @@ class Moviehot extends Component {
             <div className="movieHome__titleBorder"></div>
             <div className="movieHome__titleBorder"></div>
           </h4>
-          <div className="movieTitle-btn">
-            <Link to="/movie">
+          <div className="movieTitle-btn" onClick={this.changeToMoviePage}>
               Xem thêm<i class="fa fa-film"></i>
-            </Link>
           </div>
         </div>
         <div className="row">{renderMovie(MovieItem, hotMovie)}</div>
