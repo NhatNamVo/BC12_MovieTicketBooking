@@ -3,21 +3,38 @@ import Slider from "react-slick";
 import MovieTimePlan from "containers/shared/TimePlan/MovieTimePlan";
 import { connect } from "react-redux";
 import { actChangeCurrentMovieNew } from "../module/actions";
-import findSlickDotActive from "./findSlickActive";
-import changeCurrentMovie from "./changeCurrentMovie";
+
 class MovienewList extends Component {
+  state = {
+    slideItem: 4,
+  }
+  changeSlide = (event) => {
+    const nextBtn = event.target.closest('.movieNewList-next');
+    const prevBtn = event.target.closest('.movieNewList-prev');
+    const slickNextBtn = document.querySelector('.slick-next');
+    const slickPrevBtn = document.querySelector('.slick-prev');
+    if(!!nextBtn){
+      slickNextBtn.click();
+    }
+    else if(!!prevBtn){
+      slickPrevBtn.click();
+    }
+  }
   render() {
     const settings = {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 4,
+      slidesToShow: this.state.slideItem,
       slidesToScroll: 2,
     };
     const { newMovie, currentMovieIdx } = this.props;
     return (
       <>
         <div className="container movieNewList">
+          <div className="movieNewList-prev btn-changeSlide" onClick={this.changeSlide}>
+          <i class="fa fa-angle-left"></i>
+          </div>
           <Slider {...settings}>
             {newMovie.map((item, idx) => {
               return (
@@ -43,7 +60,7 @@ class MovienewList extends Component {
                       </div>
                       <div className="movieList-text">
                         <h6>{item.tenPhim}</h6>
-                        <p>{MovieTimePlan(item.ngayKhoiChieu)}</p>
+                        <p>{new Date(item.ngayKhoiChieu).toLocaleDateString()}</p>
                       </div>
                     </div>
                   </div>
@@ -51,6 +68,9 @@ class MovienewList extends Component {
               );
             })}
           </Slider>
+          <div className="movieNewList-next btn-changeSlide" onClick={this.changeSlide}>
+          <i class="fa fa-angle-right"></i>
+          </div>
         </div>
       </>
     );

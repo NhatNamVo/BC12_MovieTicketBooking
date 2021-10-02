@@ -18,6 +18,7 @@ class MovieItem extends Component {
         <div className="movieItem-content">
           <div className="movie-poster">
             <Link to={`/movie-detail/${maPhim}`}>
+              <div className="poster-img">
               <img
                 className="card-img-top"
                 src={hinhAnh}
@@ -29,18 +30,20 @@ class MovieItem extends Component {
                   }
                 }}
               />
-              <div className="movieItem-title">
-                <h4 className="movieItem-title">{tenPhim}</h4>
-              </div>
-            </Link>
-          </div>
-          <div className="movieItem-info">
-            <div className="date">{MovieTimePlan(ngayKhoiChieu)}</div>
-            <div className="rate">
+              <div className="rate">
               <i class="fa fa-star"></i>
               {danhGia}
             </div>
+              </div>
+              <div className="movieItem-title">
+                <h5 className="movieItem-title">{tenPhim}</h5>
+              </div>
+            </Link>
           </div>
+          {/* <div className="movieItem-info">
+            <div className="date">{MovieTimePlan(ngayKhoiChieu)}</div>
+            
+          </div> */}
         </div>
       </div>
     );

@@ -11,16 +11,16 @@ class CurrentMovienew extends Component {
       <>
         <div className="currentFilm row">
           <div className="currentFilm-info col-6">
-            <h3 className="currentFilm-title">{tenPhim}</h3>
+            <h4 className="currentFilm-title">{tenPhim}</h4>
             <div className="currentFilm-rate">
               <i class="fa fa-star"></i>
               <span className="rate-mount">{danhGia}</span>
             </div>
             <div className="currentFilm-date">
               <i class="fa fa-calendar"></i>
-              <span className="date">{renderMovie(ngayKhoiChieu)}</span>
+              <span className="date">{new Date(ngayKhoiChieu).toLocaleDateString()}</span>
             </div>
-            <p>{moTa}</p>
+            <p>{moTa?.length>550?moTa.substr(0,550)+'...':moTa}</p>
             <p className="currentFilmInfo-btn">
               <Link to={match.url + "movie-detail/" + maPhim}>Xem thêm</Link>
             </p>
