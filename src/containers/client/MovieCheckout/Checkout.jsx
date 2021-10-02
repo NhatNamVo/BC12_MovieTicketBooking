@@ -34,7 +34,29 @@ export default class Checkout extends Component {
         <div
           className="checkout__banner "
           style={{ backgroundImage: `url(${movieInfo.hinhAnh})` }}
-        ></div>
+        >
+          <div className="container">
+            <div className="theater__banner__content">
+              <h3 className="title">{movieInfo.tenPhim}</h3>
+              <div className="tags">
+                <a href="#">Phim</a>
+                <a href="#">2D</a>
+                <a href="#">3D</a>
+                <a href="#">Mỹ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="page-title">
+          <div className="container">
+            <div className="page-title-content">
+              <div className="item-title ">
+                <div className="theater-date">{movieInfo.ngayChieu}</div>
+                <div className="theater-time">{movieInfo.gioChieu}</div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="checkout-content">
           <div className="container">
             <div className="row">
@@ -104,7 +126,7 @@ export default class Checkout extends Component {
                     </li>
                   </ul>
                   <div className="button">
-                    <div className="btn btn-detail" onClick={this.onBooking}>
+                    <div className="btn seatChose-btn" onClick={this.onBooking}>
                       THANH TOÁN
                       <span style={{marginLeft: '5px'}}
                         className={

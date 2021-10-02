@@ -144,7 +144,7 @@ class SeatPlan extends Component {
           </div>
         </div>
         <div className="seat-container container">
-          <div className="screen">Màn hình</div>
+          <div className="screen"><img src="/images/theater.png" alt="man hinh" /></div>
           <SeatLayout
             seats={seat}
             choseSeat={this.choseSeat}

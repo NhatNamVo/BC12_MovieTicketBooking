@@ -36,12 +36,12 @@
     .seat-container{
         margin-top: 150px;
         .screen{
-            width: 95%;
-            margin: auto;
             text-align: center;
-            height: 60px;
-            background-color: #9EB1EB;
-            border-radius: 20px 20px 0 0;
+            width: 100%;
+            img{
+                width: 500px;
+            }
+        
         }
     }
 }
