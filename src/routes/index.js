@@ -6,6 +6,7 @@ import AdminInfo from 'containers/admin/Home/AdminInfo';
 import Movie from 'containers/client/Movie/Movie';
 import Contact from 'components/Contact/Contact';
 import UserAcount from 'containers/admin/UserAccount/UserAcount';
+import UserInfo from 'containers/client/UserInfo/UserInfo';
 import MovieManage from 'containers/admin/MovieManage/MovieManage';
 import Checkout from 'containers/client/MovieCheckout/Checkout';
 
@@ -52,6 +53,12 @@ export const clientRoutes = [
     exact: false,
     isPrivate: false,
   },  
+  {
+    path: '/userInfo',
+    component: UserInfo,
+    exact: false,
+    isPrivate: true,
+  }, 
 ];
 
 export const adminRoutes = [

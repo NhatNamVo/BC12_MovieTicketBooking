@@ -9,6 +9,7 @@ const {
   REGISTER_REQUEST,
   REGISTER_SUCESS,
   REGISTER_FAIL,
+  FETCH_BOOKING_HISTORY,
 } = require("./types");
 
 const actLoginRequest = () => ({
@@ -123,3 +124,18 @@ export const actRegister = (newUser,history) => {
       });
   };
 };
+
+const actFetchBookingHistorySuccess = (bookingHistory) => ({
+  type: FETCH_BOOKING_HISTORY,
+  payload: bookingHistory,
+});
+export const actFetchBookingHistory=(userName)=>{
+  return (dispatch) => {
+    userApi
+      .fetchBookingHistory(userName)
+      .then((res) => {
+        console.log(res.data.content);
+        dispatch(actFetchBookingHistorySuccess(res.data));        
+      })
+  };
+}
