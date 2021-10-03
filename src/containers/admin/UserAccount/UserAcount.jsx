@@ -151,7 +151,6 @@ class UserAcount extends Component {
           updateUser = {this.updateUser}
           loadingModal={this.props.loadingModal}
           note = {this.props.note}
-          loadingModal = {this.props.loadingModal}
         />
         <DeleteUserNote note={this.props.note} delete={this.deleteUser} idx={this.state.indexUser} userAccount={this.props.userAccountData} loadingModal={this.props.loadingModal} changeIdx={this.changeIdx}/>
       </div>

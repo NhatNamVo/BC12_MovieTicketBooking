@@ -109,7 +109,7 @@ class Register extends Component {
         <div className="login-container">
           <h3 className="login-title">Đăng ký</h3>
           <div className="login-form">
-            <form action="" method="post" className="register-form" onSubmit={this.RegisterSubmit}>
+            <form action="" method="post" className="register-form" onSubmit={this.RegisterSubmit} autoComplete="off">
               <div className="form-group">
                 <div className="form-input">
                   <input

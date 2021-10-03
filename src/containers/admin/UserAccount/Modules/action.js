@@ -1,5 +1,5 @@
 import userApi from "apis/userApi";
-import { CHANGE_PAGE, DELETE_USER_FAIL, DELETE_USER_REQUEST, DELETE_USER_SUCCESS, FETCH_ALL_USER_FAIL, FETCH_ALL_USER_REQUEST, FETCH_ALL_USER_SUCCESS, POST_NEW_USER_FAIL, POST_NEW_USER_REQUEST, POST_NEW_USER_SUCCESS, PUT_USER_UPDATE_FAIL, PUT_USER_UPDATE_REQUEST, PUT_USER_UPDATE_SUCCESS } from "./types";
+import { CHANGE_PAGE, DELETE_USER_FAIL, DELETE_USER_REQUEST, DELETE_USER_SUCCESS, FETCH_ALL_USER_FAIL, FETCH_ALL_USER_REQUEST, FETCH_ALL_USER_SUCCESS, POST_NEW_USER_FAIL, POST_NEW_USER_REQUEST, POST_NEW_USER_SUCCESS, PUT_USER_CLIENT_UPDATE_SUCCESS, PUT_USER_UPDATE_FAIL, PUT_USER_UPDATE_REQUEST, PUT_USER_UPDATE_SUCCESS } from "./types";
 
 export const actChangePage = (changePageID) => ({
   type: CHANGE_PAGE,
@@ -92,7 +92,22 @@ const actUpdateUserInfoFail = (error) => ({
   type: PUT_USER_UPDATE_FAIL,
   payload: error
 });
-
+const actUpdateUserClientSuccess = (data) => ({
+  type: PUT_USER_CLIENT_UPDATE_SUCCESS,
+  payload: data
+})
+export const actUpdateUserClient = (user,token) => {
+  return dispatch => {
+    dispatch(actUpdateUserInfoRequest());
+    userApi.postUpdateUser(user,token)
+    .then(res=>{
+      dispatch(actUpdateUserClientSuccess(res.data));
+    })
+    .catch(error=>{
+      dispatch(actUpdateUserInfoFail(error));
+    });
+  };
+};
 export const actUpdateUser = (user,token) => {
   return dispatch => {
     dispatch(actUpdateUserInfoRequest());

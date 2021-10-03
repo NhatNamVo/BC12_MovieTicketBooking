@@ -241,9 +241,9 @@ body {
         justify-content: space-between;
         margin-bottom: -30px;
         background: #032055;
-        box-shadow: 0px 0px 20px 0px rgba(59, 55, 188, 50%);
         padding: 10px;
-        border-top: 3px solid #31d7a9;
+        border-top: 3px solid #31d7a9;box-shadow: 0px 0px 20px 0px rgba(59, 55, 188, 50%);
+        
         .left-side {
             display: flex;
             padding: 17px;
@@ -297,7 +297,7 @@ body {
                     border: 1px solid #11326f;
                 }
                 :hover {
-                    color: #31d7a9;
+                    color: #fff;
                     box-shadow: 0px 0px 10px 0px #3b37bc;
                 }
                 .active {

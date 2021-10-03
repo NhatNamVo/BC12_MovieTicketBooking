@@ -1,10 +1,30 @@
-.bookingHistory {
-    margin-bottom: 30px;
-    background: #032055;
-    border-radius: 20px;
-    justify-content: center;
-    .title {
-        border-bottom: 1px solid #11326f;
-        margin-bottom: 20px;
+.tab-pane{
+    .bookingHistory {
+        margin-bottom: 30px;
+        background: #032055;
+        border-radius: 20px;
+        overflow-y: scroll;
+        scroll-snap-type: x mandatory;
+        width: 100%;
+        height: 300px;
+        .booking-item {
+            scroll-snap-align: start;
+            margin-bottom: 10px;
+    
+            .row {
+                box-shadow: 0px 0px 20px 0px rgba(59, 55, 188, 50%);
+                padding: 10px;
+                border: 3px solid #31d7a9;
+                border-radius: 20px;
+            }
+        }
+    }
+    ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: #032055;
+    }
+    ::-webkit-scrollbar {
+        width: 3px;
     }
 }
+

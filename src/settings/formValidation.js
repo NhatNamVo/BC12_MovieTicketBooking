@@ -6,17 +6,17 @@ export const formValid = (name, value, list, messageError) => {
   status.messageError = {...messageError};
   switch (name) {
     case "taiKhoan": {
-      const checkUser = list.findIndex((user) => {
-        return user.taiKhoan === value;
-      });
-      if (checkUser !== -1) {
-        status.isvalid = false;
-        status.messageError.taiKhoan = "Tài khoản đã tồn tại";
-      }
-      else{
+      // const checkUser = list.findIndex((user) => {
+      //   return user.taiKhoan === value;
+      // });
+      // if (checkUser !== -1) {
+      //   status.isvalid = false;
+      //   status.messageError.taiKhoan = "Tài khoản đã tồn tại";
+      // }
+      // else{
         status.isvalid = true;
         status.messageError.taiKhoan = "true";
-      }
+      
       if(value === ''){
         status.isvalid = false;
         status.messageError.taiKhoan = "";
