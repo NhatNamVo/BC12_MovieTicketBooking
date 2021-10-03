@@ -2,22 +2,19 @@
   position: relative;
   width: 100%;
   .arrow-prev {
-    position: absolute;
     left: 3%;
-    top: 50%;
-    z-index: 10;
   }
   .arrow-next {
-    position: absolute;
     right: 3%;
-    top: 50%;
-    z-index: 10;
   }
   .arrow-next,
   .arrow-prev {
+    position: absolute;
+    top: 40%;
+    z-index: 10;
     text-align: center;
     color: #fff;
-    font-size: 70px;
+    // font-size: 70px;
     opacity: 0.5;
     transition: opacity 0.3s;
     cursor: pointer;
@@ -27,7 +24,7 @@
   }
   .Carousel-content {
     position: relative;
-    height: 800px;
+    // height: 800px;
     .carousel {
       position: absolute;
       top: 0;
@@ -60,10 +57,60 @@
       width: 50%;
       text-align: left;
       color: #fff;
-      a{
+      a {
         color: #fff;
         text-decoration: none;
       }
+    }
+  }
+}
+
+@import "helpers/mixin.scss";
+@import "helpers/variables.scss";
+
+@include maxResponsive("small-down") {
+  .Carousel-container {
+    .arrow-next,
+    .arrow-prev {
+      font-size: 40px;
+    }
+    .Carousel-content {
+      height: 400px;
+    }
+  }
+}
+@include minResponsive("small") {
+  .Carousel-container {
+    .arrow-next,
+    .arrow-prev {
+      font-size: 50px;
+    }
+    .Carousel-content {
+      height: 600px;
+    }
+  }
+}
+@include minResponsive("large") {
+  .Carousel-container {
+    .arrow-next,
+    .arrow-prev {
+      font-size: 70px;
+    }
+    .Carousel-content {
+      height: 800px;
+    }
+  }
+}
+
+@include minResponsive("extra-large") {
+  .Carousel-container {
+    .arrow-next,
+    .arrow-prev {
+      font-size: 70px;
+    }
+    .Carousel-content {
+      height: 900px;
+      height: 90vh;
     }
   }
 }

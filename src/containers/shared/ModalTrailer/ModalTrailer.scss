@@ -16,20 +16,124 @@
   }
   .trailer-content {
     position: absolute;
-    width: 90%;
     left: 50%;
-    top: 35%;
+    top: 40%;
     text-align: center;
+    transform-origin: center;
     transform: scale(0.0001) translate(-50%, -50%);
     transition: transform 0.5s !important;
   }
   .active {
     transform: scale(1) translate(-50%, -50%);
     iframe {
+      width: 90vw;
+      height: 70vh;
       border-radius: 20px;
       border-color: none;
       box-shadow: 0px 6px 12px 0px #000000bf;
       margin: auto;
+    }
+  }
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+@include maxResponsive('mid-large-down'){
+  .trailer-Modal {
+    i.fa-times{
+      top: 10px;
+      left: 30px;
+      font-size: 25px;
+    }
+    .trailer-content {
+      width: 90vw;
+      top: 35%;
+    }
+    .active {
+      iframe {
+        width: 90vw;
+        height: 60vh;
+      }
+    }
+  }
+}
+@include maxResponsive('large-down'){
+  @media screen and (max-device-height: 420px) {
+    .trailer-Modal {
+      i.fa-times{
+        top: 10px;
+        left: 35px;
+        font-size: 25px;
+      }
+      .trailer-content {
+        width: 90vw;
+        top: 50%;
+      }
+      .active {
+        iframe {
+          width: 80vw;
+          height: 90vh;
+        }
+      }
+    }
+  }
+  @media screen and (min-device-height: 500px) {
+    .trailer-Modal {
+      i.fa-times{
+        top: 10px;
+        left: 15px;
+        font-size: 25px;
+      }
+      .trailer-content {
+        width: 90vw;
+        top: 25%;
+      }
+      .active {
+        iframe {
+          width: 90vw;
+          height: 40vh;
+        }
+      }
+    }
+  }
+}
+
+@include maxResponsive('small-down'){
+    .trailer-Modal {
+      i.fa-times{
+        top: 10px;
+        left: 35px;
+        font-size: 25px;
+      }
+      .trailer-content {
+        width: 90vw;
+        top: 25%;
+      }
+      .active {
+        iframe {
+          width: 90vw;
+          height: 40vh;
+        }
+      }
+    }
+}
+@include maxResponsive('smallest'){
+  .trailer-Modal {
+    i.fa-times{
+      top: 10px;
+      left: 35px;
+      font-size: 25px;
+    }
+    .trailer-content {
+      width: 90vw;
+      top: 30%;
+    }
+    .active {
+      iframe {
+        width: 90vw;
+        height: 40vh;
+      }
     }
   }
 }

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import MovieTimePlan from "../TimePlan/MovieTimePlan";
 import "./MovieItem.scss";
+import 'Base/customize.scss';
 class MovieItem extends Component {
   state = {
     src: "./images/assets/images/cinemaDefault.jpg",
@@ -14,7 +15,7 @@ class MovieItem extends Component {
       this.props.data;
 
     return (
-      <div className="movieItem col-12 col-md-6 col-lg-3">
+      <div className="movieItem col-6 col-sm-4 col-md-3 col-lg-3">
         <div className="movieItem-content">
           <div className="movie-poster">
             <Link to={`/movie-detail/${maPhim}`}>
@@ -40,10 +41,6 @@ class MovieItem extends Component {
               </div>
             </Link>
           </div>
-          {/* <div className="movieItem-info">
-            <div className="date">{MovieTimePlan(ngayKhoiChieu)}</div>
-            
-          </div> */}
         </div>
       </div>
     );

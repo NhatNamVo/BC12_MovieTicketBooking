@@ -4,6 +4,21 @@ import { FaRegPlayCircle } from "react-icons/fa";
 import { connect } from "react-redux";
 import renderMovie from "containers/shared/TimePlan/MovieTimePlan";
 class CurrentMovienew extends Component {
+  setDescription = () => {
+    const {moTa} = this.props.currentMovienew;
+    if(this.props.windowWidth>1024){
+      return moTa?.substr(0,500)+'...';
+    }
+    if(this.props.windowWidth>=768 && this.props.windowWidth<=1024){
+      return moTa?.substr(0,300)+'...';
+    }
+    else if(this.props.windowWidth>=576 && this.props.windowWidth < 786){
+      return moTa?.substr(0,200) + '...';
+    }
+    else{
+      return moTa?.substr(0,100) + '...';
+    }
+  }
   render() {
     const { match, history, currentMovienew } = this.props;
     const { maPhim, tenPhim, hinhAnh, ngayKhoiChieu, moTa, danhGia, biDanh } = currentMovienew;
@@ -20,7 +35,7 @@ class CurrentMovienew extends Component {
               <i class="fa fa-calendar"></i>
               <span className="date">{new Date(ngayKhoiChieu).toLocaleDateString()}</span>
             </div>
-            <p>{moTa?.length>550?moTa.substr(0,550)+'...':moTa}</p>
+            <p className="currentFilmInfo-desc">{this.setDescription()}</p>
             <p className="currentFilmInfo-btn">
               <Link to={match.url + "movie-detail/" + maPhim}>Xem thêm</Link>
             </p>

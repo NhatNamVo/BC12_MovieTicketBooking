@@ -3,13 +3,23 @@ import MovieItem from "../../../shared/MovieItem/MovieItem";
 import renderMovie from "../../../shared/MovieItem/RenderMovieList";
 import { connect } from "react-redux";
 import "containers/shared/MovieItem/Movieshow.scss";
-import { Link } from "react-router-dom";
+import MovieHotReder from './MoviehotRender';
 class Moviehot extends Component {
+  state = {
+    windowWidth: window.innerWidth,
+  }
+  componentDidMount() {
+    window.addEventListener("resize",this.changeWindowWidth);
+  }
+  changeWindowWidth = () => {
+    this.setState({
+      windowWidth: window.innerWidth,
+    })
+  }
   changeToMoviePage = () => {
     this.props.history.push("/movie");
   };
   render() {
-    const hotMovie = this.props.hotMovie.slice(0, 8);
     return (
       <div className="container movie-container">
         <div className="movieTitle">
@@ -19,10 +29,10 @@ class Moviehot extends Component {
             <div className="movieHome__titleBorder"></div>
           </h4>
           <div className="movieTitle-btn" onClick={this.changeToMoviePage}>
-              Xem thêm<i class="fa fa-film"></i>
+            Xem thêm<i class="fa fa-film"></i>
           </div>
         </div>
-        <div className="row">{renderMovie(MovieItem, hotMovie)}</div>
+        <MovieHotReder windowWidth = {this.state.windowWidth} hotMovie = {this.props.hotMovie}/>
       </div>
     );
   }

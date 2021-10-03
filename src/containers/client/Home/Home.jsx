@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Carousel from './Carousel/Carousel';
-import Movieshow from './Movieshow/Movieshow';
 import Moviehot from './Moviehot/Movieshot';
 import Movienew from './Movienew/Movienew';
 import {connect} from 'react-redux';
