@@ -9,6 +9,7 @@ class Carousel extends Component {
     windowWidth: window.innerWidth,
     containerHeight: 0,
   };
+  isWindowResize = true;
   apiChangeCarousel = (event) => {
     const nextBtn = event.target.closest(".arrow-next");
     const prevBtn = event.target.closest(".arrow-prev");
@@ -20,6 +21,7 @@ class Carousel extends Component {
     }
   };
   componentDidMount() {
+    this.isWindowResize = true;
     if (this.state.autoPlay === true) {
       this.carousel = setInterval(() => {
         this.changeCarousel("next");
@@ -28,21 +30,27 @@ class Carousel extends Component {
     else{
       clearInterval(this.carousel);
     }
-    const container = document.querySelector(".Carousel-content");
-    const containerHeight = container.clientHeight;
-    this.setState({
-      containerHeight: containerHeight,
-    });
+    this.changeWindowWidth();
     window.addEventListener("resize", this.changeWindowWidth);
   }
   changeWindowWidth = () => {
     const container = document.querySelector(".Carousel-content");
-    const containerHeight = container.clientHeight;
-    this.setState({
-      windowWidth: window.innerWidth,
-      containerHeight: containerHeight,
-    });
+    let containerHeight = 0;
+    if(!!container){
+      containerHeight = container.clientHeight;
+    }
+    if(!!this.isWindowResize){
+      this.setState({
+        windowWidth: window.innerWidth,
+        containerHeight: containerHeight,
+      });
+    }
+
   };
+  componentWillUnmount() {
+    this.isWindowResize = false;
+    window.removeEventListener('resize', this.changeWindowWidth);
+  }
   changeCarousel = (type) => {
     const { carousel } = this.props;
     const itemId = carousel.findIndex((item, idx) => {

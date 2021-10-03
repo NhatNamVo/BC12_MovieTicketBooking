@@ -3,10 +3,10 @@
     padding: 10px 10px;
     background-color: #032055;
     border-radius: 20px;
-    height: 380px;
+    height: 420px;
     overflow: hidden;
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 16px;
     .movie-poster {
       position: relative;
       a {
@@ -16,9 +16,9 @@
         transition: color 0.3s;
         margin-bottom: 15px;
         .poster-img{
-          height: 300px;
+          height: 320px;
           border-radius: 10px;
-          margin-bottom: 15px;
+          margin-bottom: 10px;
           overflow: hidden;
           img {
             width: 100%;
@@ -59,21 +59,90 @@
         }
       }
     }
-    // .movieItem-info {
-    //   display: flex;
-    //   flex-direction: row;
-    //   justify-content: space-between;
-    //   position: absolute;
-    //   bottom: 0;
-    //   left: 0;
-    //   height: 40px;
-    //   padding: 0 10px;
-    //   width: 100%;
-    //   .date,
-    //   .rate {
-    //     display: inline-block;
-    //     color: #fff;
-    //   }
-    // }
+  }
+}
+
+@import 'helpers/variables.scss';
+@import 'helpers/mixin.scss';
+
+
+@include maxResponsive('mid-large-down'){
+  .movieItem {
+    .movieItem-content {
+      height: 380px;
+      .movie-poster {
+        a {
+          color: #31d7a9;
+          .poster-img{
+            height: 280px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+            .rate{
+              width: 50px;
+              height: 40px;
+              font-size: 15px;
+              i{
+                margin-right: 3px;
+              }
+            }
+          }
+          &:hover {
+            img{
+              transform: scale(1);
+            }
+            .rate{
+              transition-delay: .3s;
+              width: 40px;
+              height: 35px;
+            }
+          }
+        }
+        .movieItem-title{
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+@include maxResponsive('large-down'){
+  .movieItem {
+    .movieItem-content {
+      height: 285px;
+      .movie-poster {
+        a {
+          color: #31d7a9;
+          .poster-img{
+            height: 200px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+            .rate{
+              width: 40px;
+              height: 35px;
+              font-size: 12px;
+              i{
+                margin-right: 3px;
+              }
+            }
+          }
+          &:hover {
+            img{
+              transform: scale(1);
+            }
+            .rate{
+              transition-delay: .3s;
+              width: 40px;
+              height: 35px;
+            }
+          }
+        }
+        .movieItem-title{
+          font-size: 15px;
+        }
+      }
+    }
   }
 }

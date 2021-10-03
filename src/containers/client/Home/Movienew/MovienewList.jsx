@@ -6,7 +6,38 @@ import { actChangeCurrentMovieNew } from "../module/actions";
 
 class MovienewList extends Component {
   state = {
-    slideItem: 4,
+    slideItem: this.props.slideItem,
+  }
+  componentDidMount() {
+    this.changeSlideMount(this.props.windowWidth);
+    const movieNewList = document.querySelector(".movieNewList");
+    movieNewList.addEventListener("click", this.handleEvent);
+  }
+  handleEvent = (event) => {
+    const movieItem = event.target.closest(".movieList-container");
+    const movieItemActive = event.target.closest(".movieList-container.active");
+    if (!!movieItem && !movieItemActive) {
+      const idx = movieItem.dataset.index;
+      this.props.changeCurrentPage(idx);
+    }
+  };
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.windowWidth != this.props.windowWidth) {
+      this.changeSlideMount(this.props.windowWidth);
+    };
+  }
+  changeSlideMount = (windowWidth) => {
+    let slideItem = 0;
+    if(windowWidth < 576){
+      slideItem = 2;
+    }
+    else if(windowWidth >= 576 && windowWidth < 1024){
+      slideItem = 3;
+    }
+    else if(windowWidth >= 1024){
+      slideItem = 4;
+    }
+    this.setState({slideItem:slideItem});
   }
   changeSlide = (event) => {
     const nextBtn = event.target.closest('.movieNewList-next');
@@ -21,6 +52,7 @@ class MovienewList extends Component {
     }
   }
   render() {
+    console.log(this.props.windowWidth);
     const settings = {
       dots: true,
       infinite: true,
@@ -60,7 +92,6 @@ class MovienewList extends Component {
                       </div>
                       <div className="movieList-text">
                         <h6>{item.tenPhim}</h6>
-                        <p>{new Date(item.ngayKhoiChieu).toLocaleDateString()}</p>
                       </div>
                     </div>
                   </div>
@@ -75,27 +106,5 @@ class MovienewList extends Component {
       </>
     );
   }
-  componentDidMount() {
-    const movieNewList = document.querySelector(".movieNewList");
-    movieNewList.addEventListener("click", this.handleEvent);
-  }
-  handleEvent = (event) => {
-    const movieItem = event.target.closest(".movieList-container");
-    const movieItemActive = event.target.closest(".movieList-container.active");
-    if (!!movieItem && !movieItemActive) {
-      const idx = movieItem.dataset.index;
-      console.log(idx);
-      this.props.CurrentMovieChange(idx);
-    }
-  };
 }
-const mapStateToProps = (state) => ({
-  newMovie: state.movieReducer.newMovie,
-  currentMovieIdx: state.movieReducer.currentMovieIdx,
-});
-const mapDispatchToProps = (dispatch) => ({
-  CurrentMovieChange: (idx) => {
-    dispatch(actChangeCurrentMovieNew(idx));
-  },
-});
-export default connect(mapStateToProps, mapDispatchToProps)(MovienewList);
+export default MovienewList;
