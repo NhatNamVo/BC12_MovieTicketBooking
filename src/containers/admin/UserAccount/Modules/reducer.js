@@ -9,6 +9,7 @@ import {
   POST_NEW_USER_FAIL,
   POST_NEW_USER_REQUEST,
   POST_NEW_USER_SUCCESS,
+  PUT_USER_CLIENT_UPDATE_SUCCESS,
   PUT_USER_UPDATE_FAIL,
   PUT_USER_UPDATE_REQUEST,
   PUT_USER_UPDATE_SUCCESS,
@@ -79,6 +80,15 @@ const UserAccountReducer = (state = initialState, { type, payload }) => {
         ...state,
         loadingModal: false,
         userAccountData: userAccountData,
+        note: "Cập nhật thành công",
+      };
+    }
+    case PUT_USER_CLIENT_UPDATE_SUCCESS: {
+      
+      return {
+        ...state,
+        loadingModal: false,
+        userAccountData: payload,
         note: "Cập nhật thành công",
       };
     }

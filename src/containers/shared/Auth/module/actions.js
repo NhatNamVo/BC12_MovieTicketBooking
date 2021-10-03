@@ -9,7 +9,10 @@ const {
   REGISTER_REQUEST,
   REGISTER_SUCESS,
   REGISTER_FAIL,
-  FETCH_BOOKING_HISTORY,
+  FETCH_BOOKING_HISTORY_SUCCESS,
+  FETCH_BOOKING_HISTORY_REQUEST,
+  FETCH_BOOKING_HISTORY_FAIL,
+  
 } = require("./types");
 
 const actLoginRequest = () => ({
@@ -125,17 +128,28 @@ export const actRegister = (newUser,history) => {
   };
 };
 
+const actFetchBookingHistoryRequest = ()=>({
+  type: FETCH_BOOKING_HISTORY_REQUEST
+});
 const actFetchBookingHistorySuccess = (bookingHistory) => ({
-  type: FETCH_BOOKING_HISTORY,
+  type: FETCH_BOOKING_HISTORY_SUCCESS,
   payload: bookingHistory,
+});
+const actFetchBookingHistoryFail = (error)=>({
+  type: FETCH_BOOKING_HISTORY_FAIL,
+  payload: error,
 });
 export const actFetchBookingHistory=(userName)=>{
   return (dispatch) => {
+    dispatch(actFetchBookingHistoryRequest());
     userApi
       .fetchBookingHistory(userName)
       .then((res) => {
         console.log(res.data.content);
         dispatch(actFetchBookingHistorySuccess(res.data));        
+      })
+      .catch((error)=>{
+        dispatch(actFetchBookingHistoryFail(error));
       })
   };
 }

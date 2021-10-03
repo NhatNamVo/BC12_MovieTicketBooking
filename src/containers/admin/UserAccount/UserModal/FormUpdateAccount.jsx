@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { GROUP_ID } from "settings/apiConfig";
 import { formValid } from "settings/formValidation";
+
 class FormUpdateAccount extends Component {
   handleChange = (e) => {
     const name = e.target.name;
@@ -184,4 +185,4 @@ class FormUpdateAccount extends Component {
     );
   }
 }
-export default FormUpdateAccount;
+export default(FormUpdateAccount);

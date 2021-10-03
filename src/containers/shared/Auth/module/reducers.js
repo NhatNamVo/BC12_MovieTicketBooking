@@ -1,6 +1,9 @@
+import { FETCH_ALL_MOVIE_REQUEST } from "containers/client/Home/module/types";
 import {
   CHECK_USER_SAVE,
-  FETCH_BOOKING_HISTORY,
+  FETCH_BOOKING_HISTORY_FAIL,
+  FETCH_BOOKING_HISTORY_REQUEST,
+  FETCH_BOOKING_HISTORY_SUCCESS,
   LOGIN_FAIL,
   LOGIN_REQUEST,
   LOGIN_SUCESS,
@@ -77,8 +80,12 @@ const authUserReducer = (state = initialState, { type, payload }) => {
       };
     case REGISTER_FAIL:
       return { ...state, loadding: false, isRegister: false, error: payload };
-    case FETCH_BOOKING_HISTORY:
-      return { ...state,thongTinDatVe:payload.thongTinDatVe}
+    case FETCH_BOOKING_HISTORY_REQUEST:
+      return { ...state, loadding: true}
+      case FETCH_BOOKING_HISTORY_SUCCESS:
+      return { ...state,thongTinDatVe:payload.thongTinDatVe,currentUser:payload,loadding:false}
+      case FETCH_BOOKING_HISTORY_FAIL:
+        return { ...state,loadding: false, error: payload}
       default:
       return state;
   }

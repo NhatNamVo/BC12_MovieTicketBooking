@@ -136,7 +136,7 @@ class Login extends Component {
         <div className="login-container">
           <h3 className="login-title">Đăng nhập</h3>
           <div className="login-form">
-            <form action="" method="post" onSubmit={this.loginSubmit}>
+            <form action="" method="post" onSubmit={this.loginSubmit} autoComplete="off">
               {this.checkRegister()}
               <span className="note-login">{error ? error : ""}</span>
               <button type="submit" name id className="login-submit">
