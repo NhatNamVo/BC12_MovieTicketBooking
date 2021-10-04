@@ -18,7 +18,6 @@ class FormUpdateUser extends Component {
     isValidation = status.isvalid;
     messageError = status.messageError;
     data = data;
-    // console.log(data);
     this.props.dataInput(data, messageError, isValidation);
   };
   updateUser = (data) => {
@@ -48,8 +47,8 @@ class FormUpdateUser extends Component {
     const{currentUser}=this.props;
     const isUserLogin =
     this.props.currentAccountLogin === this.props.data.taiKhoan;
-    console.log(this.props.data);
-    console.log(currentUser);
+    // console.log(this.props.data);
+    // console.log(currentUser);
 
     return (
 
