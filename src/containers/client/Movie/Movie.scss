@@ -42,6 +42,14 @@
     .movieList-container {
       min-height: 1310px;
     }
+    .nothingFound{
+      text-align: center;
+      color: #9EB1EB;
+    }
+    .movieRef{
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
     .pagination-container {
       .pagination-item {
         color: #fff;
@@ -132,6 +140,10 @@
       }
       .movie-content {
         margin-top: 50px;
+        .movieRef{
+          font-size: 25px;
+          margin-bottom: 20px;
+        }
         .movieList-container {
           min-height: 905px;
         }
@@ -157,6 +169,13 @@
         }
       }
       .movie-content {
+        .nothingFound{
+          font-size: 28px;
+        }
+        .movieRef{
+          font-size: 25px;
+          margin-bottom: 20px;
+        }
         margin-top: 50px;
         .movieList-container {
           min-height: 905px;
@@ -186,6 +205,13 @@
       }
     }
     .movie-content {
+      .nothingFound{
+        font-size: 20px;
+      }
+      .movieRef{
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
       margin-top: 50px;
       .movieList-container {
         min-height: 905px;
