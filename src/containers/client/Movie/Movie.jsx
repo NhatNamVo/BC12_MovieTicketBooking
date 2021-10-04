@@ -118,7 +118,7 @@ class Movie extends Component {
               location={this.props.location}
             />
             <div className="movie-container movieList-container">
-              <div className="movieList-content row">
+              <>
                 <Switch>
                   <Route
                     path="/movie"
@@ -145,7 +145,7 @@ class Movie extends Component {
                     )}
                   />
                 </Switch>
-              </div>
+              </>
             </div>
             {this.settingPanigation()}
             <Pagination
