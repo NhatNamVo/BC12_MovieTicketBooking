@@ -166,6 +166,7 @@ class ModalUserInfo extends Component {
                 <div className="modal-footer">
                   
                   <button
+                  id="changePassBtn"
                     type="button"
                     className="btn seatChose-btn"
                     onClick={()=>this.submitForm()}
