@@ -56,12 +56,9 @@ class Movie extends Component {
         movieList = this.props.listMovie;
         break;
       case 1:
-        movieList = this.props.showingMovie;
-        break;
-      case 2:
         movieList = this.props.hotMovie;
         break;
-      case 3:
+      case 2:
         movieList = this.props.newMovie;
         break;
       default:
@@ -76,7 +73,6 @@ class Movie extends Component {
   };
   findMovie = (text) => {
     let movieFoundList = this.props.movies;
-    console.log(text);
     if (text !== "") {
       movieFoundList = this.props.listMovie.filter((movie) => {
         return movie.tenPhim.toLocaleLowerCase().indexOf(text) !== -1;
@@ -88,8 +84,15 @@ class Movie extends Component {
   };
 
   render() {
-    const { totalCount, siblingCount, currentPage, pageSize, match,location, movies } =
-      this.props;
+    const {
+      totalCount,
+      siblingCount,
+      currentPage,
+      pageSize,
+      match,
+      location,
+      movies,
+    } = this.props;
     const url = match.url;
     if (this.props.listMovie.length === 0) {
       return <Loader />;
@@ -103,11 +106,10 @@ class Movie extends Component {
           ></div>
           <div className="movie-banner">
             <div className="banner-info">
-              <h1>BUY MOVIE TICKETS</h1>
-              <p>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-              </p>
+              <h3>XEM PHIM MỌI LÚC MỌI NƠI</h3>
+              <div className="bannerinfo-Slogan">
+                Lựa chọn phim bên dưới - Đặt vé ngay thôi nào!!!
+              </div>
             </div>
           </div>
           <div className="movie-content container">
@@ -115,33 +117,35 @@ class Movie extends Component {
               history={this.props.history}
               location={this.props.location}
             />
-            <div className="movie-container row">
-              <Switch>
-                <Route
-                  path="/movie"
-                  exact="true"
-                  render={(props) => (
-                    <MoviePage {...props} listMovie={movies} />
-                  )}
-                />
-                <Route
-                  path="/movie/page:pageNumber"
-                  render={(props) => (
-                    <MoviePage {...props} listMovie={movies} />
-                  )}
-                />
-                <Route
-                  path="/movie/search"
-                  name="movie"
-                  render={(props) => (
-                    <MoviePage
-                      {...props}
-                      findMovie={this.findMovie}
-                      listMovie={movies}
-                    />
-                  )}
-                />
-              </Switch>
+            <div className="movie-container movieList-container">
+              <>
+                <Switch>
+                  <Route
+                    path="/movie"
+                    exact="true"
+                    render={(props) => (
+                      <MoviePage {...props} listMovie={movies} />
+                    )}
+                  />
+                  <Route
+                    path="/movie/page:pageNumber"
+                    render={(props) => (
+                      <MoviePage {...props} listMovie={movies} />
+                    )}
+                  />
+                  <Route
+                    path="/movie/search"
+                    name="movie"
+                    render={(props) => (
+                      <MoviePage
+                        {...props}
+                        findMovie={this.findMovie}
+                        listMovie={movies}
+                      />
+                    )}
+                  />
+                </Switch>
+              </>
             </div>
             {this.settingPanigation()}
             <Pagination

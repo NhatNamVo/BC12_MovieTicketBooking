@@ -16,57 +16,205 @@
     rgb(10, 0, 97),
     rgb(10, 0, 97)
   );
+  padding-bottom: 30px;
   .movie-banner {
     height: 90vh;
     .banner-info {
-      color: #fff;
-      width: 60%;
+      width: 80%;
       text-align: center;
       margin: auto;
       padding-top: 20%;
+      h3 {
+        color: #31d7a9;
+        font-size: 45px;
+        font-weight: 700;
+      }
+      .bannerinfo-Slogan {
+        color: #fff;
+        font-size: 40px;
+        font-weight: 700;
+      }
     }
   }
   .movie-content {
     margin-top: 70px;
-    min-height: 1350px;
     position: relative;
-  }
-  .pagination-container {
-    .pagination-item {
-      color: #fff;
-      &.dots:hover {
-        background-color: transparent;
-        cursor: default;
-      }
-      &:hover {
-        background-color: rgba(252, 252, 252, 0.349);
-        cursor: pointer;
-      }
-
-      &.selected {
-        color: rgb(10, 0, 97);
-        background-color: rgb(245, 241, 241);
-      }
-
-      .arrow {
-        &::before {
-          border-right: 0.12em solid rgba(255, 255, 255, 0.87);
-          border-top: 0.12em solid rgba(255, 255, 255, 0.87);
-        }
-      }
-
-      &.disabled {
-        pointer-events: none;
-
-        .arrow::before {
-          border-right: 0.12em solid rgba(255, 255, 255, 0.87);
-          border-top: 0.12em solid rgba(255, 255, 255, 0.87);
-        }
-
-        &:hover {
+    .movieList-container {
+      min-height: 1310px;
+    }
+    .nothingFound{
+      text-align: center;
+      color: #9EB1EB;
+    }
+    .movieRef{
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+    .pagination-container {
+      .pagination-item {
+        color: #fff;
+        &.dots:hover {
           background-color: transparent;
           cursor: default;
         }
+        &:hover {
+          background-color: rgba(252, 252, 252, 0.349);
+          cursor: pointer;
+        }
+
+        &.selected {
+          color: rgb(10, 0, 97);
+          background-color: rgb(245, 241, 241);
+        }
+
+        .arrow {
+          &::before {
+            border-right: 0.12em solid rgba(255, 255, 255, 0.87);
+            border-top: 0.12em solid rgba(255, 255, 255, 0.87);
+          }
+        }
+
+        &.disabled {
+          pointer-events: none;
+
+          .arrow::before {
+            border-right: 0.12em solid rgba(255, 255, 255, 0.87);
+            border-top: 0.12em solid rgba(255, 255, 255, 0.87);
+          }
+
+          &:hover {
+            background-color: transparent;
+            cursor: default;
+          }
+        }
+      }
+    }
+  }
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+@include maxResponsive("mid-large-down") {
+  .movieList {
+    .movie-banner {
+      height: 90vh;
+      .banner-info {
+        width: 80%;
+        h3 {
+          font-size: 40px;
+        }
+        .bannerinfo-Slogan {
+          font-size: 35px;
+        }
+      }
+    }
+    .movie-content {
+      margin-top: 70px;
+      .movieList-container {
+        min-height: 1200px;
+      }
+    }
+  }
+}
+@include maxResponsive("large-down") {
+  @media screen and (max-device-height: 420px) {
+    .movieList-banner {
+      height: 100vh;
+    }
+    .movieList {
+      .movie-banner {
+        height: 100vh;
+        .banner-info {
+          width: 95%;
+          text-align: center;
+          margin: auto;
+          padding-top: 12%;
+          h3 {
+            font-size: 30px;
+          }
+          .bannerinfo-Slogan {
+            font-size: 23px;
+          }
+        }
+      }
+      .movie-content {
+        margin-top: 50px;
+        .movieRef{
+          font-size: 25px;
+          margin-bottom: 20px;
+        }
+        .movieList-container {
+          min-height: 905px;
+        }
+      }
+    }
+  }
+  @media screen and (min-device-height: 800px) {
+    .movieList-banner {
+      height: 50vh;
+    }
+    .movieList {
+      .movie-banner {
+        height: 50vh;
+        .banner-info {
+          width: 90%;
+          padding-top: 20%;
+          h3 {
+            font-size: 35px;
+          }
+          .bannerinfo-Slogan {
+            font-size: 28px;
+          }
+        }
+      }
+      .movie-content {
+        .nothingFound{
+          font-size: 28px;
+        }
+        .movieRef{
+          font-size: 25px;
+          margin-bottom: 20px;
+        }
+        margin-top: 50px;
+        .movieList-container {
+          min-height: 905px;
+        }
+      }
+    }
+  }
+}
+@include maxResponsive("small-down") {
+  .movieList-banner {
+    height: 40vh;
+  }
+  .movieList {
+    .movie-banner {
+      height: 40vh;
+      .banner-info {
+        width: 95%;
+        text-align: center;
+        margin: auto;
+        padding-top: 18%;
+        h3 {
+          font-size: 25px;
+        }
+        .bannerinfo-Slogan {
+          font-size: 16px;
+        }
+      }
+    }
+    .movie-content {
+      .nothingFound{
+        font-size: 20px;
+      }
+      .movieRef{
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+      margin-top: 50px;
+      .movieList-container {
+        min-height: 905px;
       }
     }
   }
