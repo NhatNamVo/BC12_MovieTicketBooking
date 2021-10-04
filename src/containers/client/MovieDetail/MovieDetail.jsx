@@ -159,17 +159,9 @@ class MovieDetail extends Component {
                       </li>
                     </ul>
                     <div className="card-body">
-                      <h5 className="mb-5">The {movieDetail.tenPhim}</h5>
+                      <h5 className="mb-5"> {movieDetail.tenPhim}</h5>
                       <p className="card-text ">{movieDetail.moTa}</p>
-                      <p>
-                        There are many variations of passages of Lorem Ipsum
-                        available, but the majority have suffered alteration in
-                        some form, by injected humour, or randomised words which
-                        don't look even slightly believable. If you are going to
-                        use a passage of Lorem Ipsum, you need to be sure there
-                        isn't anything embarrassing hidden in the middle of
-                        text.
-                      </p>
+                      
                     </div>
                   </div>
                   {/* Theater */}
@@ -292,11 +284,10 @@ class MovieDetail extends Component {
                         </div>
                         <div className="bottom">
                           <h6>
-                            <a href="#">Brand Card Cashback Offer</a>
+                            <a href="#">Ưu đãi cho thẻ ngân hàng</a>
                           </h6>
                           <p>
-                            It is a long established fact that a reader will be
-                            distracted
+                            Hoàn tiền lên đến 10% khi thanh toán bằng thẻ ngân hàng CyberBank.
                           </p>
                         </div>
                       </div>
@@ -309,11 +300,10 @@ class MovieDetail extends Component {
                         </div>
                         <div className="bottom">
                           <h6>
-                            <a href="#">Online Payment Offer</a>
+                            <a href="#">Thanh toán nhanh gọn</a>
                           </h6>
                           <p>
-                            It is a long established fact that a reader will be
-                            distracted
+                            Hoàn tất đặt vé nhanh chỉ với các bước đơn giản.
                           </p>
                         </div>
                       </div>
@@ -326,11 +316,10 @@ class MovieDetail extends Component {
                         </div>
                         <div className="bottom">
                           <h6>
-                            <a href="#">Bank Payment Cashback</a>
+                            <a href="#">Ưu đãi thẻ thành viên</a>
                           </h6>
                           <p>
-                            It is a long established fact that a reader will be
-                            distracted
+                            Đăng ký để được tích điểm  nhận ngay ưu đãi khi đặt vé.
                           </p>
                         </div>
                       </div>

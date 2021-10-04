@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { GROUP_ID } from "settings/apiConfig";
 import "../UserInfo/UserInfo.scss";
 import LichSuDatVe from "./LichSuDatVe/LichSuDatVe";
-import FormChangePass from "./ModalUserInfo/FormChangePass";
 import ModalUserInfo from "./ModalUserInfo/ModalUserInfo";
 class UserInfo extends Component {
   state = {
@@ -70,8 +69,6 @@ class UserInfo extends Component {
           <div className="container">
             <div className="">
               <ModalUserInfo />
-              <FormChangePass infoAdminChange={infoAdminChange}
-          infoChange={this.infoChange} />
               <div className="user__content">
                 <div className="checkout-card">
                   <ul className="nav nav-tabs" id="myTab" role="tablist">
@@ -131,32 +128,27 @@ class UserInfo extends Component {
                               <p>Số điện thoại: </p>
                               <span>{currentUser.soDT}</span>
                             </div>
-                            <button
-                            id="btnChangePass"                             
-                              data-toggle="modal"
-                              data-target="#changeUserPass"
-                            >
-                              Sửa mật khẩu
-                            </button>
+                            
                           </div>
                           <div className="col-6">
                             <div className="user__item">
                               <p>Tài khoản: </p>
                               <span>{currentUser.taiKhoan}</span>
                             </div>
-                            <div className="user-btn">
+                            
+                          </div>
+                        </div>
+                      </div>
+                      <div className="user-btn">
                               <button
                                 id="userInfoUpdate"
                                 className="btn seatChose-btn "
                                 data-toggle="modal"
                                 data-target="#modalUserInfo"
                               >
-                                Cập nhật
+                                Sửa thông tin
                               </button>
                             </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                     {/* Lịch sử đặt vé */}
                     <div
