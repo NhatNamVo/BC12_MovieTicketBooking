@@ -18,13 +18,10 @@ const movieListOptionReducer = (state = initialState, { type, payload }) => {
           sortValue = "Tất cả";
           break;
         case 1:
-          sortValue = "Phim đang chiếu";
-          break;
-        case 2:
           sortValue = "Phim hot";
           break;
-        case 3:
-          sortValue = "Phim sắp chiếu";
+        case 2:
+          sortValue = "Phim mới nhất";
           break;
         default:
           sortValue = "Tất cả";
