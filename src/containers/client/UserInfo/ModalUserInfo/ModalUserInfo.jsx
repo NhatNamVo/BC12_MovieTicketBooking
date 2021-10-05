@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { GROUP_ID } from "settings/apiConfig";
 import "./ModalUserInfo.scss";
-import FormUpdateUser from "./FormUpdateUser";
 import { connect } from "react-redux";
-import { actUpdateUser, actUpdateUserClient } from "containers/admin/UserAccount/Modules/action";
+import {
+  actUpdateUser,
+  actUpdateUserClient,
+} from "containers/admin/UserAccount/Modules/action";
 class ModalUserInfo extends Component {
   state = {
     isValidation: true,
@@ -15,38 +17,31 @@ class ModalUserInfo extends Component {
       hoTen: "",
       maLoaiNguoiDung: true,
     },
-    data: {     
+    data: {
       taiKhoan: this.props.currentUser.taiKhoan,
       matKhau: this.props.currentUser.matKhau,
       email: this.props.currentUser.email,
-      soDt: this.props.currentUser.soDT,     
+      soDt: this.props.currentUser.soDt,
       maNhom: GROUP_ID,
       maLoaiNguoiDung: this.props.currentUser.maLoaiNguoiDung,
       hoTen: this.props.currentUser.hoTen,
     },
+    oldHidden: false,
+    newHidden: false,
     isNote: false,
   };
-  
+
   changeStateData = () => {
     let data = {
       ...this.props.userAccountData[this.props.idx],
-      maNhom: GROUP_ID, 
+      maNhom: GROUP_ID,
     };
     this.setState({ data: data });
   };
-  // handleClick = (e) => {
-  //   e.stopPropagation();
-  //   const exitBtn = e.target.closest("#exitModal");
-  //   const closeBtn = e.target.closest(".close");
-  //   if (!!exitBtn || !!closeBtn) {
-  //     this.deleteDataForm();
-  //     this.props.changeIdx();
-  //   }
-  // };
   updateUser = (data) => {
     console.log(data.matKhau);
-    this.props.putUserUpdate(data,this.props.accessToken);
-  }
+    this.props.putUserUpdate(data, this.props.accessToken);
+  };
 
   dataInput = (data, messageError, isValidation) => {
     // console.log(data);
@@ -56,33 +51,25 @@ class ModalUserInfo extends Component {
       messageError: messageError,
     });
   };
-  
+
   submitForm = () => {
-    const { taiKhoan, matKhau, email, soDT, hoTen} =
-      this.props.currentUser;
+    const { taiKhoan, matKhau, email, soDT, hoTen } = this.props.currentUser;
     let { messageError, data } = this.state;
     let isValid = true;
     for (let key in messageError) {
-      if(key === "maLoaiNguoiDung"){
-        if(!messageError[key]){
+      if (key === "maLoaiNguoiDung") {
+        if (!messageError[key]) {
           isValid = false;
           break;
         }
-      }
-      else{
+      } else {
         if (messageError[key] !== "" && messageError[key] !== "true") {
           isValid = false;
           break;
         }
       }
     }
-    if (
-      !taiKhoan ||
-      !matKhau ||
-      !email ||
-      !soDT ||
-      !hoTen 
-    ) {
+    if (!taiKhoan || !matKhau || !email || !soDT || !hoTen) {
       if (!taiKhoan) {
         messageError.taiKhoan = "Tài khoản trống";
       }
@@ -103,88 +90,129 @@ class ModalUserInfo extends Component {
     } else {
       if (!this.state.isValidation || !isValid) {
         return;
-      }      
-      
-        this.updateUser(this.state.data);
-        if (!this.props.loadingModal) {
-          this.setState({ isNote: true });
-          this.wait = setTimeout(() => {
-            document.querySelector("#exitModal");
-            this.setState({ isNote: false });
-          }, 1500);
-        }
-      
+      }
+
+      this.updateUser(this.state.data);
+      if (!this.props.loadingModal) {
+        this.setState({ isNote: true });
+        this.wait = setTimeout(() => {
+          document.querySelector("#exitModal");
+          this.setState({ isNote: false });
+        }, 1500);
+      }
     }
   };
   render() {
-   console.log(this.state.data);
+    const {oldHidden,newHidden} = this.state;
     return (
       <>
-        <div
-          id="modalUserInfo"
-          className="modal fade "
-          tabIndex="-1"
-          onClick={this.closeModal}
-        >
-          <div className="modalContent" onClick={this.handleClick}>
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title">
-                     Cập nhật tài khoản
-                  </h5>
-                  <button
-                    type="button"
-                    className="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">×</span>
-                  </button>
-                </div>
-                <div className="modal-body">
-                  
-                    <FormUpdateUser
-                    // openModal={()=>this.openModal(this.props.currentUser)}
-                    currentUser={this.props.currentUser}
-                      dataInput={this.dataInput}
-                      userAccountData={this.props.userAccountData}
-                      data={this.state.data}
-                      messageError={this.state.messageError}
-                      currentAccountLogin={this.props.userAccount}
+        <form action="" method="post" autoComplete="off">
+          <div>
+                <div id="oldPass" className="password-item row ">
+                  <div className="title-left col-6">
+                    <p>Mật khẩu cũ:</p>
+                  </div>
+
+                  <div className="col-6 ">
+                    <input
+                      autoComplete="off"
+                      type="password"
+                      className={
+                        " user-OldPass " + (this.state.error ? "error" : "")
+                      }
+                      name="matKhau"
+                      id=""
                     />
-                  
-                  {this.state.isNote ? (
-                    <div className="modalNote">
-                      <h5>{this.props.note}</h5>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </div>
-                <div className="modal-footer">
-                  
-                  <button
-                  id="changePassBtn"
-                    type="button"
-                    className="btn seatChose-btn"
-                    onClick={()=>this.submitForm()}
-                    
-                  >
-                    Cập nhật
-                    {this.props.loadingModal ? (
-                      <div className="spinner-border" role="status">
-                        <span className="visually-hidden"></span>
-                      </div>
+                    {oldHidden ? (
+                      <i class="fa fa-eye-slash"></i>
                     ) : (
-                      ""
+                      <i class="fa fa-eye"></i>
                     )}
-                  </button>
+                  </div>
+                </div>
+                <div id="newPass" className="password-item mt-1 row ">
+                  <div className=" title-left col-6">
+                    <p> Mật khẩu mới:</p>
+                  </div>
+                  <div className="col-6 ">
+                    <input
+                      autoComplete="off"
+                      type="password"
+                      className={
+                        "user-NewPass " +
+                        (this.state.error === "Mật khẩu mới không được để trống"
+                          ? "error"
+                          : "")
+                      }
+                      name="newPass"
+                      id=""
+                    />
+                    {newHidden ? (
+                      <i class="fa fa-eye-slash"></i>
+                    ) : (
+                      <i class="fa fa-eye"></i>
+                    )}
+                  </div>
+                </div>
+                <div className="note">{this.state.error}</div>
+              </div>
+          <div className="form-group">
+            <div className="form-inputContainer">
+              <div className="row">
+                <div className="title-left col-6">
+                  <i class="fa fa-envelope "> Email:</i>
+                </div>
+                <div className="col-6 form-input">
+                    <input
+                      type="text"
+                      name="email"
+                      className="form-input"
+                      // defaultValue={currentUser.email}
+                      onChange={this.handleChange}
+                    />
                 </div>
               </div>
+              {/* {this.changeStatus(this.props.messageError.email)} */}
             </div>
           </div>
-        </div>
+          <div className="form-group">
+            <div className="form-inputContainer">
+              <div className="row">
+                <div className="title-left col-6">
+                  <i class="fa fa-phone "> Số điện thoại:</i>
+                </div>
+                <div className="col-6 form-input">
+                    <input
+                      type="text"
+                      name="soDt"
+                      className="form-input "
+                      onChange={this.handleChange}
+                    />
+                </div>
+              </div>
+              {/* {this.changeStatus(this.props.messageError.soDt)} */}
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="form-inputContainer">
+              <div className="row">
+                <div className="title-left col-6">
+                  <i class="fa fa-credit-card "> Họ và tên:</i>
+                </div>
+                <div className="col-6 form-input">
+                    <input
+                      type="text"
+                      name="hoTen"
+                      className="form-input "
+                      // defaultValue={currentUser.hoTen}
+                      onChange={this.handleChange}
+                    />
+                </div>
+              </div>
+              {/* {this.changeStatus(this.props.messageError.hoTen)} */}
+            </div>
+          </div>
+        </form>
       </>
     );
   }
@@ -199,10 +227,9 @@ const mapStateToProps = (state) => ({
 
   note: state.UserAccountReducer.note,
 });
-const mapDispatchToProps=((dispatch) =>( {
-  putUserUpdate: (user,token) =>{
-    dispatch(actUpdateUserClient(user,token));
-  }
-}))
-export default connect(mapStateToProps,mapDispatchToProps) (ModalUserInfo);
-
+const mapDispatchToProps = (dispatch) => ({
+  putUserUpdate: (user, token) => {
+    dispatch(actUpdateUserClient(user, token));
+  },
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ModalUserInfo);

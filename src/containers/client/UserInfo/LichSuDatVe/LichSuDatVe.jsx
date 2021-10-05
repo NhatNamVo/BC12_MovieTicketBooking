@@ -5,21 +5,22 @@ import { connect } from "react-redux";
 
 class LichSuDatVe extends Component {
   render() {
-    const { thongTinDatVe } = this.props;
+    const { thongTinDatVe } = this.props.currentUser;
     return (
       <>
-        <div className="card  bookingHistory">
+        <div className={"bookingHistory " + (this.props.isBookingHistory? "show ":'') + (this.props.isDisplay?'display':'')}>
           <div className="bookingHistory-card">
-            <div className="container">
-              {thongTinDatVe.slice(0, 5).map((veDaDat, idx) => {
+            {thongTinDatVe
+              .slice(thongTinDatVe.length - 5, thongTinDatVe.length)
+              .map((veDaDat, idx) => {
                 return (
-                  <div className="booking-item ">
-                    <div className="row"
-                    >
-                      <div className="col-6 ">
-                        <h5 className="card-title">{veDaDat.tenPhim}</h5>
+                  <div key={idx} className="booking-item">
+                    <h5 className="card-title">{veDaDat.tenPhim}</h5>
+                    <div className="row">
+                      <div className="col-6 timeBooking">
+                        
                         <p className="card-text">
-                          {`Ngày đặt ${new Date(
+                          {`Ngày đặt: ${new Date(
                             veDaDat.ngayDat
                           ).toLocaleDateString()}-${new Date(
                             veDaDat.ngayDat
@@ -28,7 +29,7 @@ class LichSuDatVe extends Component {
                             minute: "numeric",
                           })}`}
                         </p>
-                        <p className="card-text">Giá vé {veDaDat.giaVe}</p>
+                        <p className="card-text">Giá vé: {veDaDat.giaVe}</p>
                       </div>
                       <div className="col-6">
                         {veDaDat.danhSachGhe.slice(0, 1).map((gheDat) => {
@@ -53,7 +54,6 @@ class LichSuDatVe extends Component {
                   </div>
                 );
               })}
-            </div>
           </div>
         </div>
       </>

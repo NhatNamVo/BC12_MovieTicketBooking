@@ -1,0 +1,31 @@
+#userUpdateForm{
+    background-color: #032055;
+    width: 70%;
+    border-radius: 20px;
+    margin: auto;
+    padding: 20px;
+    color: #31d7a9;    
+        input {
+          width: 100%;
+          padding: 10px;
+          padding-left: 40px;
+          background-color: transparent;
+          border: 2px solid #9eb1eb;
+          border-radius: 3px;
+          font-size:18px;
+          &:focus-visible {
+            outline: none;
+          }
+          &:focus {
+            border-color: #31d7a9;
+            color: #31d7a9;
+          }
+        }
+        i {
+          position: absolute;
+          top: 50%;
+          left: 5%;
+          transform: translateY(-50%);
+          font-size: 20px;
+        }
+}
