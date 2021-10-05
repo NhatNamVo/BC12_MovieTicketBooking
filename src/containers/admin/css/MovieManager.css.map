@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACI,uBADmB,CACnB,KAAK,CAAA;EACD,UAAU,EAAE,MAAM;CAMrB;;AARL,AAIY,uBAJW,CACnB,KAAK,CAED,KAAK,CACD,EAAE,CAAA;EACE,cAAc,EAAE,MAAM;CACzB",
+    "sources": [
+        "../MovieManage/MovieManager.scss"
+    ],
+    "names": [],
+    "file": "MovieManager.css"
+}

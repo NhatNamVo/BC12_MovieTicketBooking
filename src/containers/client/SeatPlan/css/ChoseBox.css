@@ -1,0 +1,42 @@
+.choseBox-content {
+  background-color: #021a45;
+  width: 100%;
+  margin: auto;
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 35px 40px;
+  border-radius: 30px;
+}
+
+.choseBox-content .seat-chosed {
+  width: 250px;
+}
+
+.choseBox-content .seatChose-item {
+  text-align: center;
+}
+
+.choseBox-content .seatChose-item .title {
+  font-size: 20px;
+}
+
+.choseBox-content .seatChose-item .result {
+  color: #31d7a9;
+}
+
+.choseBox-content .seatChose-item .seatChose-btn {
+  padding: 8px 40px;
+  border-radius: 30px;
+  background-color: #9EB1EB;
+  border: none;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.choseBox-content .seatChose-item .seatChose-btn:hover {
+  box-shadow: 0px 7px 17px 0 #9eb1eb96;
+}
+/*# sourceMappingURL=ChoseBox.css.map */

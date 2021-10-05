@@ -1,0 +1,108 @@
+.theater-content {
+  color: #fff;
+}
+
+.theater-content .movie__detail__theater .header {
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #11326f;
+  margin-bottom: 30px;
+}
+
+.theater-content .movie__detail__theater .row .col-4 {
+  overflow-y: scroll;
+  scroll-snap-type: x mandatory;
+  width: 100%;
+  height: 600px;
+}
+
+.theater-content .movie__detail__theater .row .col-4 .icon-theater .nav-link {
+  scroll-snap-align: start;
+  border: 1px solid #11326f;
+}
+
+.theater-content .movie__detail__theater .row .col-4 .icon-theater :hover {
+  color: #fff;
+  box-shadow: 0px 0px 10px 0px #3b37bc;
+}
+
+.theater-content .movie__detail__theater .row .col-4 .icon-theater .active {
+  background-color: #31d7a9;
+}
+
+.theater-content .movie__detail__theater .row ::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #31d7a9;
+}
+
+.theater-content .movie__detail__theater .row ::-webkit-scrollbar {
+  width: 3px;
+}
+
+.theater-content .movie__detail__theater .row .col-8 {
+  border-left: 2px solid #11326f;
+}
+
+.theater-content .movie__detail__theater .row .col-8 .movie__ticket {
+  overflow-y: scroll;
+  scroll-snap-type: x mandatory;
+  width: 100%;
+  height: 600px;
+}
+
+.theater-content .movie__detail__theater .row .col-8 .movie__ticket .text-left {
+  scroll-snap-align: start;
+  border-bottom: 1px solid #11326f;
+}
+
+.theater-content .movie__detail__theater .row .col-8 .movie__ticket .text-left .btn-detail {
+  margin-bottom: 13px;
+  border: 1px solid rgba(163, 177, 198, 0.2);
+  font-size: 13px;
+  color: #9aace5;
+  text-transform: uppercase;
+  padding: 7px 17px;
+  border-radius: 18px;
+  transition: all ease 0.3s;
+  color: #fff;
+  justify-content: space-between;
+}
+
+.theater-content .movie__detail__theater .row .col-8 .movie__ticket .text-left .btn-detail:hover {
+  box-shadow: 0px 10px 15px 0px #3b37bc;
+}
+
+.theater-content .movie__detail__theater .row .col-8 .movie__ticket .text-left .ticket .btn {
+  width: 70px;
+  height: 38px;
+}
+
+.theater-content .movie__detail__theater .row .col-8 .movie__ticket .text-left .ticket .btn .ticket__item {
+  color: #ffffff;
+  position: relative;
+  width: 70px;
+  height: 38px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: all ease 0.3s;
+}
+
+.theater-content .movie__detail__theater .row .col-8 .movie__ticket .text-left .ticket .btn :hover {
+  color: #31d7a9;
+  box-shadow: 0px 0px 10px 0px #3b37bc;
+}
+
+.theater-content .movie__detail__theater .row .col-8 ::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #31d7a9;
+}
+
+.theater-content .movie__detail__theater .row .col-8 ::-webkit-scrollbar {
+  width: 3px;
+}
+/*# sourceMappingURL=Theater.css.map */

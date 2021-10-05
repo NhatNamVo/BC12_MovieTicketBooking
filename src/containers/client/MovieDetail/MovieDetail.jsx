@@ -32,6 +32,16 @@ class MovieDetail extends Component {
             style={{ backgroundImage: `url(${movieDetail.hinhAnh})` }}
           >
             <div className=" container">
+            <Link
+                    to={{
+                      pathname: "/trailer/" + movieDetail.maPhim,
+                      state: { background: history.location },
+                    }}
+                    href={movieDetail.trailer}
+                    className="video__button video__popup trailer "
+                  >
+                    <FaRegPlayCircle />
+                  </Link>
               <div className="row no-gutters details__banner__wrapper ">
                 <div className="col-md-4 details__banner__img">
                   <img
@@ -64,13 +74,13 @@ class MovieDetail extends Component {
                   <div className="time-social">
                     <div className="time">
                       <FaRegCalendarAlt />
-                      <span className="p-1 pr-5 ">
+                      <span className="p-1 p-3 ">
                         {new Date(
                           movieDetail.ngayKhoiChieu
                         ).toLocaleDateString()}
                       </span>
                       <FaRegClock />
-                      <span className="p-1">
+                      <span className="p-1 p-3">
                         {new Date(
                           movieDetail.ngayKhoiChieu
                         ).toLocaleTimeString("it-IT", {
@@ -128,7 +138,7 @@ class MovieDetail extends Component {
                     <span className="p-1 ">{movieDetail.danhGia}</span>
                     <FaStar className="star" />
                   </div>
-                  <div className="item">
+                  <div className="item rate">
                     <FaRegStar />
                     <FaRegStar />
                     <FaRegStar />
@@ -271,7 +281,7 @@ class MovieDetail extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-3 col-sm-10 col-md-6 mb-50">
+                <div className="col-lg-3 mb-50">
                   <div className="widget-1 widget-offer">
                     <h3 className="title">GỢI Ý</h3>
                     <div className="offer-body">

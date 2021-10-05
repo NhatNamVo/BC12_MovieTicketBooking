@@ -1,0 +1,101 @@
+.login-component {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.login-component:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(25, 0, 248, 0.13) 10%, #0a0061 90%);
+}
+
+.login-component .login-container {
+  width: 30%;
+  margin: auto;
+  position: absolute;
+  z-index: 2;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: #021a45;
+  padding: 30px 60px 100px;
+  border-radius: 20px;
+  color: #fff;
+  box-shadow: 0px 6px 11px 3px #ffffff2e;
+}
+
+.login-component .login-title {
+  text-align: center;
+  margin-bottom: 35px;
+  color: #31d7a9;
+  font-weight: 700;
+}
+
+.login-component .login-form .form-input {
+  position: relative;
+  color: #9eb1eb;
+}
+
+.login-component .login-form .form-input:focus-within i {
+  color: #31d7a9;
+}
+
+.login-component .login-form .form-input input {
+  width: 100%;
+  padding: 10px;
+  padding-left: 40px;
+  background-color: transparent;
+  border: 2px solid #9eb1eb;
+  border-radius: 3px;
+  font-size: 18px;
+}
+
+.login-component .login-form .form-input input:focus-visible {
+  outline: none;
+}
+
+.login-component .login-form .form-input input:focus {
+  border-color: #31d7a9;
+  color: #31d7a9;
+}
+
+.login-component .login-form .form-input i {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.login-component .login-form .login-submit {
+  display: block;
+  position: relative;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 35px;
+  background-color: #31d7a9;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.login-component .login-form .login-submit:hover {
+  box-shadow: 0 0 10px #31d7a9;
+}
+
+.login-component .login-form .login-submit span.spinner-border {
+  position: absolute;
+  top: 40%;
+  right: 10%;
+}
+/*# sourceMappingURL=FormLogin.css.map */
