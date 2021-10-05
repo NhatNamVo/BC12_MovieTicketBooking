@@ -1,0 +1,32 @@
+#editUserInfo .userInfo-item {
+  position: relative;
+}
+
+#editUserInfo .note {
+  color: #f50909;
+  text-align: right;
+}
+
+#editUserInfo input {
+  padding-right: 40px;
+  width: 180px;
+}
+
+#editUserInfo input.error {
+  border-color: #fa0000;
+}
+
+#editUserInfo i {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+#editUserInfo .modalContent {
+  width: 50%;
+  margin: auto;
+}
+/*# sourceMappingURL=AdminUserModal.css.map */

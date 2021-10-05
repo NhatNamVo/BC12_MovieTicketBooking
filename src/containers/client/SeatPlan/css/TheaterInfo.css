@@ -1,0 +1,39 @@
+.theaterinfo-content {
+  margin-top: 20px;
+  color: #fff;
+}
+
+.theaterinfo-content .theater-title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.theaterinfo-content .theater-title .theater-name {
+  margin-bottom: 0;
+  margin-left: 10px;
+}
+
+.theaterinfo-content .theater-infoItem {
+  margin-left: 60px;
+  padding: 5px 0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.theaterinfo-content .theater-infoItem .theater-item {
+  margin-right: 50px;
+}
+
+.theaterinfo-content .theater-infoItem .theater-item .theater-itemContent {
+  padding: 5px 0;
+}
+
+.theaterinfo-content .theater-infoItem .theater-item .theater-number {
+  width: 100px;
+}
+
+.theaterinfo-content i, .theaterinfo-content svg {
+  margin-right: 5px;
+}
+/*# sourceMappingURL=TheaterInfo.css.map */

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,sBAAsB,CAAA;EAClB,KAAK,EAAE,IAAI;EACX,gBAAgB,EAAE,OAAO;EACzB,MAAM,EAAE,GAAG;CACd",
+    "sources": [
+        "../Footer/AdminFooter.scss"
+    ],
+    "names": [],
+    "file": "AdminFooter.css"
+}

@@ -1,0 +1,57 @@
+header.adminHeader {
+  background-color: #031f50;
+  width: 100%;
+  height: 8vh;
+}
+
+header.adminHeader .header-content {
+  margin: auto;
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header.adminHeader .header-content .logobranch {
+  color: #fff;
+}
+
+header.adminHeader .header-content ul.menu-list {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
+  align-items: center;
+  list-style-type: none;
+  margin-bottom: 0;
+}
+
+header.adminHeader .header-content ul.menu-list li {
+  margin-left: 20px;
+  font-size: 15px;
+}
+
+header.adminHeader .header-content ul.menu-list li .menu-itemLink {
+  color: #fff;
+  font-weight: 700;
+}
+
+header.adminHeader .header-content ul.menu-list li .menu-itemLink:hover {
+  color: #31d7a9;
+}
+
+header.adminHeader .header-content ul.menu-list li .active {
+  color: #31d7a9;
+}
+
+header.adminHeader .header-content ul.menu-list li .userLogin {
+  color: #fff;
+}
+
+header.adminHeader .header-content ul.menu-list li .userLogin .dropbox {
+  background-color: #031f50;
+}
+
+header.adminHeader .header-content ul.menu-list li .userLogin .dropbox ul a {
+  color: #fff;
+}
+/*# sourceMappingURL=AdminHeader.css.map */
