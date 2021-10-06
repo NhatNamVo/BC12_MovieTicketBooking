@@ -38,15 +38,7 @@ class TheaterFilter extends Component {
     const {  sort, sortVal} = this.props;
 
     return (
-      <div
-        className="theater__banner hero-area"
-        style={{ backgroundImage: "url(/images/banner-1.jpg)" }}
-      >
-        <div className="container">
-          <div className="theater__banner__content">
-            <h3 className="title">Cụm Rạp Chiếu</h3>
-          </div>
-        </div>
+      <>
         <div className="book-section">
           <div className="container">
             <div className="filter-tool">
@@ -106,7 +98,8 @@ class TheaterFilter extends Component {
             </div>
           </div>
         </div>
-      </div>
+      
+      </>
     );
   }
   componentDidMount() {

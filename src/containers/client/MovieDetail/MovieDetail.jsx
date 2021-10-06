@@ -155,7 +155,7 @@ class MovieDetail extends Component {
             <div className="container">
               <div className="row">
                 <div className="col-lg-9">
-                  <div className="description">
+                  <div className="description container">
                     <ul className="tab-menu nav nav-pills card-header-pills">
                       <li className="nav-item">
                         <a className="nav-link active" href="#">
