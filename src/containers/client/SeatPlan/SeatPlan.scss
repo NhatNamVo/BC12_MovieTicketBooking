@@ -1,47 +1,318 @@
-.seatPlan-container{
-    color: #fff;
-    margin-bottom: 20px;
-    .seatPlan-movieInfo{
-        color: #9EB1EB;
-        padding: 42px 20px;
-        font-size: 18px;
-        box-shadow: 0px 10px 20px 0px #3b37bc;
-        border-radius: 0 0 10px 10px;
-        position: relative;
-        margin-top: 15px;
-        .borderSeatPlan{
-            position: absolute;
-            top: -3px;
-            left: 0;
-            height: 3px;
-            background-color: #3b37bc;
-        }
-        .theater-date, .theater-time{
-            display: inline-block;
+.seatPlan-container {
+  color: #fff;
+  margin-bottom: 20px;
+  .details__banner {
+    background-position: center;
+  }
+  .seatPlan-movieInfo {
+    color: #9eb1eb;
+    padding: 42px 20px;
+    font-size: 18px;
+    box-shadow: 0px 10px 20px 0px #3b37bc;
+    border-radius: 0 0 10px 10px;
+    position: relative;
+    margin-top: 15px;
+    .borderSeatPlan {
+      position: absolute;
+      top: -3px;
+      left: 0;
+      height: 3px;
+      background-color: #3b37bc;
+    }
+    .theater-date,
+    .theater-time {
+      display: inline-block;
+      margin-right: 80px;
+      font-size: 20px;
+    }
+    .theater-time {
+      background-color: #001232;
+      padding: 8px 30px;
+      border-radius: 25px;
+      box-shadow: 0px 10px 20px 0px #3b37bc;
+      
+    }
+    .timeLeft {
+      margin-right: 60px;
+      font-size: 20px;
+    }
+  }
+  .seat-container {
+    margin-top: 120px;
+    .screen {
+      text-align: center;
+      width: 100%;
+      font-size: 45px;
+      font-weight: 700;
+      color: #9eb1eb78;
+    }
+  }
+  .seatInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .seatInfo-item {
+      width: 120px;
+      text-align: center;
+      margin: 20px 10px 0;
+      p {
+        color: #9eb1eb;
+      }
+      img {
+        width: 50px;
+      }
+    }
+  }
+}
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+@include maxResponsive("large-down") {
+  @media screen and (min-device-height: 800px) {
+    .seatPlan-container {
+      .book-tickets {
+        .seatPlan-movieInfo {
+          padding: 25px 20px;
+          font-size: 18px;
+          margin-top: 0px;
+          .theater-date,
+          .theater-time {
             margin-right: 80px;
-        }
-        .theater-date{
             font-size: 20px;
-        }
-        .theater-time{
-            background-color: #001232;
+          }
+          .theater-time {
             padding: 8px 30px;
-            border-radius: 25px;
-            box-shadow: 0px 10px 20px 0px #3b37bc;
-        }
-        .timeLeft{
+          }
+          .timeLeft {
             margin-right: 60px;
+          }
         }
-    }
-    .seat-container{
-        margin-top: 150px;
-        .screen{
-            text-align: center;
-            width: 100%;
-            img{
-                width: 850px;
-            }
-        
+      }
+      .seat-container {
+        margin-top: 90px;
+        .screen {
+          font-size: 40px;
         }
+      }
+      .seatInfo {
+        .seatInfo-item {
+          width: 120px;
+          margin: 20px 1px 0;
+          p {
+            color: #9eb1eb;
+          }
+          img {
+            width: 40px;
+          }
+        }
+      }
     }
+  }
+  @media screen and (max-device-height: 420px) {
+    .seatPlan-container {
+      .details__banner {
+        height: 50vh;
+      }
+      .details__banner__wrapper {
+        .details__banner__content {
+          margin-top: -110px;
+          .card-title {
+            font-size: 24px;
+          }
+        }
+      }
+      .book-tickets {
+        .seatPlan-movieInfo {
+          padding: 20px 20px;
+          margin-top: 15px;
+          .theater-date,
+          .theater-time {
+            margin-right: 80px;
+            font-size: 18px;
+          }
+          .theater-time {
+            padding: 5px 25px;
+          }
+          .timeLeft {
+            margin-right: 60px;
+            font-size: 18px;
+          }
+        }
+      }
+      .seat-container {
+        margin-top: 90px;
+        .screen {
+          font-size: 40px;
+        }
+      }
+      .seatInfo {
+        .seatInfo-item {
+          width: 120px;
+          margin: 20px 1px 0;
+          p {
+            color: #9eb1eb;
+          }
+          img {
+            width: 40px;
+          }
+        }
+      }
+    }
+  }
+}
+@include maxResponsive("medium-down") {
+  .seatPlan-container {
+    .details__banner {
+      height: 50vh;
+    }
+    .details__banner__wrapper {
+      .details__banner__content {
+        margin-top: -100px;
+        .card-title {
+          font-size: 24px;
+        }
+      }
+    }
+    .book-tickets {
+        .seatPlan-movieInfo {
+          padding: 20px 20px;
+          margin-top: 15px;
+          .theater-date,
+          .theater-time {
+            margin-right: 50px;
+            font-size: 15px;
+          }
+          .theater-time {
+            padding: 5px 25px;
+          }
+          .timeLeft {
+            margin-right: 60px;
+            font-size: 15px;
+          }
+        }
+      }
+    .seat-container {
+      margin-top: 90px;
+      .screen {
+        font-size: 30px;
+      }
+    }
+    .seatInfo {
+      .seatInfo-item {
+        width: 100px;
+        margin: 20px 1px 0;
+        p {
+          color: #9eb1eb;
+          font-size: 13px;
+        }
+        img {
+          width: 30px;
+        }
+      }
+    }
+  }
+}
+@include maxResponsive("small-down") {
+  .seatPlan-container {
+    .details__banner {
+      height: 30vh;
+    }
+    .details__banner__wrapper {
+      .details__banner__content {
+        margin-top: -100px;
+        .card-title {
+          font-size: 24px;
+        }
+      }
+    }
+    .book-tickets {
+        .seatPlan-movieInfo {
+          padding: 15px 20px;
+          margin-top: 20px;
+          .theater-date,
+          .theater-time {
+            margin-right: 10px;
+            font-size: 14px;
+          }
+          .theater-time {
+            padding: 5px 20px;
+          }
+          .timeLeft {
+            margin-right: 20px;
+            font-size: 14px;
+          }
+        }
+      }
+    .seat-container {
+      margin-top: 90px;
+      .screen {
+        font-size: 20px;
+      }
+    }
+    .seatInfo {
+      .seatInfo-item {
+        width: 90px;
+        margin: 20px 1px 0;
+        p {
+          color: #9eb1eb;
+          font-size: 12px;
+        }
+        img {
+          width: 20px;
+        }
+      }
+    }
+  }
+}
+@include maxResponsive("smallest") {
+  .seatPlan-container {
+    .details__banner {
+      height: 20vh;
+    }
+    .details__banner__wrapper {
+      .details__banner__content {
+        margin-top: -90px;
+        .card-title {
+          font-size: 20px;
+        }
+      }
+    }
+    .book-tickets {
+        .seatPlan-movieInfo {
+          padding: 15px 20px;
+          margin-top: 15px;
+          .theater-date,
+          .theater-time {
+            margin-right: 12px;
+            font-size: 12px;
+          }
+          .theater-time {
+            padding: 3px 15px;
+          }
+          .timeLeft {
+            margin-right: 10px;
+            font-size: 12px;
+          }
+        }
+      }
+    .seat-container {
+      margin-top: 90px;
+      .screen {
+        font-size: 18px;
+      }
+    }
+    .seatInfo {
+      .seatInfo-item {
+        width: 80px;
+        margin: 20px 1px 0;
+        p {
+          color: #9eb1eb;
+          font-size: 10px;
+        }
+        img {
+          width: 18px;
+        }
+      }
+    }
+  }
 }

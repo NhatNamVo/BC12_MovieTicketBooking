@@ -89,7 +89,8 @@ class SeatPlan extends Component {
   };
   booking = () => {
     this.setState({loaddingPost: true})
-    this.postTitketOrder();
+    const bookingBtn = document.querySelector('.seatChose-btn');
+    bookingBtn.click();
   };
   checkTimeLeft = () => {
     this.setState({isTimeLeft: true});
@@ -118,7 +119,7 @@ class SeatPlan extends Component {
                   alt="hình ảnh"
                 />
               </div>
-              <div className="col-md-8  details__banner__content offset-lg-4 ">
+              <div className="col-md-12 col-lg-8 details__banner__content offset-lg-4 ">
                 <h3 className="card-title">{movieInfo.tenPhim}</h3>
                 <TheaterInfo movieDetail={movieInfo}/>
               </div>
@@ -128,10 +129,6 @@ class SeatPlan extends Component {
         <div className="book-tickets">
           <div className="container">
             <div className="book-wrapper seatPlan-movieInfo offset-lg-4">
-              <div
-                className="borderSeatPlan"
-                style={{ width: this.state.lineWidth + "%" }}
-              ></div>
               <div className="theater-infoTime">
                 <div className="theater-date">{movieInfo.ngayChieu}</div>
                 <div className="theater-time">{movieInfo.gioChieu}</div>
@@ -144,12 +141,53 @@ class SeatPlan extends Component {
           </div>
         </div>
         <div className="seat-container container">
-          <div className="screen"><img src="/images/theater.png" alt="man hinh" /></div>
+          <div className="screen">
+            {/* <img src="/images/theater.png" alt="man hinh" /> */}
+            MÀN HÌNH
+            </div>
           <SeatLayout
             seats={seat}
             choseSeat={this.choseSeat}
             cancelSeat={this.cancelSeat}
           />
+        </div>
+        <div className="seatInfo container">
+          <div className="seatInfo-item">
+            <img
+            width="80%"
+            className="seatItem"
+            src="../images/seat-1-free.png"
+            alt=""
+          />
+          <p>Ghế thường</p>
+          </div>
+          <div className="seatInfo-item">
+            <img
+            width="80%"
+            className="seatItem"
+            src="../images/seat-1-booked.png"
+            alt=""
+          />
+          <p>Ghế Vip</p>
+          </div>
+          <div className="seatInfo-item">
+            <img
+            width="80%"
+            className="seatItem"
+            src="../images/seat-1.png"
+            alt=""
+          />
+          <p>Ghế đã đặt</p>
+          </div>
+          <div className="seatInfo-item">
+            <img
+            width="80%"
+            className="seatItem"
+            src="../images/seat-chose.png"
+            alt=""
+          />
+          <p>Ghế đang chọn</p>
+          </div>
         </div>
         <div
           className="choseSeat-container container"

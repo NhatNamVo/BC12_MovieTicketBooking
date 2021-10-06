@@ -4,8 +4,8 @@ import "./Footer.scss";
 class Footer extends Component {
   render() {
     return (
-      <footer>
-        <div className="container">
+      <>
+        {/* <div className="container">
           <div className="footer-content">
             <div className="footer-support">
               <div className="footer-title">Đơn vị hổ trợ</div>
@@ -53,8 +53,8 @@ class Footer extends Component {
               </div>
             </div>
           </div>
-        </div>
-      </footer>
+        </div> */}
+      </>
     );
   }
 }

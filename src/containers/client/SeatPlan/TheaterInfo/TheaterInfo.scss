@@ -1,33 +1,125 @@
-.theaterinfo-content{
-    margin-top: 20px;
-    color: #fff;
-    .theater-title{
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        .theater-name{
-            margin-bottom: 0;
-            margin-left: 10px;
-        }
+.theaterinfo-content {
+  margin-top: 20px;
+  color: #fff;
+  .theater-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .theater-name {
+      margin-bottom: 0;
+      margin-left: 10px;
     }
-    .theater-infoItem{
-        margin-left: 60px;
+  }
+  .theater-infoItem {
+    margin-left: 60px;
+    padding: 5px 0;
+    display: flex;
+    justify-content: flex-start;
+    // align-items: center;
+    .theater-item {
+      margin-right: 50px;
+      .theater-itemContent {
         padding: 5px 0;
-        display: flex;
-        justify-content: flex-start;
-        // align-items: center;
+      }
+      .theater-number {
+        width: 100px;
+      }
+    }
+  }
+
+  i,
+  svg {
+    margin-right: 5px;
+  }
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+@include maxResponsive("large-down") {
+  @media screen and (min-device-height: 800px) {
+  }
+  @media screen and (max-device-height: 420px) {
+    .theaterinfo-content {
+      .theater-title {
+        img {
+          width: 40px;
+        }
+      }
+      .theater-infoItem {
+        margin-left: 50px;
         .theater-item{
-            margin-right: 50px;
-            .theater-itemContent{
-                padding: 5px 0;
-            }
+            margin-right: 30px;
+        }
+      }
+    }
+  }
+}
+
+@include maxResponsive("medium-down") {
+  .theaterinfo-content {
+    .theater-title {
+        h6{
+            font-size: 15px;
+        }
+      img {
+        width: 35px;
+      }
+    }
+    .theater-infoItem {
+        margin-left: 46px;
+        font-size: 15px;
+        .theater-item{
+            margin-right: 5px;
             .theater-number{
-                width: 100px;
+                width: 70px;
             }
         }
     }
-    
-    i, svg{
-        margin-right: 5px;
-    }
+  }
 }
+@include maxResponsive("small-down") {
+    .theaterinfo-content {
+      .theater-title {
+          h6{
+              font-size: 14px;
+          }
+        img {
+          width: 28px;
+        }
+      }
+      .theater-infoItem {
+          margin-left: 40px;
+          font-size: 14px;
+          .theater-item{
+              margin-right: 5px;
+              .theater-number{
+                  width: 70px;
+              }
+          }
+      }
+    }
+  }
+
+  @include maxResponsive("smallest") {
+    .theaterinfo-content {
+      .theater-title {
+          h6{
+              font-size: 12px;
+          }
+        img {
+          width: 24px;
+        }
+      }
+      .theater-infoItem {
+          margin-left: 35px;
+          font-size: 12px;
+          .theater-item{
+              margin-right: 5px;
+              .theater-number{
+                  width: 60px;
+              }
+          }
+      }
+    }
+  }
