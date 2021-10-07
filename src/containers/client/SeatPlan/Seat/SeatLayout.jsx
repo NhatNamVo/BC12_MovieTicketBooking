@@ -69,7 +69,7 @@ class SeatLayout extends Component {
         <div className="seatLayout-container" onClick={this.handleChoseSeat}>
           <div
             className="seatnormal-container m-auto row"
-            style={{ width: "95%" }}
+            style={{ width: "100%" }}
           >
             {this.props.seats.map((seat, idx) => {
               return (
