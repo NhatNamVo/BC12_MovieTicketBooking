@@ -14,7 +14,7 @@
         background-color: #31d7a9;
         position: relative;
         top: -100%;
-        width: 30%;
+        width: 40%;
         padding: 20px 30px;
         margin: auto;
         text-align: center;
@@ -55,4 +55,138 @@
 .show{
     transform: scale(1);
     opacity: 1;
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+@include maxResponsive("large-down") {
+    @media screen and (min-device-height: 800px) {
+        .Popup-container{
+            .BookingFail-box{
+                top: -100%;
+                width: 70%;
+                padding: 20px 30px;
+                .BookingFail-message{
+                    font-size: 20px;
+                }
+                button{
+                    border-radius: 20px;
+                    padding: 5px 15px;
+                }
+                .BookingFail-confirm{
+                    margin-right: 10px;
+                }
+                .BookingFail-cancle{
+                    margin-left: 10px;
+                }
+            }
+            .display{
+                top: 30%;
+            }
+        }
+    }
+    @media screen and (max-device-height: 420px) {
+        .Popup-container{
+            .BookingFail-box{
+                top: -100%;
+                width: 50%;
+                padding: 20px 20px;
+                .BookingFail-message{
+                    font-size: 18px;
+                }
+                button{
+                    border-radius: 20px;
+                    padding: 5px 15px;
+                }
+                .BookingFail-confirm{
+                    margin-right: 10px;
+                }
+                .BookingFail-cancle{
+                    margin-left: 10px;
+                }
+            }
+            .display{
+                top: 30%;
+            }
+        }
+    }
+}
+@include maxResponsive("medium-down") {
+    .Popup-container{
+        .BookingFail-box{
+            top: -100%;
+            width: 50%;
+            padding: 15px 20px;
+            .BookingFail-message{
+                font-size: 15px;
+            }
+            button{
+                border-radius: 20px;
+                padding: 5px 15px;
+                font-size: 15px;
+            }
+            .BookingFail-confirm{
+                margin-right: 10px;
+            }
+            .BookingFail-cancle{
+                margin-left: 10px;
+            }
+        }
+        .display{
+            top: 30%;
+        }
+    }
+}
+
+@include maxResponsive("small-down") {
+    .Popup-container{
+        .BookingFail-box{
+            top: -100%;
+            width: 85%;
+            padding: 15px 20px;
+            .BookingFail-message{
+                font-size: 14px;
+            }
+            button{
+                border-radius: 20px;
+                padding: 3px 10px;
+                font-size: 14px;
+            }
+            .BookingFail-confirm{
+                margin-right: 10px;
+            }
+            .BookingFail-cancle{
+                margin-left: 10px;
+            }
+        }
+        .display{
+            top: 30%;
+        }
+    }
+}
+@include maxResponsive("smallest") {
+    .Popup-container{
+        .BookingFail-box{
+            top: -100%;
+            width: 85%;
+            padding: 15px 15px;
+            .BookingFail-message{
+                font-size: 12px;
+            }
+            button{
+                border-radius: 10px;
+                padding: 3px 10px;
+                font-size: 12px;
+            }
+            .BookingFail-confirm{
+                margin-right: 5px;
+            }
+            .BookingFail-cancle{
+                margin-left: 5px;
+            }
+        }
+        .display{
+            top: 30%;
+        }
+    }
 }

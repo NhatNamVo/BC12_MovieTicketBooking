@@ -7,14 +7,102 @@
             margin: auto;
         }
         .seatName{
+            font-size: 18px;
             position: absolute;
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
             color: #9EB1EB;
         }
-        .seat-choosed{
-            color: #d73131;
+    }
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+@include maxResponsive("mid-large-down") {
+    .seatLayout-container{
+        margin-top: 80px;
+        .seat-item{
+            .seatName{
+                position: absolute;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
     }
 }
+@include maxResponsive("large-down") {
+    @media screen and (min-device-height: 768px) {
+        .seatLayout-container{
+            margin-top: 50px;
+            .seat-item{
+                .seatName{
+                    font-size: 12px;
+                    position: absolute;
+                    top: 15px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+        }
+    }
+    @media screen and (max-device-height: 420px) {
+        .seatLayout-container{
+            margin-top: 50px;
+            .seat-item{
+                .seatName{
+                    font-size: 12px;
+                    position: absolute;
+                    top: 15px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+        }
+    }
+}
+
+@include maxResponsive("medium-down") {
+    .seatLayout-container{
+        margin-top: 40px;
+        .seat-item{
+            .seatName{
+                font-size: 9px;
+                position: absolute;
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    }
+} 
+@include maxResponsive("small-down") {
+    .seatLayout-container{
+        margin-top: 30px;
+        .seat-item{
+            .seatName{
+                font-size: 7px;
+                position: absolute;
+                top: 10px;
+                left: 48%;
+                transform: translateX(-50%);
+            }
+        }
+    }
+} 
+@include maxResponsive("smallest") {
+    .seatLayout-container{
+        margin-top: 30px;
+        .seat-item{
+            .seatName{
+                font-size: 6px;
+                position: absolute;
+                top: 10px;
+                left: 48%;
+                transform: translateX(-50%);
+            }
+        }
+    }
+}   

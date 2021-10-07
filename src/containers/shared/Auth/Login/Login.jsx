@@ -20,9 +20,13 @@ class Login extends Component {
       this.setState({ isPass: true });
     }
   };
-  changeCheckBox = (e) => {
-    this.props.checked(e.target.checked);
-  };
+  saveLoginInfo = () => {
+    const isChecked = !this.props.isLogined;
+    this.props.checked(isChecked);
+  }
+  // changeCheckBox = (e) => {
+  //   this.props.checked(e.target.checked);
+  // };
   loginSubmit = (e) => {
     e.preventDefault();
     let user = {};
@@ -150,25 +154,18 @@ class Login extends Component {
                   aria-hidden="true"
                 />
               </button>
-              <div className="form-check">
-                <label className="form-check-label">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    name
-                    id
-                    defaultValue="checkedValue"
-                    onChange={this.changeCheckBox}
-                    defaultChecked
-                  />
-                  Lưu tài khoản
-                </label>
+              <div className="form-check formCheck-SaveUser">
+                <div className={"checkBox " + (this.props.isLogined?"saveUser":"")} onClick={this.saveLoginInfo}>
+                  <i class="fa fa-check"></i>
+                </div>
+                  <span>Lưu tài khoản</span>
               </div>
             </form>
           </div>
+          <hr />
           <div className="login-register">
             <p>Bạn chưa có tài khoản TicketBooking?</p>
-            <Link to="/register">Đăng ký ngay</Link>
+            <Link to="/register">Đăng ký</Link>
           </div>
         </div>
       </div>

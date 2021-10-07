@@ -27,21 +27,24 @@ class ChoseBox extends Component {
     };
     return (
       <div className="choseBox-content">
-        <div className="seatChose-item seat-chosed">
-          <p className="title">Ghế chọn</p>
-          <h3 className="result">
-            {seatChose.choseSeat.map((seat, idx) => {
-              if (idx > 0) {
-                return <span>, {seat}</span>;
-              }
-              return <span>{seat}</span>;
-            })}
-          </h3>
+        <div className="seatChose-item seatChose-info">
+          <div className="seatChose-item seat-chosed">
+            <p className="title">Ghế chọn</p>
+            <h3 className="result">
+              {seatChose.choseSeat.map((seat, idx) => {
+                if (idx > 0) {
+                  return <span>, {seat}</span>;
+                }
+                return <span>{seat}</span>;
+              })}
+            </h3>
+          </div>
+          <div className=" seat-price">
+            <p className="title">Tổng tiền</p>
+            <h3 className="result">{seatChose.totalPrice===0?'':seatChose.totalPrice}</h3>
+          </div>
         </div>
-        <div className="seatChose-item">
-          <p className="title">Tổng tiền</p>
-          <h3 className="result">{seatChose.totalPrice}</h3>
-        </div>
+        
         <div className="seatChose-item">
           <Link
             to={newTo}

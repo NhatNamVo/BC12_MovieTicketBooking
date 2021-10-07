@@ -53,7 +53,7 @@
         background-color: transparent;
         border: 2px solid #9eb1eb;
         border-radius: 3px;
-        font-size:18px;
+        font-size: 18px;
         &:focus-visible {
           outline: none;
         }
@@ -70,26 +70,414 @@
         font-size: 20px;
       }
     }
-    .login-submit{
-        display: block;
+    .login-submit {
+      display: block;
+      position: relative;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      margin-top: 35px;
+      background-color: #31d7a9;
+      padding: 10px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      &:hover {
+        box-shadow: 0 0 10px #31d7a9;
+      }
+      span.spinner-border {
+        position: absolute;
+        top: 40%;
+        right: 10%;
+      }
+    }
+    .formCheck-SaveUser {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 10px;
+      .checkBox {
         position: relative;
-        border: none;
-        border-radius: 5px;
+        width: 15px;
+        height: 15px;
+        border: 2px solid #9eb1eb;
+        border-radius: 3px;
+        transition: transform 0.3s;
+        margin-right: 5px;
+        &:hover {
+          border: 2px solid #31d7a9;
+          transform: scale(0.8);
+        }
+
+        i {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: #31d7a9;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+      }
+      .checkBox.saveUser {
+        border: 2px solid #31d7a9;
+        i {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  hr {
+    border: 1px solid #9eb1eb;
+  }
+  .login-register {
+    text-align: center;
+    a {
+      background-color: #31d7a9;
+      padding: 5px 15px;
+      border-radius: 5px;
+      font-size: 20px;
+      font-weight: 700;
+      &:hover {
+        box-shadow: 0 0 10px #31d7a9;
+      }
+    }
+  }
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+@include maxResponsive("mid-large-down") {
+  .login-component {
+    .login-container {
+      width: 40%;
+      top: 15%;
+      left: 50%;
+      padding: 30px 60px 80px;
+    }
+    .login-title {
+      margin-bottom: 35px;
+    }
+    .login-form {
+      .form-input {
+        input {
+          padding: 10px;
+          padding-left: 40px;
+          font-size: 18px;
+        }
+        i {
+          top: 50%;
+          left: 5%;
+          font-size: 20px;
+        }
+      }
+      .login-submit {
         width: 100%;
         margin-top: 35px;
-        background-color: #31d7a9;
         padding: 10px;
         font-size: 20px;
-        font-weight: 700;
-        color: #fff;
-        &:hover{
-            box-shadow: 0 0 10px #31d7a9;
-        }
-        span.spinner-border{
-          position: absolute;
+        span.spinner-border {
           top: 40%;
           right: 10%;
         }
+      }
+      .formCheck-SaveUser {
+        margin-top: 10px;
+        .checkBox {
+          width: 15px;
+          height: 15px;
+          margin-right: 5px;
+        }
+      }
+    }
+    .login-register {
+      text-align: center;
+      a {
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-size: 20px;
+      }
+    }
+  }
+}
+@include maxResponsive("large-down") {
+  @media screen and (min-device-height: 768px) {
+    .login-component {
+      .login-container {
+        width: 50%;
+        top: 15%;
+        left: 50%;
+        padding: 30px 60px 80px;
+      }
+      .login-title {
+        margin-bottom: 35px;
+      }
+      .login-form {
+        .form-input {
+          input {
+            padding: 10px;
+            padding-left: 40px;
+            font-size: 18px;
+          }
+          i {
+            top: 50%;
+            left: 5%;
+            font-size: 20px;
+          }
+        }
+        .login-submit {
+          width: 100%;
+          margin-top: 35px;
+          padding: 10px;
+          font-size: 20px;
+          span.spinner-border {
+            top: 40%;
+            right: 10%;
+          }
+        }
+        .formCheck-SaveUser {
+          margin-top: 10px;
+          .checkBox {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+          }
+        }
+      }
+      .login-register {
+        text-align: center;
+        a {
+          padding: 5px 15px;
+          border-radius: 5px;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+  @media screen and (max-device-height: 420px) {
+    .login-component {
+      height: 200vh;
+      .login-container {
+        width: 50%;
+        top: 15%;
+        left: 50%;
+        padding: 30px 40px 80px;
+      }
+      .login-title {
+        margin-bottom: 35px;
+      }
+      .login-form {
+        .form-input {
+          input {
+            padding: 10px;
+            padding-left: 40px;
+            font-size: 18px;
+          }
+          i {
+            top: 50%;
+            left: 5%;
+            font-size: 20px;
+          }
+        }
+        .login-submit {
+          width: 100%;
+          margin-top: 35px;
+          padding: 10px;
+          font-size: 20px;
+          span.spinner-border {
+            top: 40%;
+            right: 10%;
+          }
+        }
+        .formCheck-SaveUser {
+          margin-top: 10px;
+          .checkBox {
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+          }
+        }
+      }
+      .login-register {
+        text-align: center;
+        a {
+          padding: 5px 15px;
+          border-radius: 5px;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+@include maxResponsive("medium-down") {
+  .login-component {
+    height: 180vh;
+    .login-container {
+      width: 55%;
+      top: 15%;
+      left: 50%;
+      padding: 30px 40px 50px;
+    }
+    .login-title {
+      margin-bottom: 20px;
+      font-size: 30px;
+    }
+    .login-form {
+      .form-input {
+        input {
+          padding: 10px;
+          padding-left: 40px;
+          font-size: 15px;
+        }
+        i {
+          top: 50%;
+          left: 5%;
+          font-size: 15px;
+        }
+      }
+      .login-submit {
+        width: 100%;
+        margin-top: 35px;
+        padding: 10px;
+        font-size: 18px;
+        span.spinner-border {
+          top: 40%;
+          right: 10%;
+        }
+      }
+      .formCheck-SaveUser {
+        margin-top: 10px;
+        font-size: 15px;
+        .checkBox {
+          width: 15px;
+          height: 15px;
+          margin-right: 5px;
+        }
+      }
+    }
+    .login-register {
+      font-size: 15px;
+      text-align: center;
+      a {
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+@include maxResponsive("small-down") {
+  .login-component {
+    height: 100vh;
+    .login-container {
+      width: 85%;
+      top: 15%;
+      left: 50%;
+      padding: 30px 40px 50px;
+    }
+    .login-title {
+      margin-bottom: 20px;
+      font-size: 25px;
+    }
+    .login-form {
+      .form-input {
+        input {
+          padding: 8px;
+          padding-left: 30px;
+          font-size: 14px;
+        }
+        i {
+          top: 50%;
+          left: 5%;
+          font-size: 14px;
+        }
+      }
+      .login-submit {
+        width: 100%;
+        margin-top: 30px;
+        padding: 10px;
+        font-size: 15px;
+        span.spinner-border {
+          top: 40%;
+          right: 10%;
+        }
+      }
+      .formCheck-SaveUser {
+        margin-top: 10px;
+        font-size: 14px;
+        .checkBox {
+          width: 15px;
+          height: 15px;
+          margin-right: 5px;
+        }
+      }
+    }
+    .login-register {
+      font-size: 14px;
+      text-align: center;
+      a {
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-size: 15px;
+      }
+    }
+  }
+}
+@include maxResponsive("smallest") {
+  .login-component {
+    height: 100vh;
+    .login-container {
+      width: 85%;
+      top: 15%;
+      left: 50%;
+      padding: 30px 40px 50px;
+    }
+    .login-title {
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+    .login-form {
+      .form-input {
+        input {
+          padding: 5px;
+          padding-left: 20px;
+          font-size: 14px;
+        }
+        i {
+          top: 50%;
+          left: 5%;
+          font-size: 14px;
+        }
+      }
+      .login-submit {
+        width: 100%;
+        margin-top: 30px;
+        padding: 8px;
+        font-size: 15px;
+        span.spinner-border {
+          top: 40%;
+          right: 10%;
+        }
+      }
+      .formCheck-SaveUser {
+        margin-top: 10px;
+        font-size: 14px;
+        .checkBox {
+          width: 15px;
+          height: 15px;
+          margin-right: 5px;
+        }
+      }
+    }
+    .login-register {
+      font-size: 14px;
+      text-align: center;
+      a {
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-size: 15px;
+      }
     }
   }
 }

@@ -4,17 +4,26 @@
     margin: auto;
     margin-top: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    padding: 35px 40px;
+    padding: 35px 30px;
     border-radius:30px;
     .seat-chosed{
         width: 250px;
+    }
+    .seatChose-info{
+        display: flex;
+        justify-content: space-between;
+        .seat-chosed{
+            margin-right: 60px;
+        }
     }
     .seatChose-item{
         text-align: center;
         .title{
             font-size: 20px;
+            color: #9eb1eb;
+            margin-bottom: 1px;
         }
         .result{
             color: #31d7a9;
@@ -24,11 +33,163 @@
             border-radius: 30px;
             background-color: #9EB1EB;
             border: none;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             color: #fff;
             &:hover{
                 box-shadow: 0px 7px 17px 0 #9eb1eb96;
+            }
+        }
+    }
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+@include maxResponsive("large-down") {
+    @media screen and (min-device-height: 800px) {
+        .choseBox-content{
+            margin-top: 10px;
+            padding: 25px 30px;
+            border-radius:30px;
+            .seat-chosed{
+                width: 250px;
+            }
+            .seatChose-info{
+                .seat-chosed{
+                    margin-right: 20px;
+                }
+            }
+            .seatChose-item{
+                text-align: center;
+                .title{
+                    font-size: 20px;
+                }
+                .result{
+                    font-size: 22px;
+                }
+                .seatChose-btn{
+                    padding: 8px 20px;
+                    border-radius: 25px;
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+    @media screen and (max-device-height: 420px) {
+        .choseBox-content{
+            margin-top: 10px;
+            padding: 25px 30px;
+            border-radius:30px;
+            .seat-chosed{
+                width: 250px;
+            }
+            .seatChose-info{
+                .seat-chosed{
+                    margin-right: 18px;
+                }
+            }
+            .seatChose-item{
+                text-align: center;
+                .title{
+                    font-size: 18px;
+                }
+                .result{
+                    font-size: 20px;
+                }
+                .seatChose-btn{
+                    padding: 5px 20px;
+                    border-radius: 25px;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
+
+@include maxResponsive("medium-down") {
+    .choseBox-content{
+        margin-top: 10px;
+        padding: 20px 20px;
+        border-radius: 30px;
+        .seat-chosed{
+            width: 150px;
+        }
+        .seatChose-info{
+            .seat-chosed{
+                margin-right: 20px;
+            }
+        }
+        .seatChose-item{
+            text-align: center;
+            .title{
+                font-size: 15px;
+            }
+            .result{
+                font-size: 18px;
+            }
+            .seatChose-btn{
+                padding: 5px 20px;
+                border-radius: 25px;
+                font-size: 15px;
+            }
+        }
+    }
+}
+@include maxResponsive("small-down") {
+    .choseBox-content{
+        margin-top: 10px;
+        padding: 10px 10px;
+        border-radius: 15px;
+        .seat-chosed{
+            width: 120px;
+        }
+        .seatChose-info{
+            .seat-chosed{
+                margin-right: 15px;
+            }
+        }
+        .seatChose-item{
+            text-align: center;
+            .title{
+                font-size: 14px;
+            }
+            .result{
+                font-size: 15px;
+            }
+            .seatChose-btn{
+                padding: 3px 15px;
+                border-radius: 15px;
+                font-size: 14px;
+            }
+        }
+    }
+}
+@include maxResponsive("smallest") {
+    .choseBox-content{
+        margin-top: 10px;
+        padding: 10px 8px;
+        border-radius: 15px;
+        .seat-chosed{
+            width: 80px;
+        }
+        .seatChose-info{
+            .seat-chosed{
+                margin-right: 10px;
+            }
+        }
+        .seatChose-item{
+            text-align: center;
+            .title{
+                font-size: 12px;
+            }
+            .result{
+                font-size: 14px;
+            }
+            .seatChose-btn{
+                padding: 2px 8px;
+                border-radius: 15px;
+                font-size: 12px;
             }
         }
     }
