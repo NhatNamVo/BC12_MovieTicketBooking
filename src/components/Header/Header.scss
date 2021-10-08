@@ -1,0 +1,92 @@
+li {
+    list-style: none;
+}
+.header-section {
+    -webkit-font-smoothing: antialiased;
+    background-color: #001232; /* Dành cho các trình duyệt không hỗ trợ gradient*/
+    background-image: linear-gradient(to bottom right, #3b37bc, #001232);
+    color: #fff;
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    .navbar {
+        .header__menu {
+            justify-content: center;
+        }
+        button {
+           
+            position: relative;
+            border: 2px solid #9eb1eb;
+            i {
+                font-size: 14px;
+                color: #fff;
+            }
+        }
+    }
+}
+// Mixin
+@import "helpers/mixin.scss";
+@import "helpers/variables.scss";
+@include minResponsive("large") {
+    .header-section {
+        .header-button {
+            padding: 5px 12px;
+            position: relative;
+            list-style: none;
+            a {
+                background: #31d7a9;
+                padding: -2px 49px;
+                font-weight: 600;
+                border-radius: 25px;
+                display: inline-block;
+            }
+            a:hover {
+                box-shadow: 0px 10px 15px 0px rgba(49, 215, 169, 0.5);
+            }
+        }
+
+        .menu {
+            .nav-item {
+                position: relative;
+                padding: 0px 25px;
+
+                a {
+                    padding: 0px !important;
+                    position: relative;
+                    // color: #ffffff;
+                    font-size: 16px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                }
+            }
+            .active::before {
+                -webkit-transform: scaleX(1);
+                transform: scaleX(1);
+            }
+            .nav-item:hover::before {
+                -webkit-transform: scaleX(1);
+                transform: scaleX(1);
+            }
+        }
+        .nav-item::before,
+        .active::before {
+            width: calc(90% - 20px);
+
+            height: 3px;
+            background: #31d7a9;
+            top: -10px;
+            position: absolute;
+            border-radius: 10px;
+            content: "";
+            -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+            -webkit-transition: all ease 0.3s;
+            transition: all ease 0.3s;
+            -webkit-transform-origin: left;
+            transform-origin: left;
+        }
+    }
+}

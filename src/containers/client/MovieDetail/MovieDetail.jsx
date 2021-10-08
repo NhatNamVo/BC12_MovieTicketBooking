@@ -240,19 +240,22 @@ class MovieDetail extends Component {
                                           {cumRap.tenCumRap}
                                         </h6>
                                         </Link>
-                                        <div className="my-3 ticket">
+                                        <div className="my-3 ml-3 ticket row">
                                           {cumRap.lichChieuPhim.slice(0,10).map(
                                             (lichChieu) => {
                                               return (
+                                                <div
+                                                className="ticket__item mr-3 mb-3  "
+                                                style={{
+                                                  backgroundImage:
+                                                    "url(/images/movie-ticket.png)",
+                                                }}
+                                              >
                                                 <Link
                                                   to={`/seat-plan/${lichChieu.maLichChieu}`}
-                                                  
-                                                  className="btn mr-3 mb-3 "
+                                                  className=" btn-ticket  "
                                                 >
-                                                  <div className="ticket__item d-flex"style={{
-                                                    backgroundImage:
-                                                      "url(/images/movie-ticket.png)",
-                                                  }}>
+                                                  <div>
                                                     {new Date(
                                                       lichChieu.ngayChieuGioChieu
                                                     ).toLocaleTimeString(
@@ -260,11 +263,11 @@ class MovieDetail extends Component {
                                                       {
                                                         hour: "numeric",
                                                         minute: "numeric",
-                                                        
                                                       }
                                                     )}
                                                   </div>
                                                 </Link>
+                                              </div>
                                               );
                                             }
                                           )}
