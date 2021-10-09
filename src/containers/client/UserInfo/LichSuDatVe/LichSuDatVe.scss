@@ -1,41 +1,192 @@
 .bookingHistory {
-    width: 80%;
-    background-color: #031f50c2;
-    text-align: center;
-    padding: 30px 50px;
-    border-radius: 30px;
-    position: relative;
-    margin: auto;
-    z-index: 10;
-    transform-origin: top center;
-    display: none;
-    transform: scaleY(0);
-    transition: transform .2s;
-    margin-bottom: 30px;
-    .booking-item{
+  width: 930px;
+  background-color: #031f50c2;
+  text-align: center;
+  padding: 30px 50px;
+  border-radius: 30px;
+  position: relative;
+  margin: auto;
+  z-index: 10;
+  transform-origin: top center;
+  display: none;
+  transform: scaleY(0);
+  transition: transform 0.2s;
+  margin-bottom: 30px;
+  .booking-item {
+    border: 2px solid #31d7a9;
+    padding: 10px 30px;
+    color: #fff;
+    margin-top: 20px;
+    border-radius: 20px;
+    font-size: 20px;
+    h5 {
+      color: #31d7a9;
+      font-weight: 700;
+      font-size: 30px;
+    }
+    .timeBooking {
+      text-align: left;
+      p {
+        margin-bottom: 0;
+        padding-left: 100px;
+      }
+    }
+  }
+}
+.bookingHistory.show {
+  display: block;
+}
+.bookingHistory.display {
+  transform: scaleY(1);
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+@include maxResponsive("large-down") {
+  @media screen and (min-device-height: 768px) {
+    .bookingHistory {
+      width: 100%;
+      padding: 30px 30px;
+      border-radius: 30px;
+      margin-bottom: 30px;
+      .booking-item {
         border: 2px solid #31d7a9;
-        padding: 10px 30px;
+        padding: 10px 20px;
         color: #fff;
         margin-top: 20px;
         border-radius: 20px;
-        font-size: 18px;
-        h5{
+        font-size: 20px;
+        h6{
+            font-size: 20px;  
+          }
+        h5 {
+          font-size: 30px;
+        }
+        .timeBooking {
+          text-align: left;
+          p {
+            margin-bottom: 0;
+            padding-left: 20px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-device-height: 420px) {
+    .bookingHistory {
+      width: 100%;
+      padding: 30px 30px;
+      border-radius: 30px;
+      margin-bottom: 30px;
+      .booking-item {
+        border: 2px solid #31d7a9;
+        padding: 10px 20px;
+        color: #fff;
+        margin-top: 20px;
+        border-radius: 20px;
+        font-size: 15px;
+        h5 {
+          font-size: 25px;
+        }
+        .timeBooking {
+          text-align: left;
+          p {
+            margin-bottom: 0;
+            padding-left: 50px;
+          }
+        }
+      }
+    }
+  }
+}
+@include maxResponsive("medium-down") {
+    .bookingHistory {
+        width: 100%;
+        padding: 30px 30px;
+        border-radius: 30px;
+        margin-bottom: 30px;
+        .booking-item {
+          border: 2px solid #31d7a9;
+          padding: 10px 20px;
+          color: #fff;
+          margin-top: 20px;
+          border-radius: 20px;
+          font-size: 14px;
+          h6{
+            font-size: 14px;  
+          }
+          h5 {
             color: #31d7a9;
             font-weight: 700;
-            font-size: 30px;
-        }
-        .timeBooking{
+            font-size: 20px;
+          }
+          .timeBooking {
             text-align: left;
-            p{
-                margin-bottom: 0;
-                padding-left: 100px;
+            p {
+              margin-bottom: 0;
+              padding-left: 20px;
             }
+          }
         }
-    }
+      }
 }
-.bookingHistory.show{
-    display: block;
+@include maxResponsive("small-down") {
+    .bookingHistory {
+        width: 100%;
+        padding: 10px;
+        border-radius: 30px;
+        margin-bottom: 30px;
+        .booking-item {
+          border: 2px solid #31d7a9;
+          padding: 10px 20px;
+          color: #fff;
+          margin-top: 20px;
+          border-radius: 20px;
+          font-size: 12px;
+          h5 {
+            color: #31d7a9;
+            font-weight: 700;
+            font-size: 18px;
+          }
+          .timeBooking {
+            text-align: left;
+            p {
+              margin-bottom: 0;
+              padding-left: 0px;
+            }
+          }
+        }
+      }
 }
-.bookingHistory.display{
-    transform: scaleY(1);
+@include maxResponsive("smallest") {
+    .bookingHistory {
+        width: 100%;
+        padding: 10px;
+        border-radius: 30px;
+        margin-bottom: 20px;
+        .booking-item {
+          border: 2px solid #31d7a9;
+          padding: 10px 20px;
+          color: #fff;
+          margin-top: 10px;
+          border-radius: 20px;
+          font-size: 10px;
+          h6{
+            font-size: 10px;  
+          }
+          h5 {
+            color: #31d7a9;
+            font-weight: 700;
+            font-size: 16px;
+          }
+          .timeBooking {
+            text-align: left;
+            p {
+              margin-bottom: 0;
+              padding-left: 0px;
+            }
+          }
+        }
+      }
 }
