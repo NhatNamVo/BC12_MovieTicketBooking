@@ -5,6 +5,7 @@ import Movienew from './Movienew/Movienew';
 import {connect} from 'react-redux';
 import {actFetchAllMovie} from './module/actions';
 import Loader from 'components/Loader/Loader';
+import BackToTop from 'containers/shared/BackToTop/BackToTop';
 class Home extends Component {
   render() {
     const {match, history, location, loading} = this.props;
@@ -14,6 +15,7 @@ class Home extends Component {
         <Carousel match = {match} history={history} location={location}/>
         <Moviehot match = {match} history={history} location={location}/>
         <Movienew match = {match} history={history} location={location}/>
+        <BackToTop/>
       </div>
     );
   }
