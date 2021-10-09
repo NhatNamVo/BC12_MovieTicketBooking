@@ -1,0 +1,33 @@
+/* ARROW-TOP */
+.arrow-top{
+  position: fixed;
+  overflow: hidden;
+  right: 15px;
+  bottom: 15px;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  line-height: 50px;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all .45s ease;
+  transform: translate3d(0, 100px, 0);
+  opacity: .6;
+  z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  background: #76aa6f;
+
+}
+#top{
+  color: #fff; 
+}
+.arrow-top:hover{
+  background-color: #76aa6f;
+  opacity: 1;
+}
+.cd-top--is-visible { 
+  visibility: visible;
+  opacity: .6;
+  transform: translate3d(0,0,0);
+}

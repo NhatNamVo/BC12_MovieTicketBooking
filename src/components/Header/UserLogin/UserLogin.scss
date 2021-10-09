@@ -1,8 +1,13 @@
 .userLogin {
     position: relative;
     cursor: pointer;
-    border: 2px solid #9eb1eb;
+    background-color: transparent;
+    background-image: linear-gradient(
+90deg
+, #64ECF5 0%, #6846e4 100%);
+    border-radius: 100px 100px 100px 100px;
     border-radius: 30px;
+    transition: all ease 0.3s;
     .dropbox {
         position: absolute;
         background-color:#111c59;

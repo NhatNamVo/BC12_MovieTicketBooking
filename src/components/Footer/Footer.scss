@@ -1,56 +1,179 @@
-footer{
-    background-color: rgba(255, 255, 255, 0.469);
-    padding: 20px 0;
-    border-radius: 50% 50% 0 0;
-    .footer-content{
-        display: flex;
-        justify-content:space-between;
-        .footer-support{
-            text-align: center;
-            .footer-title{
-                color: #31d7a9;
-                font-weight: 700;
-                font-size: 30px;
-                margin-bottom: 10px;
-            }
-            .footer-branch{
+footer {
+    background: linear-gradient(to right, #221f7b, #001232);
+
+    color: #fff;
+    .footer-section-box {
+        padding-top: 2rem;
+        padding-bottom: 1rem;
+
+        .footer-top {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+            align-items: center;
+            .social {
+                position: relative;
+                list-style: none;
                 display: flex;
-                justify-content: space-around;
-                .branch-logo{
-                    width: 50px;
-                    height: 50px;
-                    margin: 0 5px;
-                }
-                img{
-                    width: 100%;
-                    height: 100%;
-                }
-            }
-        }
-        .footer-contact{
-            text-align: center;
-            font-weight: 500;
-            .footer-title{
-                color: #31d7a9;
-                font-weight: 700;
-                font-size: 30px;
-            }
-            .footer-branchSloGan{
-                color: #fff;
-                margin-bottom: 10px;
-            }
-            .contact{
-                display: flex;
-                justify-content: space-evenly;
-                .contactItem{
-                    color: #fff;
-                    a{
-                        color: #fff;
-                        &:hover{
-                            color: #31d7a9;
+                margin-bottom: 0;
+                margin-top: 10px;
+                padding: 0;
+                li {
+                    transition: all ease 0.3s;
+                    text-align: center;
+                    border-radius: 50%;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    margin-left: 9px;
+                    width: 40px;
+                    height: 40px;
+                    a {
+                        line-height: 38px;
+                        svg {
+                            color: #ffffff;
+                            width: 23px;
+                            height: 23px;
+                            padding: 3px;
                         }
                     }
                 }
+            }
+        }
+
+        .footer-middle {
+            .footer-info {
+                padding: 0;
+
+                li {
+                    transition: all ease 0.3s;
+                    margin-bottom: 15px;
+                }
+            }
+        }
+        .footer-middle-title {
+            margin: 10px 0 50px 0;
+            position: relative;
+        }
+        .footer-middle-title::before {
+            position: absolute;
+            content: "";
+            width: 50px;
+            height: 2px;
+            background: #31d7a9;
+            bottom: -16px;
+            left: 0;
+        }
+        .footer-middle-title::after {
+            position: absolute;
+            content: "";
+            width: 30px;
+            height: 3px;
+            background: #31d7a9;
+            bottom: -22px;
+            left: 0;
+        }
+        .footer-branch {
+            .branch-logo {
+                width: 50px;
+                height: 50px;
+                margin: 0 5px;
+            }
+            .footer-icon {
+                background-color: #fff;
+                border-radius: 50%;
+                height: 30px;
+                width: 30px;
+                margin-right: 15px;
+                transition: all ease 0.3s;
+            }
+            .footer-icon:hover {
+                opacity: 0.7;
+            }
+        }
+        .footer-contact {
+            display: block !important;
+            .address-footer {
+                padding: 0;
+                .item {
+                    display: flex;
+                    margin-bottom: 5px;
+                    .icon {
+                        svg {
+                            font-size: 20px;
+                        }
+                    }
+                    p {
+                        margin-left: 30px;
+                    }
+                }
+            }
+        }
+    }
+    .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 5px;
+        .footer-bottom-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .copy-right {
+                padding-top: 20px;
+                a {
+                    margin-left: 5px;
+                    color: #31d7a9;
+                }
+            }
+        }
+    }
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+@include minResponsive("small") {
+    .footer-middle {
+        .footer-middle-title {
+            font-size: 24px;
+            margin-top: -8px;
+        }
+    }
+}
+@include minResponsive("large") {
+    .footer-contact {
+        display: block !important;
+    }
+    .footer-top {
+        display: flex;
+        position: relative;
+        z-index: 1;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        .social {
+            li:hover {
+                background: #31d7a9;
+                border-color: #31d7a9;
+            }
+        }
+    }
+    .footer-middle {
+        .footer-info {
+            li:hover {
+                color: #31d7a9;
+            }
+        }
+    }
+}
+@include maxResponsive("large-down") {
+    .footer-contact {
+        display: none;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    .footer-middle {
+        .footer-info {
+            display: flex;
+            li {
+                margin-right: 15px;
             }
         }
     }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import UserLogin from "./UserLogin/UserLogin";
 import "./Header.scss";
@@ -30,7 +30,7 @@ class Header extends Component {
   };
   render() {
     return (
-      <div className="header-section">
+      <header className="header-section">
         <div className="container">
           <nav className="navbar navbar-expand-sm">
             <Link className="navbar-brand" to="/">
@@ -52,33 +52,33 @@ class Header extends Component {
               id="collapsibleNavId"
             >
               <ul className="navbar-nav  mt-2 mt-lg-0 menu">
-                <li className="nav-item active ">
-                  <Link className="nav-link " to="/">
+                <li className="nav-item ">
+                  <NavLink className="nav-link " to="/" exact="true">
                     Trang chủ
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/movie">
+                  <NavLink className="nav-link" to="/movie">
                     Danh sách phim
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/theater">
+                  <NavLink className="nav-link" to="/theater">
                     Cụm rạp
-                  </Link>
+                  </NavLink>
                 </li>
 
                 <li className="nav-item">
-                  <Link className="nav-link" to="/admin">
+                  <a className="nav-link" href="#contact/">
                     Liên hệ
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>
             {this.checkLogin()}
           </nav>
         </div>
-      </div>
+      </header>
     );
   }
 }

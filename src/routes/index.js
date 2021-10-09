@@ -4,7 +4,6 @@ import SeatPlan from 'containers/client/SeatPlan/SeatPlan';
 import Theater from 'containers/client/Theater/Theater';
 import AdminInfo from 'containers/admin/Home/AdminInfo';
 import Movie from 'containers/client/Movie/Movie';
-import Contact from 'components/Contact/Contact';
 import UserAcount from 'containers/admin/UserAccount/UserAcount';
 import UserInfo from 'containers/client/UserInfo/UserInfo';
 import MovieManage from 'containers/admin/MovieManage/MovieManage';
@@ -26,12 +25,6 @@ export const clientRoutes = [
   {
     path: '/movie',
     component: Movie,
-    exact: false,
-    isPrivate: false,
-  },
-  {
-    path: '/contact',
-    component:Contact ,
     exact: false,
     isPrivate: false,
   },
