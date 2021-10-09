@@ -67,7 +67,7 @@ class AdminInfo extends Component {
     const { email, hoTen, matKhau, soDt, taiKhoan } = adminInfo;
     return (
       <>
-        <div className="container admin-userContainer">
+        {/* <div className="container admin-userContainer">
           
           <div className="admin-userContent">
           <h3 className="admin-title">Thông tin admin</h3>
@@ -133,7 +133,7 @@ class AdminInfo extends Component {
         <UserInfoUpdate
           infoAdminChange={infoAdminChange}
           infoChange={this.infoChange}
-        />
+        /> */}
       </>
     );
   }
