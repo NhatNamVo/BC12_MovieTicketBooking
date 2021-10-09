@@ -20,22 +20,22 @@ class UserLogin extends Component {
       <div className="userLogin">
         <div className="nav-link" onClick={this.handleClick}>
           <div className="userIcon">
-            <i class="fa fa-user"></i>
+            <span>{taiKhoan}</span>
+            <i class="fa fa-user-circle ml-3"></i>
           </div>
         </div>
         <div className={"dropbox " + (this.state.isClicked ? "active" : "")}>
           <ul>
-            <li>{"Xin chào " + taiKhoan}</li>
             {maLoaiNguoiDung === "QuanTri" ? (
-              <li>
+              <li className="item">
                 <Link to="/admin">Quản lý</Link>
               </li>
             ) : (
-              <li>
+              <li className="item">
                 <Link to="/userInfo">Thông tin</Link>
               </li>
             )}
-            <li onClick ={this.logOut}><Link to={'/'}>Logout</Link></li>
+            <li className="item" onClick ={()=>this.logOut()}><Link to={'/'}>Đăng xuất</Link></li>
           </ul>
         </div>
       </div>
