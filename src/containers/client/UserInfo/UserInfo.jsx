@@ -141,11 +141,11 @@ class UserInfo extends Component {
       error: '',
     })
   };
-  updateUser = () => {
-    debugger;
+  updateUserInfo = () => {
     if(this.state.updateItem === 'Mật khẩu'){
       if(this.state.userUpdate.matKhau != this.state.userInfo.matKhau && this.state.userUpdate.matKhau !==''){
         this.updateUser();
+        return;
       }
       else if(this.state.userUpdate.matKhau ===''){
         this.setState({error: 'Mật khẩu đang bị trống'});
@@ -176,7 +176,7 @@ class UserInfo extends Component {
           userUpdate.email = res.data.email;
           break;
         case 'Điện thoại':
-          userUpdate.soDt = res.data.soDt;;
+          userUpdate.soDt = res.data.soDT;
           break;
         case 'Mật khẩu':
           userUpdate.matKhau = res.data.matKhau;
@@ -221,6 +221,12 @@ class UserInfo extends Component {
       },200);
     }
   }
+  changeUserInfo = (event) => {
+    event.stopPropagation();
+  }
+  closeUserInfo = (event) => {
+    this.closeAllCollaps();
+  }
   render() {
     const { userInfo, loadding, ticketHistory, noteHover, noteLeft,userUpdate,updateItem,isShowCollapse } =
       this.state;
@@ -228,7 +234,7 @@ class UserInfo extends Component {
       return <Loader />;
     }
     return (
-      <div className="userInfoContent">
+      <div className="userInfoContent" onClick={this.closeUserInfo}>
         <div
           className="user__banner"
           style={{ backgroundImage: "url(/images/user-bg.jpg)" }}
@@ -263,11 +269,14 @@ class UserInfo extends Component {
               </div>
             </div>
             <div className={"formInputContent " + (updateItem!==''?'show ':'') + (!!isShowCollapse?'display':'')}>
-              <div className="formInput">
+              <div className="formInput" onClick={this.changeUserInfo}>
               <div className="formInput-title">{updateItem}</div>
               <div className="formInput-form">
                 <input className="inputInfo" type="text" onChange={this.changeInfoUser}/>
-                <button className="updateInfor" onClick={this.updateUser}><i class="fa fa-chevron-circle-up"></i></button>
+                <button className="updateInfor" onClick={this.updateUserInfo}><i class="fa fa-chevron-circle-up"></i></button>
+                <div className="closeBtn" onClick = {this.closeAllCollaps}>
+                  <i class="fa fa-times"></i> 
+                </div>
               </div>
               </div>
               
