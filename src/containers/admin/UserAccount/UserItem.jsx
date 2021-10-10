@@ -48,7 +48,8 @@ class UserItem extends Component {
                 <td className="align-items-center">{data.hoTen}</td>
                 <td className="align-items-center">{data.email}</td>
                 <td className="align-items-center">{data.soDt}</td>
-                <td className="row justify-content-center m-0">
+                <td className="align-items-center">
+                  <div  className="row justify-content-center m-0">
                   <button
                     id="userUpdate"
                     className="btn btn-primary m-1"
@@ -67,6 +68,8 @@ class UserItem extends Component {
                   >
                     Xóa
                   </button>
+                  </div>
+                  
                 </td>
               </tr>
             );

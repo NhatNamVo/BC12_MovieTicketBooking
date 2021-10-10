@@ -135,7 +135,7 @@ class MovieManage extends Component {
     this.props.deleteMovie(parseInt(movieCode), this.props.accessToken);
   }
   render() {
-    // if (this.props.loadding) return <Loader />;
+    if (this.props.loadding) return <Loader />;
     const url = this.props.match.url;
     const { totalCount, siblingCount, currentPage, pageSize } = this.props;
     return (
@@ -157,7 +157,7 @@ class MovieManage extends Component {
             style={{ width: "auto" }}
           >
             <input
-              style={{ width: "400px" }}
+              // style={{ width: "400px" }}
               type="text"
               id="searchUser"
               className="form-control mr-2"
@@ -169,7 +169,7 @@ class MovieManage extends Component {
             </button>
           </div>
         </div>
-
+        <div className="movieList-table">
         <table className="table table-bordered">
           <thead className="thead-light useraccount-list">
             <tr>
@@ -207,6 +207,8 @@ class MovieManage extends Component {
             </Switch>
           </tbody>
         </table>
+        </div>
+        
         {this.props.totalCount === 0 ? (
           ""
         ) : (

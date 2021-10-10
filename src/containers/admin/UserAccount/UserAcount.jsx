@@ -3,10 +3,17 @@ import Pagination from "components/Pagination/Pagination";
 import { Switch, Route } from "react-router-dom";
 import UserItem from "./UserItem";
 import { connect } from "react-redux";
-import { actAddNewUserAccount, actDeleteUser, actFetchUserAccount, actFindUserAccount, actUpdateUser } from "./Modules/action";
+import {
+  actAddNewUserAccount,
+  actDeleteUser,
+  actFetchUserAccount,
+  actFindUserAccount,
+  actUpdateUser,
+} from "./Modules/action";
 import Loader from "components/Loader/Loader";
 import UserModal from "./UserModal/UserModal";
 import DeleteUserNote from "../../shared/DeleteUserNote";
+import "./UserAcount.scss";
 class UserAcount extends Component {
   state = {
     isAddUser: false,
@@ -27,7 +34,8 @@ class UserAcount extends Component {
   }
   findUser = (e) => {
     const findInputBox = document.querySelector("#searchUser");
-    this.props.history.push({pathname: '/admin/user-manage',
+    this.props.history.push({
+      pathname: "/admin/user-manage",
       search:
         "?" + new URLSearchParams({ search: findInputBox.value.toString() }),
     });
@@ -47,9 +55,9 @@ class UserAcount extends Component {
         indexUser: idx,
       });
     }
-    if(!!deleteBtn){
+    if (!!deleteBtn) {
       const idx = deleteBtn.dataset.index;
-      this.setState({indexUser: idx,isAddUser: true});
+      this.setState({ indexUser: idx, isAddUser: true });
     }
   };
   changeIdx = () => {
@@ -58,14 +66,14 @@ class UserAcount extends Component {
     });
   };
   addNewUser = (data) => {
-    this.props.postNewUserAccount(data,this.props.accessToken);
+    this.props.postNewUserAccount(data, this.props.accessToken);
   };
   updateUser = (data) => {
-    this.props.putUserUpdate(data,this.props.accessToken);
-  }
+    this.props.putUserUpdate(data, this.props.accessToken);
+  };
   deleteUser = (user) => {
     this.props.deleteUser(user, this.props.accessToken);
-  }
+  };
   render() {
     if (this.props.loadding) return <Loader />;
     const url = this.props.match.url;
@@ -89,7 +97,7 @@ class UserAcount extends Component {
             style={{ width: "auto" }}
           >
             <input
-              style={{ width: "400px" }}
+              // style={{ width: "400px" }}
               type="text"
               id="searchUser"
               className="form-control mr-2"
@@ -100,33 +108,34 @@ class UserAcount extends Component {
             </button>
           </div>
         </div>
-
-        <table className="table table-bordered">
-          <thead className="thead-light useraccount-list">
-            <tr>
-              <th scope="col">STT</th>
-              <th scope="col">Tài khoản</th>
-              <th scope="col">Loại người dùng</th>
-              <th scope="col">Họ Tên</th>
-              <th scope="col">Email</th>
-              <th scope="col">Số điện thoại</th>
-              <th scope="col">Chức năng</th>
-            </tr>
-          </thead>
-          <tbody onClick={this.userListUpdate}>
-            <Switch>
-              <Route
-                path="/admin/user-manage"
-                exact="true"
-                component={UserItem}
-              />
-              <Route
-                path="/admin/user-manage/Page:pageNumber"
-                component={UserItem}
-              />
-            </Switch>
-          </tbody>
-        </table>
+        <div className="userList">
+          <table className="table table-bordered">
+            <thead className="thead-light useraccount-list">
+              <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tài khoản</th>
+                <th scope="col">Loại người dùng</th>
+                <th scope="col">Họ Tên</th>
+                <th scope="col">Email</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col">Chức năng</th>
+              </tr>
+            </thead>
+            <tbody onClick={this.userListUpdate}>
+              <Switch>
+                <Route
+                  path="/admin/user-manage"
+                  exact="true"
+                  component={UserItem}
+                />
+                <Route
+                  path="/admin/user-manage/Page:pageNumber"
+                  component={UserItem}
+                />
+              </Switch>
+            </tbody>
+          </table>
+        </div>
         {this.props.totalCount === 0 ? (
           ""
         ) : (
@@ -147,12 +156,19 @@ class UserAcount extends Component {
           userAccount={this.props.userAccount}
           isAddUser={this.state.isAddUser}
           idx={this.state.indexUser}
-          addNewUser = {this.addNewUser}
-          updateUser = {this.updateUser}
+          addNewUser={this.addNewUser}
+          updateUser={this.updateUser}
           loadingModal={this.props.loadingModal}
-          note = {this.props.note}
+          note={this.props.note}
         />
-        <DeleteUserNote note={this.props.note} delete={this.deleteUser} idx={this.state.indexUser} userAccount={this.props.userAccountData} loadingModal={this.props.loadingModal} changeIdx={this.changeIdx}/>
+        <DeleteUserNote
+          note={this.props.note}
+          delete={this.deleteUser}
+          idx={this.state.indexUser}
+          userAccount={this.props.userAccountData}
+          loadingModal={this.props.loadingModal}
+          changeIdx={this.changeIdx}
+        />
       </div>
     );
   }
@@ -182,11 +198,11 @@ const mapDispatchToProps = (dispatch) => ({
   postNewUserAccount: (newUser, token) => {
     dispatch(actAddNewUserAccount(newUser, token));
   },
-  putUserUpdate: (user,token) =>{
-    dispatch(actUpdateUser(user,token));
+  putUserUpdate: (user, token) => {
+    dispatch(actUpdateUser(user, token));
   },
-  deleteUser: (user,token) => {
-    dispatch(actDeleteUser(user,token));
-  }
+  deleteUser: (user, token) => {
+    dispatch(actDeleteUser(user, token));
+  },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(UserAcount);
