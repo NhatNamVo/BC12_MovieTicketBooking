@@ -1,0 +1,57 @@
+/* Khai bao chuyen dong */
+.fadeInLeft{
+    animation:fadeInLeft;
+    animation-duration: 1s;
+}
+@keyframes fadeInLeft{
+    0%{
+        opacity: 0;
+        transform: translate3d(-40px,0,0);
+    }
+    100%{
+        opacity: 1;
+        transform: none;
+    }
+}
+.fadeScale{
+    animation-name: fadeScale ;
+    animation-duration: 1s;
+}
+@keyframes fadeScale{
+    0%{
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100%{
+        opacity: 1;
+        transform:none;
+    }
+}
+.fadeInRight{
+    animation-name:fadeInRight ;
+    animation-duration: 1s;
+}
+@keyframes fadeInRight{
+    0%{
+        opacity: 0;
+        transform: translate3d(40px,0,0)
+    }
+    100%{
+        opacity: 1;
+        transform:none;
+    }
+}
+.fadeInUp{
+    animation: fadeInUp ;
+    animation-duration: 1s;
+}
+@keyframes fadeInUp{
+    0%{
+        opacity: 0;
+        transform: translate3d(0,40px,0);
+    }
+    100%{
+        opacity: 1;
+        transform:none;
+    }
+}
