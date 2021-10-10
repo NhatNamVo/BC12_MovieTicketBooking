@@ -1,6 +1,6 @@
 .admin-userContainer {
   margin-bottom: 20px;
-  min-height: calc(100vh - 160px);
+  min-height: calc(100vh - 215px);
   padding-right: 0;
   padding-left: 0;
   .admin-title {
@@ -219,6 +219,7 @@
 }
 @include maxResponsive("small-down") {
     .admin-userContainer {
+      min-height: calc(100vh - 180px);
       margin-bottom: 20px;
       .admin-title {
         margin: 20px 0 15px;
@@ -265,6 +266,7 @@
 
   @include maxResponsive("smallest") {
     .admin-userContainer {
+      min-height: calc(100vh - 175px);
       margin-bottom: 20px;
       .admin-title {
         margin: 20px 0 15px;
