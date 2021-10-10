@@ -1,0 +1,10 @@
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+
+@include maxResponsive("small"){
+    .btn-back{
+        left: 90%!important;
+    }
+}

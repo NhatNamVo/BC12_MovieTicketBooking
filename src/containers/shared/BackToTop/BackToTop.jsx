@@ -1,15 +1,40 @@
-import React, { Component } from "react";
-import "./style.scss"
-import "./util"
-import "./main"
-export default class BackToTop extends Component {
-  render() {
-    return (
-      <div>
-        <a href="#" class="arrow-top  cd-top text-replace js-cd-top">
-          <i class="fa fa-arrow-up " id="top"></i>
-        </a>
-      </div>
-    );
-  }
-}
+import React, { useState } from "react";
+import { FaArrowCircleUp } from "react-icons/fa";
+import { Button } from "./Styles";
+import "./BackToTop.scss";
+const BackToTop = () => {
+  const [visible, setVisible] = useState(false);
+
+  const toggleVisible = () => {
+    const scrolled = document.documentElement.scrollTop;
+    if (scrolled > 300) {
+      setVisible(true);
+    } else if (scrolled <= 300) {
+      setVisible(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      /* you can also use 'auto' behaviour
+		in place of 'smooth' */
+    });
+  };
+
+  window.addEventListener("scroll", toggleVisible);
+
+  return (
+    <div className="btn-back-top">
+      <Button className="btn-back">
+        <FaArrowCircleUp
+          onClick={scrollToTop}
+          style={{ display: visible ? "inline" : "none" }}
+        />
+      </Button>
+    </div>
+  );
+};
+
+export default BackToTop;

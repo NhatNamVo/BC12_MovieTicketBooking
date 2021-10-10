@@ -44,9 +44,7 @@ body {
             color: #ffffff;
         }
     }
-    .video__button:hover {
-        box-shadow: 0px 0px 20px 0px #fff;
-    }
+
     .video__button::before {
         z-index: -10;
         animation: inner-ripple 2000ms linear infinite;
@@ -138,11 +136,6 @@ body {
                     margin-right: 10px;
                     transition: all ease 0.3s;
                 }
-                a:hover {
-                    color: #31d7a9;
-                    border-color: #31d7a9;
-                    text-decoration: none;
-                }
             }
             .button {
                 margin-bottom: 13px;
@@ -155,10 +148,7 @@ body {
                 -webkit-transition: all ease 0.3s;
                 transition: all ease 0.3s;
             }
-            .button:hover {
-                text-decoration: none;
-                box-shadow: 0px 10px 15px 0px rgba(59, 55, 188, 50%);
-            }
+
             .time-social {
                 display: flex;
                 justify-content: space-between;
@@ -181,9 +171,6 @@ body {
                             text-align: center;
                             border-radius: 50px;
                             transition: all ease 0.3s;
-                        }
-                        a:hover {
-                            color: #31d7a9;
                         }
                     }
                 }
@@ -280,22 +267,18 @@ body {
                     border: 1px solid #11326f;
                     transition: all ease 0.3s;
                 }
-                .nav-link:hover {
-                    color: #fff;
-                    box-shadow: 0px 0px 10px 0px #3b37bc;
-                }
+
                 .active {
                     background-color: #31d7a9;
                 }
             }
             .col-2 {
-                
             }
             .col-10 {
                 padding: 0 !important;
                 border: 3px solid #11326f;
                 box-shadow: 0px 0px 10px 0px #3b37bc;
-                border-radius:15px;
+                border-radius: 15px;
                 .movie__ticket {
                     overflow-y: scroll;
                     scroll-snap-type: x mandatory;
@@ -305,10 +288,6 @@ body {
 
                     .text-left {
                         scroll-snap-align: start;
-
-                        .theater-name:hover {
-                            color: #31d7a9;
-                        }
 
                         .ticket {
                             // display: flex;
@@ -364,9 +343,7 @@ body {
                         // font-family: open sans, sans-serif;
                         margin-bottom: 17px;
                     }
-                    a:hover {
-                        color: #31d7a9;
-                    }
+
                     p {
                         color: #9aace5;
                         font-size: 13px;
@@ -390,11 +367,56 @@ body {
                 display: block;
             }
         }
+        .details__banner__content {
+            .time-social {
+                .social {
+                    li {
+                        a:hover {
+                            color: #31d7a9;
+                        }
+                    }
+                }
+            }
+            .button:hover {
+                text-decoration: none;
+                box-shadow: 0px 10px 15px 0px rgba(59, 55, 188, 50%);
+            }
+            .tags {
+                a:hover {
+                    color: #31d7a9;
+                    border-color: #31d7a9;
+                    text-decoration: none;
+                }
+            }
+        }
+        .video__button:hover {
+            box-shadow: 0px 0px 20px 0px #fff;
+        }
     }
     .offer-body {
         .offer-item {
             .top {
                 margin-bottom: 33px;
+            }
+            .bottom {
+                a:hover {
+                    color: #31d7a9;
+                }
+            }
+        }
+    }
+    .movie__detail__theater {
+        .col-10 {
+            .movie__ticket {
+                .theater-name:hover {
+                    color: #31d7a9;
+                }
+            }
+        }
+        .icon-theater {
+            .nav-link:hover {
+                color: #fff;
+                box-shadow: 0px 0px 10px 0px #3b37bc;
             }
         }
     }
@@ -410,6 +432,32 @@ body {
     }
 }
 @include maxResponsive("small-down") {
+    .details__banner {
+        padding-top: 150px;
+        height: 60vh;
+        position: relative;
+        .details__banner__content {
+            h3 {
+                font-size: 30px !important;
+            }
+            .tags {
+                a {
+                    font-size: 12px;
+                }
+            }
+            .button {
+                font-size: 13px;
+            }
+        }
+        .trailer {
+            position: relative;
+            display: block;
+            svg {
+                position: absolute;
+                line-height: 70px;
+            }
+        }
+    }
     .book-tickets {
         .book-wrapper {
             .left-side {
@@ -433,15 +481,74 @@ body {
             }
         }
     }
+    .detail__descrip {
+        .col-lg-9 {
+            .description {
+                .tab-menu {
+                    .nav-item {
+                        h5 {
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .col-lg-3 {
+            .widget-1 {
+                h3 {
+                    font-size: 18px !important;
+                }
+            }
+        }
+    }
+    .movie__detail__theater {
+        .header {
+            h4 {
+                font-size: 18px !important;
+            }
+        }
+        .col-10 {
+            .check {
+                h3 {
+                    font-size: 18px;
+                }
+            }
+            .text-left {
+                .ticket {
+                    .btn-ticket {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+    }
 }
+
 @include maxResponsive("large-down") {
-    .details__banner {
-        .trailer {
-            position: relative;
-            display: block;
-            svg {
-                position: absolute;
-                line-height: 70px;
+    .movie-detail {
+        position: relative;
+        .details__banner {
+            .details__banner__content {
+                h3 {
+                    font-size: 30px !important;
+                }
+                .tags {
+                    a {
+                        font-size: 12px;
+                    }
+                }
+                .button {
+                    font-size: 13px;
+                }
+            }
+            .trailer {
+                position: relative;
+                display: block;
+                svg {
+                    position: absolute;
+                    line-height: 70px;
+                }
             }
         }
     }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import background from 'assets/image/loadding.gif';
+import background from "assets/image/loadding.gif";
 import "./Loading.scss";
 export default class Loader extends Component {
   render() {

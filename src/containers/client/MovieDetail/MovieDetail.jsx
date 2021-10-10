@@ -19,29 +19,41 @@ import {
   FaStar,
 } from "react-icons/fa";
 
+
 class MovieDetail extends Component {
+  kiemTraLichChieu = () => {
+    const { movieDetail } = this.props;
+    console.log(movieDetail);
+    if (movieDetail.heThongRapChieu.length === 0) {
+      return (
+        <div className="check ">
+          <h3>Chưa có lịch chiếu</h3>
+        </div>
+      );
+    }
+  };
   render() {
     const { movieDetail, loading, history } = this.props;
-    console.log(this.props);
+
     if (loading) return <Loader />;
     return (
       movieDetail && (
-        <>
+        <div className="movie-detail">
           <div
             className="details__banner img-fluid"
             style={{ backgroundImage: `url(${movieDetail.hinhAnh})` }}
           >
             <div className=" container">
-            <Link
-                    to={{
-                      pathname: "/trailer/" + movieDetail.maPhim,
-                      state: { background: history.location },
-                    }}
-                    href={movieDetail.trailer}
-                    className="video__button video__popup trailer "
-                  >
-                    <FaRegPlayCircle />
-                  </Link>
+              <Link
+                to={{
+                  pathname: "/trailer/" + movieDetail.maPhim,
+                  state: { background: history.location },
+                }}
+                href={movieDetail.trailer}
+                className="video__button video__popup trailer "
+              >
+                <FaRegPlayCircle />
+              </Link>
               <div className="row no-gutters details__banner__wrapper ">
                 <div className="col-md-4 details__banner__img">
                   <img
@@ -81,12 +93,13 @@ class MovieDetail extends Component {
                       </span>
                       <FaRegClock />
                       <span className="p-1 p-3">
-                        {new Date(
-                          movieDetail.ngayKhoiChieu
-                        ).toLocaleTimeString("it-IT", {
-                          hour: "numeric",
-                          minute: "numeric",
-                        })}
+                        {new Date(movieDetail.ngayKhoiChieu).toLocaleTimeString(
+                          "it-IT",
+                          {
+                            hour: "numeric",
+                            minute: "numeric",
+                          }
+                        )}
                       </span>
                     </div>
 
@@ -171,7 +184,6 @@ class MovieDetail extends Component {
                     <div className="card-body">
                       <h5 className="mb-5"> {movieDetail.tenPhim}</h5>
                       <p className="card-text ">{movieDetail.moTa}</p>
-                      
                     </div>
                   </div>
                   {/* Theater */}
@@ -187,6 +199,7 @@ class MovieDetail extends Component {
                           role="tablist"
                           aria-orientation="vertical"
                         >
+                          
                           {movieDetail.heThongRapChieu.map(
                             (heThongRap, idx) => {
                               return (
@@ -208,6 +221,7 @@ class MovieDetail extends Component {
                                       width: "30px",
                                       marginRight: "6px",
                                     }}
+                                    alt="logo He thong rap"
                                   />
                                 </a>
                               );
@@ -219,32 +233,36 @@ class MovieDetail extends Component {
                         <div
                           className="tab-content movie__ticket"
                           id="v-pills-tabContent"
+                          onChange={this.KiemTraLichChieu}
                         >
+                          {this.kiemTraLichChieu()}
                           {movieDetail.heThongRapChieu.map(
                             (heThongRap, idx) => {
-                              return (
-                                <div
-                                  className={`tab-pane fade show ${
-                                    idx === 0 && "active"
-                                  }`}
-                                  id={heThongRap.maHeThongRap}
-                                  role="tabpanel"
-                                  aria-labelledby="v-pills-home-tab"
-                                >
-                                  {heThongRap.cumRapChieu.map((cumRap) => {
-                                    return (
-                                      <div className="text-left">
-                                        <Link
-                                          to={`/theater`} className="theater-name">
+                              <div
+                                className={`tab-pane fade show ${
+                                  idx === 0 && "active"
+                                }`}
+                                id={heThongRap.maHeThongRap}
+                                role="tabpanel"
+                                aria-labelledby="v-pills-home-tab"
+                              >
+                                {heThongRap.cumRapChieu.map((cumRap) => {
+                                  return (
+                                    <div className="text-left">
+                                      <Link
+                                        to={`/theater`}
+                                        className="theater-name"
+                                      >
                                         <h6 className="pl-3 ">
                                           {cumRap.tenCumRap}
                                         </h6>
-                                        </Link>
-                                        <div className="my-3 ml-3 ticket row">
-                                          {cumRap.lichChieuPhim.slice(0,10).map(
-                                            (lichChieu) => {
-                                              return (
-                                                <div
+                                      </Link>
+                                      <div className="my-3 ml-3 ticket row">
+                                        {cumRap.lichChieuPhim
+                                          .slice(0, 10)
+                                          .map((lichChieu) => {
+                                            return (
+                                              <div
                                                 className="ticket__item mr-3 mb-3  "
                                                 style={{
                                                   backgroundImage:
@@ -268,15 +286,13 @@ class MovieDetail extends Component {
                                                   </div>
                                                 </Link>
                                               </div>
-                                              );
-                                            }
-                                          )}
-                                        </div>
+                                            );
+                                          })}
                                       </div>
-                                    );
-                                  })}
-                                </div>
-                              );
+                                    </div>
+                                  );
+                                })}
+                              </div>;
                             }
                           )}
                         </div>
@@ -300,7 +316,8 @@ class MovieDetail extends Component {
                             <a href="#">Ưu đãi cho thẻ ngân hàng</a>
                           </h6>
                           <p>
-                            Hoàn tiền lên đến 10% khi thanh toán bằng thẻ ngân hàng CyberBank.
+                            Hoàn tiền lên đến 10% khi thanh toán bằng thẻ ngân
+                            hàng CyberBank.
                           </p>
                         </div>
                       </div>
@@ -332,7 +349,8 @@ class MovieDetail extends Component {
                             <a href="#">Ưu đãi thẻ thành viên</a>
                           </h6>
                           <p>
-                            Đăng ký để được tích điểm  nhận ngay ưu đãi khi đặt vé.
+                            Đăng ký để được tích điểm nhận ngay ưu đãi khi đặt
+                            vé.
                           </p>
                         </div>
                       </div>
@@ -342,7 +360,7 @@ class MovieDetail extends Component {
               </div>
             </div>
           </div>
-        </>
+        </div>
       )
     );
   }

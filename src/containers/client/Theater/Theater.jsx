@@ -14,6 +14,7 @@ class Theater extends Component {
   };
   render() {
     const { match, history, location, theater, loading } = this.props;
+
     if (loading) return <Loader />;
     return (
       <>

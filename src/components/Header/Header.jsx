@@ -47,11 +47,6 @@ class Header extends Component {
               Đăng nhập
             </Link>
           </div>
-          {/* <li className="nav-item">
-            <Link className="nav-link" to="/register">
-              Đăng ký
-            </Link>
-          </li> */}
         </>
       );
     }
@@ -110,7 +105,7 @@ class Header extends Component {
                 </li>
 
                 <li className="nav-item">
-                  <a className="nav-link" href="#contact/">
+                  <a className="nav-link" href="#contact">
                     Liên hệ
                   </a>
                 </li>

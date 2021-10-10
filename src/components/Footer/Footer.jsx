@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { logoTheaterList } from "containers/shared/logoTheater/logoTheater";
 import "./Footer.scss";
+import cybersoftImg from "assets/image/MIN-OP1.png";
 import { Link } from "react-router-dom";
 import {
   FaFacebookF,
@@ -9,12 +10,33 @@ import {
   FaMapMarkedAlt,
   FaPhoneAlt,
   FaPinterestP,
+  FaPlus,
   FaRegEnvelope,
   FaTwitter,
+  FaMinus,
 } from "react-icons/fa";
 class Footer extends Component {
+  state={
+    open:true,
+  }
+  handleChangeOpen = () => {
+    const info = document.querySelector(".footer-info");
+    const plus = document.querySelector(".fa-plus");
+    plus.classList.add("fa-minus");
+    plus.classList.remove("fa-plus");
+    info.style.display = "block";
+  };
+  // handleChangeClose = () => {
+  //   const info = document.querySelector(".footer-info");
+  //   const minus = document.querySelector(".fa-minus");
+  //   minus.classList.add("fa-plus");
+  //   minus.classList.remove("fa-minus");
+  //   info.style.display = "none";
+  // };
   render() {
+    const {open}=this.state;
     return (
+      
       <footer>
         <div
           className="footer-section-box"
@@ -26,11 +48,7 @@ class Footer extends Component {
             <div className="footer-top">
               <div className="footer-logo">
                 <Link to="/">
-                  <img
-                    src="./images/logo.png"
-                    alt=""
-                    style={{ width: "40%" }}
-                  />
+                  <h4>Movie Ticket</h4>
                 </Link>
               </div>
 
@@ -67,22 +85,46 @@ class Footer extends Component {
             <div className="footer-middle ">
               <div className="row justify-content-center">
                 <div className="col-lg-4">
-                  <h5 className="footer-middle-title">Thông tin</h5>
-                  <ul className="footer-info">
-                    <li>
-                      <a href="#">Giới thiệu</a>
+                  <div className="d-flex">
+                    <h5 className="footer-middle-title">Liên kết nhanh</h5>
+                    <span onClick={() => this.handleChangeOpen()}>
+                      <i class="fa fa-plus" >
+                        
+                      </i>
+                      
+                    </span>
+                  </div>
+
+                  <ul className="footer-info" style={{ display: "none" }}>
+                    <li className="nav-item ">
+                      <a className="nav-link " href="/" exact="true">
+                        Trang chủ
+                      </a>
                     </li>
-                    <li>
-                      <a href="#">Tin tức</a>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/movie">
+                        Danh sách phim
+                      </a>
                     </li>
-                    <li>
-                      <a href="#">Phản hồi</a>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/theater">
+                        Cụm rạp
+                      </a>
                     </li>
                   </ul>
                 </div>
                 <div className="col-lg-4">
-                  <h5 className="footer-middle-title">Đối tác</h5>
-                  <div className="footer-branch row col-sm-12 col-xs-12">
+                  <div className="d-flex">
+                    <h5 className="footer-middle-title">Đối tác</h5>
+                    <span>
+                      <i class="fa fa-plus"></i>
+                    </span>
+                  </div>
+
+                  <div
+                    className="footer-branch row col-sm-12 col-xs-12 "
+                    style={{ display: "none" }}
+                  >
                     <a
                       href="https://www.cgv.vn/"
                       target="_blank"
@@ -156,16 +198,21 @@ class Footer extends Component {
                     >
                       <img
                         className="footer-icon"
-                        src="./images/MIN-OP1.png"
+                        src={cybersoftImg}
                         alt="Cybersoft"
                       />
                     </a>
                   </div>
                 </div>
                 <div className="col-lg-4" id="contact">
-                  <h5 className="footer-middle-title">Liên hệ</h5>
+                  <div className="d-flex">
+                    <h5 className="footer-middle-title">Liên hệ</h5>
+                    <span>
+                      <i class="fa fa-plus"></i>
+                    </span>
+                  </div>
                   <div className="footer-contact">
-                    <ul className="address-footer">
+                    <ul className="address-footer" style={{ display: "none" }}>
                       <li className="item">
                         <div className="icon">
                           <FaMapMarkedAlt />

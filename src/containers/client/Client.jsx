@@ -20,6 +20,7 @@ class Client extends Component {
       <div className="movieTicket-content">
         <Switch location={background || this.props.location}>
           {this.renderLayout(clientRoutes, ClientLayout)}
+          
           <Route path="*" component={PageNotFound} />
         </Switch>
         {background && (
