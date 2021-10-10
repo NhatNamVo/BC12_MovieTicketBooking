@@ -86,8 +86,7 @@ class UserInfoUpdate extends Component {
                   </button>
                 </div>
                 <div
-                  className="userInfo-item modal-body m-auto"
-                  style={{ width: "75%" }}
+                  className="userInfoPass modal-body m-auto"
                 >
                   <div className="row justify-content-between align-items-center my-1">
                     <p className="font-weight-bold m-0">Tài khoản:</p>

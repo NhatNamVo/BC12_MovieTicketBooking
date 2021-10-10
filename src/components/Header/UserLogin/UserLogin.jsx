@@ -7,12 +7,31 @@ class UserLogin extends Component {
   state = {
     isClicked: false,
   };
+  componentDidMount() {
+    const movieTicketContent = document.querySelector('.movieTicket-content');
+    const adminContainer = document.querySelector('.admin-container');
+    if(!!movieTicketContent){
+      movieTicketContent.addEventListener('click',this.handleEvent);
+    }
+    if(!!adminContainer){
+      adminContainer.addEventListener('click',this.handleEvent);
+    }
+  }
+  handleEvent = (e) => {
+    const userLogin = e.target.closest('.userLogin');
+    if(!userLogin){
+      this.changePage();
+    }
+  }
   handleClick = (e) => {
     this.setState({ isClicked: !this.state.isClicked });
   };
   logOut = e => {
     this.props.logOut();
     window.history.go('/');
+  }
+  changePage = (e) => {
+    this.setState({ isClicked: false });
   }
   render() {
     const { taiKhoan, maLoaiNguoiDung } = this.props.currentUser;
@@ -27,7 +46,7 @@ class UserLogin extends Component {
         <div className={"dropbox " + (this.state.isClicked ? "active" : "")}>
           <ul>
             {maLoaiNguoiDung === "QuanTri" ? (
-              <li className="item">
+              <li className="item" onClick = {this.changePage}>
                 <Link to="/admin">Quản lý</Link>
               </li>
             ) : (

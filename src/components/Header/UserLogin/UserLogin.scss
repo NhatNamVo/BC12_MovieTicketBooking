@@ -8,51 +8,58 @@
     border-radius: 100px 100px 100px 100px;
     border-radius: 30px;
     transition: all ease 0.3s;
+    padding-left: 15px;
+    padding-right: 15px;
     .dropbox {
         position: absolute;
         background-color:#111c59;
         color:#fff;
-        top: 42px;
-        border-radius: 20px;
+        top: 100%;
+        border-radius: 0 0 20px 20px;
         right: 0;
-        width: fit-content;
-        padding: 10px;
+        width: 100%;
+        padding: 10px 10px;
         transform-origin: top center;
         transform: scaleY(0.00001);
         transition: transform 0.5s;
-        z-index: 10;
+        z-index: 10000;
         ul {
             list-style-type: none;
             padding: 0;
             .item{
-                margin-top: 5px;
+                margin-top: 10px;
+                margin-bottom: 15px;
+                a{
+                    font-size: 14px!important;
+                    font-weight: 700;
+                    &:after{
+                        background-color: transparent !important;
+                        width: 0 !important;
+                    }
+                }
             }
             .item:hover{
                 color: #31d7a9; 
             }
         }
-        ul:before{
-            position: absolute;
-            content: "";
-            top: 0;
-            left: 18px;
-            -webkit-transform: translateY(-100%);
-            transform: translateY(-100%);
-            width: 0;
-            height: 0;
-            border: 10px solid #0a1e5e;
-            border-bottom-width: 11px;
-            border-right-color: transparent;
-            border-left-color: transparent;
-            border-top-color: transparent;
-        }
     }
     
     .active {
         transform: scaleY(1);
+        width: 100%;
+        &:after{
+            transform: scaleX(0)!important;
+            color: #31d7a9;
+        }
     }
 }
 .userLogin:hover{
     box-shadow: 0px 10px 15px 0px #3b37bc;
-   
+}
+
+@import "helpers/mixin.scss";
+@import "helpers/variables.scss";
+
+@include maxResponsive("large-down") {
+
 }

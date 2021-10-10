@@ -1,10 +1,126 @@
-.movieManager-container{
-    table{
+.movieManager-container {
+  input {
+    width: 400px;
+  }
+  .movieList-table {
+    min-height: calc(100vh - 261px);
+  }
+  table {
+    text-align: center;
+    tbody {
+      td {
+        vertical-align: middle;
+      }
+    }
+  }
+}
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+@include maxResponsive("large-down") {
+  @media screen and (max-device-height: 420px) {
+    .movieManager-container {
+      button {
+        font-size: 15px;
+      }
+      input {
+        font-size: 15px;
+      }
+      font-size: 15px;
+      .movieList-table {
+        min-height: auto;
+      }
+      table {
         text-align: center;
-        tbody{
-            td{
-                vertical-align: middle;
+        tbody {
+          td {
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+}
+@include maxResponsive("medium-down") {
+  .movieManager-container {
+    
+    button {
+      font-size: 15px;
+    }
+    input {
+      font-size: 15px;
+      width: 250px;
+    }
+    font-size: 15px;
+    .movieList-table {
+      min-height: auto;
+    }
+    table {
+      text-align: center;
+      th,
+      td {
+        vertical-align: middle;
+        &:nth-of-type(5) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+@include maxResponsive("small-down") {
+    .movieManager-container {
+      .movieList-table {
+        min-height: calc(100vh - 225px);
+      }
+      button {
+        font-size: 14px;
+      }
+      input {
+        font-size: 14px;
+        width: 150px;
+      }
+      font-size: 14px;
+      table {
+        text-align: center;
+        th,
+        td {
+          vertical-align: middle;
+          &:nth-of-type(5) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  @include maxResponsive("smallest") {
+    .movieManager-container {
+        .pagination-container{
+            padding-left: 0;
+            .pagination-item{
+                margin: auto 0px;
+                font-size: 12px;
             }
         }
+      button {
+        font-size: 12px;
+      }
+      input {
+        font-size: 12px;
+        width: 100px;
+      }
+      font-size: 12px;
+      .movieList-table {
+        min-height: auto;
+      }
+      table {
+        text-align: center;
+        th,
+        td {
+            padding: 5px;
+          vertical-align: middle;
+          &:nth-of-type(5) {
+            display: none;
+          }
+        }
+      }
     }
-}
+  }

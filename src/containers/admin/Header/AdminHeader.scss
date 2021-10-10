@@ -1,47 +1,162 @@
 header.adminHeader {
   background-color: #031f50;
   width: 100%;
-  height: 8vh;
+  height: 75px;
   .header-content {
     margin: auto;
-    padding: 15px 0;
+    padding-bottom: 15px;
+    padding-top: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     .logobranch {
       color: #fff;
     }
-    ul.menu-list {
-      display: flex;
-      justify-content: flex-end;
-      margin-left: auto;
-      align-items: center;
-      list-style-type: none;
-      margin-bottom: 0;
-      li {
-        margin-left: 20px;
-        font-size: 15px;
-        .menu-itemLink {
-          color: #fff;
-          font-weight: 700;
-          &:hover {
+    .menuBtn {
+      height: fit-content;
+      width: fit-content;
+      display: none;
+    }
+    .overPlay {
+      display: none;
+    }
+    .menu {
+      position: relative;
+      ul.menu-list {
+        display: flex;
+        justify-content: flex-end;
+        margin-left: auto;
+        align-items: center;
+        list-style-type: none;
+        margin-bottom: 0;
+        li {
+          margin-left: 20px;
+          font-size: 15px;
+          .menu-itemLink {
+            color: #fff;
+            font-weight: 700;
+            &:hover {
+              color: #31d7a9;
+            }
+          }
+          .active {
             color: #31d7a9;
           }
-        }
-        .active {
-          color: #31d7a9;
-        }
-        .userLogin {
-          color: #fff;
-          .dropbox {
-            background-color: #031f50;
-            ul {
-              a {
-                color: #fff;
+          .userLogin {
+            color: #fff;
+            .dropbox {
+              background-color: #031f50;
+              ul {
+                a {
+                  color: #fff;
+                }
               }
             }
           }
         }
+      }
+    }
+  }
+}
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+@include maxResponsive("large-down") {
+  header.adminHeader {
+    overflow: hidden;
+    .header-content {
+      .menuBtn {
+        display: block;
+        transition: transform 0.5s;
+        ul {
+          width: 50px;
+          height: 40px;
+          border: 1px solid #fff;
+          border-radius: 10px;
+          padding: 10px 10px;
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          margin-bottom: 0;
+          cursor: pointer;
+          li {
+            height: 3px;
+            width: 100%;
+            display: block;
+            background-color: #fff;
+            transition: transform 0.3s, width 0.3s;
+          }
+        }
+      }
+      .menuBtn.active {
+        transform: scale(0.8);
+        ul {
+          li {
+            &:nth-of-type(1) {
+              transform: rotate(-40deg) translate(-20%, 200%);
+            }
+            &:nth-of-type(3) {
+              transform: rotate(40deg) translate(-15%, -165%);
+            }
+            &:nth-of-type(2) {
+              width: 0;
+            }
+          }
+        }
+      }
+      .overPlay {
+        display: block;
+        position: absolute;
+        top: 75px;
+        right: 0;
+        width: 0;
+        height: 100vh;
+        z-index: 1;
+        background-color: #031f5089;
+        transition: width 0.2s;
+      }
+      .overPlay.active {
+        width: 100%;
+      }
+      .menu {
+        display: none;
+        position: absolute;
+        top: 75px;
+        right: -100%;
+        padding-top: 20px;
+        background-color: #031f50;
+        height: calc(100vh - 75px);
+        overflow-y: scroll;
+        z-index: 100;
+        width: 40%;
+        transition: right 0.3s;
+        box-shadow: -5px 0 14px 0 #031f5087;
+        ul.menu-list {
+          flex-direction: column;
+          align-items: normal;
+          padding-left: 10px;
+          li {
+            margin-left: 20px;
+            font-size: 15px;
+            margin-bottom: 25px;
+          }
+        }
+      }
+      .menu.show{
+        display: block;
+      }
+      .menu.active {
+        right: 0;
+      }
+    }
+  }
+}
+@include maxResponsive("small-down") {
+  header.adminHeader {
+    .header-content {
+      .menu {
+        width: 60%;
       }
     }
   }
