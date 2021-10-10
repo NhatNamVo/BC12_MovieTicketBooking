@@ -8,7 +8,7 @@ import {
   actupdatePass,
   actLogOutUser,
 } from "containers/shared/Auth/module/actions";
-import './adminInfo.scss';
+import "./adminInfo.scss";
 class AdminInfo extends Component {
   state = {
     adminInfo: null,
@@ -32,8 +32,8 @@ class AdminInfo extends Component {
           infoAdminChange: infoAdminChange,
         });
         this.wait = setTimeout(() => {
-          this.setState({infoShow: true,})
-        },200);
+          this.setState({ infoShow: true });
+        }, 200);
       })
       .catch((error) => {
         console.log(error);
@@ -57,8 +57,8 @@ class AdminInfo extends Component {
   };
   logout = () => {
     this.props.logOut();
-    this.props.history.push('/');
-  }
+    this.props.history.push("/");
+  };
   render() {
     const { adminInfo, loadding, infoAdminChange } = this.state;
     if (loadding) {
@@ -67,10 +67,9 @@ class AdminInfo extends Component {
     const { email, hoTen, matKhau, soDt, taiKhoan } = adminInfo;
     return (
       <>
-        {/* <div className="container admin-userContainer">
-          
+        <div className="container admin-userContainer">
           <div className="admin-userContent">
-          <h3 className="admin-title">Thông tin admin</h3>
+            <h3 className="admin-title">Thông tin admin</h3>
             <div className="admin-userBarside">
               <img
                 src="./images/userImage.jpg"
@@ -78,8 +77,49 @@ class AdminInfo extends Component {
                 width="20%"
                 alt="..."
               />
-            </div>
-            <div className="admin-userinfoFooter">
+              <div className="admin-userInfoContent">
+                <div
+                  className={
+                    "admin-userInfo m-auto " +
+                    (this.state.infoShow ? "admin-userShow" : "")
+                  }
+                >
+                  <ul className="list-group text-left userInfo-title">
+                    <li className="list-group-item border-0">
+                      <p className="font-weight-bold m-0">Họ và tên:</p>
+                    </li>
+                    <li className="list-group-item border-0">
+                      <p className="font-weight-bold m-0">Tài khoản:</p>
+                    </li>
+                    <li className="list-group-item border-0">
+                      <p className="font-weight-bold m-0">Mật khẩu:</p>
+                    </li>
+                    <li className="list-group-item border-0">
+                      <p className="font-weight-bold m-0">Số điện thoại:</p>
+                    </li>
+                    <li className="list-group-item border-0">
+                      <p className="font-weight-bold m-0">Email:</p>
+                    </li>
+                  </ul>
+                  <ul className="list-group text-left">
+                    <li className="list-group-item border-0">
+                      <p className="m-0">{hoTen}</p>
+                    </li>
+                    <li className="list-group-item border-0">
+                      <p className="m-0">{taiKhoan}</p>
+                    </li>
+                    <li className="list-group-item border-0">
+                      <p className="m-0">{matKhau}</p>
+                    </li>
+                    <li className="list-group-item border-0">
+                      <p className="m-0">{soDt}</p>
+                    </li>
+                    <li className="list-group-item border-0">
+                      <p className="m-0">{email}</p>
+                    </li>
+                  </ul>
+                </div>
+                <div className="admin-userinfoFooter">
               <button
                 className="userSettingBtn"
                 data-toggle="modal"
@@ -87,53 +127,18 @@ class AdminInfo extends Component {
               >
                 Sửa mật khẩu
               </button>
-              <button className="userLogoutBtn" onClick={this.logout}>Đăng xuất</button>
+              <button className="userLogoutBtn" onClick={this.logout}>
+                Đăng xuất
+              </button>
+            </div>
+              </div>
             </div>
           </div>
-          <div className="admin-userInfoContent">
-          <div className={"admin-userInfo m-auto " + (this.state.infoShow?"admin-userShow":"")}>
-            <ul className="list-group text-left userInfo-title">
-              <li className="list-group-item border-0">
-                <p className="font-weight-bold m-0">Họ và tên:</p>
-              </li>
-              <li className="list-group-item border-0">
-                <p className="font-weight-bold m-0">Tài khoản:</p>
-              </li>
-              <li className="list-group-item border-0">
-                <p className="font-weight-bold m-0">Mật khẩu:</p>
-              </li>
-              <li className="list-group-item border-0">
-                <p className="font-weight-bold m-0">Số điện thoại:</p>
-              </li>
-              <li className="list-group-item border-0">
-                <p className="font-weight-bold m-0">Email:</p>
-              </li>
-            </ul>
-            <ul className="list-group text-left">
-              <li className="list-group-item border-0">
-                <p className="m-0">{hoTen}</p>
-              </li>
-              <li className="list-group-item border-0">
-                <p className="m-0">{taiKhoan}</p>
-              </li>
-              <li className="list-group-item border-0">
-                <p className="m-0">{matKhau}</p>
-              </li>
-              <li className="list-group-item border-0">
-                <p className="m-0">{soDt}</p>
-              </li>
-              <li className="list-group-item border-0">
-                <p className="m-0">{email}</p>
-              </li>
-            </ul>
-          </div>
-          </div>
-          
         </div>
         <UserInfoUpdate
           infoAdminChange={infoAdminChange}
           infoChange={this.infoChange}
-        /> */}
+        />
       </>
     );
   }

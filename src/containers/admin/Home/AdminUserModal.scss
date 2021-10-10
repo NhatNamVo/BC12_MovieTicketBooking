@@ -26,4 +26,140 @@
         width: 50%;
         margin: auto;
     }
+    .userInfoPass{
+        width: 75%;
+    }
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+
+@include maxResponsive("large-down") {
+  @media screen and (min-device-height: 768px) {
+    #editUserInfo{
+        input{
+            padding-right: 30px;
+            width: 180px;
+        }  
+        .modalContent{
+            width: 55%;
+            margin: auto;
+        }
+        
+    } 
+  }
+  @media screen and (max-device-height: 420px) {
+    #editUserInfo{
+        input{
+            padding-right: 30px;
+            padding-top: 5px!important;
+            padding-bottom: 5px!important;
+            font-size: 15px;
+            width: 160px;
+        }  
+        .modalContent{
+            width: 45%;
+            margin: auto;
+            h5{
+                font-size: 18px;
+            }
+            p{
+                font-size: 15px;
+            }
+            i{
+                font-size: 15px;
+            }
+        }
+        button{
+            font-size: 15px!important;
+        }
+    } 
+  }
+}
+@include maxResponsive("medium-down") {
+    #editUserInfo{
+        input{
+            padding-right: 25px;
+            padding-top: 5px!important;
+            padding-bottom: 5px!important;
+            font-size: 14px;
+            width: 160px;
+        }  
+        .modalContent{
+            width: 60%;
+            margin: auto;
+            h5{
+                font-size: 14px;
+            }
+            p{
+                font-size: 14px;
+            }
+            i{
+                font-size: 14px;
+            }
+        }
+        button{
+            font-size: 14px!important;
+        }
+    }
+}
+@include maxResponsive("small-down") {
+    #editUserInfo{
+        input{
+            padding-right: 20px;
+            padding-top: 5px!important;
+            padding-bottom: 5px!important;
+            font-size: 14px;
+            width: 140px;
+        }  
+        .modalContent{
+            width: 90%;
+            margin: auto;
+            h5{
+                font-size: 14px;
+            }
+            p{
+                font-size: 14px;
+            }
+            i{
+                font-size: 14px;
+            }
+        }
+        button{
+            font-size: 14px!important;
+        }
+        .userInfoPass{
+            width: 80%;
+        }
+    }
+}
+@include maxResponsive("smallest") {
+    #editUserInfo{
+        input{
+            padding-right: 15px;
+            padding-top: 5px!important;
+            padding-bottom: 5px!important;
+            font-size: 12px;
+            width: 120px;
+        }  
+        .modalContent{
+            width: 90%;
+            margin: auto;
+            h5{
+                font-size: 12px;
+            }
+            p{
+                font-size: 12px;
+            }
+            i{
+                font-size: 12px;
+            }
+        }
+        button{
+            font-size: 12px!important;
+        }
+        .userInfoPass{
+            width: 80%;
+        }
+    }
 }

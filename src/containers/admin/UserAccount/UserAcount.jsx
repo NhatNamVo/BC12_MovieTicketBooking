@@ -7,6 +7,7 @@ import { actAddNewUserAccount, actDeleteUser, actFetchUserAccount, actFindUserAc
 import Loader from "components/Loader/Loader";
 import UserModal from "./UserModal/UserModal";
 import DeleteUserNote from "../../shared/DeleteUserNote";
+import './UserAcount.scss';
 class UserAcount extends Component {
   state = {
     isAddUser: false,

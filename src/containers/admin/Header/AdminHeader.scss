@@ -127,7 +127,8 @@ header.adminHeader {
         right: -100%;
         padding-top: 20px;
         background-color: #031f50;
-        height: 100vh;
+        height: calc(100vh - 75px);
+        overflow-y: scroll;
         z-index: 100;
         width: 40%;
         transition: right 0.3s;

@@ -1,0 +1,31 @@
+.userAccount-container{
+    table{
+        th,td{
+            vertical-align: middle;
+            padding: 10px 5px;
+            text-align: center;
+            vertical-align: middle;
+        }
+    }
+}
+
+@import "helpers/variables.scss";
+@import "helpers/mixin.scss";
+@include maxResponsive("large-down") {
+    .userAccount-container{
+        table{
+            th,td{
+                padding: 5px;
+                &:nth-of-type(6){
+                    display: none;
+                }
+                button{
+                    font-size: 15px;
+                }
+                &:last-of-type{
+                    width: 25%;
+                }
+            }
+        }
+    } 
+}
