@@ -45,6 +45,10 @@ footer {
                 li {
                     transition: all ease 0.3s;
                     margin-bottom: 15px;
+                    a{
+                        font-size:16px;
+                        padding-left: 0 !important;;
+                    }
                 }
             }
         }
@@ -157,9 +161,19 @@ footer {
     }
     .footer-middle {
         .footer-info {
+            display: block !important;
             li:hover {
                 color: #31d7a9;
             }
+        }
+        .footer-branch{
+            display: flex !important;
+        }
+        .footer-contact{
+            .address-footer{
+                display: block !important;
+            }
+           
         }
     }
 }
@@ -171,7 +185,6 @@ footer {
     }
     .footer-middle {
         .footer-info {
-            display: flex;
             li {
                 margin-right: 15px;
             }

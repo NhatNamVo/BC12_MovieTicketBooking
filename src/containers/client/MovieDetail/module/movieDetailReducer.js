@@ -18,24 +18,30 @@ const movieDetailReducer = (state = initialState, { type, payload }) => {
     case FETCH_MOVIE_DETAIL_SUCCESS:
       let movieDetailUpdate = { ...state.movieDetail };
 
-      
+
       const updateTinhTrang = {
         ...payload,
         tinhTrang: "Đang chiếu",
       }
-      console.log(updateTinhTrang);
       const ngayChieu = new Date(updateTinhTrang.ngayKhoiChieu);
-      // const ngayChieu =ngayChieufull.getDate()+'/'+(ngayChieufull.getMonth()+1)+'/'+ngayChieufull.getFullYear();
+  
       const today = new Date();
-      const ngayHienTai = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-      
-      console.log(ngayHienTai);
-      console.log(ngayChieu);
-      if (ngayChieu.getTime()>= new Date(ngayHienTai).getTime() ) {
-        
-        movieDetailUpdate={...updateTinhTrang}
-      } else {
-        movieDetailUpdate={...updateTinhTrang,tinhTrang: "Sắp chiếu"}
+
+      if (ngayChieu.getFullYear() === today.getFullYear()) {
+        if (ngayChieu.getMonth() < today.getMonth()) {
+          movieDetailUpdate = { ...updateTinhTrang }
+        } else if (ngayChieu.getMonth() === today.getMonth()) {
+          if (ngayChieu.getDate() <= today.getDate()) {
+            movieDetailUpdate = { ...updateTinhTrang }
+          }
+        } else {
+          movieDetailUpdate = { ...updateTinhTrang, tinhTrang: "Sắp chiếu" }
+
+        }
+      } else if (ngayChieu.getFullYear() < today.getFullYear()) {
+        movieDetailUpdate = { ...updateTinhTrang }
+      }else{
+        movieDetailUpdate = { ...updateTinhTrang, tinhTrang: "Sắp chiếu" }
       }
 
       return { ...state, movieDetail: movieDetailUpdate, loading: false };

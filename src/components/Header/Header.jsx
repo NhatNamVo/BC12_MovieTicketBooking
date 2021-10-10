@@ -19,11 +19,6 @@ class Header extends Component {
               Đăng nhập
             </Link>
           </div>
-          {/* <li className="nav-item">
-            <Link className="nav-link" to="/register">
-              Đăng ký
-            </Link>
-          </li> */}
         </>
       );
     }
@@ -34,7 +29,7 @@ class Header extends Component {
         <div className="container">
           <nav className="navbar navbar-expand-sm">
             <Link className="navbar-brand" to="/">
-              Cinema Booking
+              Movie Ticket
             </Link>
             <button
               className="navbar-toggler d-lg-none"
@@ -69,7 +64,7 @@ class Header extends Component {
                 </li>
 
                 <li className="nav-item">
-                  <a className="nav-link" href="#contact/">
+                  <a className="nav-link" href="#contact">
                     Liên hệ
                   </a>
                 </li>
