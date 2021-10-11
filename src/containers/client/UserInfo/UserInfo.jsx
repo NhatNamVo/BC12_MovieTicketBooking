@@ -12,6 +12,7 @@ import LichSuDatVe from "./LichSuDatVe/LichSuDatVe";
 // import ModalUserInfo from "./ModalUserInfo/ModalUserInfo";
 import "./ModalUserInfo/userUpdateForm.scss";
 import WOW from "wowjs";
+import { Redirect } from "react-router";
 
 class UserInfo extends Component {
   state = {

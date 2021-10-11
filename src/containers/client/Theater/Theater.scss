@@ -1,150 +1,156 @@
 .theater__banner {
-    color: #fff;
-    position: relative;
-    background-size: cover;
-    width: 100%;
-    height: 40vh;
+  color: #fff;
+  position: relative;
+  background-size: cover;
+  width: 100%;
+  height: 40vh;
 
-    justify-content: center;
-    align-items: center;
-    .theater__banner__content {
-        text-align: center;
-        position: relative;
-        z-index: 1;
-        .title {
-            color: #31d7a9;
-            font-size: 60px;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-            font-weight: 700;
-        }
-        .bannerinfo-Slogan {
-            color: #fff;
-            font-size: 40px;
-            font-weight: 700;
-        }
+  justify-content: center;
+  align-items: center;
+  .theater__banner__content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    .title {
+      color: #31d7a9;
+      font-size: 60px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      font-weight: 700;
     }
+    .bannerinfo-Slogan {
+      color: #fff;
+      font-size: 40px;
+      font-weight: 700;
+    }
+  }
 }
 .theater__banner::before {
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: linear-gradient(270deg, rgba(0, 18, 50, 0.134891) 0%, #001232 110%);
-    background: -webkit-linear-gradient(270deg, rgba(0, 18, 50, 0.134891) 0%, #001232 110%);
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    270deg,
+    rgba(0, 18, 50, 0.134891) 0%,
+    #001232 110%
+  );
+  background: -webkit-linear-gradient(
+    270deg,
+    rgba(0, 18, 50, 0.134891) 0%,
+    #001232 110%
+  );
 }
 .theater-content {
-    color: #fff;
-    .movie__detail__theater {
-        .header {
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 14px;
-            border-bottom: 1px solid #11326f;
-            margin: 30px 0;
-            .d-flex {
-                justify-content: inherit;
-                .title {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-            }
+  color: #fff;
+  .movie__detail__theater {
+    .header {
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #11326f;
+      margin: 30px 0;
+      .d-flex {
+        justify-content: inherit;
+        .title {
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
-        .row {
-            margin-bottom: 60px;
-
-            .col-4 {
-                overflow-y: scroll;
-                scroll-snap-type: x mandatory;
-                width: 100%;
-                height: 600px;
-                .tab-icon-theater {
-                    .nav-link {
-                        scroll-snap-align: start;
-                        border: 1px solid #11326f;
-                        transition: all ease 0.3s;
-                    }
-                    h6 {
-                        font-size: 11px;
-                    }
-                    
-                    .active {
-                        background-color: #31d7a9;
-                    }
-                }
-            }
-            ::-webkit-scrollbar-thumb {
-                border-radius: 5px;
-                background-color: #31d7a9;
-            }
-            ::-webkit-scrollbar {
-                width: 3px;
-            }
-            .col-8 {
-
-                border: 3px solid #11326f;
-                box-shadow: 0px 0px 10px 0px #3b37bc;
-                border-radius: 15px;
-                .theater__movie__ticket {
-                    overflow-y: scroll;
-                    scroll-snap-type: x mandatory;
-                    width: 100%;
-                    height: 600px;
-                    margin-top: 10px;
-                    .text-left {
-                        scroll-snap-align: start;
-                        border-bottom: 1px solid #11326f;
-
-                        .btn-detail {
-                            margin-bottom: 13px;
-                            border: 1px solid rgba(163, 177, 198, 0.2);
-                            font-size: 13px;
-                            color: #9aace5;
-                            text-transform: uppercase;
-                            padding: 7px 17px;
-                            border-radius: 18px;
-                            transition: all ease 0.3s;
-                            color: #fff;
-                            justify-content: space-between;
-                        }
-
-                        
-                        .ticket {
-                            // display: flex;
-                            background-color: #001232;
-                            margin: 0;
-
-                            .ticket__item {
-                                display: flex;
-                                margin: 3px;
-                                color: #ffffff;
-                                position: relative;
-                                width: 70px;
-                                height: 38px;
-                                text-align: center;
-                                justify-content: center;
-                                align-items: center;
-                                background-size: cover;
-                                background-repeat: no-repeat;
-                                cursor: pointer;
-                                transition: all ease 0.3s;
-                            }
-                        }
-                    }
-                }
-                ::-webkit-scrollbar-thumb {
-                    border-radius: 5px;
-                    background-color: #31d7a9;
-                }
-                ::-webkit-scrollbar {
-                    width: 3px;
-                }
-            }
-        }
+      }
     }
+    .row {
+      margin-bottom: 60px;
+
+      .col-4 {
+        overflow-y: scroll;
+        scroll-snap-type: x mandatory;
+        width: 100%;
+        height: 600px;
+        .tab-icon-theater {
+          .nav-link {
+            scroll-snap-align: start;
+            border: 1px solid #11326f;
+            transition: all ease 0.3s;
+          }
+          h6 {
+            font-size: 11px;
+          }
+
+          .active {
+            background-color: #31d7a9;
+          }
+        }
+      }
+      ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: #31d7a9;
+      }
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      .col-8 {
+        border: 3px solid #11326f;
+        box-shadow: 0px 0px 10px 0px #3b37bc;
+        border-radius: 15px;
+        .theater__movie__ticket {
+          overflow-y: scroll;
+          scroll-snap-type: x mandatory;
+          width: 100%;
+          height: 600px;
+          margin-top: 10px;
+          .text-left {
+            scroll-snap-align: start;
+            border-bottom: 1px solid #11326f;
+
+            .btn-detail {
+              margin-bottom: 13px;
+              border: 1px solid rgba(163, 177, 198, 0.2);
+              font-size: 13px;
+              color: #9aace5;
+              text-transform: uppercase;
+              padding: 7px 17px;
+              border-radius: 18px;
+              transition: all ease 0.3s;
+              color: #fff;
+              justify-content: space-between;
+            }
+
+            .ticket {
+              // display: flex;
+              background-color: #001232;
+              margin: 0;
+
+              .ticket__item {
+                display: flex;
+                margin: 3px;
+                color: #ffffff;
+                position: relative;
+                width: 70px;
+                height: 38px;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                cursor: pointer;
+                transition: all ease 0.3s;
+              }
+            }
+          }
+        }
+        ::-webkit-scrollbar-thumb {
+          border-radius: 5px;
+          background-color: #31d7a9;
+        }
+        ::-webkit-scrollbar {
+          width: 3px;
+        }
+      }
+    }
+  }
 }
 
 // Mixin
@@ -153,165 +159,161 @@
 @import "Base/customize.scss";
 
 @include maxResponsive("large") {
-    .tab-icon-theater {
-        .nav-link {
-            height: 82px;
-        }
+  .tab-icon-theater {
+    .nav-link {
+      height: 82px;
     }
-    .theater__banner {
-        .container {
-            .theater__banner__content {
-                .title {
-                    font-size: 45px;
-                }
-                .bannerinfo-Slogan {
-                    font-size: 35px;
-                }
-            }
+  }
+  .theater__banner {
+    .container {
+      .theater__banner__content {
+        .title {
+          font-size: 45px;
         }
+        .bannerinfo-Slogan {
+          font-size: 35px;
+        }
+      }
     }
+  }
 }
 @include minResponsive("small") {
-    .col-4 {
-        .tab-icon-theater {
-            .theater-name {
-                font-size: 15px !important;
-            }
-        }
+  .col-4 {
+    .tab-icon-theater {
+      .theater-name {
+        font-size: 15px !important;
+      }
     }
+  }
 }
 @include maxResponsive("medium-down") {
-    .theater__banner {
-        .container {
-            .theater__banner__content {
-                .title {
-                    font-size: 35px;
-                }
-                .bannerinfo-Slogan {
-                    font-size: 23px;
-                }
-            }
+  .theater__banner {
+    .container {
+      .theater__banner__content {
+        .title {
+          font-size: 35px;
         }
+        .bannerinfo-Slogan {
+          font-size: 23px;
+        }
+      }
     }
-    .movie__detail__theater {
-        .header {
-            .title {
-                img {
-                    width: 38px!important;
-                }
-                h2 {
-                    font-size: 16px;
-                }
-            }
+  }
+  .movie__detail__theater {
+    .header {
+      .title {
+        img {
+          width: 38px !important;
         }
-        .book-section {
-            width: 200px;
-            .filter-tool {
-                width: inherit;
-                padding: 7px 6px !important;
-                .filter-item {
-                    width: 144%;
-                    img {
-                        width: 30px;
-                        height: 30px;
-                        margin-right: 5px;
-                    }
-                    p {
-                        font-size: 15px;
-                        padding-right: 2px;
-                    }
-                    .item-sort {
-                        padding-right: 5px;
-                        font-size: 15px!important;
-                    }.item-dropbox{
-                        
-                        left: 44%!important;
-                        margin-top: 155px!important;
-                        ul{
-                            
-                            li{
-                                
-                                font-size: 13px;
-                               
-                            }
-                        }
-                    }
-                }
-            }
+        h2 {
+          font-size: 16px;
         }
+      }
     }
+    .book-section {
+      width: 200px;
+      .filter-tool {
+        width: inherit;
+        padding: 7px 6px !important;
+        .filter-item {
+          width: 144%;
+          img {
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+          }
+          p {
+            font-size: 15px;
+            padding-right: 2px;
+          }
+          .item-sort {
+            padding-right: 5px;
+            font-size: 15px !important;
+          }
+          .item-dropbox {
+            left: 44% !important;
+            margin-top: 155px !important;
+            ul {
+              li {
+                font-size: 13px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
-    .col-4 {
-        height: 500px !important;
-        .tab-icon-theater {
-            .nav-link {
-                height: 60px;
-                position: relative;
-                padding: 13px 3px;
-                .theater-name {
-                    width: inherit;
-                    position: absolute;
-                }
-            }
+  .col-4 {
+    height: 500px !important;
+    .tab-icon-theater {
+      .nav-link {
+        height: 60px;
+        position: relative;
+        padding: 13px 3px;
+        .theater-name {
+          width: inherit;
+          position: absolute;
         }
+      }
     }
-    .col-8{
-        flex: 0 0 63.666667%;
-        max-width: 66.666667%;
-    }
+  }
+  .col-8 {
+    flex: 0 0 63.666667%;
+    max-width: 66.666667%;
+  }
 
-    .theater__movie__ticket {
-        height: 500px !important;
-        .text-left {
-            img {
-                width: 62px !important;
-                height: 117px;
-            }
-            .img {
-                h5 {
-                    font-size: 18px !important;
-                }
-                p {
-                    font-size: 15px !important;
-                }
-            }
-            .ticket {
-                .ticket__item {
-                    margin-right: 0.25rem !important;
-                    font-size: 13px;
-                }
-            }
-            .content {
-                .btn-detail {
-                    font-size: 11px !important;
-                }
-            }
+  .theater__movie__ticket {
+    height: 500px !important;
+    .text-left {
+      img {
+        width: 62px !important;
+        height: 117px;
+      }
+      .img {
+        h5 {
+          font-size: 18px !important;
         }
+        p {
+          font-size: 15px !important;
+        }
+      }
+      .ticket {
+        .ticket__item {
+          margin-right: 0.05rem !important;
+          font-size: 13px;
+        }
+      }
+      .content {
+        .btn-detail {
+          font-size: 11px !important;
+        }
+      }
     }
+  }
 }
 @include minResponsive("large") {
-    .theater__banner {
-        height: 80vh;
-        padding-top: 200px;
-        padding-bottom: 200px;
+  .theater__banner {
+    height: 80vh;
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+  .theater__movie__ticket {
+    .ticket {
+      .ticket__item:hover {
+        color: #31d7a9;
+        box-shadow: 0px 0px 10px 0px #3b37bc;
+      }
     }
-    .theater__movie__ticket{
-        .ticket{
-            .ticket__item:hover {
-                color: #31d7a9;
-                box-shadow: 0px 0px 10px 0px #3b37bc;
-            }
-        }
+  }
+  .tab-icon-theater {
+    .nav-link:hover {
+      color: #fff;
+      box-shadow: 0px 0px 10px 0px #3b37bc;
     }
-    .tab-icon-theater{
-        .nav-link:hover {
-            color: #fff;
-            box-shadow: 0px 0px 10px 0px #3b37bc;
-        }
-    }
-    
-    
-    .btn-detail:hover {
-        box-shadow: 0px 10px 15px 0px #3b37bc;
-    }
+  }
+
+  .btn-detail:hover {
+    box-shadow: 0px 10px 15px 0px #3b37bc;
+  }
 }

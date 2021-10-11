@@ -25,12 +25,16 @@ class Header extends Component {
     e.stopPropagation();
     const menuItem = e.target.closest("li");
     const userLoginBtn = e.target.closest('li.userItem');
+    const userInfo = e.target.closest('.dropbox.active li.item');
     if (!!menuItem && !userLoginBtn) {
       this.closeMenu();
     };
     if (!menuItem && !userLoginBtn) {
       this.closeMenu();
     };
+    if(!!userInfo){
+      this.closeMenu();
+    }
   };
   checkLogin = () => {
     if (!!this.props.currentUser) {
