@@ -45,7 +45,9 @@ class AdminHeader extends Component {
       <header className="adminHeader" onClick={this.closeMenu}>
         <div className="header-content container">
           <div className="logobranch">
-            <Link to="/admin">Movie Ticket</Link>
+            <Link to="/admin">
+            <img src="./logo.png" alt="" />
+            </Link>
           </div>
           <div
             className={"menuBtn " + (this.state.menuBtn ? "active" : "")}

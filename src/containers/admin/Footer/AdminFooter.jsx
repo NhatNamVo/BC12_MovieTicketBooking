@@ -5,7 +5,7 @@ class AdminFooter extends Component {
         return (
             <footer className="adminFooter-container">
                 <h5>MovieTicket</h5>
-                @Copyright 2021
+                Copyright © 2021
             </footer>
         );
     }

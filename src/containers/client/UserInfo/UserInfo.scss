@@ -6,7 +6,7 @@
         padding-top: 212px;
         padding-bottom: 112px;
         width: 100%;
-        height: 100vh;
+        height: auto;
         &:after{
             content: "";
             position: absolute;
@@ -185,11 +185,14 @@
                 box-shadow: 0 8px 15px 0 rgba(255, 255, 255, 0.66);
             }
         }
+        small{
+            padding-bottom: 0;
+        }
     }
     .overPlay{
         position: relative;
         width: 100%;
-        height: 100vh;
+        min-height: calc(100vh - 350px);
         z-index: -1;
     }
     .overPlay.show{
@@ -202,7 +205,7 @@
 @include maxResponsive("mid-large-down") {
     .userInfoContent{
         .overPlay{
-            height: 100vh;
+            min-height: calc(100vh - 200px);
         }
         .overPlay.show{
             height: 600px;
@@ -215,7 +218,6 @@
             .user__banner {
                 padding-top: 212px;
                 padding-bottom: 112px;
-                height: 100vh;
             }
             .userInfo{
                 top: 20%;
@@ -282,7 +284,7 @@
                 }
             }
             .overPlay{
-                height: 100vh;
+                min-height: calc(100vh - 400px);
             }
             .overPlay.show{
                 height: 625px;
@@ -364,7 +366,7 @@
                 }
             }
             .overPlay{
-                height: 100vh;
+                min-height: calc(100vh - 20px);
             }
             .overPlay.show{
                 height: 390px;
@@ -446,9 +448,6 @@
                 margin-top: 30px;
                 box-shadow: 0 8px 15px 0 rgba(255, 255, 255, 0.66);
             }
-        }
-        .overPlay{
-            height: 100vh;
         }
         .overPlay.show{
             height: 390px;
@@ -534,7 +533,7 @@
             }
         }
         .overPlay{
-            height: 100vh;
+            min-height: calc(100vh - 350px);
         }
         .overPlay.show{
             height: 430px;

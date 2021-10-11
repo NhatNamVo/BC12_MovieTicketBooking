@@ -59,12 +59,15 @@ class Header extends Component {
       this.setState({ menuShow: false });
     }, 300);
   };
+  loadHomePage = (e) => {
+    window.location.replace('/');
+  }
   render() {
     return (
       <header className="header-section" onClick={this.closeMenu}>
           <nav className="navbar menuNavBar container">
-            <Link className="navbar-brand" to="/">
-              Movie Ticket
+            <Link className="navbar-brand" onClick={this.loadHomePage}>
+              <img src="./logo.png" alt="" />
             </Link>
             {/* <button
               className="navbar-toggler d-lg-none"

@@ -255,6 +255,10 @@
             }
         }
     }
+    .col-8{
+        flex: 0 0 63.666667%;
+        max-width: 66.666667%;
+    }
 
     .theater__movie__ticket {
         height: 500px !important;
@@ -273,7 +277,7 @@
             }
             .ticket {
                 .ticket__item {
-                    margin-right: 2rem !important;
+                    margin-right: 0.25rem !important;
                     font-size: 13px;
                 }
             }

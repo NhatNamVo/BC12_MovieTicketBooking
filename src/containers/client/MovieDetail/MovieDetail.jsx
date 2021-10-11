@@ -91,7 +91,7 @@ class MovieDetail extends Component {
                           movieDetail.ngayKhoiChieu
                         ).toLocaleDateString()}
                       </span>
-                      <FaRegClock />
+                      {/* <FaRegClock />
                       <span className="p-1 p-3">
                         {new Date(movieDetail.ngayKhoiChieu).toLocaleTimeString(
                           "it-IT",
@@ -100,7 +100,7 @@ class MovieDetail extends Component {
                             minute: "numeric",
                           }
                         )}
-                      </span>
+                      </span> */}
                     </div>
 
                     <ul className="social">

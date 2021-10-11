@@ -273,8 +273,6 @@ body {
                     background-color: #31d7a9;
                 }
             }
-            .col-2 {
-            }
             .col-10 {
                 
                 border: 3px solid #11326f;
@@ -510,6 +508,8 @@ body {
             }
         }
         .col-10 {
+            flex: 0 0 80.333333%;
+            max-width: 83.333333%;
             .check {
                 h3 {
                     font-size: 18px;
