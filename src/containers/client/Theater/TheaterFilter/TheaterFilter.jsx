@@ -39,7 +39,7 @@ class TheaterFilter extends Component {
 
     return (
       <>
-        <div className="book-section wow fadeInRight" data-wow-scroll="true " data-wow-duration="3s" >
+        <div className="book-section wow fadeInRight" data-wow-scroll="true " data-wow-duration="1s" >
           <div className="container">
             <div className="filter-tool">
               <div

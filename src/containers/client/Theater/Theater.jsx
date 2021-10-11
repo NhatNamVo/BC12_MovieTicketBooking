@@ -44,14 +44,14 @@ class Theater extends Component {
                       <div
                         className="title wow fadeInLeft"
                         data-wow-scroll="true "
-                        data-wow-duration="3s"
+                        data-wow-duration="1s"
                       >
                         <img
                           src={heThongRap.logo}
                           style={{ width: "50px" }}
                           alt=""
                         />
-                        <h2>{`Rạp ${heThongRap.tenHeThongRap}`}</h2>
+                        <h4>{`Rạp ${heThongRap.tenHeThongRap}`}</h4>
                       </div>
                       <TheaterFilter
                         theater={theater}
