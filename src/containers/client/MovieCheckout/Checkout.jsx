@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom';
 import React, { Component } from "react";
 import FailBooking from "./Popup/FailBooking";
 import "../MovieCheckout/Checkout.scss";
+import WOW from "wowjs";
 export default class Checkout extends Component {
   state = {
     loaddingPost: false,
@@ -36,7 +37,8 @@ export default class Checkout extends Component {
           style={{ backgroundImage: `url(${movieInfo.hinhAnh})` }}
         >
           <div className="container">
-            <div className="theater__banner__content">
+            <div className="theater__banner__content wow fadeScale"
+                data-wow-scroll="true" data-wow-duration="1s">
               <h3 className="title">{movieInfo.tenPhim}</h3>
               <div className="tags">
                 <a href="#">Phim</a>
@@ -50,7 +52,8 @@ export default class Checkout extends Component {
         <div className="page-title">
           <div className="container">
             <div className="page-title-content">
-              <div className="item-title ">
+              <div className="item-title wow fadeInLeft"
+                data-wow-scroll="true" data-wow-duration="2s">
                 <div className="theater-date">{movieInfo.ngayChieu}</div>
                 <div className="theater-time">{movieInfo.gioChieu}</div>
               </div>
@@ -60,7 +63,8 @@ export default class Checkout extends Component {
         <div className="checkout-content">
           <div className="container">
             <div className="row">
-              <div className="col-lg-8">
+              <div className="col-lg-8 wow fadeInUp"
+                data-wow-scroll="true" data-wow-duration="2s">
                 <div className="checkout-card mb-0">
                   <h5>Hình thức thanh toán</h5>
                   <form className="payment-card">
@@ -85,7 +89,8 @@ export default class Checkout extends Component {
                   </form>
                 </div>
               </div>
-              <div className="col-lg-4">
+              <div className="col-lg-4 wow fadeInUp"
+                data-wow-scroll="true" data-wow-duration="2s">
                 <div className="ticket-selected">
                   <h4 className="title">CHI TIẾT VÉ</h4>
                   <ul className="item-detail">
@@ -151,5 +156,10 @@ export default class Checkout extends Component {
         />
       </>
     );
+  }
+  componentDidMount() {
+    new WOW.WOW({
+      live: false,
+    }).init();
   }
 }

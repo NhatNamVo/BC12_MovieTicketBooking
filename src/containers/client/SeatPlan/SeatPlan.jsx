@@ -11,6 +11,7 @@ import SeatLayout from "./Seat/SeatLayout";
 import ChoseBox from "./choseBox/ChoseBox";
 import FailNotePopup from "./NotePopup/FailNotePopup";
 import TimeLeftNote from "./NotePopup/TimeLeftNote";
+import WOW from "wowjs";
 
 class SeatPlan extends Component {
   state = {
@@ -49,6 +50,9 @@ class SeatPlan extends Component {
         orderTicket: orderTicket,
       });
     }
+    new WOW.WOW({
+      live: false,
+    }).init();
   }
   choseSeat = (seatId, price, seatName) => {
     const { orderTicket, seatChose } = this.state;
@@ -112,14 +116,14 @@ class SeatPlan extends Component {
         >
           <div className="container">
             <div className="row no-gutters details__banner__wrapper ">
-              <div className="col-md-4 details__banner__img">
+              <div className="col-md-4 details__banner__img wow fadeInUp" data-wow-scroll="true" data-wow-duration="2s">
                 <img
                   className="img-fluid"
                   src={movieInfo.hinhAnh}
                   alt="hình ảnh"
                 />
               </div>
-              <div className="col-md-12 col-lg-8 details__banner__content offset-lg-4 ">
+              <div className="col-md-12 col-lg-8 details__banner__content offset-lg-4 wow fadeScale" data-wow-scroll="true" data-wow-duration="2s">
                 <h3 className="card-title">{movieInfo.tenPhim}</h3>
                 <TheaterInfo movieDetail={movieInfo}/>
               </div>
@@ -128,7 +132,7 @@ class SeatPlan extends Component {
         </div>
         <div className="book-tickets">
           <div className="container">
-            <div className="book-wrapper seatPlan-movieInfo offset-lg-4">
+            <div className="book-wrapper seatPlan-movieInfo offset-lg-4 wow fadeInUp" data-wow-scroll="true" data-wow-duration="2s">
               <div className="theater-infoTime">
                 <div className="theater-date">{movieInfo.ngayChieu}</div>
                 <div className="theater-time">{movieInfo.gioChieu}</div>
@@ -141,7 +145,7 @@ class SeatPlan extends Component {
           </div>
         </div>
         <div className="seat-container container">
-          <div className="screen">
+          <div className="screen wow fadeScale" data-wow-scroll="true" data-wow-duration="2s">
             {/* <img src="/images/theater.png" alt="man hinh" /> */}
             MÀN HÌNH
             </div>
@@ -151,7 +155,7 @@ class SeatPlan extends Component {
             cancelSeat={this.cancelSeat}
           />
         </div>
-        <div className="seatInfo container">
+        <div className="seatInfo container wow fadeInLeft" data-wow-scroll="true" data-wow-duration="2s">
           <div className="seatInfo-item">
             <img
             width="80%"
@@ -190,7 +194,7 @@ class SeatPlan extends Component {
           </div>
         </div>
         <div
-          className="choseSeat-container container"
+          className="choseSeat-container container wow fadeInRight" data-wow-scroll="true" data-wow-duration="2s"
           onClick={this.postSeatChose}
         >
           <ChoseBox seatChose={this.state.seatChose} movieInfo={movieInfo} orderTicket={this.state.orderTicket} accessToken={this.props.accessToken} loaddingPost={this.state.loaddingPost}/>

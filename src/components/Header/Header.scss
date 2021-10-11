@@ -36,6 +36,7 @@ ul {
           font-size: 16px;
           font-weight: 700;
           text-transform: uppercase;
+          transition: all ease 0.3s;
         }
         a:hover {
           color: #31d7a9;
@@ -49,6 +50,7 @@ ul {
           color: #31d7a9;
         }
       }
+      
       a:hover::after {
         -webkit-transform: scaleX(1);
         transform: scaleX(1);
