@@ -9,15 +9,15 @@ class SeatLayout extends Component {
   };
   componentDidMount() {
     const { seats } = this.props;
-    const width = 100/this.state.col;
+    const width = 100 / this.state.col;
     const seatCheck = seats.map((seat) => {
       if (seat.daDat === true) {
         return 0;
       } else {
-        if(seat.loaiGhe === 'Thuong'){
+        if (seat.loaiGhe === "Thuong") {
           return 1;
         }
-        if(seat.loaiGhe === 'Vip'){
+        if (seat.loaiGhe === "Vip") {
           return 2;
         }
       }
@@ -35,38 +35,42 @@ class SeatLayout extends Component {
       const seatId = seatChose.dataset.seatid;
       const seatType = seatChose.dataset.seattype;
       const seatName = seatChose.dataset.seatname;
-      const { seatCheck} = this.state;
-       switch(seatCheck[index]){
-         case 1:
-          seatCheck[index]=3;
-          this.props.choseSeat(seatId,price,seatName);
+      const { seatCheck } = this.state;
+      switch (seatCheck[index]) {
+        case 1:
+          seatCheck[index] = 3;
+          this.props.choseSeat(seatId, price, seatName);
           break;
-         case 2:
-          seatCheck[index]=3;
-          this.props.choseSeat(seatId,price,seatName);
+        case 2:
+          seatCheck[index] = 3;
+          this.props.choseSeat(seatId, price, seatName);
           break;
-          case 3:
-            if(seatType==='Thuong'){
-              seatCheck[index]=1;
-            }
-            else if(seatType==='Vip'){
-              seatCheck[index]=2;
-            }
-            this.props.cancelSeat(seatId,price,seatName);
-         case 0:
+        case 3:
+          if (seatType === "Thuong") {
+            seatCheck[index] = 1;
+          } else if (seatType === "Vip") {
+            seatCheck[index] = 2;
+          }
+          this.props.cancelSeat(seatId, price, seatName);
           break;
-       }
+        case 0:
+          break;
+        default:
+          break;
+      }
       this.setState({
         seatCheck: seatCheck,
       });
-      
     }
   };
   render() {
-    const { seatCheck,widthContainer,col} = this.state;
+    const { seatCheck, widthContainer, col } = this.state;
     return (
       seatCheck && (
-        <div className="seatLayout-container" onClick={this.handleChoseSeat}>
+        <div
+          className="seatLayout-container "
+          onClick={this.handleChoseSeat}
+        >
           <div
             className="seatnormal-container m-auto row"
             style={{ width: "100%" }}
@@ -79,7 +83,7 @@ class SeatLayout extends Component {
                   index={idx}
                   seatCheck={seatCheck}
                   widthContainer={widthContainer}
-                  colSeat = {col}
+                  colSeat={col}
                 />
               );
             })}

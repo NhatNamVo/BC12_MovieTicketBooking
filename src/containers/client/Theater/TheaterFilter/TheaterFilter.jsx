@@ -4,7 +4,7 @@ import { FaChevronDown } from "react-icons/fa";
 import "../TheaterFilter/TheaterFilter.scss";
 import { actFetchTheaterFilter } from "../TheaterFilter/module/theaterFilterAction";
 import { actFetchTheater } from "../module/theaterAction";
-
+import WOW from "wowjs";
 class TheaterFilter extends Component {
   state = {
     sort: false,
@@ -39,7 +39,7 @@ class TheaterFilter extends Component {
 
     return (
       <>
-        <div className="book-section">
+        <div className="book-section wow fadeInRight" data-wow-scroll="true " data-wow-duration="3s" >
           <div className="container">
             <div className="filter-tool">
               <div
@@ -104,7 +104,10 @@ class TheaterFilter extends Component {
   }
   componentDidMount() {
     const filterBox = document.querySelector(".filter-tool");
-    filterBox.addEventListener("click", this.handleClick);   
+    filterBox.addEventListener("click", this.handleClick); 
+    new WOW.WOW({
+      live: false,
+    }).init();  
   }
 }
 const mapStateToProps = (state) => ({

@@ -10,6 +10,11 @@ footer {
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding-bottom: 10px;
             align-items: center;
+            .footer-logo{
+                h4{
+                    font-weight: 700;
+                }
+            }
             .social {
                 position: relative;
                 list-style: none;
@@ -39,6 +44,12 @@ footer {
         }
 
         .footer-middle {
+            padding:0 10px ;
+            .d-flex{
+                h5{
+                    font-weight: 700;
+                }
+            }
             .footer-info {
                 padding: 0;
 
@@ -55,6 +66,7 @@ footer {
         .footer-middle-title {
             margin: 10px 0 50px 0;
             position: relative;
+
         }
         .footer-middle-title::before {
             position: absolute;
@@ -133,14 +145,7 @@ footer {
 @import "helpers/variables.scss";
 @import "helpers/mixin.scss";
 
-@include minResponsive("small") {
-    .footer-middle {
-        .footer-middle-title {
-            font-size: 24px;
-            margin-top: -8px;
-        }
-    }
-}
+
 @include maxResponsive("small") {
     .footer-top {
         .social {
@@ -157,7 +162,7 @@ footer {
         .d-flex {
             h5,
             i {
-                font-size: 18px !important;
+                font-size: 17px !important;
             }
         }
         ul {
@@ -165,6 +170,15 @@ footer {
                 .nav-item,
                 .address {
                     font-size: 15px !important;
+                }
+            }
+        }
+    }
+    .footer-bottom{
+        .footer-bottom-content{
+            .copy-right{
+                p{
+                    font-size: 16px;
                 }
             }
         }

@@ -227,6 +227,7 @@ body {
     }
 }
 .detail__descrip {
+    position: relative;
     padding-top: 120px;
     padding-bottom: 60px;
     color: #fff;
@@ -275,7 +276,7 @@ body {
             .col-2 {
             }
             .col-10 {
-                padding: 0 !important;
+                
                 border: 3px solid #11326f;
                 box-shadow: 0px 0px 10px 0px #3b37bc;
                 border-radius: 15px;

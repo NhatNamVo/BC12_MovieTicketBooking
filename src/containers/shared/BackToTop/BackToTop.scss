@@ -3,9 +3,15 @@
 @import "helpers/mixin.scss";
 
 
-@include maxResponsive("small"){
+@include minResponsive("medium"){
     .btn-back{
-        left: 90%!important;
+        left: 94%!important;
         font-size:2.2rem!important;
+    }
+}
+@include minResponsive("large"){
+    .btn-back{
+        left: 96%!important;
+        font-size:2.4rem!important;
     }
 }

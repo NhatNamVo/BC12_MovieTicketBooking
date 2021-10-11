@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import TheaterFilter from "./TheaterFilter/TheaterFilter";
 import { Link } from "react-router-dom";
 import "./Theater.scss";
-
+import WOW from "wowjs";
 class Theater extends Component {
   state = {
     sortVal: "BHDStar",
@@ -23,19 +23,29 @@ class Theater extends Component {
           style={{ backgroundImage: "url(/images/theater-banner.jpg)" }}
         >
           <div className="container">
-            <div className="theater__banner__content">
+            <div
+              className="theater__banner__content wow fadeScale"
+              data-wow-scroll="true" data-wow-duration="2s"
+            >
               <h3 className="title">Cụm Rạp Chiếu</h3>
+              <div className="bannerinfo-Slogan">
+                Hệ thống rạp chiếu hiện đại nhất thời nay
+              </div>
             </div>
           </div>
         </div>
         <div className="theater-content">
           <div className="container-md">
             <div className="movie__detail__theater">
-              <div className="header">
+              <div className="header   ">
                 {theater.map((heThongRap) => {
                   return (
                     <div className="d-flex">
-                      <div className="title  ">
+                      <div
+                        className="title wow fadeInLeft"
+                        data-wow-scroll="true "
+                        data-wow-duration="3s"
+                      >
                         <img
                           src={heThongRap.logo}
                           style={{ width: "50px" }}
@@ -53,7 +63,11 @@ class Theater extends Component {
                   );
                 })}
               </div>
-              <div className="row">
+              <div
+                className="row wow fadeInUp"
+                data-wow-scroll="true "
+                data-wow-duration="1s"
+              >
                 <div className="col-4  ">
                   <div>
                     {theater.map((heThongRap) => {
@@ -189,6 +203,9 @@ class Theater extends Component {
   componentDidMount() {
     console.log(this.props.sortVal);
     this.props.fetchTheater(this.props.sortVal);
+    new WOW.WOW({
+      live: false,
+    }).init();
   }
 }
 const mapStateToProps = (state) => ({
