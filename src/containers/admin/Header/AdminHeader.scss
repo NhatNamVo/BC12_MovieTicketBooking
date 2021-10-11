@@ -10,7 +10,12 @@ header.adminHeader {
     justify-content: space-between;
     align-items: center;
     .logobranch {
-      color: #fff;
+      img{
+        width: 100px;
+        position: absolute;
+        top: 4%;
+        transform: translateY(-50%);
+      }
     }
     .menuBtn {
       height: fit-content;
