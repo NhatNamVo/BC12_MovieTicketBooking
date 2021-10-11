@@ -44,6 +44,7 @@ ul {
           font-size: 16px;
           font-weight: 700;
           text-transform: uppercase;
+          transition: all ease 0.3s;
         }
         a:hover {
           color: #31d7a9;
@@ -57,6 +58,7 @@ ul {
           color: #31d7a9;
         }
       }
+      
       a:hover::after {
         -webkit-transform: scaleX(1);
         transform: scaleX(1);
@@ -235,7 +237,7 @@ ul {
       .overPlay {
         display: block;
         position: absolute;
-        top: 85px;
+        top: 70px;
         right: 0;
         width: 0;
         height: 100vh;
@@ -273,7 +275,10 @@ ul {
 }
 @include maxResponsive("small-down") {
   .header-section {
+    height: 70px;
     .navbar.menuNavBar {
+      padding-top: 0;
+      padding-bottom: 0;
       .menu {
         display: flex;
         flex-direction: column;
@@ -281,8 +286,8 @@ ul {
         justify-content: flex-start;
         position: absolute;
         width: 60%;
-        height: calc(100vh - 85px);
-        top: 85px;
+        height: calc(100vh - 70px);
+        top: 70px;
         right: -100%;
         z-index: 10;
         background-color: #031f50;

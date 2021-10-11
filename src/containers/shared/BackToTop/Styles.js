@@ -13,10 +13,10 @@ height: 2500px;
 export const Button = styled.div`
 position: fixed;
 width: 100%;
-left: 95%;
-bottom: 65px;
-height: 35px;
-font-size: 2.4rem;
+left: 90%;
+bottom: 40px;
+height: 20px;
+font-size: 2.0rem;
 z-index: 3;
 cursor: pointer;
 color: #31d7a9;

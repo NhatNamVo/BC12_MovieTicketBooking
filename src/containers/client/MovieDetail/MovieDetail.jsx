@@ -18,7 +18,7 @@ import {
   FaRegStar,
   FaStar,
 } from "react-icons/fa";
-
+import WOW from "wowjs";
 class MovieDetail extends Component {
   kiemTraLichChieu = () => {
     const { movieDetail } = this.props;
@@ -31,6 +31,7 @@ class MovieDetail extends Component {
       );
     }
   };
+  
   render() {
     const { movieDetail, loading, history } = this.props;
 
@@ -54,7 +55,7 @@ class MovieDetail extends Component {
                 <FaRegPlayCircle />
               </Link>
               <div className="row no-gutters details__banner__wrapper ">
-                <div className="col-md-4 details__banner__img">
+                <div className="col-md-4 details__banner__img wow fadeScale" data-wow-sroll="true" data-wow-duration="3s" >
                   <img
                     className="img-fluid"
                     src={movieDetail.hinhAnh}
@@ -71,7 +72,7 @@ class MovieDetail extends Component {
                     <FaRegPlayCircle />
                   </Link>
                 </div>
-                <div className="col-md-8  details__banner__content offset-lg-4 ">
+                <div className="col-md-8  details__banner__content offset-lg-4 wow fadeScale" data-wow-scroll="true" data-wow-duration="4s">
                   <h3 className="card-title">{movieDetail.tenPhim}</h3>
                   <div className="tags">
                     <a href="#">Anh</a>
@@ -90,7 +91,7 @@ class MovieDetail extends Component {
                           movieDetail.ngayKhoiChieu
                         ).toLocaleDateString()}
                       </span>
-                      <FaRegClock />
+                      {/* <FaRegClock />
                       <span className="p-1 p-3">
                         {new Date(movieDetail.ngayKhoiChieu).toLocaleTimeString(
                           "it-IT",
@@ -99,7 +100,7 @@ class MovieDetail extends Component {
                             minute: "numeric",
                           }
                         )}
-                      </span>
+                      </span> */}
                     </div>
 
                     <ul className="social">
@@ -134,7 +135,7 @@ class MovieDetail extends Component {
               </div>
             </div>
           </div>
-          <div className="book-tickets">
+          <div className="book-tickets wow fadeInUp" data-wow-scroll="true" data-wow-duration="4s">
             <div className="container">
               <div className="book-wrapper offset-lg-4">
                 <div className="left-side">
@@ -165,10 +166,12 @@ class MovieDetail extends Component {
           {/* DESCRIPTION */}
           <div className="detail__descrip padding-top padding-bottom">
             <div className="container">
-              <div className="row">
-                <div className="col-lg-9">
-                  <div className="description container">
-                    <ul className="tab-menu nav nav-pills card-header-pills">
+              <div className="row ">
+                <div className="col-lg-9 wow fadeInUp"
+                data-wow-scroll="true "
+                data-wow-duration="3s">
+                  <div className="description container ">
+                    <ul className="tab-menu nav nav-pills card-header-pills ">
                       <li className="nav-item">
                         <a className="nav-link active" href="#">
                           <h5>MÔ TẢ</h5>
@@ -180,13 +183,13 @@ class MovieDetail extends Component {
                         </a>
                       </li>
                     </ul>
-                    <div className="card-body">
+                    <div className="card-body  ">
                       <h5 className="mb-5"> {movieDetail.tenPhim}</h5>
                       <p className="card-text ">{movieDetail.moTa}</p>
                     </div>
                   </div>
                   {/* Theater */}
-                  <div className="movie__detail__theater">
+                  <div className="movie__detail__theater " >
                     <div className="header">
                       <h4>LỊCH CHIẾU</h4>
                     </div>
@@ -299,11 +302,11 @@ class MovieDetail extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-3 mb-50">
-                  <div className="widget-1 widget-offer">
+                <div className="col-lg-3 mb-50 ">
+                  <div className="widget-1 widget-offer ">
                     <h3 className="title">GỢI Ý</h3>
                     <div className="offer-body">
-                      <div className="offer-item">
+                      <div className="offer-item ">
                         <div className="top">
                           <img
                             src={process.env.PUBLIC_URL + "/images/offer-1.png"}
@@ -320,7 +323,7 @@ class MovieDetail extends Component {
                           </p>
                         </div>
                       </div>
-                      <div className="offer-item">
+                      <div className="offer-item ">
                         <div className="top">
                           <img
                             src={process.env.PUBLIC_URL + "/images/offer-2.png"}
@@ -336,7 +339,7 @@ class MovieDetail extends Component {
                           </p>
                         </div>
                       </div>
-                      <div className="offer-item">
+                      <div className="offer-item ">
                         <div className="top">
                           <img
                             src={process.env.PUBLIC_URL + "/images/offer-3.png"}
@@ -367,6 +370,9 @@ class MovieDetail extends Component {
   componentDidMount() {
     const { movieId } = this.props.match.params;
     this.props.fetchMovieDetail(movieId);
+    new WOW.WOW({
+      live: false,
+    }).init();
   }
 }
 const mapStateToProps = (state) => ({

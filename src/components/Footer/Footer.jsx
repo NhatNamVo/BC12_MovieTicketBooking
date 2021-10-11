@@ -10,10 +10,8 @@ import {
   FaMapMarkedAlt,
   FaPhoneAlt,
   FaPinterestP,
-  FaPlus,
   FaRegEnvelope,
   FaTwitter,
-  FaMinus,
 } from "react-icons/fa";
 import WOW from "wowjs";
 class Footer extends Component {
@@ -99,7 +97,10 @@ class Footer extends Component {
         >
           <div className="container">
             <div className="footer-top">
-              <div className="footer-logo wow fadeInLeft" data-wow-scroll="true">
+              <div
+                className="footer-logo wow fadeInLeft"
+                data-wow-scroll="true"
+              >
                 <Link to="/">
                   <h4>Movie Ticket</h4>
                 </Link>
@@ -298,8 +299,7 @@ class Footer extends Component {
             <div className="footer-bottom">
               <div className="footer-bottom-content">
                 <div className="copy-right d-flex">
-                  <p>Copyright © 2021 All Rights Reserved By </p>
-                  <a href="#">Ticket</a>
+                  <p>Copyright © 2021 </p>
                 </div>
               </div>
             </div>

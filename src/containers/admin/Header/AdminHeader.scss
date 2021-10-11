@@ -13,7 +13,7 @@ header.adminHeader {
       img{
         width: 100px;
         position: absolute;
-        top: 4%;
+        top: 37.5px;
         transform: translateY(-50%);
       }
     }
@@ -70,6 +70,11 @@ header.adminHeader {
   header.adminHeader {
     overflow: hidden;
     .header-content {
+      .logobranch {
+        img{
+          top: 35px;
+        }
+      }
       .menuBtn {
         display: block;
         transition: transform 0.5s;
@@ -160,6 +165,27 @@ header.adminHeader {
 @include maxResponsive("small-down") {
   header.adminHeader {
     .header-content {
+      .logobranch {
+        img{
+          top: 37.5px;
+        }
+      }
+      .menu {
+        width: 60%;
+      }
+    }
+  }
+}
+
+@include maxResponsive("smallest") {
+  header.adminHeader {
+    .header-content {
+      .logobranch {
+        img{
+          width: 100px;
+          top: 37.5px;
+        }
+      }
       .menu {
         width: 60%;
       }

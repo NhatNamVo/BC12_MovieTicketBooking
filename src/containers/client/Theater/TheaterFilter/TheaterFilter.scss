@@ -59,12 +59,14 @@
                     cursor: pointer;
                     .dropbox-item {
                         margin-bottom: 3px;
-                        &:hover {
-                            background-color: #31d7a9;
-                            margin: 0 -10px;
-                            padding: 0 10px;
-                            color: #021a45;
-                        }
+                        transition: all ease 0.3s;
+                        
+                    }
+                    .dropbox-item:hover {
+                        background-color: #31d7a9;
+                        margin: 0 -10px;
+                        padding: 0 10px;
+                        color: #021a45;
                     }
                     .active {
                         background-color: #31d7a9;
