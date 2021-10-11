@@ -47,7 +47,7 @@ class Movienew extends Component {
             windowWidth = {this.state.windowWidth}
           />
         </div>
-        <div className="newMovieList">
+        <div className="newMovieList wow zoomIn" data-wow-scroll="true">
           <MovienewList
             windowWidth={this.state.windowWidth} newMovie = {this.props.newMovie} currentMovieIdx={this.props.currentMovieIdx} changeCurrentPage={this.changeCurrentPage}
           />

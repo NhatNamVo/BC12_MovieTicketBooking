@@ -14,7 +14,7 @@
         position: absolute;
         background-color:#111c59;
         color:#fff;
-        top: 100%;
+        top: 44px;
         border-radius: 0 0 20px 20px;
         right: 0;
         width: 100%;
@@ -41,6 +41,21 @@
             .item:hover{
                 color: #31d7a9; 
             }
+        }
+        ul:before{
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 13px;
+            -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+            width: 0;
+            height: 0;
+            border: 10px solid #0a1e5e;
+            border-bottom-width: 11px;
+            border-right-color: transparent;
+            border-left-color: transparent;
+            border-top-color: transparent;
         }
     }
     

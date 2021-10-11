@@ -26,9 +26,10 @@ const BackToTop = () => {
   window.addEventListener("scroll", toggleVisible);
 
   return (
-    <div className="btn-back-top">
-      <Button className="btn-back">
+    <div className="btn-back-top ">
+      <Button className="btn-back ">
         <FaArrowCircleUp
+        className="fadeInUp"
           onClick={scrollToTop}
           style={{ display: visible ? "inline" : "none" }}
         />

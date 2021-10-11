@@ -45,9 +45,9 @@ footer {
                 li {
                     transition: all ease 0.3s;
                     margin-bottom: 15px;
-                    a{
-                        font-size:16px;
-                        padding-left: 0 !important;;
+                    a {
+                        font-size: 16px;
+                        padding-left: 0 !important;
                     }
                 }
             }
@@ -141,6 +141,35 @@ footer {
         }
     }
 }
+@include maxResponsive("small") {
+    .footer-top {
+        .social {
+            li {
+                width: 30px !important;
+                height: 30px !important;
+                a {
+                    line-height: 0 !important;
+                }
+            }
+        }
+    }
+    .footer-middle {
+        .d-flex {
+            h5,
+            i {
+                font-size: 18px !important;
+            }
+        }
+        ul {
+            li {
+                .nav-item,
+                .address {
+                    font-size: 15px !important;
+                }
+            }
+        }
+    }
+}
 @include minResponsive("large") {
     .footer-contact {
         display: block !important;
@@ -160,33 +189,58 @@ footer {
         }
     }
     .footer-middle {
+        .d-flex {
+            span {
+                display: none !important;
+            }
+        }
         .footer-info {
             display: block !important;
             li:hover {
                 color: #31d7a9;
             }
         }
-        .footer-branch{
+        .footer-branch {
             display: flex !important;
         }
-        .footer-contact{
-            .address-footer{
+        .footer-contact {
+            .address-footer {
                 display: block !important;
             }
-           
         }
     }
 }
 @include maxResponsive("large-down") {
+    .footer-top {
+        text-align: center !important;
+        .social {
+            justify-content: center !important;
+        }
+    }
     .footer-contact {
         display: none;
         margin-bottom: 20px;
         margin-top: 20px;
     }
     .footer-middle {
+        .d-flex {
+            justify-content: space-between;
+            align-items: center;
+        }
         .footer-info {
+            border-bottom: 1px solid #2318b3;
+
             li {
                 margin-right: 15px;
+            }
+        }
+        .footer-branch {
+            border-bottom: 1px solid #2318b3;
+            .branch {
+                padding-bottom: 20px;
+                a {
+                    margin-right: 15px;
+                }
             }
         }
     }
