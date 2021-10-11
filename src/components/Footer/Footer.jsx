@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { logoTheaterList } from "containers/shared/logoTheater/logoTheater";
 import "./Footer.scss";
-import cybersoftImg from "assets/image/MIN-OP1.png";
+import cybersoftImg from "assets/image/cybersofticon.png";
 import { Link } from "react-router-dom";
 import {
   FaFacebookF,
@@ -180,6 +180,7 @@ class Footer extends Component {
                         href="https://www.cgv.vn/"
                         target="_blank"
                         className="branch-logo "
+                        alt="cgv"
                       >
                         <img
                           className="footer-icon"
