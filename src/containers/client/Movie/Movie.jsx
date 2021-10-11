@@ -105,7 +105,7 @@ class Movie extends Component {
             style={{ backgroundImage: `url(${banner})` }}
           ></div>
           <div className="movie-banner">
-            <div className="banner-info">
+            <div className="banner-info wow fadeScale" data-wow-sroll="true" >
               <h3>XEM PHIM MỌI LÚC MỌI NƠI</h3>
               <div className="bannerinfo-Slogan">
                 Lựa chọn phim bên dưới - Đặt vé ngay thôi nào!!!

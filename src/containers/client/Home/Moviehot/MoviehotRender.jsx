@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import MovieItem from "containers/shared/MovieItem/MovieItem";
 import renderMovie from "containers/shared/MovieItem/RenderMovieList";
+
+
 class MovieHotReder extends Component {
   state = {
     hotMovie: [],
   };
   componentDidMount() {
     this.changeHotMovieList(this.props.windowWidth);
+
   }
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.windowWidth != this.props.windowWidth) {
@@ -25,7 +28,7 @@ class MovieHotReder extends Component {
   render() {
     return (
       <>
-        <div className="row">{renderMovie(MovieItem, this.state.hotMovie)}</div>
+        <div className="row "  >{renderMovie(MovieItem, this.state.hotMovie)}</div>
       </>
     );
   }

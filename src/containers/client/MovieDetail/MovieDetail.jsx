@@ -19,7 +19,6 @@ import {
   FaStar,
 } from "react-icons/fa";
 
-
 class MovieDetail extends Component {
   kiemTraLichChieu = () => {
     const { movieDetail } = this.props;
@@ -199,7 +198,6 @@ class MovieDetail extends Component {
                           role="tablist"
                           aria-orientation="vertical"
                         >
-                          
                           {movieDetail.heThongRapChieu.map(
                             (heThongRap, idx) => {
                               return (
@@ -233,66 +231,67 @@ class MovieDetail extends Component {
                         <div
                           className="tab-content movie__ticket"
                           id="v-pills-tabContent"
-                          onChange={this.KiemTraLichChieu}
                         >
                           {this.kiemTraLichChieu()}
                           {movieDetail.heThongRapChieu.map(
                             (heThongRap, idx) => {
-                              <div
-                                className={`tab-pane fade show ${
-                                  idx === 0 && "active"
-                                }`}
-                                id={heThongRap.maHeThongRap}
-                                role="tabpanel"
-                                aria-labelledby="v-pills-home-tab"
-                              >
-                                {heThongRap.cumRapChieu.map((cumRap) => {
-                                  return (
-                                    <div className="text-left">
-                                      <Link
-                                        to={`/theater`}
-                                        className="theater-name"
-                                      >
-                                        <h6 className="pl-3 ">
-                                          {cumRap.tenCumRap}
-                                        </h6>
-                                      </Link>
-                                      <div className="my-3 ml-3 ticket row">
-                                        {cumRap.lichChieuPhim
-                                          .slice(0, 10)
-                                          .map((lichChieu) => {
-                                            return (
-                                              <div
-                                                className="ticket__item mr-3 mb-3  "
-                                                style={{
-                                                  backgroundImage:
-                                                    "url(/images/movie-ticket.png)",
-                                                }}
-                                              >
-                                                <Link
-                                                  to={`/seat-plan/${lichChieu.maLichChieu}`}
-                                                  className=" btn-ticket  "
+                              return (
+                                <div
+                                  className={`tab-pane fade show ${
+                                    idx === 0 && "active"
+                                  }`}
+                                  id={heThongRap.maHeThongRap}
+                                  role="tabpanel"
+                                  aria-labelledby="v-pills-home-tab"
+                                >
+                                  {heThongRap.cumRapChieu.map((cumRap) => {
+                                    return (
+                                      <div className="text-left">
+                                        <Link
+                                          to={`/theater`}
+                                          className="theater-name"
+                                        >
+                                          <h6 className="pl-3 ">
+                                            {cumRap.tenCumRap}
+                                          </h6>
+                                        </Link>
+                                        <div className="my-3 ml-3 ticket row">
+                                          {cumRap.lichChieuPhim
+                                            .slice(0, 10)
+                                            .map((lichChieu) => {
+                                              return (
+                                                <div
+                                                  className="ticket__item mr-3 mb-3  "
+                                                  style={{
+                                                    backgroundImage:
+                                                      "url(/images/movie-ticket.png)",
+                                                  }}
                                                 >
-                                                  <div>
-                                                    {new Date(
-                                                      lichChieu.ngayChieuGioChieu
-                                                    ).toLocaleTimeString(
-                                                      "it-IT",
-                                                      {
-                                                        hour: "numeric",
-                                                        minute: "numeric",
-                                                      }
-                                                    )}
-                                                  </div>
-                                                </Link>
-                                              </div>
-                                            );
-                                          })}
+                                                  <Link
+                                                    to={`/seat-plan/${lichChieu.maLichChieu}`}
+                                                    className=" btn-ticket  "
+                                                  >
+                                                    <div>
+                                                      {new Date(
+                                                        lichChieu.ngayChieuGioChieu
+                                                      ).toLocaleTimeString(
+                                                        "it-IT",
+                                                        {
+                                                          hour: "numeric",
+                                                          minute: "numeric",
+                                                        }
+                                                      )}
+                                                    </div>
+                                                  </Link>
+                                                </div>
+                                              );
+                                            })}
+                                        </div>
                                       </div>
-                                    </div>
-                                  );
-                                })}
-                              </div>;
+                                    );
+                                  })}
+                                </div>
+                              );
                             }
                           )}
                         </div>

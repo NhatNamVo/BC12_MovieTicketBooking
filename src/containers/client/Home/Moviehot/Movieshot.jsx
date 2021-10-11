@@ -10,6 +10,7 @@ class Moviehot extends Component {
   }
   componentDidMount() {
     window.addEventListener("resize",this.changeWindowWidth);
+    
   }
   changeWindowWidth = () => {
     this.setState({

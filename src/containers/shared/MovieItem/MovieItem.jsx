@@ -4,18 +4,24 @@ import { Link } from "react-router-dom";
 import MovieTimePlan from "../TimePlan/MovieTimePlan";
 import "./MovieItem.scss";
 import 'Base/customize.scss';
+import WOW from "wowjs";
 class MovieItem extends Component {
   state = {
     src: "./images/assets/images/cinemaDefault.jpg",
     errored: false,
   };
   errorImgFlag = true;
+  componentDidMount() {
+    new WOW.WOW({
+      live: false
+  }).init();
+  }
   render() {
     const { tenPhim, hinhAnh, maPhim, biDanh, danhGia, ngayKhoiChieu } =
       this.props.data;
 
     return (
-      <div className="movieItem col-6 col-sm-4 col-md-3 col-lg-3">
+      <div className="movieItem col-6 col-sm-4 col-md-3 col-lg-3 wow fadeScale" data-wow-sroll="true">
         <div className="movieItem-content">
           <div className="movie-poster">
             <Link to={`/movie-detail/${maPhim}`}>

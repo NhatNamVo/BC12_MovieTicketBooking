@@ -25,7 +25,7 @@ class CurrentMovienew extends Component {
     return currentMovienew && (
       <>
         <div className="currentFilm row">
-          <div className="currentFilm-info col-6">
+          <div className="currentFilm-info wow fadeInLeft col-6" data-wow-sroll="true">
             <h4 className="currentFilm-title">{tenPhim}</h4>
             <div className="currentFilm-rate">
               <i class="fa fa-star"></i>
@@ -40,7 +40,7 @@ class CurrentMovienew extends Component {
               <Link to={match.url + "movie-detail/" + maPhim}>Xem thêm</Link>
             </p>
           </div>
-          <div className="currentFilm-profileImg col-6">
+          <div className="currentFilm-profileImg wow fadeInRight col-6" data-wow-sroll="true">
             <div className="currentFilm-img">
               <img
                 src={hinhAnh}

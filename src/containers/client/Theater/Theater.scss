@@ -3,9 +3,8 @@
     position: relative;
     background-size: cover;
     width: 100%;
-    height: 40vh;
-    padding-top: 200px;
-    padding-bottom: 200px;
+    height: 280px;
+
     justify-content: center;
     align-items: center;
     .theater__banner__content {
@@ -50,7 +49,6 @@
         }
         .row {
             margin-bottom: 60px;
-           
 
             .col-4 {
                 overflow-y: scroll;
@@ -62,7 +60,6 @@
                         scroll-snap-align: start;
                         border: 1px solid #11326f;
                         transition: all ease 0.3s;
-
                     }
                     h6 {
                         font-size: 11px;
@@ -85,10 +82,10 @@
             }
             .col-8 {
                 // border: 2px solid #11326f;
-                padding: 0!important;
+                padding: 0 !important;
                 border: 3px solid #11326f;
                 box-shadow: 0px 0px 10px 0px #3b37bc;
-                border-radius:15px;
+                border-radius: 15px;
                 .theater__movie__ticket {
                     overflow-y: scroll;
                     scroll-snap-type: x mandatory;
@@ -98,7 +95,7 @@
                     .text-left {
                         scroll-snap-align: start;
                         border-bottom: 1px solid #11326f;
-                        
+
                         .btn-detail {
                             margin-bottom: 13px;
                             border: 1px solid rgba(163, 177, 198, 0.2);
@@ -119,7 +116,6 @@
                             // display: flex;
                             background-color: #001232;
                             margin: 0;
-                            
 
                             .ticket__item {
                                 display: flex;
@@ -136,7 +132,6 @@
                                 cursor: pointer;
                                 transition: all ease 0.3s;
                             }
-                            
                         }
                     }
                 }
@@ -164,11 +159,10 @@
         }
     }
     .theater__banner {
-        
         .container {
             .theater__banner__content {
                 .title {
-                    font-size: 50px;
+                    font-size: 45px;
                 }
             }
         }
@@ -188,7 +182,7 @@
         .container {
             .theater__banner__content {
                 .title {
-                    font-size: 40px;
+                    font-size: 35px;
                 }
             }
         }
@@ -196,8 +190,8 @@
     .movie__detail__theater {
         .header {
             .title {
-                img{
-                    width:42px;
+                img {
+                    width: 42px;
                 }
                 h2 {
                     font-size: 20px;
@@ -217,7 +211,7 @@
                         margin-right: 6px;
                     }
                     p {
-                        font-size:16px;
+                        font-size: 16px;
                         padding-right: 3px;
                     }
                     .item-sort {
@@ -249,35 +243,34 @@
             img {
                 width: 70px !important;
                 height: 140px;
-
             }
-            .img{
-                h5{
-                    font-size:18px!important;
+            .img {
+                h5 {
+                    font-size: 18px !important;
                 }
-                p{
-                    font-size: 15px!important;
-                }
-            }
-            .ticket{
-                .ticket__item{
-                    margin-right: 2rem!important;
-                    font-size:13px;
+                p {
+                    font-size: 15px !important;
                 }
             }
-            .content{
-                .btn-detail{
-                    font-size:11px!important;
+            .ticket {
+                .ticket__item {
+                    margin-right: 2rem !important;
+                    font-size: 13px;
                 }
             }
-            
-
+            .content {
+                .btn-detail {
+                    font-size: 11px !important;
+                }
+            }
         }
     }
 }
-@include minResponsive("large"){
-    .theater__banner{
-        height:80vh;
+@include minResponsive("large") {
+    .theater__banner {
+        height: 80vh;
+        padding-top: 200px;
+        padding-bottom: 200px;
     }
     .ticket__item:hover {
         color: #31d7a9;

@@ -113,7 +113,7 @@ class MovieFilter extends Component {
     const { sort, show, sortVal } = this.props;
     return (
       <>
-        <div className="Movie-filter" onClick={this.offPopup}>
+        <div className="Movie-filter " data-wow-sroll="true" onClick={this.offPopup}>
           <h4>LỌC THÔNG TIN PHIM</h4>
           <div className="filter-tool">
             <div
