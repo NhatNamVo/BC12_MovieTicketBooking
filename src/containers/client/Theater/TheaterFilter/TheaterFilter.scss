@@ -1,20 +1,20 @@
 .book-section {
-    .filter-tool {
+    .theater-filter-tool {
         background-color: #021a45;
         width: 100%;
         margin: auto;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 15px 20px;
+        padding: 8px 10px;
         border-radius: 10px;
         box-shadow: inset 0px -2px 8px 0px #ffffff2e;
-        .filter-item {
+        .theater-filter-item {
             display: flex;
             align-items: center;
             position: relative;
             &:nth-of-type(2) {
-                .item-dropbox {
+                .theater-item-dropbox {
                     width: 70px;
                     left: 52%;
                 }
@@ -40,7 +40,7 @@
                 cursor: pointer;
                 transition: transform 0.5s;
             }
-            .item-dropbox {
+            .theater-item-dropbox {
                 max-height: 300px;
                 text-align: left;
                 position: absolute;
@@ -77,8 +77,8 @@
                 }
             }
         }
-        .filter-item.active {
-            .item-dropbox {
+        .theater-filter-item.active {
+            .theater-item-dropbox {
                 transform: scaleY(1);
             }
             .fa-angle-down {

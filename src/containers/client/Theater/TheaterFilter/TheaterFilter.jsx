@@ -8,20 +8,14 @@ import WOW from "wowjs";
 class TheaterFilter extends Component {
   state = {
     sort: false,
-    sortDate:false,
   };
   handleClick = (event) => {
     event.preventDefault();
-    const sortBox = event.target.closest(".item-sort");
-    const arrowBtnSort = event.target.closest(".filter-sort .fa-angle-down");
-    const sortBoxDate = event.target.closest(".item-sort-date");
-    const arrowBtnSortDate = event.target.closest(".filter-sort-date .fa-angle-down1");
+    const sortBox = event.target.closest(".theater-item-sort");
+    const arrowBtnSort = event.target.closest(".theater-filter-sort .fa-angle-down");
     const itemBox = event.target.closest(".dropbox-item");
     if (!!sortBox || !!arrowBtnSort) {
       this.setState({ sort: !this.state.sort});
-    }
-    if (!!sortBoxDate || !!arrowBtnSortDate) {
-      this.setState({ sort: !this.state.sortDate });
     }
     if (itemBox) {
       const name = event.target.attributes[0].value;
@@ -41,10 +35,10 @@ class TheaterFilter extends Component {
       <>
         <div className="book-section wow fadeInRight" data-wow-scroll="true " data-wow-duration="1s" >
           <div className="container">
-            <div className="filter-tool">
+            <div className="theater-filter-tool">
               <div
                 className={
-                  "filter-item filter-sort " + (this.state.sort ? "active" : "")
+                  "theater-filter-item theater-filter-sort " + (this.state.sort ? "active" : "")
                 }
               >
                 <div className="thumb">
@@ -52,10 +46,10 @@ class TheaterFilter extends Component {
                 </div>
                 
                 <p>RẠP:</p>
-                <span className="item-sort">{sortVal}</span>
+                <span className="theater-item-sort">{sortVal}</span>
                 <FaChevronDown className="fa-angle-down" />
-                <div className="item-dropbox">
-                  <ul className="dropbox-list">
+                <div className="theater-item-dropbox">
+                  <ul className="theater-dropbox-list">
                     <li
                       name="sort"
                       value={0}
@@ -103,7 +97,7 @@ class TheaterFilter extends Component {
     );
   }
   componentDidMount() {
-    const filterBox = document.querySelector(".filter-tool");
+    const filterBox = document.querySelector(".theater-filter-tool");
     filterBox.addEventListener("click", this.handleClick); 
     new WOW.WOW({
       live: false,
