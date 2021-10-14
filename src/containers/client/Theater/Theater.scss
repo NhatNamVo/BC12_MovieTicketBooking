@@ -66,7 +66,7 @@
             scroll-snap-align: start;
             border: 1px solid #11326f;
             transition: all ease 0.3s;
-            height: 70px;
+            height: 75px;
           }
           h6 {
             font-size: 14.5px;
@@ -152,11 +152,7 @@
 @import "Base/customize.scss";
 
 @include maxResponsive("large") {
-  .tab-icon-theater {
-    .nav-link {
-      height: 75px;
-    }
-  }
+  
   .theater__banner {
     .container {
       .theater__banner__content {
@@ -263,7 +259,7 @@
     height: 500px !important;
     .tab-icon-theater {
       .nav-link {
-        height: 60px;
+        height: 60px!important;
         position: relative;
         padding: 13px 3px;
         .theater-name {
@@ -295,21 +291,19 @@
       }
       .ticket {
         .ticket__item {
-          margin-right: 0.25rem !important;
+          margin-right: 2.25rem !important;
           font-size: 13px;
+          width:64px!important;
+          height:36px!important;
         }
       }
       .content {
         .btn-detail {
-          font-size: 11px !important;
+          font-size: 9px !important;
         }
       }
     }
-    .content {
-      .btn-detail {
-        font-size: 11px !important;
-      }
-    }
+    
   }
 }
 @include minResponsive("large") {
@@ -344,5 +338,11 @@
 @include minResponsive("medium") {
   .theater__banner {
     height: 40vh;
+    
+  }
+  .tab-icon-theater {
+    .nav-link {
+      height: 75px;
+    }
   }
 }

@@ -430,6 +430,41 @@ body {
         }
     }
 }
+@include maxResponsive("medium-down"){
+    .ticket {
+        .ticket__item {
+        
+          width:64px!important;
+          height:36px!important;
+          a{
+            font-size: 9px;
+          }
+        }
+      }
+      .book-tickets{
+          .book-wrapper{
+              .left-side{
+                  .item{
+                      font-size:19px!important;
+                  }
+              }
+          }
+      }
+      .detail__descrip{
+        .widget-1{
+            .offer-body{
+                .offer-item{
+                    .top{
+                        img{
+                            width:14%;
+                        }
+                    }
+                } 
+            }
+        } 
+      } 
+      
+}
 @include maxResponsive("small-down") {
     .details__banner {
         padding-top: 150px;

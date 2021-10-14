@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import UserLogin from "./UserLogin/UserLogin";
 import "./Header.scss";
+import logo from "assets/image/logo.png";
 class Header extends Component {
   state = {
     menuBtn: false,
@@ -71,19 +72,9 @@ class Header extends Component {
       <header className="header-section" onClick={this.closeMenu}>
           <nav className="navbar menuNavBar container">
             <Link className="navbar-brand" onClick={this.loadHomePage}>
-              <img src="./logo.png" alt="" />
+              <img src={logo} alt="logo" />
             </Link>
-            {/* <button
-              className="navbar-toggler d-lg-none"
-              type="button"
-              data-toggle="collapse"
-              data-target="#collapsibleNavId"
-              aria-controls="collapsibleNavId"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <i class="fa fa-minus"></i>
-            </button> */}
+
             <div className={"menuBtn " + (this.state.menuShow ? "show " : "") + (this.state.menuBtn ? "active" : "")} onClick={this.changeMenuBtn}>
               <ul>
                 <li></li>
