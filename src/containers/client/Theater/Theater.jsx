@@ -36,7 +36,7 @@ class Theater extends Component {
         </div>
         <div className="theater-content">
           <div className="container-md">
-            <div className="movie__detail__theater">
+            <div className="movie__theater">
               <div className="header   ">
                 {theater.map((heThongRap) => {
                   return (
@@ -48,7 +48,7 @@ class Theater extends Component {
                       >
                         <img
                           src={heThongRap.logo}
-                          style={{ width: "50px" }}
+                          style={{ width: "45px" }}
                           alt=""
                         />
                         <h4>{`Rạp ${heThongRap.tenHeThongRap}`}</h4>
