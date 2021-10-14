@@ -192,7 +192,7 @@
     .overPlay{
         position: relative;
         width: 100%;
-        min-height: calc(100vh - 350px);
+        min-height: 100vh;
         z-index: -1;
     }
     .overPlay.show{
