@@ -1,7 +1,7 @@
-import { actFetchBookingHistory } from "containers/shared/Auth/module/actions";
+
 import React, { Component } from "react";
 import "./LichSuDatVe.scss";
-import { connect } from "react-redux";
+
 
 class LichSuDatVe extends Component {
   render() {

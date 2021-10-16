@@ -24,9 +24,7 @@ class TimeLeft extends Component {
             minute--;
         }
         second--;
-        let totalTime = minute*60 + second;
-        let calWidth = 100 - 100*totalTime/180;
-        // this.props.timeLeftWidth(calWidth);
+
         this.setState({second: second, minute: minute});
     }
     leftPad = (number,targetLength) => {

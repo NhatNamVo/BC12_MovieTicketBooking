@@ -16,7 +16,7 @@ class MovieAdminItem extends Component {
   }
   componentDidUpdate(prevProps, prevState) {
     if (
-      prevProps.match.params.pageNumber != this.props.match.params.pageNumber
+      prevProps.match.params.pageNumber !== this.props.match.params.pageNumber
     ) {
       if (!this.props.match.params.pageNumber) {
         this.props.ChangeCurrentPage(1);
@@ -24,14 +24,8 @@ class MovieAdminItem extends Component {
         this.props.ChangeCurrentPage(this.props.match.params.pageNumber);
       }
     }
-    // if (prevProps.totalCount != this.props.totalCount) {
-    //   if (!this.props.match.params.pageNumber) {
-    //     this.props.ChangeCurrentPage(1);
-    //   } else {
-    //     this.props.ChangeCurrentPage(this.props.match.params.pageNumber);
-    //   }
-    // }
-    if(prevProps.location.search != this.props.location.search){
+    
+    if(prevProps.location.search !== this.props.location.search){
       this.props.ChangeCurrentPage(1);
     }
   }
@@ -39,7 +33,7 @@ class MovieAdminItem extends Component {
     if(!!this.props.loading) return <Loader />;
     const { movieDatas, firstPageIndex, lastPageIndex, foundMovie } = this.props;
     let datas;
-    if(this.props.location.search == ''){
+    if(this.props.location.search === ''){
       datas = movieDatas.slice(firstPageIndex, lastPageIndex);
     }
     else{
@@ -100,28 +94,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 export default connect(mapStateToProps, mapDispatchToProps)(MovieAdminItem);
 
-//   componentDidMount() {
-//     if (!this.props.match.params.pageNumber) {
-//       this.props.ChangeCurrentPage(1);
-//     }
-//     else{
-//       this.props.ChangeCurrentPage(this.props.match.params.pageNumber);
-//     }
-//   }
-//   componentDidUpdate(prevProps, prevState) {
-//     if (
-//       prevProps.match.params.pageNumber != this.props.match.params.pageNumber
-//     ) {
-//       if (!this.props.match.params.pageNumber) {
-//         this.props.ChangeCurrentPage(1);
-//       } else {
-//         this.props.ChangeCurrentPage(this.props.match.params.pageNumber);
-//       }
-//     }
-//     if (prevProps.totalCount != this.props.totalCount) {
-//       this.props.ChangeCurrentPage(this.props.match.params.pageNumber);
-//     }
-//     if(prevProps.location.search != this.props.location.search){
-//       this.props.ChangeCurrentPage(1);
-//     }
-//   }
+

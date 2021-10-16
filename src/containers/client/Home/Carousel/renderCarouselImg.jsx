@@ -14,8 +14,6 @@ class RenderCarouselImg extends Component {
       containerHeight,
       timeDelay,
       filmInfo,
-      match,
-      history,
     } = this.props;
     return (
       <>

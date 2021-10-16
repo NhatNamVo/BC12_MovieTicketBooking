@@ -6,14 +6,6 @@ export const formValid = (name, value, list, messageError) => {
   status.messageError = {...messageError};
   switch (name) {
     case "taiKhoan": {
-      // const checkUser = list.findIndex((user) => {
-      //   return user.taiKhoan === value;
-      // });
-      // if (checkUser !== -1) {
-      //   status.isvalid = false;
-      //   status.messageError.taiKhoan = "Tài khoản đã tồn tại";
-      // }
-      // else{
         status.isvalid = true;
         status.messageError.taiKhoan = "true";
       
@@ -39,7 +31,7 @@ export const formValid = (name, value, list, messageError) => {
       return status;
     }
     case "email": {
-      const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if(!regex.test(value)){
         status.isvalid = false;
         status.messageError.email = "Email sai định dạng";
@@ -62,7 +54,6 @@ export const formValid = (name, value, list, messageError) => {
       return status;
     }
     case "soDt":{
-      const covertNum = parseInt(value);
       const regex = /^-?\d+$/;
       if(!regex.test(value)){
         status.isvalid = false;
@@ -179,5 +170,7 @@ export const formValid = (name, value, list, messageError) => {
       }
       return status;
     }
+    default:
+      break;
   }
 };

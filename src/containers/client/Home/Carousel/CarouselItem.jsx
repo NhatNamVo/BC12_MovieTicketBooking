@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import RenderCarouselImg from "./renderCarouselImg";
-import { Route, Link, Switch } from "react-router-dom";
+
 class CarouselItem extends Component {
   state = {
     renderImg: [],
@@ -54,7 +54,7 @@ class CarouselItem extends Component {
     });
   };
   render() {
-    const { dataIndex, active, match, history, filmInfo } = this.props;
+    const { dataIndex, active, match, history } = this.props;
     const { renderImg } = this.state;
     return (
       <>

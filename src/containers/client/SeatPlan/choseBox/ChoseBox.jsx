@@ -13,8 +13,7 @@ class ChoseBox extends Component {
   };
 
   render() {
-    const { seatChose, movieInfo, match, history, location, loaddingPost, orderTicket,accessToken } =
-      this.props;
+    const { seatChose } = this.props;
     const newTo = {
       pathname: "/checkout",
       seatChose: this.props.seatChose,
@@ -41,10 +40,12 @@ class ChoseBox extends Component {
           </div>
           <div className=" seat-price">
             <p className="title">Tổng tiền</p>
-            <h3 className="result">{seatChose.totalPrice===0?'':seatChose.totalPrice}</h3>
+            <h3 className="result">
+              {seatChose.totalPrice === 0 ? "" : seatChose.totalPrice}
+            </h3>
           </div>
         </div>
-        
+
         <div className="seatChose-item">
           <Link
             to={newTo}

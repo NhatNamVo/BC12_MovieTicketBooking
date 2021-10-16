@@ -1,4 +1,4 @@
-import moment from "moment";
+
 import {
   FETCH_ALL_MOVIE_FAIL,
   FETCH_ALL_MOVIE_REQUEST,
@@ -61,13 +61,10 @@ const movieReducer = (state = initialState, { type, payload }) => {
     case FETCH_MOVIE_ALL_BANNER_FAIL:
       return { ...state, error: payload };
     case FETCH_ALL_MOVIE_SUCCESS:
-      const showingMovie = payload.filter((movie) => {
-        return movie.dangChieu === true;
-      });
+
       const hotMovie = payload.filter((movie) => {
         return movie.danhGia === 10;
       });
-      console.log(payload);
       const currentDate = new Date();
       const currentMonth = currentDate.getMonth();
       const currentYear = currentDate.getFullYear();
@@ -78,7 +75,7 @@ const movieReducer = (state = initialState, { type, payload }) => {
       
       const newMovie = currentYearMovie.filter((movie) => {
         const movieMonth = new Date(movie.ngayKhoiChieu).getMonth();
-        return (currentMonth-1 <= movieMonth && movieMonth == currentMonth);
+        return (currentMonth-1 <= movieMonth && movieMonth === currentMonth);
       });
       const currentMovienew = payload[state.currentMovieIdx];
       return {
@@ -102,7 +99,7 @@ const movieReducer = (state = initialState, { type, payload }) => {
       };
     case GET_TRAILER_MOVIE:
       const currentTrailerMovie = state.listMovie.find((movie, idx) => {
-        return movie.maPhim == payload;
+        return movie.maPhim === payload;
       }).trailer;
       return { ...state, currentTrailerMovie: currentTrailerMovie };
     case ADD_NEW_MOVIE_REQUEST:
@@ -120,7 +117,7 @@ const movieReducer = (state = initialState, { type, payload }) => {
     case DELETE_MOVIE_SUCCESS:
       const {listMovie} = state;
       const findMovieIdx = listMovie.findIndex(movie=>{
-        return movie.maPhim == payload.movieCode;
+        return movie.maPhim === payload.movieCode;
       });
       let movieList = state.listMovie;
       movieList.splice(findMovieIdx, 1);
@@ -131,17 +128,17 @@ const movieReducer = (state = initialState, { type, payload }) => {
       return {...state, loadingModal: true, note: ''};
     case UPDATE_MOVIE_SUCCESS:
       const findIdx = state.listMovie.findIndex(movie=>{
-        return movie.maPhim == payload.maPhim;
+        return movie.maPhim === payload.maPhim;
       });
       let movieDatas = state.listMovie;
       for(let mainKey in movieDatas[findIdx]){
         for(let key in payload){
-          if(key == mainKey){
+          if(key === mainKey){
             if(key === 'hinhAnh'){
               if(payload[key] !== null){
                 const findStIdx = payload.hinhAnh.contentType.indexOf('/');
                 let imgType = payload.hinhAnh.contentType.slice(findStIdx+1);
-                if(imgType == 'jpeg'){
+                if(imgType === 'jpeg'){
                   imgType = 'jpg';
                 }
                 movieDatas[findIdx][mainKey] = 'http://movie0706.cybersoft.edu.vn/hinhanh/' + payload.biDanh + '_' + payload.maNhom.toLocaleLowerCase() + '.' + imgType;

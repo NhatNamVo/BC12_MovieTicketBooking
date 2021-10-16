@@ -201,7 +201,6 @@ class Theater extends Component {
     );
   }
   componentDidMount() {
-    console.log(this.props.sortVal);
     this.props.fetchTheater(this.props.sortVal);
     new WOW.WOW({
       live: false,

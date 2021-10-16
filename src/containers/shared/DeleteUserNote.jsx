@@ -44,7 +44,7 @@ class DeleteUserNote extends Component {
   showMovieName = () => {
     if(!this.props.movieCode) return;
     const movie = this.props.movieList.find((movie) => {
-      return movie.maPhim == this.props.movieCode;
+      return movie.maPhim === this.props.movieCode;
     });
     if(!movie){
       return;

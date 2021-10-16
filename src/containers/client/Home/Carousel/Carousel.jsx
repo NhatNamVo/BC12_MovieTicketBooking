@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import CarouselItem from "./CarouselItem";
 import {connect} from "react-redux";
-import {Link} from 'react-router-dom'
-;import "./Carousel.scss";
+import "./Carousel.scss";
 class Carousel extends Component {
   state = {
     autoPlay: true,

@@ -20,7 +20,7 @@ class UserAcount extends Component {
     indexUser: null,
   };
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.location.search != this.props.location.search) {
+    if (prevProps.location.search !== this.props.location.search) {
       const findUser = new URLSearchParams(window.location.search).get(
         "search"
       );

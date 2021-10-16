@@ -4,20 +4,7 @@ import {
   theaterNameList,
 } from "containers/shared/logoTheater/logoTheater";
 import "./TheaterInfo.scss";
-import {
-  FaRegCalendarAlt,
-  FaRegClock,
-  FaFacebookF,
-  FaTwitter,
-  FaPinterestP,
-  FaLinkedinIn,
-  FaGooglePlusG,
-  FaRegPlayCircle,
-  FaShoppingCart,
-  FaRegHeart,
-  FaRegStar,
-  FaStar,
-} from "react-icons/fa";
+
 class TheaterInfo extends Component {
   state = {
     currentTheater: "bhd",
@@ -57,6 +44,8 @@ class TheaterInfo extends Component {
       case "CNS":
         this.setState({ currentTheater: logoTheaterList.cineStar });
         break;
+      default:
+        break;
     }
   };
   render() {
@@ -79,7 +68,6 @@ class TheaterInfo extends Component {
               <i class="fa fa-building"></i>
               {movieDetail.diaChi}
             </div>
-
           </div>
         </div>
       </div>

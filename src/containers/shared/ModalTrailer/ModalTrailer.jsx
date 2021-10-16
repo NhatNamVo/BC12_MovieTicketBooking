@@ -1,4 +1,4 @@
-import { actGetTrailerMovie,actFetchAllMovie } from "containers/client/Home/module/actions";
+import { actGetTrailerMovie } from "containers/client/Home/module/actions";
 import React, { Component } from "react";
 import "./ModalTrailer.scss";
 import { connect } from "react-redux";
@@ -9,23 +9,23 @@ class ModalTrailer extends Component {
   componentDidMount() {
     this.displayPopup = setTimeout(() => this.setState({ popup: true }), 500);
     const movieId = this.props.match.params.movieId;
-    if(this.props.listMovie.length>0){
+    if (this.props.listMovie.length > 0) {
       this.props.GetTrailer(movieId);
-    }   
+    }
     const trailerForm = document.querySelector(".trailer-Modal");
     trailerForm.addEventListener("click", this.closePopup);
   }
   componentWillUnmount() {
     clearTimeout(this.displayPopup);
   }
-  closePopup=(e)=>{
+  closePopup = (e) => {
     const iframe = e.target.closest(".trailer-content ifrane");
     const closeBtn = e.target.closest(".fa-times");
     if (!!closeBtn || !iframe) {
       this.setState({ popup: false });
       this.displayPopup = setTimeout(() => this.props.history.goBack(), 500);
     }
-  }
+  };
   render() {
     const { trailer } = this.props;
     return (
@@ -35,10 +35,15 @@ class ModalTrailer extends Component {
           className={"trailer-content " + (this.state.popup ? "active" : "")}
         >
           <iframe
+            title="Modal Trailer"
             width={window.innerWidth * 0.6}
             height={window.innerHeight * 0.6}
             frameborder="0"
-            src={((this.props.listMovie.length>0)?trailer:this.props.movieDetail.trailer) + "?autoplay=1"}
+            src={
+              (this.props.listMovie.length > 0
+                ? trailer
+                : this.props.movieDetail.trailer) + "?autoplay=1"
+            }
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>

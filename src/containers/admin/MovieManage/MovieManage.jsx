@@ -23,16 +23,15 @@ class MovieManage extends Component {
   componentDidMount() {
     if (this.props.movieList.length === 0) {
       this.props.fetchAllMovie();
-    }
-    else{
+    } else {
       this.props.changeTotalCount(this.props.location.search);
     }
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.movieList.length != this.props.movieList.length) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.movieList.length !== this.props.movieList.length) {
       this.props.changeTotalCount(this.props.location.search);
     }
-    if (prevProps.location.search != this.props.location.search) {
+    if (prevProps.location.search !== this.props.location.search) {
       const findUser = new URLSearchParams(window.location.search).get(
         "search"
       );
@@ -92,13 +91,14 @@ class MovieManage extends Component {
   addNewMovie = (data) => {
     let formData = new FormData();
     for (let key in data) {
-      if( key === 'ngayKhoiChieu'){
-        const date = moment(new Date(data[key]).toDateString()).format('DD/MM/YYYY');
-        formData.append(key,date);
+      if (key === "ngayKhoiChieu") {
+        const date = moment(new Date(data[key]).toDateString()).format(
+          "DD/MM/YYYY"
+        );
+        formData.append(key, date);
         continue;
-      }
-      else if(key === 'danhGia'){
-        formData.append(key,parseInt(data[key]));
+      } else if (key === "danhGia") {
+        formData.append(key, parseInt(data[key]));
         continue;
       }
       if (key !== "hinhAnh") {
@@ -112,28 +112,29 @@ class MovieManage extends Component {
   updateMovie = (data) => {
     let formData = new FormData();
     for (let key in data) {
-      if( key === 'ngayKhoiChieu'){
-        const date = moment(new Date(data[key]).toDateString()).format('DD/MM/YYYY');
-        formData.append(key,date);
+      if (key === "ngayKhoiChieu") {
+        const date = moment(new Date(data[key]).toDateString()).format(
+          "DD/MM/YYYY"
+        );
+        formData.append(key, date);
         continue;
-      }
-      else if(key === 'danhGia'){
-        formData.append(key,parseInt(data[key]));
+      } else if (key === "danhGia") {
+        formData.append(key, parseInt(data[key]));
         continue;
       }
       if (key !== "hinhAnh") {
         formData.append(key, data[key]);
       } else {
-        if(data.hinhAnh !== null){
+        if (data.hinhAnh !== null) {
           formData.append("File", data.hinhAnh, data.hinhAnh.name);
         }
       }
     }
-    this.props.updateMovie(formData,this.props.accessToken);
-  }
+    this.props.updateMovie(formData, this.props.accessToken);
+  };
   deleteMovie = (movieCode) => {
     this.props.deleteMovie(parseInt(movieCode), this.props.accessToken);
-  }
+  };
   render() {
     if (this.props.loadding) return <Loader />;
     const url = this.props.match.url;
@@ -170,45 +171,45 @@ class MovieManage extends Component {
           </div>
         </div>
         <div className="movieList-table">
-        <table className="table table-bordered">
-          <thead className="thead-light useraccount-list">
-            <tr>
-              <th scope="col" style={{ width: "5%", textAlign: "center" }}>
-                STT
-              </th>
-              <th scope="col" style={{ width: "10%", textAlign: "center" }}>
-                Mã phim
-              </th>
-              <th scope="col" style={{ width: "15%", textAlign: "center" }}>
-                Hình ảnh
-              </th>
-              <th scope="col" style={{ width: "20%", textAlign: "center" }}>
-                Tên phim
-              </th>
-              <th scope="col" style={{ width: "25%", textAlign: "center" }}>
-                Mô tả
-              </th>
-              <th scope="col" style={{ width: "25%", textAlign: "center" }}>
-                Chức năng
-              </th>
-            </tr>
-          </thead>
-          <tbody onClick={this.movieListUpdate}>
-            <Switch>
-              <Route
-                path="/admin/movie-manage"
-                exact="true"
-                component={MovieAdminItem}
-              />
-              <Route
-                path="/admin/movie-manage/Page:pageNumber"
-                component={MovieAdminItem}
-              />
-            </Switch>
-          </tbody>
-        </table>
+          <table className="table table-bordered">
+            <thead className="thead-light useraccount-list">
+              <tr>
+                <th scope="col" style={{ width: "5%", textAlign: "center" }}>
+                  STT
+                </th>
+                <th scope="col" style={{ width: "10%", textAlign: "center" }}>
+                  Mã phim
+                </th>
+                <th scope="col" style={{ width: "15%", textAlign: "center" }}>
+                  Hình ảnh
+                </th>
+                <th scope="col" style={{ width: "20%", textAlign: "center" }}>
+                  Tên phim
+                </th>
+                <th scope="col" style={{ width: "25%", textAlign: "center" }}>
+                  Mô tả
+                </th>
+                <th scope="col" style={{ width: "25%", textAlign: "center" }}>
+                  Chức năng
+                </th>
+              </tr>
+            </thead>
+            <tbody onClick={this.movieListUpdate}>
+              <Switch>
+                <Route
+                  path="/admin/movie-manage"
+                  exact="true"
+                  component={MovieAdminItem}
+                />
+                <Route
+                  path="/admin/movie-manage/Page:pageNumber"
+                  component={MovieAdminItem}
+                />
+              </Switch>
+            </tbody>
+          </table>
         </div>
-        
+
         {this.props.totalCount === 0 ? (
           ""
         ) : (
@@ -225,24 +226,26 @@ class MovieManage extends Component {
         <MovieManageModal
           isAddMovie={this.state.isAddMovie}
           addNewMovie={this.addNewMovie}
-          updateMovie = {this.updateMovie}
-          movieCode = {this.state.movieCode}
-          changeMovieCode = {this.changeMovieCode}
-          movieList = {this.props.movieList}
-          loadingModal={this.props.loadingModal}
-          note = {this.props.note}
-          loadingModal = {this.props.loadingModal}
-        />
-        {this.state.movieCode?
-        <DeleteUserNote
-          note={this.props.note}
-          delete={this.deleteMovie}
+          updateMovie={this.updateMovie}
           movieCode={this.state.movieCode}
-          // idx ={1}
+          changeMovieCode={this.changeMovieCode}
           movieList={this.props.movieList}
           loadingModal={this.props.loadingModal}
-          changeIdx={this.changeMovieCode}
-        />:""}
+          note={this.props.note}
+        />
+        {this.state.movieCode ? (
+          <DeleteUserNote
+            note={this.props.note}
+            delete={this.deleteMovie}
+            movieCode={this.state.movieCode}
+            // idx ={1}
+            movieList={this.props.movieList}
+            loadingModal={this.props.loadingModal}
+            changeIdx={this.changeMovieCode}
+          />
+        ) : (
+          ""
+        )}
       </div>
     );
   }
@@ -254,31 +257,12 @@ const mapStateToProps = (state) => ({
   siblingCount: state.MovieAdminManager.siblingCount,
   currentPage: state.MovieAdminManager.currentPage,
   pageSize: state.MovieAdminManager.pageSize,
-  // loadding: state.UserAccountReducer.loadding,
+
   loadingModal: state.movieReducer.loadingModal,
   note: state.movieReducer.note,
 });
-// const mapDispatchToProps = (dispatch) => ({
-// fetchUserAccount: () => {
-//   dispatch(actFetchUserAccount());
-// },
-// findUserAccount: (user) => {
-//   dispatch(actFindUserAccount(user));
-// },
-// postNewUserAccount: (newUser, token) => {
-//   dispatch(actAddNewUserAccount(newUser, token));
-// },
-// putUserUpdate: (user,token) =>{
-//   dispatch(actUpdateUser(user,token));
-// },
-// deleteUser: (user,token) => {
-//   dispatch(actDeleteUser(user,token));
-// }
-// });
+
 const mapDispatchToProps = (dispatch) => ({
-  // ChangeCurrentPage: (changePageID) => {
-  //   dispatch(actChangePage(changePageID));
-  // },
   fetchAllMovie: () => {
     dispatch(actFetchAllMovie());
   },
@@ -296,6 +280,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   updateMovie: (movieData, token) => {
     dispatch(actUpdateMovie(movieData, token));
-  }
+  },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(MovieManage);

@@ -90,7 +90,6 @@ class Movie extends Component {
       currentPage,
       pageSize,
       match,
-      location,
       movies,
     } = this.props;
     const url = match.url;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+
 import { actFilterMovieType, actFilterMovieMountShow } from "../module/action";
 import { connect } from "react-redux";
 class MovieFilter extends Component {
@@ -20,7 +20,6 @@ class MovieFilter extends Component {
   }
   changeInputWidth = (e) => {
     const windowWidth = window.innerWidth;
-    const findMovieBox = document.querySelector("input.findMovie");
     if(e.type === 'focus'){
       if(windowWidth< 768) {
         this.setState({isChangeSize:true,isfilterShow: true});
@@ -79,7 +78,7 @@ class MovieFilter extends Component {
     if (itemBox) {
       const name = event.target.attributes[0].value;
       const value = parseInt(event.target.attributes[1].value);
-      if (name == "sort") {
+      if (name === "sort") {
         this.props.filterSort(value);
         this.setState({ sort: false });
       }

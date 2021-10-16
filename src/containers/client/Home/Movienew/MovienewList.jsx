@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import MovieTimePlan from "containers/shared/TimePlan/MovieTimePlan";
-import { connect } from "react-redux";
-import { actChangeCurrentMovieNew } from "../module/actions";
+
 
 class MovienewList extends Component {
   state = {
@@ -22,7 +20,7 @@ class MovienewList extends Component {
     }
   };
   componentDidUpdate(prevProps, prevState) {
-    if(prevProps.windowWidth != this.props.windowWidth) {
+    if(prevProps.windowWidth !== this.props.windowWidth) {
       this.changeSlideMount(this.props.windowWidth);
     };
   }
@@ -74,7 +72,7 @@ class MovienewList extends Component {
                     <div
                       className={
                         "movieList-container " +
-                        (idx == currentMovieIdx ? "active" : "")
+                        (idx === currentMovieIdx ? "active" : "")
                       }
                       data-index={idx}
                     >

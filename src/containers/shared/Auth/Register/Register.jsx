@@ -43,11 +43,13 @@ class Register extends Component {
           this.setState({ isName: true });
         }
         break;
+      default:
+        break;
     }
   };
   RegisterSubmit = (e) => {
     e.preventDefault();
-    let newUser = { maNhom: GROUP_ID, maLoaiNguoiDung: 'KhachHang',};
+    let newUser = { maNhom: GROUP_ID, maLoaiNguoiDung: "KhachHang" };
     let isPass = true;
     let isUser = true;
     let isEmail = true;
@@ -82,6 +84,8 @@ class Register extends Component {
             isName = false;
           }
           break;
+        default:
+          break;
       }
       const userInfo = { ...newUser, [name]: value };
       newUser = { ...userInfo };
@@ -96,11 +100,11 @@ class Register extends Component {
       });
       return;
     }
-    this.props.register(newUser,this.props.history);
+    this.props.register(newUser, this.props.history);
   };
   render() {
-    if(!!this.props.currentUser) return (<Redirect to = "/" />);
-    const {loadding, error} = this.props;
+    if (!!this.props.currentUser) return <Redirect to="/" />;
+    const { loadding, error } = this.props;
     return (
       <div
         className="login-component"
@@ -109,7 +113,13 @@ class Register extends Component {
         <div className="login-container">
           <h3 className="login-title">Đăng ký</h3>
           <div className="login-form">
-            <form action="" method="post" className="register-form" onSubmit={this.RegisterSubmit} autoComplete="off">
+            <form
+              action=""
+              method="post"
+              className="register-form"
+              onSubmit={this.RegisterSubmit}
+              autoComplete="off"
+            >
               <div className="form-group">
                 <div className="form-input">
                   <input
@@ -122,7 +132,7 @@ class Register extends Component {
                   <i class="fa fa-user"></i>
                 </div>
                 <small id="helpId" className="form-note">
-                {!this.state.isUser ? "Chưa nhập tài khoản" : ""}
+                  {!this.state.isUser ? "Chưa nhập tài khoản" : ""}
                 </small>
               </div>
               <div className="form-group">
@@ -137,7 +147,7 @@ class Register extends Component {
                   <i class="fa fa-lock"></i>
                 </div>
                 <small id="helpId" className="form-note">
-                {!this.state.isPass ? "Chưa nhập mật khẩu" : ""}
+                  {!this.state.isPass ? "Chưa nhập mật khẩu" : ""}
                 </small>
               </div>
               <div className="form-group">
@@ -152,7 +162,7 @@ class Register extends Component {
                   <i class="fa fa-envelope"></i>
                 </div>
                 <small id="helpId" className="form-note">
-                {!this.state.isEmail ? "Chưa nhập email" : ""}
+                  {!this.state.isEmail ? "Chưa nhập email" : ""}
                 </small>
               </div>
               <div className="form-group">
@@ -167,7 +177,7 @@ class Register extends Component {
                   <i class="fa fa-phone"></i>
                 </div>
                 <small id="helpId" className="form-note">
-                {!this.state.isPhone ? "Chưa nhập số điện thoại" : ""}
+                  {!this.state.isPhone ? "Chưa nhập số điện thoại" : ""}
                 </small>
               </div>
               <div className="form-group">
@@ -182,10 +192,10 @@ class Register extends Component {
                   <i class="fa fa-credit-card"></i>
                 </div>
                 <small id="helpId" className="form-note">
-                {!this.state.isName ? "Chưa nhập họ và tên" : ""}
+                  {!this.state.isName ? "Chưa nhập họ và tên" : ""}
                 </small>
               </div>
-              <span className="note-login">{error?error:""}</span>
+              <span className="note-login">{error ? error : ""}</span>
               <button
                 type="submit"
                 name
@@ -194,7 +204,10 @@ class Register extends Component {
               >
                 Đăng ký
                 <span
-                  className={"spinner-border spinner-border-sm " + (!loadding?"d-none":"")}
+                  className={
+                    "spinner-border spinner-border-sm " +
+                    (!loadding ? "d-none" : "")
+                  }
                   role="status"
                   aria-hidden="true"
                 />
@@ -206,14 +219,14 @@ class Register extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   currentUser: state.authUserReducer.currentUser,
   loadding: state.authUserReducer.loadding,
   error: state.authUserReducer.error,
-})
-const mapDispatchToProps = dispatch => ({
-  register: (newUser,history) => {
-    dispatch(actRegister(newUser,history));
-  }
+});
+const mapDispatchToProps = (dispatch) => ({
+  register: (newUser, history) => {
+    dispatch(actRegister(newUser, history));
+  },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

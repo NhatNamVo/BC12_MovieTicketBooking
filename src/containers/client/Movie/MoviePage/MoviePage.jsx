@@ -32,7 +32,7 @@ class MoviePage extends Component {
   render() {
     const { listMovie, firstPageIndex, lastPageIndex } = this.props;
     const data = listMovie.slice(firstPageIndex, lastPageIndex);
-    if (listMovie == "") {
+    if (listMovie === "") {
       return (
         <>
           <h4 className="nothingFound">Không tìm thấy</h4>

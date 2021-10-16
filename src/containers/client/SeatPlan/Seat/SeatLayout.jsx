@@ -10,17 +10,19 @@ class SeatLayout extends Component {
   componentDidMount() {
     const { seats } = this.props;
     const width = 100 / this.state.col;
+    let chose =0;
     const seatCheck = seats.map((seat) => {
       if (seat.daDat === true) {
-        return 0;
+        chose= 0;
       } else {
         if (seat.loaiGhe === "Thuong") {
-          return 1;
+          chose= 1;
         }
         if (seat.loaiGhe === "Vip") {
-          return 2;
+          chose= 2;
         }
       }
+      return chose;
     });
     this.setState({
       seatCheck: seatCheck,

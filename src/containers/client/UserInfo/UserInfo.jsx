@@ -1,18 +1,14 @@
 import userApi from "apis/userApi";
 import Loader from "components/Loader/Loader";
-import {
-  actFetchBookingHistory,
-  actupdatePass,
-} from "containers/shared/Auth/module/actions";
+import { actupdatePass } from "containers/shared/Auth/module/actions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { GROUP_ID } from "settings/apiConfig";
 import "../UserInfo/UserInfo.scss";
 import LichSuDatVe from "./LichSuDatVe/LichSuDatVe";
-// import ModalUserInfo from "./ModalUserInfo/ModalUserInfo";
+
 import "./ModalUserInfo/userUpdateForm.scss";
 import WOW from "wowjs";
-import { Redirect } from "react-router";
 
 class UserInfo extends Component {
   state = {
@@ -37,7 +33,6 @@ class UserInfo extends Component {
     isDisplayBookingHistory: false,
   };
   componentDidMount() {
-    const { infoAdminChange } = this.state;
     const data = { taiKhoan: this.props.currentUser.taiKhoan };
     userApi
       .fetchBookingHistory(data)
@@ -150,7 +145,7 @@ class UserInfo extends Component {
   updateUserInfo = () => {
     if (this.state.updateItem === "Mật khẩu") {
       if (
-        this.state.userUpdate.matKhau != this.state.userInfo.matKhau &&
+        this.state.userUpdate.matKhau !== this.state.userInfo.matKhau &&
         this.state.userUpdate.matKhau !== ""
       ) {
         this.updateUser();
@@ -201,6 +196,8 @@ class UserInfo extends Component {
             };
             this.props.updatePassword(user);
             break;
+          default:
+            break;
         }
         this.setState({
           userUpdate: userUpdate,
@@ -247,10 +244,6 @@ class UserInfo extends Component {
     const {
       userInfo,
       loadding,
-      ticketHistory,
-      noteHover,
-      noteLeft,
-      userUpdate,
       updateItem,
       isShowCollapse,
     } = this.state;
@@ -265,15 +258,28 @@ class UserInfo extends Component {
         ></div>
         <div className="container ">
           <div className="userInfo">
-            <div className="userInfo-icon wow fadeScale" data-wow-scroll="true" data-wow-duration="1s">
+            <div
+              className="userInfo-icon wow fadeScale"
+              data-wow-scroll="true"
+              data-wow-duration="1s"
+            >
               <i class="fa fa-user"></i>
             </div>
-            <div className="userAccount wow fadeScale" data-wow-scroll="true" data-wow-duration="2s">
+            <div
+              className="userAccount wow fadeScale"
+              data-wow-scroll="true"
+              data-wow-duration="2s"
+            >
               <div className="item-account">
                 Xin chào <p>{userInfo.taiKhoan}</p>
               </div>
             </div>
-            <div className="userInfo-content wow fadeInRight" data-wow-scroll="true" data-wow-duration="2s" onClick={this.displayInfo}>
+            <div
+              className="userInfo-content wow fadeInRight"
+              data-wow-scroll="true"
+              data-wow-duration="2s"
+              onClick={this.displayInfo}
+            >
               <div className="userInfoIcon">
                 <i class="fa fa-address-card"></i>
                 <div className="noteHover">Họ tên</div>
@@ -322,7 +328,12 @@ class UserInfo extends Component {
               <br />
               <small className="noteError">{this.state.error}</small>
             </div>
-            <button class="userInfo-btn wow fadeInUp" data-wow-scroll="true" data-wow-duration="1s" onClick={this.showBookingHistory}>
+            <button
+              class="userInfo-btn wow fadeInUp"
+              data-wow-scroll="true"
+              data-wow-duration="1s"
+              onClick={this.showBookingHistory}
+            >
               {this.state.isBookingHistory
                 ? "Ẩn lịch sử đặt vé"
                 : "Lịch sử đặt vé"}

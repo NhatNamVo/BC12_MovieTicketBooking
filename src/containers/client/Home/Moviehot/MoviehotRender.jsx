@@ -12,7 +12,7 @@ class MovieHotReder extends Component {
 
   }
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.windowWidth != this.props.windowWidth) {
+    if (prevProps.windowWidth !== this.props.windowWidth) {
         this.changeHotMovieList(this.props.windowWidth);
     }
   }

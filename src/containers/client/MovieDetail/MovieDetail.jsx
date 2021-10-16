@@ -6,7 +6,6 @@ import { actFetchMovieDetail } from "./module/movieDetailAction";
 import { Link } from "react-router-dom";
 import {
   FaRegCalendarAlt,
-  FaRegClock,
   FaFacebookF,
   FaTwitter,
   FaPinterestP,
@@ -22,7 +21,6 @@ import WOW from "wowjs";
 class MovieDetail extends Component {
   kiemTraLichChieu = () => {
     const { movieDetail } = this.props;
-    console.log(movieDetail);
     if (movieDetail.heThongRapChieu.length === 0) {
       return (
         <div className="check ">
@@ -75,14 +73,14 @@ class MovieDetail extends Component {
                 <div className="col-md-8  details__banner__content offset-lg-4 wow fadeScale" data-wow-scroll="true" data-wow-duration="4s">
                   <h3 className="card-title">{movieDetail.tenPhim}</h3>
                   <div className="tags">
-                    <a href="#">Anh</a>
-                    <a href="#">Pháp</a>
-                    <a href="#">Ý</a>
-                    <a href="#">Đức</a>
+                    <Link href="#">Anh</Link>
+                    <Link href="#">Pháp</Link>
+                    <Link href="#">Ý</Link>
+                    <Link href="#">Đức</Link>
                   </div>
-                  <a href="#" className="button">
+                  <Link href="#" className="button">
                     {movieDetail.tinhTrang}
-                  </a>
+                  </Link>
                   <div className="time-social">
                     <div className="time">
                       <FaRegCalendarAlt />
@@ -91,43 +89,34 @@ class MovieDetail extends Component {
                           movieDetail.ngayKhoiChieu
                         ).toLocaleDateString()}
                       </span>
-                      {/* <FaRegClock />
-                      <span className="p-1 p-3">
-                        {new Date(movieDetail.ngayKhoiChieu).toLocaleTimeString(
-                          "it-IT",
-                          {
-                            hour: "numeric",
-                            minute: "numeric",
-                          }
-                        )}
-                      </span> */}
+                     
                     </div>
 
                     <ul className="social">
                       <li>
-                        <a href="#">
+                        <Link href="#">
                           <FaFacebookF />
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#">
+                        <Link href="#">
                           <FaTwitter />
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#">
+                        <Link href="#">
                           <FaPinterestP />
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#">
+                        <Link href="#">
                           <FaLinkedinIn />
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#">
+                        <Link href="#">
                           <FaGooglePlusG />
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -173,14 +162,14 @@ class MovieDetail extends Component {
                   <div className="description container ">
                     <ul className="tab-menu nav nav-pills card-header-pills ">
                       <li className="nav-item">
-                        <a className="nav-link active" href="#">
+                        <Link href="#" className="nav-link active" >
                           <h5>MÔ TẢ</h5>
-                        </a>
+                        </Link>
                       </li>
                       <li className="nav-item">
-                        <a className="nav-link" href="#">
+                        <Link href="#" className="nav-link" >
                           <h5>BÌNH LUẬN</h5>
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                     <div className="card-body  ">
@@ -315,7 +304,7 @@ class MovieDetail extends Component {
                         </div>
                         <div className="bottom">
                           <h6>
-                            <a href="#">Ưu đãi cho thẻ ngân hàng</a>
+                            <Link href="#">Ưu đãi cho thẻ ngân hàng</Link>
                           </h6>
                           <p>
                             Hoàn tiền lên đến 10% khi thanh toán bằng thẻ ngân
@@ -332,7 +321,7 @@ class MovieDetail extends Component {
                         </div>
                         <div className="bottom">
                           <h6>
-                            <a href="#">Thanh toán nhanh gọn</a>
+                            <Link href="#">Thanh toán nhanh gọn</Link>
                           </h6>
                           <p>
                             Hoàn tất đặt vé nhanh chỉ với các bước đơn giản.
@@ -348,7 +337,7 @@ class MovieDetail extends Component {
                         </div>
                         <div className="bottom">
                           <h6>
-                            <a href="#">Ưu đãi thẻ thành viên</a>
+                            <Link href="#">Ưu đãi thẻ thành viên</Link>
                           </h6>
                           <p>
                             Đăng ký để được tích điểm nhận ngay ưu đãi khi đặt

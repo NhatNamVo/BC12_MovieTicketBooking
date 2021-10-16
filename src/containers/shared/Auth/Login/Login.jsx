@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import background from "assets/image/background_Login.jpg";
 import "../FormLogin.scss";
-import { actFetchBookingHistory, actLogin, actSaveUserCheck } from "../module/actions";
+import {  actLogin, actSaveUserCheck } from "../module/actions";
 class Login extends Component {
   state = {
     isPass: true,
