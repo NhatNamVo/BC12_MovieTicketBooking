@@ -130,7 +130,6 @@ export const actUpdateMovie = (movieUpdate,token) => {
     movieApi.postMovieUpdate(movieUpdate, token)
     .then(res=>{
       dispatch(actUpdateSuccess(res.data));
-      console.log(res);
     })
     .catch(error=>{
       dispatch(actUpdateFail('Cập nhật thất bại'))

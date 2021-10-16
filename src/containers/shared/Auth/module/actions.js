@@ -116,7 +116,6 @@ export const actRegister = (newUser,history) => {
     userApi
       .registerApi(newUser)
       .then((res) => {
-        console.log(res.data.content);
         dispatch(actRegisterSuccess(res.data));
         history.push('/login');
       })
@@ -145,7 +144,6 @@ export const actFetchBookingHistory=(userName)=>{
     userApi
       .fetchBookingHistory(userName)
       .then((res) => {
-        console.log(res.data.content);
         dispatch(actFetchBookingHistorySuccess(res.data));        
       })
       .catch((error)=>{

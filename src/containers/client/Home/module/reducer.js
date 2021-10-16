@@ -65,7 +65,6 @@ const movieReducer = (state = initialState, { type, payload }) => {
       const hotMovie = payload.filter((movie) => {
         return movie.danhGia === 10;
       });
-      console.log(payload);
       const currentDate = new Date();
       const currentMonth = currentDate.getMonth();
       const currentYear = currentDate.getFullYear();

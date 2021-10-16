@@ -39,12 +39,10 @@ class ModalUserInfo extends Component {
     this.setState({ data: data });
   };
   updateUser = (data) => {
-    console.log(data.matKhau);
     this.props.putUserUpdate(data, this.props.accessToken);
   };
 
   dataInput = (data, messageError, isValidation) => {
-    // console.log(data);
     this.setState({
       isValidation: isValidation,
       data: data,
