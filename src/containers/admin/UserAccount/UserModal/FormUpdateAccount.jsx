@@ -41,7 +41,6 @@ class FormUpdateAccount extends Component {
   render() {
     const isUserLogin =
       this.props.currentAccountLogin === this.props.data.taiKhoan;
-    console.log(isUserLogin);
     return (
       <>
           <form action="" method="post" id="userInfo">

@@ -50,7 +50,6 @@ class MovienewList extends Component {
     }
   }
   render() {
-    console.log(this.props.windowWidth);
     const settings = {
       dots: true,
       infinite: true,
