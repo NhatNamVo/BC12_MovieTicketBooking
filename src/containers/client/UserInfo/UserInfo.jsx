@@ -39,7 +39,6 @@ class UserInfo extends Component {
   componentDidMount() {
     const { infoAdminChange } = this.state;
     const data = { taiKhoan: this.props.currentUser.taiKhoan };
-    console.log(typeof this.props.currentUser.taiKhoan);
     userApi
       .fetchBookingHistory(data)
       .then((res) => {
@@ -55,7 +54,7 @@ class UserInfo extends Component {
         });
       })
       .catch((error) => {
-        console.log(error);
+        window.location.replace('/');
       });
     new WOW.WOW({
       live: false,
@@ -212,7 +211,9 @@ class UserInfo extends Component {
         }, 1000);
       })
       .catch((error) => {
-        console.log(error);
+        this.setState({
+          error: "Cập nhật thất bại",
+        });
       });
   };
   showBookingHistory = () => {

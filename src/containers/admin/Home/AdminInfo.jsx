@@ -36,14 +36,13 @@ class AdminInfo extends Component {
         }, 200);
       })
       .catch((error) => {
-        console.log(error);
+        window.location.replace('/');
       });
   }
   infoChange = (data) => {
     let { infoAdminChange, adminInfo } = this.state;
     adminInfo.matKhau = data;
     adminInfo = { ...adminInfo, maNhom: GROUP_ID };
-    console.log(adminInfo, infoAdminChange);
     userApi
       .postUpdateUser(adminInfo, this.props.currentUser.accessToken)
       .then((res) => {
