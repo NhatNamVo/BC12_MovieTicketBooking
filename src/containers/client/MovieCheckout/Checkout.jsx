@@ -25,11 +25,9 @@ export default class Checkout extends Component {
       });
   };
   render() {
-    console.log(this.props);
     if(!this.props.location.seatChose) return (<Redirect to = "/"/>)
     const { choseSeat, totalPrice, history } = this.props.location.seatChose;
     const { movieInfo } = this.props.location;
-    console.log(this.props);
     return (
       <>
         <div

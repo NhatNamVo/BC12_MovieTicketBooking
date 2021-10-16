@@ -24,7 +24,6 @@ class Movienew extends Component {
   }
   render() {
     const { match, history, location } = this.props;
-    console.log(this.state);
     return (
       <div
         style={{
