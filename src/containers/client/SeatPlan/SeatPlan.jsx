@@ -81,7 +81,7 @@ class SeatPlan extends Component {
   postSeatChose = (e) => {
     const paymentBtn = e.target.closest(".seatChose-btn");
     if (!!paymentBtn) {
-      if (this.state.orderTicket.danhSachVe.length == 0) {
+      if (this.state.orderTicket.danhSachVe.length === 0) {
         this.setState({isBooking:true})
       }
     }

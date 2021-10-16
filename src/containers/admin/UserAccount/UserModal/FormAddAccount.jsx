@@ -8,17 +8,16 @@ class FormAddAccount extends Component {
     let isValidation = true;
     let data = this.props.data;
     let messageError = this.props.messageError;
-      const status = formValid(
-        name,
-        value,
-        this.props.userAccountData,
-        messageError
-      );
-      data = { ...data, [name]: value };
-      isValidation = status.isvalid;
-      messageError = status.messageError;
-      data = data;
-      this.props.dataInput(data, messageError, isValidation);
+    const status = formValid(
+      name,
+      value,
+      this.props.userAccountData,
+      messageError
+    );
+    data = { ...data, [name]: value };
+    isValidation = status.isvalid;
+    messageError = status.messageError;
+    this.props.dataInput(data, messageError, isValidation);
   };
   changeStatus = (status) => {
     if (status === "") {
@@ -41,108 +40,109 @@ class FormAddAccount extends Component {
   render() {
     return (
       <>
-        
-          <form action="" method="post" id="userInfo">
-            <div className="form-group">
-              <div className="form-inputContainer">
-                <input
-                  id="user"
-                  type="text"
-                  name="taiKhoan"
-                  className="form-input"
-                  placeholder="Tài khoản"
-                  value={this.props.data.taiKhoan}
-                  onChange={this.handleChange}
-                />
-                <i class="fa fa-user"></i>
-                {this.changeStatus(this.props.messageError.taiKhoan)}
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="form-inputContainer">
-                <input
-                  type="password"
-                  name="matKhau"
-                  className="form-input"
-                  placeholder="Mật khẩu"
-                  value={this.props.data.matKhau}
-                  onChange={this.handleChange}
-                />
-                <i class="fa fa-lock"></i>
-                {this.changeStatus(this.props.messageError.matKhau)}
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="form-inputContainer">
-                <input
-                  type="text"
-                  name="email"
-                  className="form-input"
-                  placeholder="Địa chỉ email"
-                  value={this.props.data.email}
-                  onChange={this.handleChange}
-                />
-                <i class="fa fa-envelope"></i>
-                {this.changeStatus(this.props.messageError.email)}
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="form-inputContainer">
-                <input
-                  type="text"
-                  name="soDt"
-                  className="form-input"
-                  placeholder="Số điện thoại"
-                  value={this.props.data.soDt}
-                  onChange={this.handleChange}
-                />
-                <i class="fa fa-phone"></i>
-                {this.changeStatus(this.props.messageError.soDt)}
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="form-inputContainer">
-                <input
-                  type="text"
-                  name="hoTen"
-                  className="form-input"
-                  placeholder="Họ tên"
-                  value={this.props.data.hoTen}
-                  onChange={this.handleChange}
-                />
-                <i class="fa fa-credit-card"></i>
-                {this.changeStatus(this.props.messageError.hoTen)}
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="form-inputContainer">
-                <input
-                  type="text"
-                  name="maNhom"
-                  className="form-input"
-                  value={GROUP_ID}
-                  disabled="true"
-                />
-                <i class="fa fa-users"></i>
-              </div>
-            </div>
-            <div class="form-inputContainer">
-              <label for=""></label>
-              <select
-                class={"form-select " + (this.props.messageError.maLoaiNguoiDung?"":"error")}
-                name=""
-                id=""
-                name="maLoaiNguoiDung"
-                value={this.props.data.maLoaiNguoiDung}
+        <form action="" method="post" id="userInfo">
+          <div className="form-group">
+            <div className="form-inputContainer">
+              <input
+                id="user"
+                type="text"
+                name="taiKhoan"
+                className="form-input"
+                placeholder="Tài khoản"
+                value={this.props.data.taiKhoan}
                 onChange={this.handleChange}
-              >
-                <option value="">Loại tài khoản</option>
-                <option value="KhachHang">Khách hàng</option>
-                <option value="QuanTri">Quản trị</option>
-              </select>
-              <i class="fa fa-magic"></i>
+              />
+              <i class="fa fa-user"></i>
+              {this.changeStatus(this.props.messageError.taiKhoan)}
             </div>
-          </form>
+          </div>
+          <div className="form-group">
+            <div className="form-inputContainer">
+              <input
+                type="password"
+                name="matKhau"
+                className="form-input"
+                placeholder="Mật khẩu"
+                value={this.props.data.matKhau}
+                onChange={this.handleChange}
+              />
+              <i class="fa fa-lock"></i>
+              {this.changeStatus(this.props.messageError.matKhau)}
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="form-inputContainer">
+              <input
+                type="text"
+                name="email"
+                className="form-input"
+                placeholder="Địa chỉ email"
+                value={this.props.data.email}
+                onChange={this.handleChange}
+              />
+              <i class="fa fa-envelope"></i>
+              {this.changeStatus(this.props.messageError.email)}
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="form-inputContainer">
+              <input
+                type="text"
+                name="soDt"
+                className="form-input"
+                placeholder="Số điện thoại"
+                value={this.props.data.soDt}
+                onChange={this.handleChange}
+              />
+              <i class="fa fa-phone"></i>
+              {this.changeStatus(this.props.messageError.soDt)}
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="form-inputContainer">
+              <input
+                type="text"
+                name="hoTen"
+                className="form-input"
+                placeholder="Họ tên"
+                value={this.props.data.hoTen}
+                onChange={this.handleChange}
+              />
+              <i class="fa fa-credit-card"></i>
+              {this.changeStatus(this.props.messageError.hoTen)}
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="form-inputContainer">
+              <input
+                type="text"
+                name="maNhom"
+                className="form-input"
+                value={GROUP_ID}
+                disabled="true"
+              />
+              <i class="fa fa-users"></i>
+            </div>
+          </div>
+          <div class="form-inputContainer">
+            <label for=""></label>
+            <select
+              class={
+                "form-select " +
+                (this.props.messageError.maLoaiNguoiDung ? "" : "error")
+              }
+              id=""
+              name="maLoaiNguoiDung"
+              value={this.props.data.maLoaiNguoiDung}
+              onChange={this.handleChange}
+            >
+              <option value="">Loại tài khoản</option>
+              <option value="KhachHang">Khách hàng</option>
+              <option value="QuanTri">Quản trị</option>
+            </select>
+            <i class="fa fa-magic"></i>
+          </div>
+        </form>
       </>
     );
   }

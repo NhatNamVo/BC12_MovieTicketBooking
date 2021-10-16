@@ -1,7 +1,7 @@
 import withMovieLayout from "hocs/withMovieLayout";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import MovieTimePlan from "../TimePlan/MovieTimePlan";
+
 import "./MovieItem.scss";
 import 'Base/customize.scss';
 import WOW from "wowjs";
@@ -17,7 +17,7 @@ class MovieItem extends Component {
   }).init();
   }
   render() {
-    const { tenPhim, hinhAnh, maPhim, biDanh, danhGia, ngayKhoiChieu } =
+    const { tenPhim, hinhAnh, maPhim, biDanh, danhGia} =
       this.props.data;
 
     return (

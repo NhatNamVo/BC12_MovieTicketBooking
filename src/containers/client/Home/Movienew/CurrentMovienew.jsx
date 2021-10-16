@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FaRegPlayCircle } from "react-icons/fa";
 import { connect } from "react-redux";
-import renderMovie from "containers/shared/TimePlan/MovieTimePlan";
+
 class CurrentMovienew extends Component {
   setDescription = () => {
     const {moTa} = this.props.currentMovienew;
@@ -21,7 +21,7 @@ class CurrentMovienew extends Component {
   }
   render() {
     const { match, history, currentMovienew } = this.props;
-    const { maPhim, tenPhim, hinhAnh, ngayKhoiChieu, moTa, danhGia, biDanh } = currentMovienew;
+    const { maPhim, tenPhim, hinhAnh, ngayKhoiChieu, danhGia, biDanh } = currentMovienew;
     return currentMovienew && (
       <>
         <div className="currentFilm row">

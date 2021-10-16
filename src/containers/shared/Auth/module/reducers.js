@@ -1,4 +1,4 @@
-import { FETCH_ALL_MOVIE_REQUEST } from "containers/client/Home/module/types";
+
 import {
   CHECK_USER_SAVE,
   FETCH_BOOKING_HISTORY_FAIL,

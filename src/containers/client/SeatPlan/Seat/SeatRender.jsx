@@ -42,9 +42,9 @@ class SeatRender extends Component {
       }
   };
   render() {
-    const { daDat, giaVe, loaiGhe, maGhe, maRap, stt, tenGhe} =
+    const {  giaVe, loaiGhe, maGhe, tenGhe} =
       this.props.seat;
-    const { index,widthContainer,colSeat,seatCheck} = this.props;
+    const { index,widthContainer,seatCheck} = this.props;
 
     return (
       <div

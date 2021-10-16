@@ -18,7 +18,6 @@ class FormUpdateAccount extends Component {
     data = { ...data, [name]: value };
     isValidation = status.isvalid;
     messageError = status.messageError;
-    data = data;
     this.props.dataInput(data, messageError, isValidation);
   };
   changeStatus = (status) => {
@@ -168,7 +167,6 @@ class FormUpdateAccount extends Component {
                   "form-select " +
                   (this.props.messageError.maLoaiNguoiDung ? "" : "error")
                 }
-                name=""
                 id=""
                 name="maLoaiNguoiDung"
                 value={this.props.data.maLoaiNguoiDung}

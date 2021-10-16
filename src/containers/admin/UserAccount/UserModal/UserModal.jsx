@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import FormAddAccount from "./FormAddAccount";
 import { GROUP_ID } from "settings/apiConfig";
 import "./UserModal.scss";
-import { connect } from "react-redux";
 import FormUpdateAccount from "./FormUpdateAccount";
 class UserModal extends Component {
   state = {
@@ -27,7 +26,7 @@ class UserModal extends Component {
     isNote: false,
   };
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.idx != this.props.idx) {
+    if (prevProps.idx !== this.props.idx) {
       if (!this.props.isAddUser) {
         this.changeStateData();
       }
@@ -86,7 +85,7 @@ class UserModal extends Component {
   submitForm = () => {
     const { taiKhoan, matKhau, email, soDt, hoTen, maLoaiNguoiDung } =
       this.state.data;
-    let { messageError, data } = this.state;
+    let { messageError } = this.state;
     let isValid = true;
     for (let key in messageError) {
       if(key === "maLoaiNguoiDung"){
@@ -156,11 +155,10 @@ class UserModal extends Component {
     }
   };
   render() {
-    const { isAddUser, idx } = this.props;
+    const { isAddUser } = this.props;
     return (
       <>
         <div
-          id="userModal"
           className="modal fade"
           id="userModal"
           tabIndex={-1}

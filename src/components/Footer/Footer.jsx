@@ -21,7 +21,6 @@ class Footer extends Component {
 
   handleChangeOpen = (content) => {
     const { open } = this.state;
-    const fa = document.querySelector(".fa");
 
     const info = document.querySelector(".footer-info");
     const branch = document.querySelector(".footer-branch");
@@ -108,29 +107,29 @@ class Footer extends Component {
 
               <ul className="social wow fadeInRight" data-wow-scroll="true">
                 <li>
-                  <a href="#">
+                  <Link to="/">
                     <FaFacebookF />
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link to="/">
                     <FaTwitter />
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link href="/">
                     <FaPinterestP />
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link href="/">
                     <FaLinkedinIn />
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link href="/">
                     <FaGooglePlusG />
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -179,6 +178,7 @@ class Footer extends Component {
                       <a
                         href="https://www.cgv.vn/"
                         target="_blank"
+                        rel="noreferrer"
                         className="branch-logo "
                         alt="cgv"
                       >
@@ -190,7 +190,7 @@ class Footer extends Component {
                       </a>
                       <a
                         href="http://lottecinemavn.com"
-                        target="_blank"
+                        target="_blank" rel="noreferrer"
                         className="branch-logo"
                       >
                         <img
@@ -201,7 +201,7 @@ class Footer extends Component {
                       </a>
                       <a
                         href="http://galaxycine.vn"
-                        target="_blank"
+                        target="_blank" rel="noreferrer"
                         className="branch-logo"
                       >
                         <img
@@ -212,7 +212,7 @@ class Footer extends Component {
                       </a>
                       <a
                         href="http://bhdstar.vn"
-                        target="_blank"
+                        target="_blank" rel="noreferrer"
                         className="branch-logo"
                       >
                         <img
@@ -223,7 +223,7 @@ class Footer extends Component {
                       </a>
                       <a
                         href="https://cinestar.com.vn/"
-                        target="_blank"
+                        target="_blank" rel="noreferrer"
                         className="branch-logo"
                       >
                         <img
@@ -234,7 +234,7 @@ class Footer extends Component {
                       </a>
                       <a
                         href="https://www.megagscinemas.vn"
-                        target="_blank"
+                        target="_blank" rel="noreferrer"
                         className="branch-logo"
                       >
                         <img
@@ -245,7 +245,7 @@ class Footer extends Component {
                       </a>
                       <a
                         href="https://cybersoft.edu.vn/"
-                        target="_blank"
+                        target="_blank" rel="noreferrer"
                         className="branch-logo"
                       >
                         <img

@@ -1,4 +1,4 @@
-import { ADD_MOVIE_LIST, FILTER_SHOW_MOVIE_MOUNT, FILTER_SORT_MOVIE_TYPE, MOVIE_SEARCH } from "./types"
+import { ADD_MOVIE_LIST, FILTER_SHOW_MOVIE_MOUNT, FILTER_SORT_MOVIE_TYPE } from "./types"
 
 export const actFilterMovieType = movieType => {
     return dispatch =>{

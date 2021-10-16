@@ -1,5 +1,5 @@
 import ticketApi from "apis/ticketApi";
-import {Redirect} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import React, { Component } from "react";
 import FailBooking from "./Popup/FailBooking";
 import "../MovieCheckout/Checkout.scss";
@@ -25,11 +25,9 @@ export default class Checkout extends Component {
       });
   };
   render() {
-    console.log(this.props);
     if(!this.props.location.seatChose) return (<Redirect to = "/"/>)
-    const { choseSeat, totalPrice, history } = this.props.location.seatChose;
+    const { choseSeat, totalPrice } = this.props.location.seatChose;
     const { movieInfo } = this.props.location;
-    console.log(this.props);
     return (
       <>
         <div
@@ -41,10 +39,10 @@ export default class Checkout extends Component {
                 data-wow-scroll="true" data-wow-duration="1s">
               <h3 className="title">{movieInfo.tenPhim}</h3>
               <div className="tags">
-                <a href="#">Phim</a>
-                <a href="#">2D</a>
-                <a href="#">3D</a>
-                <a href="#">Mỹ</a>
+                <Link href="#">Phim</Link>
+                <Link href="#">2D</Link>
+                <Link href="#">3D</Link>
+                <Link href="#">Mỹ</Link>
               </div>
             </div>
           </div>

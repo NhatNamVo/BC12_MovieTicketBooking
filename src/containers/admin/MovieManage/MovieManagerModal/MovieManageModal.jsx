@@ -29,7 +29,7 @@ class MovieManageModal extends Component {
     images: "",
     customTextArea: 36,
   };
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.movieCode !== this.props.movieCode) {
       if (!this.props.isAddMovie && this.props.movieCode !== null) {
         this.setDataMovie();
@@ -45,20 +45,25 @@ class MovieManageModal extends Component {
   }
   setDataMovie() {
     const movieItem = this.props.movieList.find((movie) => {
-      return movie.maPhim == this.props.movieCode;
+      return movie.maPhim === this.props.movieCode;
     });
-    const date = movieItem.ngayKhoiChieu.slice(0,10);
+    const date = movieItem.ngayKhoiChieu.slice(0, 10);
     const { data } = this.state;
     for (let mainKey in data) {
       for (let key in movieItem) {
-        if (mainKey == key) {
+        if (mainKey === key) {
           data[mainKey] = movieItem[key];
           break;
         }
       }
     }
-    const dataMovie = { ...data, hinhAnh: null, ngayKhoiChieu: date};
-    this.setState({ data: dataMovie, customTextArea: 200,images:movieItem.hinhAnh,isImage: true});
+    const dataMovie = { ...data, hinhAnh: null, ngayKhoiChieu: date };
+    this.setState({
+      data: dataMovie,
+      customTextArea: 200,
+      images: movieItem.hinhAnh,
+      isImage: true,
+    });
   }
   resetData() {
     let info = {
@@ -72,29 +77,33 @@ class MovieManageModal extends Component {
       ngayKhoiChieu: "",
       danhGia: null,
     };
-    const {messageError} = this.state;
-    for(let key in messageError){
-      messageError[key] = '';
-    };
-    this.setState({ data: info, messageError:messageError, customTextArea: 36, isImage: false, images: ''});
+    const { messageError } = this.state;
+    for (let key in messageError) {
+      messageError[key] = "";
+    }
+    this.setState({
+      data: info,
+      messageError: messageError,
+      customTextArea: 36,
+      isImage: false,
+      images: "",
+    });
   }
   handleChange = (e) => {
-    const {messageError} = this.state;
+    const { messageError } = this.state;
     const name = e.target.name;
     let value = e.target.value;
     if (name === "hinhAnh") {
       value = e.target.files[0];
-      if(value.name !== ''){
+      if (value.name !== "") {
         let reader = new FileReader();
         reader.readAsDataURL(value);
         reader.onload = (e) => {
-          this.setState({images:e.target.result, isImage: true});
-        }
+          this.setState({ images: e.target.result, isImage: true });
+        };
+      } else {
+        this.setState({ images: "", isImage: false });
       }
-      else{
-        this.setState({images:'', isImage: false});
-      }
-      
     }
     if (name === "moTa") {
       if (value === "") {
@@ -103,55 +112,66 @@ class MovieManageModal extends Component {
         }, 200);
       }
     }
-    const status = formValid(name,value, null, messageError);
-    const data = { ...this.state.data,  [name]: value };
-    this.setState({ data: data, isValidation: status.isvalid, messageError:status.messageError });
+    const status = formValid(name, value, null, messageError);
+    const data = { ...this.state.data, [name]: value };
+    this.setState({
+      data: data,
+      isValidation: status.isvalid,
+      messageError: status.messageError,
+    });
   };
   handleClick = (e) => {
     e.stopPropagation();
-    const closeBtn = e.target.closest('.close');
-    const exitModal = e.target.closest('#exitModal');
-    if(!!closeBtn||!!exitModal){
+    const closeBtn = e.target.closest(".close");
+    const exitModal = e.target.closest("#exitModal");
+    if (!!closeBtn || !!exitModal) {
       this.closeModal();
     }
-  }
+  };
 
   submitForm = () => {
-    const {tenPhim, trailer, hinhAnh, moTa, ngayKhoiChieu, danhGia} = this.state.data;
-    let {messageError} = this.state;
+    const { tenPhim, trailer, moTa, ngayKhoiChieu, danhGia } = this.state.data;
+    let { messageError } = this.state;
     let isValid = true;
     for (let key in messageError) {
       if (messageError[key] !== "" && messageError[key] !== "true") {
         debugger;
-          isValid = false;
-          break;
-        }
-    };
-    if(!tenPhim || !trailer || !this.state.images || !ngayKhoiChieu || !danhGia || !moTa) {
-      if(!tenPhim){
-        messageError.tenPhim = 'Tên phim đang trống';
+        isValid = false;
+        break;
       }
-      if(!trailer){
-        messageError.trailer = 'Link trailer đang trống';
+    }
+    if (
+      !tenPhim ||
+      !trailer ||
+      !this.state.images ||
+      !ngayKhoiChieu ||
+      !danhGia ||
+      !moTa
+    ) {
+      if (!tenPhim) {
+        messageError.tenPhim = "Tên phim đang trống";
       }
-      if(!this.state.images) {
-        messageError.hinhAnh = 'Chưa có hình ảnh phim';
+      if (!trailer) {
+        messageError.trailer = "Link trailer đang trống";
       }
-      if(!ngayKhoiChieu) {
-        messageError.ngayKhoiChieu = 'Ngày khởi chiếu đang trống';
+      if (!this.state.images) {
+        messageError.hinhAnh = "Chưa có hình ảnh phim";
       }
-      if(!danhGia) {
-        messageError.danhGia = 'Lượt đánh giá đang trống';
+      if (!ngayKhoiChieu) {
+        messageError.ngayKhoiChieu = "Ngày khởi chiếu đang trống";
       }
-      if(!moTa){
-        messageError.moTa = 'Mô tả phim đang trống';
+      if (!danhGia) {
+        messageError.danhGia = "Lượt đánh giá đang trống";
       }
-      this.setState({ messageError: messageError});
+      if (!moTa) {
+        messageError.moTa = "Mô tả phim đang trống";
+      }
+      this.setState({ messageError: messageError });
       return;
     }
-    if(!this.state.isValidation || !isValid){
+    if (!this.state.isValidation || !isValid) {
       return;
-    };
+    }
     if (this.props.isAddMovie) {
       this.props.addNewMovie(this.state.data);
     } else {
@@ -168,15 +188,15 @@ class MovieManageModal extends Component {
   customForm = (e) => {
     this.setState({ customTextArea: e.target.scrollHeight });
   };
-  uploadImage = (e) =>{
+  uploadImage = (e) => {
     e.preventDefault();
-    const uploadForm = document.querySelector('#imgUpload');
+    const uploadForm = document.querySelector("#imgUpload");
     uploadForm.click();
-  }
-  closeModal = () =>{
+  };
+  closeModal = () => {
     this.resetData();
     this.props.changeMovieCode();
-  }
+  };
   changeStatus = (status) => {
     if (status === "") {
       return <span className="inputStatus"></span>;
@@ -273,7 +293,9 @@ class MovieManageModal extends Component {
                           onChange={this.handleChange}
                         />
                         <i class="fa fa-hourglass-end"></i>
-                        {this.changeStatus(this.state.messageError.ngayKhoiChieu)}
+                        {this.changeStatus(
+                          this.state.messageError.ngayKhoiChieu
+                        )}
                       </div>
                     </div>
                     <div id="formTextArea" className="form-inputContainer">
@@ -287,7 +309,6 @@ class MovieManageModal extends Component {
                         id="descriptionInput"
                         placeholder="Mô tả phim"
                         onChange={this.handleChange}
-                        onInput={this.customForm}
                         value={this.state.data.moTa}
                         rows={1}
                       ></textarea>
@@ -295,7 +316,10 @@ class MovieManageModal extends Component {
                       <i class="fa fa-sticky-note"></i>
                     </div>
                     <div className="form-group">
-                      <div className="form-inputContainer" id="movieAdmin-uploadImg">
+                      <div
+                        className="form-inputContainer"
+                        id="movieAdmin-uploadImg"
+                      >
                         <input
                           name="hinhAnh"
                           classname="form-control selectFileUpload"
@@ -305,11 +329,25 @@ class MovieManageModal extends Component {
                           accept="image/png,imgae/jpg,image/gif,image/jpeg"
                           onChange={this.handleChange}
                         />
-                        <button class="imgUpload" onClick={this.uploadImage}><i class="fa fa-upload"></i></button>
-                        <span className="noteFile">{this.state.isImage?"Ảnh đã được tải lên":"Ảnh chưa tải lên"}</span>
+                        <button class="imgUpload" onClick={this.uploadImage}>
+                          <i class="fa fa-upload"></i>
+                        </button>
+                        <span className="noteFile">
+                          {this.state.isImage
+                            ? "Ảnh đã được tải lên"
+                            : "Ảnh chưa tải lên"}
+                        </span>
                         <br />
-                        {this.state.isImage?<img src={this.state.images} alt="..." width="180px" />:""}
-                        
+                        {this.state.isImage ? (
+                          <img
+                            src={this.state.images}
+                            alt="..."
+                            width="180px"
+                          />
+                        ) : (
+                          ""
+                        )}
+
                         {this.changeStatus(this.state.messageError.hinhAnh)}
                       </div>
                     </div>

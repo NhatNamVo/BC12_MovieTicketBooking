@@ -34,8 +34,8 @@ class UserInfoUpdate extends Component {
       }
     }
     if (!!changePassBtn) {
-      const { infoAdminChange, infoChange } = this.props;
-      if (oldPass.value != infoAdminChange.pass) {
+      const { infoAdminChange } = this.props;
+      if (oldPass.value !== infoAdminChange.pass) {
         this.setState({ error: "Mật khẩu cũ không đúng!" });
         return;
       }
