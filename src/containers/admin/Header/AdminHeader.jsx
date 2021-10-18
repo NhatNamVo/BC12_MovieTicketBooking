@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./AdminHeader.scss";
 import UserLogin from "components/Header/UserLogin/UserLogin";
+import logo from "assets/image/logo.png";
 class AdminHeader extends Component {
   state = {
     menuBtn: false,
@@ -46,7 +47,7 @@ class AdminHeader extends Component {
         <div className="header-content container">
           <div className="logobranch">
             <Link to="/admin">
-            <img src="./logo.png" alt="" />
+            <img src={logo} alt="logoMovieTicket" />
             </Link>
           </div>
           <div
