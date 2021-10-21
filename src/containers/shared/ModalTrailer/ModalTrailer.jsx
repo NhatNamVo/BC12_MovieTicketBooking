@@ -40,7 +40,7 @@ class ModalTrailer extends Component {
             height={window.innerHeight * 0.6}
             frameborder="0"
             src={
-              (this.props.listMovie.length > 0
+              (!!trailer
                 ? trailer
                 : this.props.movieDetail.trailer) + "?autoplay=1"
             }
