@@ -99,7 +99,7 @@ const movieReducer = (state = initialState, { type, payload }) => {
       };
     case GET_TRAILER_MOVIE:
       const currentTrailerMovie = state.listMovie.find((movie, idx) => {
-        return movie.maPhim === payload;
+        return movie.maPhim == payload;
       }).trailer;
       return { ...state, currentTrailerMovie: currentTrailerMovie };
     case ADD_NEW_MOVIE_REQUEST:
